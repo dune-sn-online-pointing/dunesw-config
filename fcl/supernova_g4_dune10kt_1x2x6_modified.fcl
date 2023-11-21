@@ -1,0 +1,6 @@
+#include "supernova_g4_dune10kt_1x2x6.fcl"
+
+source: {
+   maxEvents: -1
+   module_type: "RootInput"
+}
