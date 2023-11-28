@@ -1,7 +1,22 @@
 # Produced from 'fhicl-dump' using:
-#   Input  : fcl/TPdump_standardHF_noiseless_fixed.fcl
+#   Input  : TPdump_standardHF_noiseless_fixed.fcl
 #   Policy : cet::filepath_maker
 #   Path   : "FHICL_FILE_PATH"
+
+
+
+BEGIN_PROLOG
+
+tagged_TP_dump_config: {
+   module_type:   TPStreamer
+   OutputFile:    "tpstream_standardHF_thresh30_nonoise.txt"
+   HitLabel:      "trigprim1"
+   InputTag:      "simwire"
+   # GenLabel:      "marley" # should be able to comment this
+   GEANT4Label:   "largeant"
+   HitWindow:      5
+}
+END_PROLOG
 
 adcPlotDftTemplate: {
    ChannelSelection: ""
@@ -43,12 +58,39 @@ physics: {
    ]
    analyzers: {
       daqanatrigprim1: {
-         GEANT4Label: "largeant"
-         GenLabel: "marley"
+         # the following labels refer to the labels in the Gen fcl: 
+         # prodmarley_nue_spectrum_radiological_decay0_dune10kt_refactored_1x2x6.fcl
+         # not sure if these can be put inside the module only, so putting them here for the moment
+         GenLabels: {
+               MarleyLabel: "marley"
+               Ar39GenInLarLabel: "Ar39GenInLAr"
+               Kr85GenInLarLabel: "Kr85GenInLAr"
+               Ar42GenInLarLabel: "Ar42GenInLAr"
+               K42From42ArGenInLarLabel: "K42From42ArGenInLAr"
+               Rn222ChainRn222GenInLarLabel: "Rn222ChainRn222GenInLAr"
+               Rn222ChainPo218GenInLarLabel: "Rn222ChainPo218GenInLAr"
+               Rn222ChainPb214GenInLarLabel: "Rn222ChainPb214GenInLAr"
+               Rn222ChainBi214GenInLarLabel: "Rn222ChainBi214GenInLAr"
+               Rn222ChainPb210GenInLarLabel: "Rn222ChainPb210GenInLAr"
+               K40GenInCPALabel: "K40GenInCPA"
+               U238ChainGenInCPALabel: "U238ChainGenInCPA"
+               K42From42ArGenInCPALabel: "K42From42ArGenInCPA"
+               Rn222ChainPo218GenInCPALabel: "Rn222ChainPo218GenInCPA"
+               Rn222ChainPb214GenInCPALabel: "Rn222ChainPb214GenInCPA"
+               Rn222ChainBi214GenInCPALabel: "Rn222ChainBi214GenInCPA"
+               Rn222ChainPb210GenInCPALabel: "Rn222ChainPb210GenInCPA"
+               Rn222ChainFromBi210GenInCPALabel: "Rn222ChainFromBi210GenInCPA"
+               Co60GenInAPALabel: "Co60GenInAPA"
+               U238ChainGenInAPALabel: "U238ChainGenInAPA"
+               Rn222ChainGenInPDSLabel: "Rn222ChainGenInPDS"
+               NeutronGenInRockLabel: "NeutronGenInRock"
+            }
          HitLabel: "trigprim1"
          HitWindow: 5
          InputTag: "simwire"
-         OutputFile: "tpstream_standardHF_thresh30_nonoise.txt"
+         GEANT4Label:   "largeant"
+         # TODO change thresh30 to something that reads the threshold
+         OutputFile: "tpstream_standardHF_thresh30_nonoise_newLabels.txt"
          module_type: "TPStreamer"
       }
    }

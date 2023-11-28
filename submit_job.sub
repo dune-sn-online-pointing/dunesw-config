@@ -1,0 +1,20 @@
+# script to submit jobs to the grid for sn simulation
+
+notify_user         = emanuele.villa@cern.ch
+notification        = Always
+
+JOBNAME             = sn-simulation
+executable          = run-sn-simulation.sh
+# arguments           = 
+output              = job_output/job.$(JOBNAME).$(ClusterId).$(ProcId).out
+error               = job_output/job.$(JOBNAME).$(ClusterId).$(ProcId).err
+log                 = job_output/job.$(JOBNAME).$(ClusterId).log
+request_cpus        = 2
+# request_memory      = 2000
+
++JobFlavour         = "espresso"
+
+
+queue arguments from (
+    -s -m -g -d -r -n 2 -e $(ProcId)
+)

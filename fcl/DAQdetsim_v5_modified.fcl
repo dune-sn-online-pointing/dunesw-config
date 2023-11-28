@@ -1,4 +1,4 @@
-#include "DAQdetsim_v5.fcl"
+#include "fcl/DAQdetsim_v5.fcl"
 
 # setting maxEvents to -1 so it reads what is given from the command line
 source: {
