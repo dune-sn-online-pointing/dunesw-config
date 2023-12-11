@@ -1,5 +1,7 @@
 #include "prodmarley_nue_flat_dune10kt_1x2x6.fcl"
 
+# note that energy range goes from 2 to 70 GeV, not from 5
+
 physics: {
 producers: {
       marley: {
@@ -10,7 +12,6 @@ producers: {
                z: 1
             }
             reactions: [
-               "ES.react",
                "ve40ArCC_Bhattacharya2009.react"
             ]
             source: {

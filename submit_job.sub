@@ -9,12 +9,42 @@ executable          = run-sn-simulation.sh
 output              = job_output/job.$(JOBNAME).$(ClusterId).$(ProcId).out
 error               = job_output/job.$(JOBNAME).$(ClusterId).$(ProcId).err
 log                 = job_output/job.$(JOBNAME).$(ClusterId).log
-request_cpus        = 2
+request_cpus        = 1
 # request_memory      = 2000
 
-+JobFlavour         = "espresso"
++JobFlavour         = "microcentury"
 
 
 queue arguments from (
-    -s -m -g -d -r -n 2 -e $(ProcId)
+    # clean events first
+    -s -m prodmarley_nue_spectrum_clean_dune10kt_1x2x6_CC -g -d -r -n 200 -e 0
+    -s -m prodmarley_nue_spectrum_clean_dune10kt_1x2x6_CC -g -d -r -n 200 -e 1
+    -s -m prodmarley_nue_spectrum_clean_dune10kt_1x2x6_CC -g -d -r -n 200 -e 2
+    -s -m prodmarley_nue_spectrum_clean_dune10kt_1x2x6_CC -g -d -r -n 200 -e 3
+    -s -m prodmarley_nue_spectrum_clean_dune10kt_1x2x6_CC -g -d -r -n 200 -e 4
+    -s -m prodmarley_nue_spectrum_clean_dune10kt_1x2x6_ES -g -d -r -n 200 -e 0
+    -s -m prodmarley_nue_spectrum_clean_dune10kt_1x2x6_ES -g -d -r -n 200 -e 1
+    -s -m prodmarley_nue_spectrum_clean_dune10kt_1x2x6_ES -g -d -r -n 200 -e 2
+    -s -m prodmarley_nue_spectrum_clean_dune10kt_1x2x6_ES -g -d -r -n 200 -e 3
+    -s -m prodmarley_nue_spectrum_clean_dune10kt_1x2x6_ES -g -d -r -n 200 -e 4
+    -s -m prodmarley_nue_spectrum_radiological_decay0_dune10kt_refactored_1x2x6_ES -g -d -r -n 15 -e 0
+    -s -m prodmarley_nue_spectrum_radiological_decay0_dune10kt_refactored_1x2x6_ES -g -d -r -n 15 -e 1
+    -s -m prodmarley_nue_spectrum_radiological_decay0_dune10kt_refactored_1x2x6_ES -g -d -r -n 15 -e 2
+    -s -m prodmarley_nue_spectrum_radiological_decay0_dune10kt_refactored_1x2x6_ES -g -d -r -n 15 -e 3
+    -s -m prodmarley_nue_spectrum_radiological_decay0_dune10kt_refactored_1x2x6_ES -g -d -r -n 15 -e 4
+    -s -m prodmarley_nue_spectrum_radiological_decay0_dune10kt_refactored_1x2x6_ES -g -d -r -n 15 -e 5
+    -s -m prodmarley_nue_spectrum_radiological_decay0_dune10kt_refactored_1x2x6_ES -g -d -r -n 15 -e 6
+    -s -m prodmarley_nue_spectrum_radiological_decay0_dune10kt_refactored_1x2x6_ES -g -d -r -n 15 -e 7
+    -s -m prodmarley_nue_spectrum_radiological_decay0_dune10kt_refactored_1x2x6_ES -g -d -r -n 15 -e 8
+    -s -m prodmarley_nue_spectrum_radiological_decay0_dune10kt_refactored_1x2x6_ES -g -d -r -n 15 -e 9
+    -s -m prodmarley_nue_spectrum_radiological_decay0_dune10kt_refactored_1x2x6_CC -g -d -r -n 15 -e 0
+    -s -m prodmarley_nue_spectrum_radiological_decay0_dune10kt_refactored_1x2x6_CC -g -d -r -n 15 -e 1
+    -s -m prodmarley_nue_spectrum_radiological_decay0_dune10kt_refactored_1x2x6_CC -g -d -r -n 15 -e 2
+    -s -m prodmarley_nue_spectrum_radiological_decay0_dune10kt_refactored_1x2x6_CC -g -d -r -n 15 -e 3
+    -s -m prodmarley_nue_spectrum_radiological_decay0_dune10kt_refactored_1x2x6_CC -g -d -r -n 15 -e 4
+    -s -m prodmarley_nue_spectrum_radiological_decay0_dune10kt_refactored_1x2x6_CC -g -d -r -n 15 -e 5
+    -s -m prodmarley_nue_spectrum_radiological_decay0_dune10kt_refactored_1x2x6_CC -g -d -r -n 15 -e 6
+    -s -m prodmarley_nue_spectrum_radiological_decay0_dune10kt_refactored_1x2x6_CC -g -d -r -n 15 -e 7
+    -s -m prodmarley_nue_spectrum_radiological_decay0_dune10kt_refactored_1x2x6_CC -g -d -r -n 15 -e 8
+    -s -m prodmarley_nue_spectrum_radiological_decay0_dune10kt_refactored_1x2x6_CC -g -d -r -n 15 -e 9
 )

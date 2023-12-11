@@ -11,12 +11,14 @@ source_here="/afs/cern.ch/work/e/evilla/private/dune/dunesw/duneana-dev/source-h
 
 # fcls
 FCL_FOLDER="/afs/cern.ch/work/e/evilla/private/dune/dunesw/duneana-dev/fcl/"
-OUTFOLDER_ENDING=""
-GEN_FCL='prodmarley_nue_spectrum_radiological_decay0_dune10kt_refactored_1x2x6_modified'
-# GEN_FCL='prodmarley_nue_flat_dune10kt_1x2x6_dump_modified'
+# GEN_FCL='prodmarley_nue_spectrum_radiological_decay0_dune10kt_refactored_1x2x6_modified'
+GEN_FCL='prodmarley_nue_flat_dune10kt_1x2x6_dump_modified'
 G4_FCL='supernova_g4_dune10kt_1x2x6_modified'
 DETSIM_FCL='DAQdetsim_v5' # get rid of modified
 RECO_FCL='TPdump_standardHF_noiseless_labels'
+
+# other params
+OUTFOLDER_ENDING=""
 number_events=1
 
 # Function to source scripts and print help message
@@ -150,6 +152,9 @@ rm ./-_detsim_hist.root
 
 # Move all products to the folder
 mv *.root *.log *.txt "$DATA_PATH"
+
+# Delete root files
+rm $DATA_PATH*.root
 
 # Print the data path
 echo "Data is in $DATA_PATH"

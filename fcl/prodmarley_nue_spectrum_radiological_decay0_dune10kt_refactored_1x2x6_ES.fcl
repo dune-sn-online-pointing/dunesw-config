@@ -1,7 +1,8 @@
-#include "prodmarley_nue_flat_dune10kt_1x2x6.fcl"
+#include "prodmarley_nue_spectrum_radiological_decay0_dune10kt_refactored_1x2x6.fcl"
 
 physics: {
-producers: {
+
+   producers: {
       marley: {
          marley_parameters: {
             direction: {
@@ -10,21 +11,14 @@ producers: {
                z: 1
             }
             reactions: [
-               "ES.react",
-               "ve40ArCC_Bhattacharya2009.react"
+               "ES.react"
+               # "ve40ArCC_Bhattacharya2009.react"
             ]
             source: {
-               E_bin_lefts: [
-                  4
-               ]
-               Emax: 70
-               Emin: 2
+               namecycle: "NueSpectrum"
                neutrino: "ve"
-               type: "histogram"
-               weight_flux: false
-               weights: [
-                  1
-               ]
+               tfile: "nue_spectrum.root"
+               type: "tgraph"
             }
          }
          module_type: "MARLEYGen"
@@ -36,18 +30,9 @@ producers: {
          module_type: "RandomNumberSaver"
       }
    }
-   simulate: [
-      "rns",
-      "marley"
-   ]
-   stream1: [
-      "out1"
-   ]
-   trigger_paths: [
-      "simulate"
-   ]
 }
 
+# setting maxEvents to -1 so it reads what is given from the command line
 source: {
    firstEvent: 1
    firstRun: 2.0000047e7

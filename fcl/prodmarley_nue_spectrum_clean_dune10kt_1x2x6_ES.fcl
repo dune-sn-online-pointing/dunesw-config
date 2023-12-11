@@ -10,21 +10,13 @@ producers: {
                z: 1
             }
             reactions: [
-               "ES.react",
-               "ve40ArCC_Bhattacharya2009.react"
+               "ES.react"
             ]
             source: {
-               E_bin_lefts: [
-                  4
-               ]
-               Emax: 70
-               Emin: 2
+               namecycle: "NueSpectrum"
                neutrino: "ve"
-               type: "histogram"
-               weight_flux: false
-               weights: [
-                  1
-               ]
+               tfile: "nue_spectrum.root"
+               type: "tgraph"
             }
          }
          module_type: "MARLEYGen"

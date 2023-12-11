@@ -46,16 +46,24 @@ cd $MRB_BUILDDIR
 
 # Perform the "mrb z" operation, if add_targets is true
 if [ "$add_targets" = true ]; then
-    mrb z
+  echo ""
+  echo "Adding targets to the build"
+  mrb z
 fi
 
 # Set up the mrb environment
+echo ""
+echo "Setting up mrb environment in $MRB_BUILDDIR"
 mrbsetenv
 
 # do mrb i -j8 only if compile is true
 if [ "$compile" = true ]; then
-    mrb i -j8
+  echo ""
+  echo "Compiling code"
+  # mrb b -j10
+  mrb i -j10
 fi
 
+mrbslp 
 # Return to the original directory
 cd $THIS_DIR
