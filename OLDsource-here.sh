@@ -4,7 +4,7 @@
 THIS_DIR=$PWD
 
 # Set up the environment
-source /afs/cern.ch/work/e/evilla/private/dune/dunesw/duneana-dev/localProducts_larsoft_v09_79_00_e26_prof/setup
+folder="verbose-dev" # folder where local products are
 
 compile=false
 add_targets=false
@@ -15,6 +15,7 @@ print_help() {
     echo "Usage: ./computeBaselineValues.sh [-c] [-z] [-h]"
     echo "  -c                 compile the code"
     echo "  -z                 add targets to the build"
+    echo "  -f 		       folder where the local products are"
     echo "  -h | --help        print this help message"
     echo "*****************************************************************************"
     exit 0 # not ok, change
@@ -31,6 +32,10 @@ while [[ $# -gt 0 ]]; do
         add_targets=true
         shift
         ;;
+      -f)
+	folder="$2"
+	shift 2
+	;;
       -h|--help)
         print_help
         ;;
@@ -40,6 +45,8 @@ while [[ $# -gt 0 ]]; do
     esac
 done
 
+# setting folder, should throw an error if it was not set
+source /afs/cern.ch/work/e/evilla/private/dune/dunesw/${folder}/localProducts_larsoft_v09_79_00d02_prof_e26/setup
 
 # Change to the MRB build directory
 cd $MRB_BUILDDIR
@@ -47,13 +54,13 @@ cd $MRB_BUILDDIR
 # Perform the "mrb z" operation, if add_targets is true
 if [ "$add_targets" = true ]; then
   echo ""
-  echo "Adding targets to the build"
-  mrb z
+  echo "Clean and add targets to the build"
+  mrb zd
 fi
 
 # Set up the mrb environment
 echo ""
-echo "Setting up mrb environment in $MRB_BUILDDIR"
+echo "Setting up mrb environment in $PWD"
 mrbsetenv
 
 # do mrb i -j8 only if compile is true
@@ -64,6 +71,6 @@ if [ "$compile" = true ]; then
   mrb i -j10
 fi
 
-mrbslp 
+#mrbslp # only when installing
 # Return to the original directory
 cd $THIS_DIR

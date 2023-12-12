@@ -5,17 +5,18 @@ run_marley=false
 run_g4=false
 run_detsim=false
 run_reconstruction=false
-source_flag=false  # Flag for -s option
-source_dunesw="/afs/cern.ch/work/e/evilla/private/dune/dunesw/duneana-dev/source-dunesw.sh"
-source_here="/afs/cern.ch/work/e/evilla/private/dune/dunesw/duneana-dev/source-here.sh"
+source_flag=true  # Flag for -s option
+source_dunesw="/afs/cern.ch/work/e/evilla/private/dune/dunesw/source-dunesw.sh"
+# source_here="/afs/cern.ch/work/e/evilla/private/dune/dunesw/dunesw-config/source-here.sh"
+code_folder="verbose-dev" # WHEN CHANGING, MODIFY
 
 # fcls
-FCL_FOLDER="/afs/cern.ch/work/e/evilla/private/dune/dunesw/duneana-dev/fcl/"
-# GEN_FCL='prodmarley_nue_spectrum_radiological_decay0_dune10kt_refactored_1x2x6_modified'
-GEN_FCL='prodmarley_nue_flat_dune10kt_1x2x6_dump_modified'
+FCL_FOLDER="/afs/cern.ch/work/e/evilla/private/dune/dunesw/dunesw-config/fcl/"
+GEN_FCL='prodmarley_nue_spectrum_radiological_decay0_dune10kt_refactored_1x2x6_CC'
+# GEN_FCL='prodmarley_nue_flat_dune10kt_1x2x6_dump_modified'
 G4_FCL='supernova_g4_dune10kt_1x2x6_modified'
 DETSIM_FCL='DAQdetsim_v5' # get rid of modified
-RECO_FCL='TPdump_standardHF_noiseless_labels'
+RECO_FCL='TPdump_standardHF_noiseless_MCtruth'
 
 # other params
 OUTFOLDER_ENDING=""
@@ -31,7 +32,7 @@ print_help() {
     echo "  -d, --detsim           Run detector simulation"
     echo "  -r, --reconstruction   Run event reconstruction"
     echo "  -n, --n-events         Number of events"
-    echo "  -s, --source           Source required scripts before execution. Not the best to do"
+    echo "  -s, --source           Parse to NOT source dunesw and local products"
     echo "  -e, --ending           Ending of the file folder"
     echo "  -h, --help             Print this help message"
     echo "*****************************************************************************"
@@ -82,7 +83,7 @@ while [[ $# -gt 0 ]]; do
             shift 2
             ;;
         -s|--source)
-            source_flag=true
+            source_flag=false
             shift
             ;;
         -e|--ending)
@@ -98,10 +99,13 @@ while [[ $# -gt 0 ]]; do
     esac
 done
 
-# Source the required scripts if -s flag is parsed
+# Source the required scripts for execution
 if [ "$source_flag" = true ]; then
     source "$source_dunesw"
-    source "$source_here"
+    source /afs/cern.ch/work/e/evilla/private/dune/dunesw/${code_folder}/localProducts_larsoft_v09_79_00d02_prof_e26/setup
+    cd $MRB_BUILDDIR
+    mrbsetenv
+    cd .. # go back to code_folder to run, output will temporarily be there
 fi
 
 # if none of the run commands are true, stop script
@@ -154,7 +158,7 @@ rm ./-_detsim_hist.root
 mv *.root *.log *.txt "$DATA_PATH"
 
 # Delete root files
-rm $DATA_PATH*.root
+# rm $DATA_PATH*.root # uncomment to reduce memory occupancy
 
 # Print the data path
 echo "Data is in $DATA_PATH"
