@@ -1,0 +1,51 @@
+#include "prodmarley_nue_flat_dune10kt_1x2x6.fcl"
+
+physics: {
+producers: {
+      marley: {
+         marley_parameters: {
+            direction: {
+               x: 0
+               y: 1
+               z: 0
+            }
+            reactions: [
+               "ES.react"
+            ]
+            source: {
+               namecycle: "NueSpectrum"
+               neutrino: "ve"
+               tfile: "nue_spectrum.root"
+               type: "tgraph"
+            }
+         }
+         module_type: "MARLEYGen"
+         vertex: {
+            type: "sampled"
+         }
+      }
+      rns: {
+         module_type: "RandomNumberSaver"
+      }
+   }
+   simulate: [
+      "rns",
+      "marley"
+   ]
+   stream1: [
+      "out1"
+   ]
+   trigger_paths: [
+      "simulate"
+   ]
+}
+
+source: {
+   firstEvent: 1
+   firstRun: 2.0000047e7
+   maxEvents: -1
+   module_type: "EmptyEvent"
+   timestampPlugin: {
+      plugin_type: "GeneratedEventTimestamp"
+   }
+}

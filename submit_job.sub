@@ -4,17 +4,16 @@ notify_user         = emanuele.villa@cern.ch
 notification        = Always
 
 JOBNAME             = sn-simulation
-executable          = run-sn-simulation.sh
+executable          = /afs/cern.ch/work/e/evilla/private/dune/dunesw/verbose-dev/run-sn-simulation.sh
 # arguments           = 
-output              = job_output/job.$(JOBNAME).$(ClusterId).$(ProcId).out
-error               = job_output/job.$(JOBNAME).$(ClusterId).$(ProcId).err
-log                 = job_output/job.$(JOBNAME).$(ClusterId).log
+output              = /afs/cern.ch/work/e/evilla/private/dune/dunesw/dunesw-config/job_output/job.$(JOBNAME).$(ClusterId).$(ProcId).out
+error               = /afs/cern.ch/work/e/evilla/private/dune/dunesw/dunesw-config/job_output/job.$(JOBNAME).$(ClusterId).$(ProcId).err
+log                 = /afs/cern.ch/work/e/evilla/private/dune/dunesw/dunesw-config/job_output/job.$(JOBNAME).$(ClusterId).log
 request_cpus        = 1
 # request_memory      = 2000
 
 requirements = (OpSysAndVer =?= "CentOS7")
-+JobFlavour         = "microcentury"
-# +MaxRunTime = 300 
++JobFlavour         = "longlunch"
 
 
 queue arguments from (
