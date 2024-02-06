@@ -8,9 +8,10 @@ max_energy=70
 
 # print help
 function print_help() {
+    echo "*****************************************************************************"
     echo "Usage: $0 [options]"
     echo "Options:"
-    echo "  -f, --fcl-file                Fcl file to be modified, only name of the file"
+    echo "  -f, --fcl-file                Fcl file to be modified"
     echo "  -m, --min-energy              Minimum energy for the neutrino"
     echo "  -M, --max-energy              Maximum energy for the neutrino"
     echo "  -h, --help                    Print this help message"
@@ -50,6 +51,11 @@ done
 if [[ -z "$original_fcl" ]]; then
     echo "No fcl file provided. Exiting..."
     exit 1
+fi
+
+# if the fcl file has the extension, remove it
+if [[ "$original_fcl" == *".fcl" ]]; then
+    original_fcl="${original_fcl%.*}"
 fi
 
 # if the fcl name does not contain "flat", stop execution
