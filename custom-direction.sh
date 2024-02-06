@@ -51,7 +51,7 @@ physics: {
             marley_parameters: {
                 direction: {
                     x: $normalized_x
-                    y: 0
+                    y: $normalized_y
                     z: $normalized_z
                 }
             }

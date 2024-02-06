@@ -133,18 +133,19 @@ if [ "$run_marley" = false ] && [ "$run_g4" = false ] && [ "$run_detsim" = false
 fi
 
 # Default path for data
-DATA_PATH="/eos/user/e/evilla/dune/sn-data/standard/${GEN_FCL}-${RECO_FCL}-${number_events}events_${OUTFOLDER_ENDING}/"
-# If custom direction is selected, change the path and use folder directions/
+FOLDER_PATH="/afs/cern.ch/work/e/evilla/private/dune/dunesw/verbose-dev/output/"
+SIMULATION_CATEGORY="standard"
 if [ "$custom_direction" = true ]; then
-    echo "Custom direction selected, results will be under directions/ folder"
-    DATA_PATH="/eos/user/e/evilla/dune/sn-data/directions/${GEN_FCL}_customDirection-${RECO_FCL}-${number_events}events_${OUTFOLDER_ENDING}/"
-fi
-# If custom energy is selected, change the path and use folder energies/
-if [ "$custom_energy" = true ]; then
-    echo "Custom energy selected, results will be under energies/ folder"
-    DATA_PATH="/eos/user/e/evilla/dune/sn-data/energies/${GEN_FCL}_customEnergy-${RECO_FCL}-${number_events}events_${OUTFOLDER_ENDING}/"
+    SIMULATION_CATEGORY="directions"
+    $GEN_FCL="${GEN_FCL}_customDirection"
+elif [ "$custom_energy" = true ]; then
+    SIMULATION_CATEGORY="energies"
+    $GEN_FCL="${GEN_FCL}_customEnergy"
 fi
 # if two change at the same time, decide what to do
+
+SIMULATION_NAME="${GEN_FCL}-${RECO_FCL}-${number_events}events_${OUTFOLDER_ENDING}"
+DATA_PATH="${FOLDER_PATH}${SIMULATION_CATEGORY}/${SIMULATION_NAME}/"
 
 mkdir -p "$DATA_PATH"
 echo "We are in $(pwd)"
@@ -164,7 +165,7 @@ fi
 if [ "$run_marley" = true ]; then
     if [ "$custom_direction" = true ]; then
         # in this case the fcl will be in this folder
-        echo "Executing command: lar -c ${DATA_PATH}${GEN_FCL}_customDirection.fcl -n $number_events -o ${DATA_PATH}${GEN_FCL}.root"
+        echo "Executing command: lar -c ${DATA_PATH}${GEN_FCL}.fcl -n $number_events -o ${DATA_PATH}${GEN_FCL}.root"
         lar -c "${DATA_PATH}${GEN_FCL}.fcl" -n "$number_events" -o "${DATA_PATH}${GEN_FCL}.root"
     else    
         # in this case the fcl will be in the fcl folder
@@ -199,16 +200,30 @@ fi
 # cd "/afs/cern.ch/work/e/evilla/private/dune/dunesw/${code_folder}/"
 echo "Currently in ${PWD}"
 echo "Items here are $(ls)"
-
-# Sometimes there is this product, remove it
-# rm ./-_detsim_hist.root
-
-# Move all products to the folder
-# mv *.log *.txt "$DATA_PATH"
-
 # Delete root files
 echo "Deleting root files to save memory..."
+# Sometimes there is this product, remove it
+rm ./-_detsim_hist.root
 rm $DATA_PATH*.root # uncomment to reduce memory occupancy
 
+# Move all products to the folder
+EOS_FOLDER="/eos/user/e/evilla/dune/sn-data/"
+FINAL_FOLDER="${EOS_FOLDER}${SIMULATION_CATEGORY}/"
+
+echo "Moving custom fcl and TPs to $FINAL_FOLDER"
+
+moving_fcl="mv ${DATA_PATH}${GEN_FCL}.fcl ${FINAL_FOLDER}${SIMULATION_NAME}.fcl"
+echo "$moving_fcl"
+$moving_fcl
+
+TPFILE_NAME="tpstream_standardHF_thresh30_nonoise_MCtruth.txt" # TODO make this absolute or grep it
+
+SIMULATION_NAME="${GEN_FCL}-${RECO_FCL}-${number_events}events_${OUTFOLDER_ENDING}"
+moving_tps="mv ${DATA_PATH}${TPFILE_NAME} ${FINAL_FOLDER}${GEN_FCL}-${RECO_FCL}-tpstream_thr30-${number_events}events_${OUTFOLDER_ENDING}.txt"
+echo "$moving_tps"
+$moving_tps
+
+# mv *.txt ${FINAL_FOLDER}
+
 # Print the data path
-echo "Data is in $DATA_PATH"
+echo "Data is in $FINAL_FOLDER"
