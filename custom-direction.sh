@@ -41,12 +41,16 @@ if [[ "$original_fcl" == *".fcl" ]]; then
     original_fcl="${original_fcl%.*}"
 fi
 
+# if the file ends in _customDirection, remove this part
+if [[ "$original_fcl" == *"_customDirection" ]]; then
+    original_fcl="${original_fcl%_*}"
+fi
 
 # sample theta and phi from a uniform distribution, using generate_theta.py
 echo "Generating random theta and phi..."
-x=$(python3 generate_direction.py | head -n 1)
-y=$(python3 generate_direction.py | tail -n +2 | head -n -1 | tail -n 1)
-z=$(python3 generate_direction.py | tail -n 1)
+x=$(python3 /afs/cern.ch/work/e/evilla/private/dune/dunesw/dunesw-config/generate_direction.py | head -n 1)
+y=$(python3 /afs/cern.ch/work/e/evilla/private/dune/dunesw/dunesw-config/generate_direction.py | tail -n +2 | head -n -1 | tail -n 1)
+z=$(python3 /afs/cern.ch/work/e/evilla/private/dune/dunesw/dunesw-config/generate_direction.py | tail -n 1)
 
 echo "Generated random direction..."
 echo "x: $x"
@@ -60,19 +64,11 @@ filename="${original_fcl%.*}_customDirection.fcl"
 cat <<EOF > $filename
 #include "${original_fcl}.fcl"
 
-physics: {
-    producers: {
-        marley: {
-            marley_parameters: {
-                direction: {
-                    x: $x
-                    y: $y
-                    z: $z
-                }
-            }
-        }
-    }
-}
+
+physics.producers.marley.marley_parameters.direction.x: $x
+physics.producers.marley.marley_parameters.direction.y: $y
+physics.producers.marley.marley_parameters.direction.z: $z
+
 EOF
 
 echo "Generated file: $filename"

@@ -20,6 +20,7 @@ FCL_FOLDER="/afs/cern.ch/work/e/evilla/private/dune/dunesw/dunesw-config/fcl/"
 #GEN_FCL='prodmarley_nue_spectrum_radiological_decay0_dune10kt_refactored_1x2x6_CC'
 # GEN_FCL='prodmarley_nue_flat_dune10kt_1x2x6_dump_modified'
 GEN_FCL='prodmarley_nue_spectrum_clean_dune10kt_1x2x6_CC'
+GEN_FCL_CHANGED=$GEN_FCL
 G4_FCL='supernova_g4_dune10kt_1x2x6_modified'
 DETSIM_FCL='DAQdetsim_v5' # get rid of modified
 RECO_FCL='TPdump_standardHF_noiseless_MCtruth'
@@ -137,14 +138,14 @@ FOLDER_PATH="/afs/cern.ch/work/e/evilla/private/dune/dunesw/verbose-dev/output/"
 SIMULATION_CATEGORY="standard"
 if [ "$custom_direction" = true ]; then
     SIMULATION_CATEGORY="directions"
-    $GEN_FCL="${GEN_FCL}_customDirection"
+    GEN_FCL_CHANGED="${GEN_FCL}_customDirection"
 elif [ "$custom_energy" = true ]; then
     SIMULATION_CATEGORY="energies"
-    $GEN_FCL="${GEN_FCL}_customEnergy"
+    GEN_FCL_CHANGED="${GEN_FCL}_customEnergy"
 fi
 # if two change at the same time, decide what to do
 
-SIMULATION_NAME="${GEN_FCL}-${RECO_FCL}-${number_events}events_${OUTFOLDER_ENDING}"
+SIMULATION_NAME="${GEN_FCL_CHANGED}-${RECO_FCL}-${number_events}events_${OUTFOLDER_ENDING}"
 DATA_PATH="${FOLDER_PATH}${SIMULATION_CATEGORY}/${SIMULATION_NAME}/"
 
 mkdir -p "$DATA_PATH"
@@ -155,46 +156,83 @@ echo "We are now in $(pwd)"
 
 # If custom direction is selected, generate a random direction and create a new fcl file
 if [ "$custom_direction" = true ]; then
-    . /afs/cern.ch/work/e/evilla/private/dune/dunesw/dunesw-config/custom-direction.sh "$GEN_FCL"
+    . /afs/cern.ch/work/e/evilla/private/dune/dunesw/dunesw-config/custom-direction.sh -f "$GEN_FCL"
     echo "In this folder now we have"
     echo "$(ls)"
     echo " "
 fi
 
-# Execute simulations based on options
+# If custom energy is selected, generate energy bins and create a new fcl file
+if [ "$custom_energy" = true ]; then
+    . /afs/cern.ch/work/e/evilla/private/dune/dunesw/dunesw-config/custom-energy.sh -f "$GEN_FCL" -m 2 -M 70
+    echo "In this folder now we have"
+    echo "$(ls)"
+    echo " "
+fi
+
+# Execute simulations based on options TODO simplofy, always copy fcl at this point
 if [ "$run_marley" = true ]; then
     if [ "$custom_direction" = true ]; then
         # in this case the fcl will be in this folder
-        echo "Executing command: lar -c ${DATA_PATH}${GEN_FCL}.fcl -n $number_events -o ${DATA_PATH}${GEN_FCL}.root"
-        lar -c "${DATA_PATH}${GEN_FCL}.fcl" -n "$number_events" -o "${DATA_PATH}${GEN_FCL}.root"
-    else    
+        echo "Executing command: lar -c ${DATA_PATH}${GEN_FCL_CHANGED}.fcl -n $number_events -o ${DATA_PATH}${GEN_FCL}.root"
+        lar -c "${DATA_PATH}${GEN_FCL_CHANGED}.fcl" -n "$number_events" -o "${DATA_PATH}${GEN_FCL}.root"
+    elif [ "$custom_energy" = true ]; then
+        # in this case the fcl will be in this folder
+        echo "Executing command: lar -c ${DATA_PATH}${GEN_FCL_CHANGED}.fcl -n $number_events -o ${DATA_PATH}${GEN_FCL}.root"
+        lar -c "${DATA_PATH}${GEN_FCL_CHANGED}.fcl" -n "$number_events" -o "${DATA_PATH}${GEN_FCL}.root"
+    else   
         # in this case the fcl will be in the fcl folder
-        echo "Executing command: lar -c ${FCL_FOLDER}${GEN_FCL}.fcl -n $number_events -o ${DATA_PATH}${GEN_FCL}.root"
-        lar -c "${FCL_FOLDER}${GEN_FCL}.fcl" -n "$number_events" -o "${DATA_PATH}${GEN_FCL}.root"
+        echo "Executing command: lar -c ${FCL_FOLDER}${GEN_FCL_CHANGED}.fcl -n $number_events -o ${DATA_PATH}${GEN_FCL}.root"
+        lar -c "${FCL_FOLDER}${GEN_FCL_CHANGED}.fcl" -n "$number_events" -o "${DATA_PATH}${GEN_FCL}.root"
     fi
-    echo "Marley generation done!"
-    echo ""
+    if [ $? -eq 0 ]; then
+        echo "Marley generation done!"
+        echo ""
+        echo "In the folder now we have"
+        echo "$(ls)"
+        echo " "
+    else
+        echo "Marley generation failed. Exiting..."
+        exit 1
+    fi
 fi
 
 if [ "$run_g4" = true ]; then
     echo "Executing command: lar -c ${FCL_FOLDER}${G4_FCL}.fcl -n $number_events -s ${DATA_PATH}${GEN_FCL}.root -o ${DATA_PATH}${GEN_FCL}_g4.root"
     lar -c "${FCL_FOLDER}${G4_FCL}.fcl" -n "$number_events" -s "${DATA_PATH}${GEN_FCL}.root" -o "${DATA_PATH}${GEN_FCL}_g4.root"
-    echo "Geant4 simulation done!"
+    # if returns 0, then it was successful
+    if [ $? -eq 0 ]; then
+        echo "Geant4 simulation done!"
+        echo ""
+    else
+        echo "Geant4 simulation failed. Exiting..."
+        exit 1
+    fi
     echo ""
 fi
 
 if [ "$run_detsim" = true ]; then
     echo "Executing command: lar -c ${FCL_FOLDER}${DETSIM_FCL}.fcl -n $number_events -s ${DATA_PATH}${GEN_FCL}_g4.root -o ${DATA_PATH}${GEN_FCL}_g4_detsim.root"
     lar -c "${FCL_FOLDER}${DETSIM_FCL}.fcl" -n "$number_events" -s "${DATA_PATH}${GEN_FCL}_g4.root" -o "${DATA_PATH}${GEN_FCL}_g4_detsim.root"
-    echo "Detector simulation done!"
-    echo ""
+    if [ $? -eq 0 ]; then
+        echo "Detector simulation done!"
+        echo ""
+    else
+        echo "Detector simulation failed. Exiting..."
+        exit 1
+    fi
 fi
 
 if [ "$run_reconstruction" = true ]; then
     echo "Executing command: lar -c ${FCL_FOLDER}${RECO_FCL}.fcl -n $number_events -s ${DATA_PATH}${GEN_FCL}_g4_detsim.root -o ${DATA_PATH}${GEN_FCL}_g4_detsim_reco1.root"
     lar -c "${FCL_FOLDER}${RECO_FCL}.fcl" -n "$number_events" -s "${DATA_PATH}${GEN_FCL}_g4_detsim.root" -o "${DATA_PATH}${GEN_FCL}_g4_detsim_reco1.root"
-    echo "Event reconstruction done!"
-    echo ""
+    if [ $? -eq 0 ]; then
+        echo "Reconstruction done!"
+        echo ""
+    else
+        echo "Reconstruction failed. Exiting..."
+        exit 1
+    fi
 fi
 
 # cd "/afs/cern.ch/work/e/evilla/private/dune/dunesw/${code_folder}/"
@@ -212,14 +250,14 @@ FINAL_FOLDER="${EOS_FOLDER}${SIMULATION_CATEGORY}/"
 
 echo "Moving custom fcl and TPs to $FINAL_FOLDER"
 
-moving_fcl="mv ${DATA_PATH}${GEN_FCL}.fcl ${FINAL_FOLDER}${SIMULATION_NAME}.fcl"
+moving_fcl="mv ${DATA_PATH}${GEN_FCL_CHANGED}.fcl ${FINAL_FOLDER}${SIMULATION_NAME}.fcl"
 echo "$moving_fcl"
 $moving_fcl
 
 TPFILE_NAME="tpstream_standardHF_thresh30_nonoise_MCtruth.txt" # TODO make this absolute or grep it
 
-SIMULATION_NAME="${GEN_FCL}-${RECO_FCL}-${number_events}events_${OUTFOLDER_ENDING}"
-moving_tps="mv ${DATA_PATH}${TPFILE_NAME} ${FINAL_FOLDER}${GEN_FCL}-${RECO_FCL}-tpstream_thr30-${number_events}events_${OUTFOLDER_ENDING}.txt"
+# SIMULATION_NAME="${GEN_FCL}-${RECO_FCL}-${number_events}events_${OUTFOLDER_ENDING}"
+moving_tps="mv ${DATA_PATH}${TPFILE_NAME} ${FINAL_FOLDER}${GEN_FCL_CHANGED}-${RECO_FCL}-tpstream_thr30-${number_events}events_${OUTFOLDER_ENDING}.txt"
 echo "$moving_tps"
 $moving_tps
 

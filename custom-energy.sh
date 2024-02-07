@@ -58,6 +58,11 @@ if [[ "$original_fcl" == *".fcl" ]]; then
     original_fcl="${original_fcl%.*}"
 fi
 
+# if the file ends in _customEnergy, remove this part
+if [[ "$original_fcl" == *"_customEnergy" ]]; then
+    original_fcl="${original_fcl%_*}"
+fi
+
 # if the fcl name does not contain "flat", stop execution
 if [[ "$original_fcl" != *"flat"* ]]; then
     echo "The fcl file provided does not contain 'flat', for the moment this works only on flat distributions. Exiting..."
@@ -89,32 +94,9 @@ filename="${original_fcl%.*}_customEnergy.fcl"
 cat <<EOF > $filename
 #include "${original_fcl}.fcl"
 
-physics: {
-    producers: {
-        marley: {
-            marley_parameters: {
-                direction: {
-                    x: 0
-                    y: 0
-                    z: 1
-                }
-                source: {
-                E_bin_lefts: [
-                  4
-                ]
-                Emax: $max_energy
-                Emin: $min_energy
-                neutrino: "ve"
-                type: "histogram"
-                weight_flux: false
-                weights: [
-                    1
-                ]
-            }
-            }
-        }
-    }
-}
+physics.producers.marley.marley_parameters.source.Emin: $min_energy
+physics.producers.marley.marley_parameters.source.Emax: $max_energy
+
 EOF
 
 echo "Generated file: $filename"
