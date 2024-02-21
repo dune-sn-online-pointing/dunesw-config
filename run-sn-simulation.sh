@@ -4,6 +4,8 @@
 run_marley=false
 custom_direction=false
 custom_energy=false
+energy_min=0
+energy_max=0
 run_g4=false
 run_detsim=false
 run_reconstruction=false
@@ -35,8 +37,8 @@ print_help() {
     echo "Usage: ./run-sn-simulation.sh [options]"
     echo "Options:"
     echo "  -m, --marley           Run Marley generation"
-    echo "  -c, --custom-direction Run Marley generation with custom random direction"
-    echo "  -e, --custom-energy    Run Marley generation with custom energy binning"
+    echo "  --custom-direction Run Marley generation with custom random direction"
+    echo "  --custom-energy        Run Marley generation with custom energy binning"
     echo "  -g, --g4               Run Geant4 simulation"
     echo "  -d, --detsim           Run detector simulation"
     echo "  -r, --reconstruction   Run event reconstruction"
@@ -60,13 +62,21 @@ while [[ $# -gt 0 ]]; do
             fi
             shift
             ;;
-        -c|--custom-direction)
+        --custom-direction)
             custom_direction=true
             shift
             ;;
-        -e|--custom-energy)
+        --custom-energy)
             custom_energy=true
-            shift
+            # this has to have two arguments after it, the minimum and maximum energy
+            energy_min="$2"
+            energy_max="$3"
+            # if they are not numbers, stop the script
+            if ! [[ "$energy_min" =~ ^[0-9]+$ ]] || ! [[ "$energy_max" =~ ^[0-9]+$ ]]; then
+                echo "Energy range must be two numbers. Exiting..."
+                exit 1
+            fi
+            shift 3
             ;;
         -g|--g4)
             run_g4=true
@@ -145,8 +155,8 @@ elif [ "$custom_energy" = true ]; then
 fi
 # if two change at the same time, decide what to do
 
-SIMULATION_NAME="${GEN_FCL_CHANGED}-${RECO_FCL}-${number_events}events_${OUTFOLDER_ENDING}"
-DATA_PATH="${FOLDER_PATH}${SIMULATION_CATEGORY}/${SIMULATION_NAME}/"
+SIMULATION_NAME="${GEN_FCL_CHANGED}-${RECO_FCL}-${number_events}events"
+DATA_PATH="${FOLDER_PATH}${SIMULATION_CATEGORY}/${SIMULATION_NAME}_${OUTFOLDER_ENDING}/"
 
 mkdir -p "$DATA_PATH"
 echo "We are in $(pwd)"
@@ -164,7 +174,8 @@ fi
 
 # If custom energy is selected, generate energy bins and create a new fcl file
 if [ "$custom_energy" = true ]; then
-    . /afs/cern.ch/work/e/evilla/private/dune/dunesw/dunesw-config/custom-energy.sh -f "$GEN_FCL" -m 2 -M 70
+    echo "Generating fcl file with custom energy range, $energy_min to $energy_max..."
+    . /afs/cern.ch/work/e/evilla/private/dune/dunesw/dunesw-config/custom-energy.sh -f "$GEN_FCL" -m "$energy_min" -M "$energy_max"
     echo "In this folder now we have"
     echo "$(ls)"
     echo " "
@@ -246,22 +257,22 @@ rm $DATA_PATH*.root # uncomment to reduce memory occupancy
 
 # Move all products to the folder
 EOS_FOLDER="/eos/user/e/evilla/dune/sn-data/"
-FINAL_FOLDER="${EOS_FOLDER}${SIMULATION_CATEGORY}/"
+FINAL_FOLDER="${EOS_FOLDER}${SIMULATION_CATEGORY}/${SIMULATION_NAME}_thr30/" # TODO grep from somewhere
+mkdir -p "$FINAL_FOLDER"
 
-echo "Moving custom fcl and TPs to $FINAL_FOLDER"
+echo "Moving custom direction and TPs to $FINAL_FOLDER"
 
-moving_fcl="mv ${DATA_PATH}${GEN_FCL_CHANGED}.fcl ${FINAL_FOLDER}${SIMULATION_NAME}.fcl"
-echo "$moving_fcl"
-$moving_fcl
+if [ "$custom_direction" = true ]; then
+    # move the custom direction file
+    moving_custom_direction="mv ${DATA_PATH}customDirection.txt ${FINAL_FOLDER}customDirection_${OUTFOLDER_ENDING}.txt"
+    echo "$moving_custom_direction"
+    $moving_custom_direction
+fi
 
 TPFILE_NAME="tpstream_standardHF_thresh30_nonoise_MCtruth.txt" # TODO make this absolute or grep it
-
-# SIMULATION_NAME="${GEN_FCL}-${RECO_FCL}-${number_events}events_${OUTFOLDER_ENDING}"
-moving_tps="mv ${DATA_PATH}${TPFILE_NAME} ${FINAL_FOLDER}${GEN_FCL_CHANGED}-${RECO_FCL}-tpstream_thr30-${number_events}events_${OUTFOLDER_ENDING}.txt"
+moving_tps="mv ${DATA_PATH}${TPFILE_NAME} ${FINAL_FOLDER}tpstream_${OUTFOLDER_ENDING}.txt"
 echo "$moving_tps"
 $moving_tps
-
-# mv *.txt ${FINAL_FOLDER}
 
 # Print the data path
 echo "Data is in $FINAL_FOLDER"

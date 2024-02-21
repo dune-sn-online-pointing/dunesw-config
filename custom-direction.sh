@@ -57,6 +57,12 @@ echo "x: $x"
 echo "y: $y"
 echo "z: $z"
 
+# print this in a text file
+echo "$x" >> customDirection.txt
+echo "$y" >> customDirection.txt
+echo "$z" >> customDirection.txt
+
+
 # Create the .fcl file with the random values, adding a suffix and .fcl to original_fcl
 # move that file to here just to avoid parsing problems
 cp /afs/cern.ch/work/e/evilla/private/dune/dunesw/dunesw-config/fcl/${original_fcl}.fcl .
