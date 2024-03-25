@@ -90,7 +90,7 @@ fi
 # Create the .fcl file with the random values, adding a suffix and .fcl to original_fcl
 # move that file to here just to avoid parsing problems
 cp /afs/cern.ch/work/e/evilla/private/dune/dunesw/dunesw-config/fcl/${original_fcl}.fcl .
-filename="${original_fcl%.*}_customEnergy.fcl"
+filename="${original_fcl%.*}_${min_energy}to${max_energy}MeV.fcl"
 cat <<EOF > $filename
 #include "${original_fcl}.fcl"
 

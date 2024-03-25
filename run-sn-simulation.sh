@@ -15,14 +15,12 @@ setup_dune="/afs/cern.ch/work/e/evilla/private/dune/dunesw/setup-v79.sh"
 
 # source_here="/afs/cern.ch/work/e/evilla/private/dune/dunesw/dunesw-config/source-here.sh"
 code_folder="verbose-dev" # WHEN CHANGING, MODIFY
-running_folder=$PWD
 
 # fcls
 FCL_FOLDER="/afs/cern.ch/work/e/evilla/private/dune/dunesw/dunesw-config/fcl/"
 #GEN_FCL='prodmarley_nue_spectrum_radiological_decay0_dune10kt_refactored_1x2x6_CC'
 # GEN_FCL='prodmarley_nue_flat_dune10kt_1x2x6_dump_modified'
 GEN_FCL='prodmarley_nue_spectrum_clean_dune10kt_1x2x6_CC'
-GEN_FCL_CHANGED=$GEN_FCL
 G4_FCL='supernova_g4_dune10kt_1x2x6_modified'
 DETSIM_FCL='DAQdetsim_v5' # get rid of modified
 RECO_FCL='TPdump_standardHF_noiseless_MCtruth'
@@ -146,12 +144,13 @@ fi
 # Default path for data
 FOLDER_PATH="/afs/cern.ch/work/e/evilla/private/dune/dunesw/verbose-dev/output/"
 SIMULATION_CATEGORY="standard"
+GEN_FCL_CHANGED=$GEN_FCL # default value, will be changed if custom direction or energy is selected
 if [ "$custom_direction" = true ]; then
     SIMULATION_CATEGORY="directions"
     GEN_FCL_CHANGED="${GEN_FCL}_customDirection"
 elif [ "$custom_energy" = true ]; then
     SIMULATION_CATEGORY="energies"
-    GEN_FCL_CHANGED="${GEN_FCL}_customEnergy"
+    GEN_FCL_CHANGED="${GEN_FCL}_${energy_min}to${energy_max}MeV"
 fi
 # if two change at the same time, decide what to do
 
@@ -168,7 +167,7 @@ echo "We are now in $(pwd)"
 if [ "$custom_direction" = true ]; then
     . /afs/cern.ch/work/e/evilla/private/dune/dunesw/dunesw-config/custom-direction.sh -f "$GEN_FCL"
     echo "In this folder now we have"
-    echo "$(ls)"
+    echo "$(ll)"
     echo " "
 fi
 
@@ -177,7 +176,7 @@ if [ "$custom_energy" = true ]; then
     echo "Generating fcl file with custom energy range, $energy_min to $energy_max..."
     . /afs/cern.ch/work/e/evilla/private/dune/dunesw/dunesw-config/custom-energy.sh -f "$GEN_FCL" -m "$energy_min" -M "$energy_max"
     echo "In this folder now we have"
-    echo "$(ls)"
+    echo "$(ll)"
     echo " "
 fi
 
@@ -215,6 +214,8 @@ if [ "$run_g4" = true ]; then
     if [ $? -eq 0 ]; then
         echo "Geant4 simulation done!"
         echo ""
+        # remove the root file to save memory
+        rm "${DATA_PATH}${GEN_FCL}.root"
     else
         echo "Geant4 simulation failed. Exiting..."
         exit 1
@@ -228,6 +229,11 @@ if [ "$run_detsim" = true ]; then
     if [ $? -eq 0 ]; then
         echo "Detector simulation done!"
         echo ""
+        echo "In the folder now we have"
+        echo "$(lsl)"
+        echo " "
+        # remove the root file to save memory
+        rm "${DATA_PATH}${GEN_FCL}_g4.root"
     else
         echo "Detector simulation failed. Exiting..."
         exit 1
@@ -240,6 +246,11 @@ if [ "$run_reconstruction" = true ]; then
     if [ $? -eq 0 ]; then
         echo "Reconstruction done!"
         echo ""
+        echo "In the folder now we have"
+        echo "$(ls)"
+        echo " "
+        # remove the root file to save memory
+        rm "${DATA_PATH}${GEN_FCL}_g4_detsim.root"
     else
         echo "Reconstruction failed. Exiting..."
         exit 1
@@ -253,7 +264,7 @@ echo "Items here are $(ls)"
 echo "Deleting root files to save memory..."
 # Sometimes there is this product, remove it
 rm ./-_detsim_hist.root
-rm $DATA_PATH*.root # uncomment to reduce memory occupancy
+rm ${DATA_PATH}*.root # uncomment to reduce memory occupancy
 
 # Move all products to the folder
 EOS_FOLDER="/eos/user/e/evilla/dune/sn-data/"

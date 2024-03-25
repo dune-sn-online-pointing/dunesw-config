@@ -5,18 +5,21 @@ notification        = Error
 
 JOBNAME             = sn-custom-direction-3D-pointing
 executable          = /afs/cern.ch/work/e/evilla/private/dune/dunesw/verbose-dev/run-sn-simulation.sh
-arguments           = -m prodmarley_nue_spectrum_clean_dune10kt_1x2x6_ES --custom-direction -g -d -r -n 50 -f 9$(ProcId)
+arguments           = -m prodmarley_nue_spectrum_clean_dune10kt_1x2x6_ES --custom-direction -g -d -r -n 50 -f 35$(ProcId)
 output              = /afs/cern.ch/work/e/evilla/private/dune/dunesw/dunesw-config/job_output/job.$(JOBNAME).$(ClusterId).$(ProcId).out
 error               = /afs/cern.ch/work/e/evilla/private/dune/dunesw/dunesw-config/job_output/job.$(JOBNAME).$(ClusterId).$(ProcId).err
 log                 = /afs/cern.ch/work/e/evilla/private/dune/dunesw/dunesw-config/job_output/job.$(JOBNAME).$(ClusterId).log
 request_cpus        = 1
 # request_memory      = 2000
 
-#requirements = (OpSysAndVer =?= "CentOS7")
-MY.WantOS = "el7"
+requirements = (OpSysAndVer =?= "CentOS7")
+#MY.WantOS = "el7"
 +JobFlavour         = "microcentury"
 #+MaxRunTime        = 1800
 
+queue 100
+
+arguments           = -m prodmarley_nue_spectrum_clean_dune10kt_1x2x6_ES --custom-direction -g -d -r -n 50 -f 36$(ProcId)
 queue 100
 
 #queue arguments from (

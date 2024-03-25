@@ -48,9 +48,11 @@ fi
 
 # sample theta and phi from a uniform distribution, using generate_theta.py
 echo "Generating random theta and phi..."
-x=$(python3 /afs/cern.ch/work/e/evilla/private/dune/dunesw/dunesw-config/generate_direction.py | head -n 1)
-y=$(python3 /afs/cern.ch/work/e/evilla/private/dune/dunesw/dunesw-config/generate_direction.py | tail -n +2 | head -n -1 | tail -n 1)
-z=$(python3 /afs/cern.ch/work/e/evilla/private/dune/dunesw/dunesw-config/generate_direction.py | tail -n 1)
+
+direction=$(python3 /afs/cern.ch/work/e/evilla/private/dune/dunesw/dunesw-config/generate_direction.py)
+x=$(echo $direction | awk '{print $1}')
+y=$(echo $direction | awk '{print $2}')
+z=$(echo $direction | awk '{print $3}')
 
 echo "Generated random direction..."
 echo "x: $x"
