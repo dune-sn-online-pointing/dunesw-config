@@ -145,12 +145,15 @@ fi
 FOLDER_PATH="/afs/cern.ch/work/e/evilla/private/dune/dunesw/verbose-dev/output/"
 SIMULATION_CATEGORY="standard"
 GEN_FCL_CHANGED=$GEN_FCL # default value, will be changed if custom direction or energy is selected
-if [ "$custom_direction" = true ]; then
+if [ "$custom_direction" = true ] && [ "$custom_energy" = false ]; then
     SIMULATION_CATEGORY="directions"
     GEN_FCL_CHANGED="${GEN_FCL}_customDirection"
-elif [ "$custom_energy" = true ]; then
+elif [ "$custom_energy" = true ] && [ "$custom_direction" = false ]; then
     SIMULATION_CATEGORY="energies"
     GEN_FCL_CHANGED="${GEN_FCL}_${energy_min}to${energy_max}MeV"
+elif [ "$custom_energy" = true ] && [ "$custom_direction" = true ]; then
+    SIMULATION_CATEGORY="customEandD"
+    GEN_FCL_CHANGED="${GEN_FCL}_${energy_min}to${energy_max}MeV_customDirection"
 fi
 # if two change at the same time, decide what to do
 
@@ -164,7 +167,7 @@ cd "$DATA_PATH"
 echo "We are now in $(pwd)"
 
 # If custom direction is selected, generate a random direction and create a new fcl file
-if [ "$custom_direction" = true ]; then
+if [ "$custom_direction" = true ] && [ "$custom_energy" = false ]; then
     . /afs/cern.ch/work/e/evilla/private/dune/dunesw/dunesw-config/custom-direction.sh -f "$GEN_FCL"
     echo "In this folder now we have"
     echo "$(ll)"
@@ -172,7 +175,7 @@ if [ "$custom_direction" = true ]; then
 fi
 
 # If custom energy is selected, generate energy bins and create a new fcl file
-if [ "$custom_energy" = true ]; then
+if [ "$custom_energy" = true ] && [ "$custom_direction" = false ]; then
     echo "Generating fcl file with custom energy range, $energy_min to $energy_max..."
     . /afs/cern.ch/work/e/evilla/private/dune/dunesw/dunesw-config/custom-energy.sh -f "$GEN_FCL" -m "$energy_min" -M "$energy_max"
     echo "In this folder now we have"
@@ -180,13 +183,17 @@ if [ "$custom_energy" = true ]; then
     echo " "
 fi
 
+if [ "$custom_energy" = true ] && [ "$custom_direction" = true ]; then
+    echo "Generating fcl file with custom energy range and direction..."
+    . /afs/cern.ch/work/e/evilla/private/dune/dunesw/dunesw-config/custom-enAndDir.sh -f "$GEN_FCL" -m "$energy_min" -M "$energy_max"
+    echo "In this folder now we have"
+    echo "$(ls)"
+    echo " "
+fi
+
 # Execute simulations based on options TODO simplofy, always copy fcl at this point
 if [ "$run_marley" = true ]; then
-    if [ "$custom_direction" = true ]; then
-        # in this case the fcl will be in this folder
-        echo "Executing command: lar -c ${DATA_PATH}${GEN_FCL_CHANGED}.fcl -n $number_events -o ${DATA_PATH}${GEN_FCL}.root"
-        lar -c "${DATA_PATH}${GEN_FCL_CHANGED}.fcl" -n "$number_events" -o "${DATA_PATH}${GEN_FCL}.root"
-    elif [ "$custom_energy" = true ]; then
+    if [ "$custom_direction" = true ] ||  [ "$custom_energy" = true ]; then
         # in this case the fcl will be in this folder
         echo "Executing command: lar -c ${DATA_PATH}${GEN_FCL_CHANGED}.fcl -n $number_events -o ${DATA_PATH}${GEN_FCL}.root"
         lar -c "${DATA_PATH}${GEN_FCL_CHANGED}.fcl" -n "$number_events" -o "${DATA_PATH}${GEN_FCL}.root"
@@ -195,6 +202,7 @@ if [ "$run_marley" = true ]; then
         echo "Executing command: lar -c ${FCL_FOLDER}${GEN_FCL_CHANGED}.fcl -n $number_events -o ${DATA_PATH}${GEN_FCL}.root"
         lar -c "${FCL_FOLDER}${GEN_FCL_CHANGED}.fcl" -n "$number_events" -o "${DATA_PATH}${GEN_FCL}.root"
     fi
+
     if [ $? -eq 0 ]; then
         echo "Marley generation done!"
         echo ""
@@ -230,7 +238,7 @@ if [ "$run_detsim" = true ]; then
         echo "Detector simulation done!"
         echo ""
         echo "In the folder now we have"
-        echo "$(lsl)"
+        echo "$(ls)"
         echo " "
         # remove the root file to save memory
         rm "${DATA_PATH}${GEN_FCL}_g4.root"

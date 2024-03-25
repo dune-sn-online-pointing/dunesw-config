@@ -69,17 +69,23 @@ fi
 
 # Generate random direction
 echo "Generating random direction, ONLY ON X Z PLANE NOW..."
-direction=$(python3 /afs/cern.ch/work/e/evilla/private/dune/dunesw/dunesw-config/generate_direction.py)
+direction=$(python3 /afs/cern.ch/work/e/evilla/private/dune/dunesw/dunesw-config/generate_directionXZ.py)
 x=$(echo $direction | awk '{print $1}')
 y=$(echo $direction | awk '{print $2}')
 z=$(echo $direction | awk '{print $3}')
 
 echo "Generated random direction: x=$x, y=$y, z=$z"
 
+# print this in a text file
+echo "$x" >> customDirection.txt
+echo "$y" >> customDirection.txt
+echo "$z" >> customDirection.txt 
+
 # Generate custom energy range
 echo "Generating custom energy range: $min_energy to $max_energy MeV"
 
 # Create the .fcl file with the random values
+cp /afs/cern.ch/work/e/evilla/private/dune/dunesw/dunesw-config/fcl/${original_fcl}.fcl .
 filename="${original_fcl%.*}_${min_energy}to${max_energy}MeV_customDirection.fcl"
 cat <<EOF > $filename
 #include "${original_fcl}.fcl"

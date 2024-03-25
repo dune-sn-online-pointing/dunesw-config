@@ -1,9 +1,9 @@
 import math
 
 # Provided values
-x = 0.5387660929040722
-y = -0.20967658453381258
-z = -0.8159453578733784
+x = 0.3390741844716078
+y = 0
+z = 0.9407596384969511
 
 # Calculate magnitude
 magnitude = math.sqrt(x**2 + y**2 + z**2)
