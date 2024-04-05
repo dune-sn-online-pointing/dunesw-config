@@ -59,7 +59,8 @@ echo "x: $x"
 echo "y: $y"
 echo "z: $z"
 
-# print this in a text file
+# print this in a text file, but delete it first in case it already exists
+rm customDirection.txt
 echo "$x" >> customDirection.txt
 echo "$y" >> customDirection.txt
 echo "$z" >> customDirection.txt

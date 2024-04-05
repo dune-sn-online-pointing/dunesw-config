@@ -76,7 +76,8 @@ z=$(echo $direction | awk '{print $3}')
 
 echo "Generated random direction: x=$x, y=$y, z=$z"
 
-# print this in a text file
+# print this in a text file, but delete it first in case it already exists
+rm customDirection.txt
 echo "$x" >> customDirection.txt
 echo "$y" >> customDirection.txt
 echo "$z" >> customDirection.txt 

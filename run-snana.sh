@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # USER SPECIFIC
-code_folder="/afs/cern.ch/work/e/evilla/private/dune/dunesw/verbose-dev" # WHEN CHANGING, MODIFY
+code_folder="/afs/cern.ch/work/e/evilla/private/dune/dunesw/sophie-duneana" # WHEN CHANGING, MODIFY
 config_folder="/afs/cern.ch/work/e/evilla/private/dune/dunesw/dunesw-config" # assuming this contains the setup files and the fcls
 setup_dunesw="$code_folder/setup-dunesw.sh" # put this file in the code folder, selecting the correct version
 EOS_FOLDER="/eos/user/e/evilla/dune/sn-data/"
@@ -20,7 +20,7 @@ source_flag=true  # Flag for -s option
 
 # fcls, just some casual defaults
 FCL_FOLDER="$config_folder/fcl/"
-GEN_FCL='prodmarley_nue_spectrum_clean_dune10kt_1x2x6_CC'
+GEN_FCL='prodmarley_nue_spectrum_clean_dune10kt_1x2x6_ES'
 G4_FCL='supernova_g4_dune10kt_1x2x6_modified'
 DETSIM_FCL='DAQdetsim_v5' # get rid of modified
 RECO_FCL='TPdump_standardHF_noiseless_MCtruth'

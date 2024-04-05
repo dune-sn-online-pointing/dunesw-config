@@ -19,8 +19,6 @@ requirements = (OpSysAndVer =?= "CentOS7")
 
 queue 100
 
-arguments           = -m prodmarley_nue_spectrum_clean_dune10kt_1x2x6_ES --custom-direction -g -d -r -n 50 -f 36$(ProcId)
-queue 100
 
 #queue arguments from (
     # custom directions, output will have _customDirection after the marley fcl name
