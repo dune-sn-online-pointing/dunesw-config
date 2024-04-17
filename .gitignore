@@ -1,5 +1,4 @@
 job_output/*
 *.txt
-*.fcl
 evilla.cc
 

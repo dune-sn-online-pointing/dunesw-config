@@ -20,7 +20,7 @@ source_flag=true  # Flag for -s option
 
 # fcls, just some casual defaults
 FCL_FOLDER="$config_folder/fcl/"
-GEN_FCL='prodmarley_nue_spectrum_clean_dune10kt_1x2x6_CC'
+GEN_FCL='prodmarley_nue_spectrum_clean_dune10kt_1x2x6_ES'
 G4_FCL='supernova_g4_dune10kt_1x2x6_modified'
 DETSIM_FCL='DAQdetsim_v5' # get rid of modified
 RECO_FCL='TPdump_standardHF_noiseless_MCtruth'

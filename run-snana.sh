@@ -23,7 +23,8 @@ FCL_FOLDER="$config_folder/fcl/"
 GEN_FCL='prodmarley_nue_spectrum_clean_dune10kt_1x2x6_ES'
 G4_FCL='supernova_g4_dune10kt_1x2x6_modified'
 DETSIM_FCL='DAQdetsim_v5' # get rid of modified
-RECO_FCL='TPdump_standardHF_noiseless_MCtruth'
+# RECO_FCL='TPdump_standardHF_noiseless_MCtruth'
+RECO_FCL=''
 
 # other params
 OUTFOLDER_ENDING=""
