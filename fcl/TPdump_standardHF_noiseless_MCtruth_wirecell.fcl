@@ -9,7 +9,7 @@ BEGIN_PROLOG
 
 tagged_TP_dump_config: {
    module_type:   TPStreamer
-   OutputFile:    "tpstream_standardHF_thresh30_nonoise.txt"
+   OutputFile:    "tpstream_standardHF_thresh100_nonoise.txt"
    HitLabel:      "trigprim1"
    InputTag:      "simwire"
    # GenLabel:      "marley" # should be able to comment this
@@ -90,7 +90,7 @@ physics: {
          InputTag: "simwire"
          GEANT4Label:   "largeant"
          # TODO change thresh30 to something that reads the threshold
-         OutputFile: "tpstream_standardHF_thresh30_nonoise_MCtruth.txt"
+         OutputFile: "tpstream_standardHF_thres100_nonoise_MCtruth.txt"
          module_type: "TPStreamer"
       }
    }
@@ -107,14 +107,14 @@ physics: {
          DistortOn: false
          KeepEmptyChannels: true
          NoiseOn: false
-         PedestalOn: false
+         PedestalOn: true
          RawDigitInputLabel: "daq"
          SimChannelLabel: "elecDrift"
          SuppressOn: false
          UseRawDigitInput: false
          module_type: "SimWireDUNE"
       }
-      # wirecell 
+      # wirecell, but does not seem to need it here
       wclsmcnfsp: {
          module_type: "WireCellToolkit"
          wcls_main: {
@@ -147,15 +147,12 @@ physics: {
          }
       }
       trigprim1: {
-         # need this?
-         # InputTag: "elecDrift" 
-         # taken from standard, unsure if it works...
-         InputTag: "wclsmcnfsp"
+         InputTag: "tpcrawdecoder:daq"
          finder: {
             SignalKillLookahead: 6
             SignalKillNContig: 10
             SignalKillThreshold: 15
-            Threshold: 30
+            Threshold: 100
             UseSignalKill: true
             tool_type: "TriggerPrimitiveFinderPass1"
          }
@@ -165,7 +162,7 @@ physics: {
    simulate: [
       "rns",
       # "simwire",
-      "wclsmcnfsp",
+      # "wclsmcnfsp",
       # "tpcrawdecoder",
       "trigprim1"
    ]

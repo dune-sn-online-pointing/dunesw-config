@@ -53,12 +53,12 @@ physics: {
          NoiseOn: false
          # what if the pedestal  is on, then the ADC threshold of the TPs has to  
          # take that into account or it does automatically?
-         PedestalOn: false
+         PedestalOn: true
          # in standard, this is called SimChannelModuleLabel and is in the backtrackerservice block
          # SimChannelLabel: "elecDrift"
          # what is the suppress? in standard, this is on
          SuppressOn: false 
-         module_type: "daq"
+         # module_type: "daq"
       }
       opdigi: {
          BackTime: 3.86e-1
@@ -98,6 +98,49 @@ physics: {
          module_type: "RandomNumberSaver"
       }
       # copypasted this from the standard_detsim_sune10kt_1x2x6.fcl
+      # tpcrawdecoder: {
+      #    module_type: "WireCellToolkit"
+      #    wcls_main: {
+      #       apps: [
+      #          "Pgrapher"
+      #       ]
+      #       configs: [
+      #          "pgrapher/experiment/dune10kt-1x2x6/wcls-sim-drift-simchannel-nf-sp.jsonnet"
+      #       ]
+      #       inputers: [
+      #          "wclsSimDepoSource:"
+      #       ]
+      #       loglevels: [
+      #          "debug"
+      #       ]
+      #       logsinks: [
+      #          "stdout:info",
+      #          "wcls-sim-drift-simchannel-nf-sp.log:debug"
+      #       ]
+      #       outputers: [
+      #          "wclsSimChannelSink:postdrift",
+      #          "wclsFrameSaver:spsignals"
+      #       ]
+      #       params: {}
+      #       plugins: [
+      #          "WireCellPgraph",
+      #          "WireCellGen",
+      #          "WireCellSio",
+      #          "WireCellRoot",
+      #          "WireCellLarsoft",
+      #          "WireCellTbb"
+      #       ]
+      #       structs: {
+      #          DL: 4e-9
+      #          DT: 8.8e-9
+      #          G4RefTime: 0
+      #          driftSpeed: 1.60563
+      #          lifetime: 10400
+      #       }
+      #       tool_type: "WCLS"
+      #    }
+      # }
+      # the above does not save rawdigits
       tpcrawdecoder: {
          module_type: "WireCellToolkit"
          wcls_main: {
@@ -105,7 +148,7 @@ physics: {
                "Pgrapher"
             ]
             configs: [
-               "pgrapher/experiment/dune10kt-1x2x6/wcls-sim-drift-simchannel-nf-sp.jsonnet"
+               "pgrapher/experiment/dune10kt-1x2x6/wcls-sim-drift-simchannel.jsonnet"
             ]
             inputers: [
                "wclsSimDepoSource:"
@@ -115,11 +158,11 @@ physics: {
             ]
             logsinks: [
                "stdout:info",
-               "wcls-sim-drift-simchannel-nf-sp.log:debug"
+               "wcls-sim-drift-simchannel.log:debug"
             ]
             outputers: [
                "wclsSimChannelSink:postdrift",
-               "wclsFrameSaver:spsignals"
+               "wclsFrameSaver:simdigits"
             ]
             params: {}
             plugins: [
@@ -143,7 +186,7 @@ physics: {
    }
    simulate: [
       # commenting this, but does it make sense?
-      "daq",
+      # "daq",
       "tpcrawdecoder",
       "opdigi",
       "rns"
