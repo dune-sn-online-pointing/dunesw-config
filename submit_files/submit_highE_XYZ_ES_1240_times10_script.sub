@@ -1,0 +1,19 @@
+        # script to submit jobs to the grid for sn simulation
+
+        notify_user         = emanuele.villa@cern.ch
+        notification        = Error
+
+        JOBNAME             = sn-high-energy-script-hundreds-12-afs
+        executable          = /afs/cern.ch/work/e/evilla/private/dune/dunesw/dunesw-config/run-sn-simulation.sh
+        arguments           = -m prodmarley_nue_flat_clean_dune10kt_1x2x6_ES --custom-direction --custom-energy 30 70 -g -d -r -n 200 -f 124$(ProcId)
+        output              = /afs/cern.ch/work/e/evilla/private/dune/dunesw/dunesw-config/job_output/job.$(JOBNAME).$(ClusterId).$(ProcId).out
+        error               = /afs/cern.ch/work/e/evilla/private/dune/dunesw/dunesw-config/job_output/job.$(JOBNAME).$(ClusterId).$(ProcId).err
+        log                 = /afs/cern.ch/work/e/evilla/private/dune/dunesw/dunesw-config/job_output/job.$(JOBNAME).$(ClusterId).log
+        # request_cpus        = 1
+        # request_memory      = 2000
+
+        #requirements = (OpSysAndVer =?= "CentOS7")
+        MY.WantOS = "el7"
+        +JobFlavour         = "workday"
+
+        queue 10

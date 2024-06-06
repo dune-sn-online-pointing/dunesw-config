@@ -68,8 +68,8 @@ if [[ "$original_fcl" != *"flat"* ]]; then
 fi
 
 # Generate random direction
-echo "Generating random direction, ONLY ON X Z PLANE NOW..."
-direction=$(python3 /afs/cern.ch/work/e/evilla/private/dune/dunesw/dunesw-config/generate_directionXZ.py)
+echo "Generating random direction, all three directions..."
+direction=$(python3 /afs/cern.ch/work/e/evilla/private/dune/dunesw/dunesw-config/generate_direction.py)
 x=$(echo $direction | awk '{print $1}')
 y=$(echo $direction | awk '{print $2}')
 z=$(echo $direction | awk '{print $3}')

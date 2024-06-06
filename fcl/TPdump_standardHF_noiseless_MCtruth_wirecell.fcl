@@ -87,7 +87,7 @@ physics: {
             }
          HitLabel: "trigprim1"
          HitWindow: 5
-         InputTag: "simwire"
+         # InputTag: "simwire"
          GEANT4Label:   "largeant"
          # TODO change thresh30 to something that reads the threshold
          OutputFile: "tpstream_standardHF_thres100_nonoise_MCtruth.txt"
@@ -102,18 +102,18 @@ physics: {
          module_type: "RandomNumberSaver"
       }
       # not using this
-      simwire: {
-         AdcSimulator: "adcsim_ideal"
-         DistortOn: false
-         KeepEmptyChannels: true
-         NoiseOn: false
-         PedestalOn: true
-         RawDigitInputLabel: "daq"
-         SimChannelLabel: "elecDrift"
-         SuppressOn: false
-         UseRawDigitInput: false
-         module_type: "SimWireDUNE"
-      }
+      # simwire: {
+      #    AdcSimulator: "adcsim_ideal"
+      #    DistortOn: false
+      #    KeepEmptyChannels: true
+      #    NoiseOn: false
+      #    PedestalOn: true
+      #    RawDigitInputLabel: "daq"
+      #    SimChannelLabel: "elecDrift"
+      #    SuppressOn: false
+      #    UseRawDigitInput: false
+      #    module_type: "SimWireDUNE"
+      # }
       # wirecell, but does not seem to need it here
       wclsmcnfsp: {
          module_type: "WireCellToolkit"

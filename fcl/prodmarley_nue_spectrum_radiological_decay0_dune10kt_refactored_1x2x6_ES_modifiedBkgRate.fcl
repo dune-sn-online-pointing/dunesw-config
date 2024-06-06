@@ -97,41 +97,41 @@ physics: {
    ]
    producers: {
       Ar39GenInLAr: {
-         BqPercc: 1.e-5
+         BqPercc: 0.3e-4
          isotope: "Ar39"
          material: "LAr"
          module_type: "Decay0Gen"
          volume_rand: "volCryostat"
       }
       Ar42GenInLAr: {
-         BqPercc: 1.e-5
+         BqPercc: 1.5e-5
          isotope: "Ar42"
          material: "LAr"
          module_type: "Decay0Gen"
          volume_rand: "volCryostat"
       }
       Co60GenInAPA: {
-         BqPercc: 1.e-5
+         BqPercc: 1.5e-3
          isotope: "Co60"
          material: "STEEL_STAINLESS_Fe7Cr2Ni"
          module_type: "Decay0Gen"
          volume_gen: ".*APA.*"
       }
       K40GenInCPA: {
-         BqPercc: 1.e-5
+         BqPercc: 1.e-1
          isotope: "K40"
          material: ".*"
          module_type: "Decay0Gen"
          volume_gen: ".*Cathode.*"
       }
       K42From42ArGenInCPA: {
-         BqPercc: 1.e-5
+         BqPercc: 3.e-1
          isotope: "K42"
          module_type: "Decay0Gen"
          volume_gen: ".*Cathode.*"
       }
       K42From42ArGenInLAr: {
-         BqPercc: 1.e-5
+         BqPercc: 3.e-6
          isotope: "K42"
          material: "LAr"
          module_type: "Decay0Gen"
@@ -146,11 +146,11 @@ physics: {
       }
       NeutronGenInRock: {
          BqPercc: [
-            1.e-5,
-            1.e-5,
-            1.e-5,
-            1.e-5,
-            1.e-5
+            1.e-2,
+            1.e-2,
+            1.e-2,
+            1.e-2,
+            1.e-2
          ]
          Material: [
             ".*",
@@ -225,14 +225,14 @@ physics: {
          module_type: "RadioGen"
       }
       Rn222ChainBi214GenInCPA: {
-         BqPercc: 1.e-5
+         BqPercc: 5.e-2
          isotope: "Bi214"
          module_type: "Decay0Gen"
          volume_gen: ".*Cathode.*"
          volume_rand: "volCryostat"
       }
       Rn222ChainBi214GenInLAr: {
-         BqPercc: 1.e-5
+         BqPercc: 5.e-7
          distrib_x: "263.835+1.32691*TMath::Abs(x)-0.000128904*x*x-1.64996e-06*TMath::Power(TMath::Abs(x),3)"
          isotope: "Bi214"
          material: "LAr"
@@ -240,7 +240,7 @@ physics: {
          volume_rand: "volCryostat"
       }
       Rn222ChainFromBi210GenInCPA: {
-         BqPercc: 1.e-5
+         BqPercc: 2.
          decay_chain: {
             isotope_0: "Bi210"
             isotope_1: "Po210"
@@ -250,7 +250,7 @@ physics: {
          volume_rand: "volCryostat"
       }
       Rn222ChainGenInPDS: {
-         BqPercc: 1.e-5
+         BqPercc: 2.e-2
          decay_chain: {
             isotope_0: "Rn222"
             isotope_1: "Po218"
@@ -264,14 +264,14 @@ physics: {
          volume_gen: ".*Arapuca.*"
       }
       Rn222ChainPb210GenInCPA: {
-         BqPercc: 1.e-5
+         BqPercc: 30.
          isotope: "Pb210"
          module_type: "Decay0Gen"
          volume_gen: ".*Cathode.*"
          volume_rand: "volCryostat"
       }
       Rn222ChainPb210GenInLAr: {
-         BqPercc: 1.e-5
+         BqPercc: 2.e-5
          distrib_x: "259.482+1.58444*TMath::Abs(x)-0.00214077*x*x+1.95097e-06*TMath::Power(TMath::Abs(x),3)"
          isotope: "Pb210"
          material: "LAr"
@@ -279,14 +279,14 @@ physics: {
          volume_rand: "volCryostat"
       }
       Rn222ChainPb214GenInCPA: {
-         BqPercc: 1.e-5
+         BqPercc: 2.e-1
          isotope: "Pb214"
          module_type: "Decay0Gen"
          volume_gen: ".*Cathode.*"
          volume_rand: "volCryostat"
       }
       Rn222ChainPb214GenInLAr: {
-         BqPercc: 1.e-5
+         BqPercc: 1.5e-6
          distrib_x: "590.016+1.83392*TMath::Abs(x)+0.00012101*x*x-5.42539e-06*TMath::Power(TMath::Abs(x),3)"
          isotope: "Pb214"
          material: "LAr"
@@ -294,7 +294,7 @@ physics: {
          volume_rand: "volCryostat"
       }
       Rn222ChainPo218GenInCPA: {
-         BqPercc: 1.e-5
+         BqPercc: 15.
          isotope: "Po218"
          module_type: "Decay0Gen"
          volume_gen: ".*Cathode.*"
@@ -309,14 +309,14 @@ physics: {
          volume_rand: "volCryostat"
       }
       Rn222ChainRn222GenInLAr: {
-         BqPercc: 1.e-5
+         BqPercc: 2.e-5
          isotope: "Rn222"
          material: "LAr"
          module_type: "Decay0Gen"
          volume_rand: "volCryostat"
       }
       U238ChainGenInAPA: {
-         BqPercc: 1.e-5
+         BqPercc: 1e-1
          decay_chain: {
             isotope_0: "U238"
             isotope_1: "Th234"
@@ -337,7 +337,7 @@ physics: {
          volume_gen: ".*APA.*"
       }
       U238ChainGenInCPA: {
-         BqPercc: 1.e-5
+         BqPercc: 1.e-1
          decay_chain: {
             isotope_0: "U238"
             isotope_1: "Th234"

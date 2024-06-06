@@ -5,7 +5,8 @@ code_folder="/afs/cern.ch/work/e/evilla/private/dune/dunesw/verbose-dev" # WHEN 
 config_folder="/afs/cern.ch/work/e/evilla/private/dune/dunesw/dunesw-config" # assuming this contains the setup files and the fcls
 setup_dunesw="$code_folder/setup-dunesw.sh" # put this file in the code folder, selecting the correct version
 EOS_FOLDER="/eos/user/e/evilla/dune/sn-data/"
-delete_root_files=false
+delete_root_files=true
+clean_folder=true
 
 # Default values for simulation stages
 run_marley=false
@@ -20,7 +21,8 @@ source_flag=true  # Flag for -s option
 
 # fcls, just some casual defaults
 FCL_FOLDER="$config_folder/fcl/"
-GEN_FCL='prodmarley_nue_spectrum_clean_dune10kt_1x2x6_ES'
+# GEN_FCL='prodmarley_nue_spectrum_clean_dune10kt_1x2x6_ES'
+GEN_FCL='prodmarley_nue_spectrum_radiological_decay0_dune10kt_refactored_1x2x6_ES_modifiedBkgRate' # just to not rerun
 G4_FCL='supernova_g4_dune10kt_1x2x6_modified'
 DETSIM_FCL='DAQdetsim_v5' # get rid of modified
 RECO_FCL='TPdump_standardHF_noiseless_MCtruth'
@@ -47,6 +49,7 @@ print_help() {
     echo "*****************************************************************************"
     exit 0
 }
+
 
 # Parse command-line arguments
 while [[ $# -gt 0 ]]; do
@@ -126,7 +129,10 @@ done
 
 # Source the required scripts for execution
 if [ "$source_flag" = true ]; then
-    . $setup_dunesw
+    echo 'Setting up dune products...'
+    source /cvmfs/dune.opensciencegrid.org/products/dune/setup_dune.sh
+    echo 'Setting up local products...'
+    source $setup_dunesw
 fi
 
 # if none of the run commands are true, stop script
@@ -154,6 +160,12 @@ fi
 
 SIMULATION_NAME="${GEN_FCL_CHANGED}-${RECO_FCL}-${number_events}events"
 DATA_PATH="${FOLDER_PATH}${SIMULATION_CATEGORY}/${SIMULATION_NAME}_${OUTFOLDER_ENDING}/"
+# DATA_PATH="${EOS_FOLDER}${SIMULATION_CATEGORY}/${SIMULATION_NAME}_${OUTFOLDER_ENDING}/" # does not work, filesys boundary
+
+if [ "$clean_folder" = true ]; then
+    echo "Cleaning folder..."
+    rm -r "$DATA_PATH"
+fi
 
 mkdir -p "$DATA_PATH"
 echo "We are in $(pwd)"
@@ -185,6 +197,10 @@ if [ "$custom_energy" = true ] && [ "$custom_direction" = true ]; then
     echo "$(ls)"
     echo " "
 fi
+
+
+start_time=$(date +%s)
+echo "Starting simulation at $start_time"
 
 # Execute simulations based on options TODO simplofy, always copy fcl at this point
 if [ "$run_marley" = true ]; then
@@ -266,6 +282,12 @@ if [ "$run_reconstruction" = true ]; then
     fi
 fi
 
+
+end_time=$(date  +%s)
+echo "Ending simulation at $end_time"
+exec_time=$(($end_time - $start_time))
+echo "Simulation took $exec_time seconds"
+
 echo "Currently in ${PWD}"
 echo "Items here are $(ls)"
 
@@ -277,7 +299,7 @@ if [ "$delete_root_files" = true ]; then
 fi
 
 # Move all products to the folder
-FINAL_FOLDER="${EOS_FOLDER}${SIMULATION_CATEGORY}/${SIMULATION_NAME}_thr30/" # TODO grep from somewhere
+FINAL_FOLDER="${EOS_FOLDER}${SIMULATION_CATEGORY}/aggregated_${SIMULATION_NAME}_thr30/" # TODO grep from somewhere
 mkdir -p "$FINAL_FOLDER"
 
 echo "Moving custom direction and TPs to $FINAL_FOLDER"
@@ -293,6 +315,11 @@ TPFILE_NAME="tpstream_standardHF_thresh30_nonoise_MCtruth.txt" # TODO make this 
 moving_tps="mv ${DATA_PATH}${TPFILE_NAME} ${FINAL_FOLDER}tpstream_${OUTFOLDER_ENDING}.txt"
 echo "$moving_tps"
 $moving_tps
+
+if [ "$clean_folder" = true ]; then
+    echo "Cleaning folder..."
+    rm -r "$DATA_PATH"
+fi
 
 # Print the data path
 echo "Data is in $FINAL_FOLDER"
