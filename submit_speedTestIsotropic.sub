@@ -3,7 +3,7 @@
 notify_user         = emanuele.villa@cern.ch
 notification        = Error
 
-JOBNAME             = speed-test-isotropic
+JOBNAME             = speed-test-isotropic-more
 executable          = /afs/cern.ch/work/e/evilla/private/dune/dunesw/dunesw-config/run-sn-simulation.sh
 #arguments           = -m prodmarley_nue_spectrum_radiological_decay0_dune10kt_refactored_1x2x6_ES_modifiedBkgRate -g -d -r WFdump.fcl -n 10 -f $(ProcId)
 # line to run things that failed
@@ -25,6 +25,12 @@ queue arguments from (
     -m prodmarley_nue_spectrum_radiological_decay0_dune10kt_refactored_1x2x6_isotropic -n 15 -f testSpeedIsotropic
     -m prodmarley_nue_spectrum_radiological_decay0_dune10kt_refactored_1x2x6_isotropic -n 20 -f testSpeedIsotropic
     -m prodmarley_nue_spectrum_radiological_decay0_dune10kt_refactored_1x2x6_isotropic -n 30 -f testSpeedIsotropic
+    -m prodmarley_nue_spectrum_radiological_decay0_dune10kt_refactored_1x2x6_isotropic -n 40 -f testSpeedIsotropic
     -m prodmarley_nue_spectrum_radiological_decay0_dune10kt_refactored_1x2x6_isotropic -n 50 -f testSpeedIsotropic
+    -m prodmarley_nue_spectrum_radiological_decay0_dune10kt_refactored_1x2x6_isotropic -n 60 -f testSpeedIsotropic
+    -m prodmarley_nue_spectrum_radiological_decay0_dune10kt_refactored_1x2x6_isotropic -n 70 -f testSpeedIsotropic
+    -m prodmarley_nue_spectrum_radiological_decay0_dune10kt_refactored_1x2x6_isotropic -n 80 -f testSpeedIsotropic
+    -m prodmarley_nue_spectrum_radiological_decay0_dune10kt_refactored_1x2x6_isotropic -n 90 -f testSpeedIsotropic
+    -m prodmarley_nue_spectrum_radiological_decay0_dune10kt_refactored_1x2x6_isotropic -n 100 -f testSpeedIsotropic
 )
  

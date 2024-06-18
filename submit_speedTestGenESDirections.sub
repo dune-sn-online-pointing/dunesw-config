@@ -25,6 +25,12 @@ queue arguments from (
     -m prodmarley_nue_spectrum_radiological_decay0_dune10kt_refactored_1x2x6_ES -n 15 -f testSpeedES
     -m prodmarley_nue_spectrum_radiological_decay0_dune10kt_refactored_1x2x6_ES -n 20 -f testSpeedES
     -m prodmarley_nue_spectrum_radiological_decay0_dune10kt_refactored_1x2x6_ES -n 30 -f testSpeedES
+    -m prodmarley_nue_spectrum_radiological_decay0_dune10kt_refactored_1x2x6_ES -n 40 -f testSpeedES
     -m prodmarley_nue_spectrum_radiological_decay0_dune10kt_refactored_1x2x6_ES -n 50 -f testSpeedES
+    -m prodmarley_nue_spectrum_radiological_decay0_dune10kt_refactored_1x2x6_ES -n 60 -f testSpeedES
+    -m prodmarley_nue_spectrum_radiological_decay0_dune10kt_refactored_1x2x6_ES -n 70 -f testSpeedES
+    -m prodmarley_nue_spectrum_radiological_decay0_dune10kt_refactored_1x2x6_ES -n 80 -f testSpeedES
+    -m prodmarley_nue_spectrum_radiological_decay0_dune10kt_refactored_1x2x6_ES -n 90 -f testSpeedES
+    -m prodmarley_nue_spectrum_radiological_decay0_dune10kt_refactored_1x2x6_ES -n 100 -f testSpeedES
 )
  

@@ -300,10 +300,10 @@ if [ "$custom_direction" = true ]; then
     $moving_custom_direction
 fi
 
-TPFILE_NAME="event30.txt" # TODO make this absolute or grep it
-moving_tps="mv ${DATA_PATH}${TPFILE_NAME} ${FINAL_FOLDER}waveforms_${OUTFOLDER_ENDING}.txt"
-echo "$moving_tps"
-$moving_tps
+WF_FILENAME="waveforms_thr30.txt" # TODO make this absolute or grep it
+moving_waveforms="mv ${DATA_PATH}${WF_FILENAME} ${FINAL_FOLDER}waveforms_${OUTFOLDER_ENDING}.txt"
+echo "$moving_waveforms"
+$moving_waveforms
 
 if [ "$clean_folder" = true ]; then
     echo "Cleaning folder..."

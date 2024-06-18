@@ -6,7 +6,7 @@ config_folder="/afs/cern.ch/work/e/evilla/private/dune/dunesw/dunesw-config" # a
 setup_dunesw="$code_folder/setup-dunesw.sh" # put this file in the code folder, selecting the correct version
 EOS_FOLDER="/eos/user/e/evilla/dune/sn-data/"
 delete_root_files=true
-clean_folder=true
+clean_folder=false
 
 # Default values for simulation stages
 run_marley=false
@@ -287,6 +287,9 @@ end_time=$(date  +%s)
 echo "Ending simulation at $end_time"
 exec_time=$(($end_time - $start_time))
 echo "Simulation took $exec_time seconds"
+
+# print to a file the time it took
+echo "$exec_time" > "${DATA_PATH}execTime.txt"
 
 echo "Currently in ${PWD}"
 echo "Items here are $(ls)"
