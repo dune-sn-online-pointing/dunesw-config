@@ -7,6 +7,7 @@ function print_help() {
     echo "Usage: $0 [options]"
     echo "Options:"
     echo "  -f, --fcl-file                Fcl file to be modified"
+    echo "  -v, --verbose                 Print verbose output"
     echo "  -h, --help                    Print this help message"
     echo "*****************************************************************************"
     exit 0
@@ -18,6 +19,10 @@ while [[ $# -gt 0 ]]; do
         -f|--fcl-file)
             original_fcl="$2"
             shift
+            shift
+            ;;
+        -v|--verbose)
+            verbose=true
             shift
             ;;
         -h|--help)
@@ -47,20 +52,24 @@ if [[ "$original_fcl" == *"_customDirection" ]]; then
 fi
 
 # sample theta and phi from a uniform distribution, using generate_theta.py
-echo "Generating random theta and phi..."
+if [[ "$verbose" == true ]]; then
+    echo "Generating random theta and phi..."
+fi
 
 direction=$(python3 /afs/cern.ch/work/e/evilla/private/dune/dunesw/dunesw-config/generate_direction.py)
 x=$(echo $direction | awk '{print $1}')
 y=$(echo $direction | awk '{print $2}')
 z=$(echo $direction | awk '{print $3}')
 
-echo "Generated random direction..."
-echo "x: $x"
-echo "y: $y"
-echo "z: $z"
+if [[ "$verbose" == true ]]; then
+    echo "Generated random direction..."
+    echo "x: $x"
+    echo "y: $y"
+    echo "z: $z"
+fi
 
 # print this in a text file, but delete it first in case it already exists
-rm customDirection.txt
+rm -f customDirection.txt
 echo "$x" >> customDirection.txt
 echo "$y" >> customDirection.txt
 echo "$z" >> customDirection.txt
@@ -68,7 +77,8 @@ echo "$z" >> customDirection.txt
 
 # Create the .fcl file with the random values, adding a suffix and .fcl to original_fcl
 # move that file to here just to avoid parsing problems
-cp /afs/cern.ch/work/e/evilla/private/dune/dunesw/dunesw-config/fcl/${original_fcl}.fcl .
+# TODO probably do this in another script, not this one
+cp /afs/cern.ch/work/e/evilla/private/dune/dunesw/dunesw-config/fcl/${original_fcl}.fcl . 2>/dev/null
 filename="${original_fcl%.*}_customDirection.fcl"
 cat <<EOF > $filename
 #include "${original_fcl}.fcl"
@@ -80,4 +90,7 @@ physics.producers.marley.marley_parameters.direction.z: $z
 
 EOF
 
-echo "Generated file: $filename"
+if [[ "$verbose" == true ]]; then
+    echo "Generated file: $filename"
+fi
+echo ""

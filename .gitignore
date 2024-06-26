@@ -1,4 +1,5 @@
 job_output/*
 *.txt
 evilla.cc
+directions_for_production/
 

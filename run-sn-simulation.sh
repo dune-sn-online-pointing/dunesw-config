@@ -6,7 +6,7 @@ config_folder="/afs/cern.ch/work/e/evilla/private/dune/dunesw/dunesw-config" # a
 setup_dunesw="$code_folder/setup-dunesw.sh" # put this file in the code folder, selecting the correct version
 EOS_FOLDER="/eos/user/e/evilla/dune/sn-data/"
 delete_root_files=true
-clean_folder=false
+clean_folder=true
 
 # Default values for simulation stages
 run_marley=false
@@ -21,8 +21,8 @@ source_flag=true  # Flag for -s option
 
 # fcls, just some casual defaults
 FCL_FOLDER="$config_folder/fcl/"
-# GEN_FCL='prodmarley_nue_spectrum_clean_dune10kt_1x2x6_ES'
-GEN_FCL='prodmarley_nue_spectrum_radiological_decay0_dune10kt_refactored_1x2x6_ES_modifiedBkgRate' # just to not rerun
+GEN_FCL='prodmarley_nue_spectrum_clean_dune10kt_1x2x6_CC'
+# GEN_FCL='prodmarley_nue_spectrum_radiological_decay0_dune10kt_refactored_1x2x6_ES_modifiedBkgRate' # just to not rerun
 G4_FCL='supernova_g4_dune10kt_1x2x6_modified'
 DETSIM_FCL='DAQdetsim_v5' # get rid of modified
 RECO_FCL='TPdump_standardHF_noiseless_MCtruth'
@@ -318,6 +318,11 @@ TPFILE_NAME="tpstream_standardHF_thresh30_nonoise_MCtruth.txt" # TODO make this 
 moving_tps="mv ${DATA_PATH}${TPFILE_NAME} ${FINAL_FOLDER}tpstream_${OUTFOLDER_ENDING}.txt"
 echo "$moving_tps"
 $moving_tps
+
+WF_FILENAME="waveforms.txt"
+moving_waveforms="mv ${DATA_PATH}${WF_FILENAME} ${FINAL_FOLDER}waveforms_${OUTFOLDER_ENDING}.txt"
+echo "$moving_waveforms"
+$moving_waveforms
 
 if [ "$clean_folder" = true ]; then
     echo "Cleaning folder..."

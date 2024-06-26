@@ -27,9 +27,9 @@ physics:
       simwire: {
          module_type: "SimWireDUNE"
          SimChannelLabel: "elecDrift"
-         NoiseOn: true
-         PedestalOn: true
-         DistortOn: false
+         NoiseOn: false # true
+         PedestalOn: false # true
+         DistortOn: false 
          SuppressOn: false
          KeepEmptyChannels: true
          AdcSimulator:      "adcsim_ideal"

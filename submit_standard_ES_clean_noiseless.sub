@@ -3,9 +3,9 @@
 notify_user         = emanuele.villa@cern.ch
 notification        = Error
 
-JOBNAME             = sn-standard-ES-clean
+JOBNAME             = sn-standard-ES-clean-noiseless
 executable          = /afs/cern.ch/work/e/evilla/private/dune/dunesw/dunesw-config/run-sn-simulation.sh
-arguments           = -m prodmarley_nue_spectrum_clean_dune10kt_1x2x6_ES -g -d -r -n 250 -f $(ProcId)
+arguments           = -m prodmarley_nue_spectrum_clean_dune10kt_1x2x6_ES -g -d -r -n 350 -f $(ProcId)
 # line to run things that failed
 #arguments           = -m prodmarley_nue_spectrum_radiological_decay0_dune10kt_refactored_1x2x6_CC -g -d -r -n 10 -f 9
 output              = /afs/cern.ch/work/e/evilla/private/dune/dunesw/dunesw-config/job_output/job.$(JOBNAME).$(ClusterId).$(ProcId).out
