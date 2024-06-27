@@ -1,12 +1,15 @@
 #!/bin/bash
 
+# it contains the fcls and the scripts that are called here
+REPO_HOME="$(git rev-parse --show-toplevel)"
+echo "REPO_HOME for script run-sn-simulation.sh: $REPO_HOME"
+# this file has to be run from the dunesw-config area 
+
 # USER SPECIFIC
-code_folder="/afs/cern.ch/work/e/evilla/private/dune/dunesw/verbose-dev" # WHEN CHANGING, MODIFY
-config_folder="/afs/cern.ch/work/e/evilla/private/dune/dunesw/dunesw-config" # assuming this contains the setup files and the fcls
-setup_dunesw="$code_folder/setup-dunesw.sh" # put this file in the code folder, selecting the correct version
-EOS_FOLDER="/eos/user/e/evilla/dune/sn-data/"
-delete_root_files=true
-clean_folder=true
+INSTALL_FOLDER_NAME="/afs/cern.ch/work/e/evilla/private/dune/dunesw/verbose-dev/"
+
+setup_dunesw="${INSTALL_FOLDER_NAME}setup-dunesw.sh"        # put this file in the code folder, selecting the correct version
+EOS_FOLDER="/eos/user/e/evilla/dune/sn-data/"       # standard, for now. Subfolders are selected automatically
 
 # Default values for simulation stages
 run_marley=false
@@ -18,16 +21,18 @@ run_g4=false
 run_detsim=false
 run_reconstruction=false
 source_flag=true  # Flag for -s option
+delete_root_files=true
+clean_folder=true
 
 # fcls, just some casual defaults
-FCL_FOLDER="$config_folder/fcl/"
+FCL_FOLDER="$REPO_HOME/fcl/"
 GEN_FCL='prodmarley_nue_spectrum_clean_dune10kt_1x2x6_CC'
 # GEN_FCL='prodmarley_nue_spectrum_radiological_decay0_dune10kt_refactored_1x2x6_ES_modifiedBkgRate' # just to not rerun
 G4_FCL='supernova_g4_dune10kt_1x2x6_modified'
-DETSIM_FCL='DAQdetsim_v5' # get rid of modified
+DETSIM_FCL='DAQdetsim_v5' 
 RECO_FCL='TPdump_standardHF_noiseless_MCtruth'
 
-# other params
+# other params that is better to initialize
 OUTFOLDER_ENDING=""
 number_events=1
 
@@ -38,14 +43,18 @@ print_help() {
     echo "Options:"
     echo "  -m, --marley           Run Marley generation"
     echo "  --custom-direction Run Marley generation with custom random direction"
-    echo "  --custom-energy        Run Marley generation with custom energy binning"
+    echo "  --custom-energy        Run Marley generation with custom energy binning, requires two arguments (min and max)"
     echo "  -g, --g4               Run Geant4 simulation"
     echo "  -d, --detsim           Run detector simulation"
     echo "  -r, --reconstruction   Run event reconstruction"
-    echo "  -n, --n-events         Number of events"
+    echo "  -n, --n-events         Number of events, default is 1"
     echo "  -s, --source           Parse to NOT source dunesw and local products"
-    echo "  -f, --folder-ending    Ending of the file folder"
+    echo "  -f, --folder-ending    Ending of the name of the output folder"
+    echo "  --clean-folder         Clean the folder after simulation. Default is true, set to false to keep it"
+    echo "  --delete-root          Delete root files after simulation, to save space. Default is true, set to false to keep them"
     echo "  -h, --help             Print this help message"
+    echo " "
+    echo "Example: ./run-sn-simulation.sh -m myconfig.fcl --custom-energy 2 70 -g -d -r -s -n 1000 -f test --clean-folder false --delete-root false"
     echo "*****************************************************************************"
     exit 0
 }
@@ -59,6 +68,10 @@ while [[ $# -gt 0 ]]; do
             # in case there is an argument, save it as the fcl
             if [[ "$2" != -* ]]; then
                 GEN_FCL="$2"
+                # if it has the extension, remove it
+                if [[ "$GEN_FCL" == *".fcl" ]]; then
+                    GEN_FCL="${GEN_FCL%.*}"
+                fi
                 shift
             fi
             shift
@@ -84,6 +97,10 @@ while [[ $# -gt 0 ]]; do
             # in case there is an argument, save it as the fcl
             if [[ "$2" != -* ]]; then
                 G4_FCL="$2"
+                # if it has the extension, remove it
+                if [[ "$G4_FCL" == *".fcl" ]]; then
+                    G4_FCL="${G4_FCL%.*}"
+                fi
                 shift
             fi
             shift
@@ -93,6 +110,10 @@ while [[ $# -gt 0 ]]; do
             # in case there is an argument, save it as the fcl
             if [[ "$2" != -* ]]; then
                 DETSIM_FCL="$2"
+                #if it has the extension, remove it
+                if [[ "$DETSIM_FCL" == *".fcl" ]]; then
+                    DETSIM_FCL="${DETSIM_FCL%.*}"
+                fi
                 shift
             fi
             shift
@@ -102,6 +123,10 @@ while [[ $# -gt 0 ]]; do
             # in case there is an argument, save it as the fcl
             if [[ "$2" != -* ]]; then
                 RECO_FCL="$2"
+                # if it has the extension, remove it
+                if [[ "$RECO_FCL" == *".fcl" ]]; then
+                    RECO_FCL="${RECO_FCL%.*}"
+                fi
                 shift
             fi
             shift
@@ -116,6 +141,14 @@ while [[ $# -gt 0 ]]; do
             ;;
         -f|--folder-ending)
             OUTFOLDER_ENDING="$2"
+            shift 2
+            ;;
+        --clean-folder)
+            clean_folder="$2"
+            shift 2
+            ;;
+        --delete-root)
+            delete_root_files="$2"
             shift 2
             ;;
         -h|--help)
@@ -143,7 +176,7 @@ if [ "$run_marley" = false ] && [ "$run_g4" = false ] && [ "$run_detsim" = false
 fi
 
 # Default path for data
-FOLDER_PATH="${code_folder}/output/"
+GLOBAL_OUTPUT_FOLDER="${INSTALL_FOLDER_NAME}output/"
 SIMULATION_CATEGORY="standard"
 GEN_FCL_CHANGED=$GEN_FCL # default value, will be changed if custom direction or energy is selected
 if [ "$custom_direction" = true ] && [ "$custom_energy" = false ]; then
@@ -156,66 +189,61 @@ elif [ "$custom_energy" = true ] && [ "$custom_direction" = true ]; then
     SIMULATION_CATEGORY="customEandD"
     GEN_FCL_CHANGED="${GEN_FCL}_${energy_min}to${energy_max}MeV_customDirection"
 fi
-# if two change at the same time, decide what to do
 
 SIMULATION_NAME="${GEN_FCL_CHANGED}-${RECO_FCL}-${number_events}events"
-DATA_PATH="${FOLDER_PATH}${SIMULATION_CATEGORY}/${SIMULATION_NAME}_${OUTFOLDER_ENDING}/"
-# DATA_PATH="${EOS_FOLDER}${SIMULATION_CATEGORY}/${SIMULATION_NAME}_${OUTFOLDER_ENDING}/" # does not work, filesys boundary
+DATA_PATH="${GLOBAL_OUTPUT_FOLDER}${SIMULATION_CATEGORY}/${SIMULATION_NAME}_${OUTFOLDER_ENDING}/"
 
+# in case there is a previous one, clean it
 if [ "$clean_folder" = true ]; then
     echo "Cleaning folder..."
-    rm -r "$DATA_PATH"
+    rm -rf "$DATA_PATH"
 fi
 
-mkdir -p "$DATA_PATH"
+# going here to generate the fcl files for custom E and/or direction
+cd "$REPO_HOME"
 echo "We are in $(pwd)"
+
+# create output folder
+mkdir -p "$DATA_PATH"
 echo "Data will be saved in $DATA_PATH"
-cd "$DATA_PATH"
-echo "We are now in $(pwd)"
 
 # If custom direction is selected, generate a random direction and create a new fcl file
 if [ "$custom_direction" = true ] && [ "$custom_energy" = false ]; then
-    . $config_folder/custom-direction.sh -f "$GEN_FCL"
-    # TODO add copying of fcl to this folder
-    # TODO change path of script to generate dir
-    echo "In this folder now we have"
-    echo "$(ls)"
+    # generate the direction and print it in the fcl and in a txt file
+    . $REPO_HOME/scripts/custom-direction.sh -f "$GEN_FCL" -v -o "$DATA_PATH"
     echo " "
 fi
 
 # If custom energy is selected, generate energy bins and create a new fcl file
 if [ "$custom_energy" = true ] && [ "$custom_direction" = false ]; then
     echo "Generating fcl file with custom energy range, $energy_min to $energy_max..."
-    . $config_folder/custom-energy.sh -f "$GEN_FCL" -m "$energy_min" -M "$energy_max"
-    echo "In this folder now we have"
-    echo "$(ll)"
+    . $REPO_HOME/scripts/custom-energy.sh -f "$GEN_FCL" -m "$energy_min" -M "$energy_max" -v -o "$DATA_PATH"
     echo " "
 fi
 
 if [ "$custom_energy" = true ] && [ "$custom_direction" = true ]; then
     echo "Generating fcl file with custom energy range and direction..."
-    . $config_folder/custom-enAndDir.sh -f "$GEN_FCL" -m "$energy_min" -M "$energy_max"
-    echo "In this folder now we have"
-    echo "$(ls)"
+    . $REPO_HOME/scripts/custom-enAndDir.sh -f "$GEN_FCL" -m "$energy_min" -M "$energy_max" -v -o "$DATA_PATH"
     echo " "
 fi
 
+
+cd "$DATA_PATH"
+echo "We are now in $(pwd)"
+echo "Items here are $(ll)"
+
+# copying the original gen fcl to the folder, it is used by the GEN_FCL_CHANGED
+cp $REPO_HOME/fcl/${GEN_FCL}.fcl $DATA_PATH
 
 start_time=$(date +%s)
 echo "Starting simulation at $start_time"
 
 # Execute simulations based on options TODO simplofy, always copy fcl at this point
 if [ "$run_marley" = true ]; then
-    if [ "$custom_direction" = true ] ||  [ "$custom_energy" = true ]; then
-        # in this case the fcl will be in this folder
-        echo "Executing command: lar -c ${DATA_PATH}${GEN_FCL_CHANGED}.fcl -n $number_events -o ${DATA_PATH}${GEN_FCL}.root"
-        lar -c "${DATA_PATH}${GEN_FCL_CHANGED}.fcl" -n "$number_events" -o "${DATA_PATH}${GEN_FCL}.root"
-    else   
-        # in this case the fcl will be in the fcl folder
-        echo "Executing command: lar -c ${FCL_FOLDER}${GEN_FCL_CHANGED}.fcl -n $number_events -o ${DATA_PATH}${GEN_FCL}.root"
-        lar -c "${FCL_FOLDER}${GEN_FCL_CHANGED}.fcl" -n "$number_events" -o "${DATA_PATH}${GEN_FCL}.root"
-    fi
+    echo "Executing command: lar -c ${DATA_PATH}${GEN_FCL_CHANGED}.fcl -n $number_events -o ${DATA_PATH}${GEN_FCL}.root"
+    lar -c "${DATA_PATH}${GEN_FCL_CHANGED}.fcl" -n "$number_events" -o "${DATA_PATH}${GEN_FCL}.root"
 
+    # if returns 0, then it was successful
     if [ $? -eq 0 ]; then
         echo "Marley generation done!"
         echo ""
@@ -231,6 +259,7 @@ fi
 if [ "$run_g4" = true ]; then
     echo "Executing command: lar -c ${FCL_FOLDER}${G4_FCL}.fcl -n $number_events -s ${DATA_PATH}${GEN_FCL}.root -o ${DATA_PATH}${GEN_FCL}_g4.root"
     lar -c "${FCL_FOLDER}${G4_FCL}.fcl" -n "$number_events" -s "${DATA_PATH}${GEN_FCL}.root" -o "${DATA_PATH}${GEN_FCL}_g4.root"
+    
     # if returns 0, then it was successful
     if [ $? -eq 0 ]; then
         echo "Geant4 simulation done!"
@@ -249,6 +278,7 @@ fi
 if [ "$run_detsim" = true ]; then
     echo "Executing command: lar -c ${FCL_FOLDER}${DETSIM_FCL}.fcl -n $number_events -s ${DATA_PATH}${GEN_FCL}_g4.root -o ${DATA_PATH}${GEN_FCL}_g4_detsim.root"
     lar -c "${FCL_FOLDER}${DETSIM_FCL}.fcl" -n "$number_events" -s "${DATA_PATH}${GEN_FCL}_g4.root" -o "${DATA_PATH}${GEN_FCL}_g4_detsim.root"
+    
     if [ $? -eq 0 ]; then
         echo "Detector simulation done!"
         echo ""
@@ -268,6 +298,7 @@ fi
 if [ "$run_reconstruction" = true ]; then
     echo "Executing command: lar -c ${FCL_FOLDER}${RECO_FCL}.fcl -n $number_events -s ${DATA_PATH}${GEN_FCL}_g4_detsim.root -o ${DATA_PATH}${GEN_FCL}_g4_detsim_reco1.root"
     lar -c "${FCL_FOLDER}${RECO_FCL}.fcl" -n "$number_events" -s "${DATA_PATH}${GEN_FCL}_g4_detsim.root" -o "${DATA_PATH}${GEN_FCL}_g4_detsim_reco1.root"
+    
     if [ $? -eq 0 ]; then
         echo "Reconstruction done!"
         echo ""
@@ -295,19 +326,20 @@ echo "$exec_time" > "${DATA_PATH}execTime.txt"
 
 echo "Currently in ${PWD}"
 echo "Items here are $(ls)"
+echo ""
 
 # Delete root files
 if [ "$delete_root_files" = true ]; then
     echo "Deleting root files to save memory..."    
     rm "${DATA_PATH}*.root"
-    rm ./-_detsim_hist.root # Sometimes there is this product, remove it
+    rm -f ./-_detsim_hist.root # Sometimes there is this product, remove it
 fi
 
 # Move all products to the folder
-FINAL_FOLDER="${EOS_FOLDER}${SIMULATION_CATEGORY}/aggregated_${SIMULATION_NAME}_thr30/" # TODO grep from somewhere
+FINAL_FOLDER="${EOS_FOLDER}${SIMULATION_CATEGORY}/aggregated_${SIMULATION_NAME}_thr30/" # TODO grep threshold from somewhere
 mkdir -p "$FINAL_FOLDER"
 
-echo "Moving custom direction and TPs to $FINAL_FOLDER"
+echo "Moving custom direction, TPs and waveforms to $FINAL_FOLDER"
 
 if [ "$custom_direction" = true ]; then
     # move the custom direction file
@@ -316,13 +348,13 @@ if [ "$custom_direction" = true ]; then
     $moving_custom_direction
 fi
 
-TPFILE_NAME="tpstream_standardHF_thresh30_nonoise_MCtruth.txt" # TODO make this absolute or grep it
-moving_tps="mv ${DATA_PATH}${TPFILE_NAME} ${FINAL_FOLDER}tpstream_${OUTFOLDER_ENDING}.txt"
+TP_FILE="tpstream_standardHF_thresh30_nonoise_MCtruth.txt" # TODO make this absolute or grep it
+moving_tps="mv ${DATA_PATH}${TP_FILE} ${FINAL_FOLDER}tpstream_${OUTFOLDER_ENDING}.txt"
 echo "$moving_tps"
 $moving_tps
 
-WF_FILENAME="waveforms.txt"
-moving_waveforms="mv ${DATA_PATH}${WF_FILENAME} ${FINAL_FOLDER}waveforms_${OUTFOLDER_ENDING}.txt"
+WF_FILE="waveforms.txt" # set in the TPStreamer module
+moving_waveforms="mv ${DATA_PATH}${WF_FILE} ${FINAL_FOLDER}waveforms_${OUTFOLDER_ENDING}.txt"
 echo "$moving_waveforms"
 $moving_waveforms
 
@@ -332,4 +364,5 @@ if [ "$clean_folder" = true ]; then
 fi
 
 # Print the data path
-echo "Data is in $FINAL_FOLDER"
+echo "If it has not been cleaned, all products are in $DATA_PATH"
+echo "TPs and waveforms are in $FINAL_FOLDER"
