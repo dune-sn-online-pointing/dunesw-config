@@ -50,11 +50,6 @@ while [[ $# -gt 0 ]]; do
     esac
 done
 
-if [[ "$verbose" == true ]]; then
-    echo "REPO_HOME for script custom-direction.sh: $REPO_HOME"
-fi
-
-
 # if no fcl file is provided, stop execution
 if [[ -z "$original_fcl" ]]; then
     echo "No fcl file provided. Exiting..."
@@ -97,9 +92,9 @@ fi
 
 # print this in a text file, but delete it first in case it already exists
 rm -f customDirection.txt
-echo "$x" >> customDirection.txt
-echo "$y" >> customDirection.txt
-echo "$z" >> customDirection.txt
+echo "$x" >> ${output_folder}customDirection.txt
+echo "$y" >> ${output_folder}customDirection.txt
+echo "$z" >> ${output_folder}customDirection.txt
 
 
 # Create the .fcl file with the random values, adding a suffix and .fcl to original_fcl
@@ -117,4 +112,3 @@ EOF
 if [[ "$verbose" == true ]]; then
     echo "Generated file: $filename"
 fi
-echo ""
