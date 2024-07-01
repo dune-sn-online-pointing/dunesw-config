@@ -3,13 +3,7 @@
 # it contains the fcls and the scripts that are called here
 REPO_HOME="$(git rev-parse --show-toplevel)"
 echo "REPO_HOME for script run-sn-simulation.sh: $REPO_HOME"
-# this file has to be run from the dunesw-config area 
-
-# USER SPECIFIC
-INSTALL_FOLDER_NAME="/afs/cern.ch/work/e/evilla/private/dune/dunesw/verbose-dev/"
-
-setup_dunesw="${INSTALL_FOLDER_NAME}setup-dunesw.sh"        # put this file in the code folder, selecting the correct version
-EOS_FOLDER="/eos/user/e/evilla/dune/sn-data/"       # standard, for now. Subfolders are selected automatically
+# this script has to be run from the dunesw-config area 
 
 # Default values for simulation stages
 run_marley=false
@@ -41,6 +35,7 @@ print_help() {
     echo "*****************************************************************************"
     echo "Usage: ./run-sn-simulation.sh [options]"
     echo "Options:"
+    echo "  -j, --json-settings    JSON file with paths and settings. Default is ./settings.json"
     echo "  -m, --marley           Run Marley generation"
     echo "  --custom-direction Run Marley generation with custom random direction"
     echo "  --custom-energy        Run Marley generation with custom energy binning, requires two arguments (min and max)"
@@ -63,6 +58,10 @@ print_help() {
 # Parse command-line arguments
 while [[ $# -gt 0 ]]; do
     case "$1" in
+        -j|--json-settings)
+            JSON_SETTINGS="$2"
+            shift 2
+            ;;
         -m|--marley)
             run_marley=true
             # in case there is an argument, save it as the fcl
@@ -159,6 +158,15 @@ while [[ $# -gt 0 ]]; do
             ;;
     esac
 done
+
+# USER SPECIFIC
+
+# Where the dunesw is installed
+JSON_SETTINGS="${REPO_HOME}/scripts/settings.json"
+DUNESW_FOLDER_NAME=(awk -F'""' '/' '"duneswInstallPath":/ {print $4}' $JSON_SETTINGS)
+setup_dunesw="${DUNESW_FOLDER_NAME}/setup-dunesw.sh"        # put this file in the code folder, selecting the correct version
+EOS_FOLDER="/eos/user/e/evilla/dune/sn-data/"       # standard, for now. Subfolders are selected automatically
+
 
 # Source the required scripts for execution
 if [ "$source_flag" = true ]; then
