@@ -1,4 +1,5 @@
 {
-    "duneswInstallPath":"/afs/cern.ch/work/e/evilla/private/dune/verbose-dev/",
-    "userEmail":"emanuele.villa@cern.ch"
+    "duneswConfigPath":"/your/config/path/verbose-dev/",
+    "duneswInstallPath":"/your/dunesw/install/path/",
+    "userEmail":"your.email@cern.ch"
 }
