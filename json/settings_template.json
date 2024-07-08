@@ -1,6 +1,6 @@
 {
     "IMPORTANT":"This file is just a template with the current settings, it will become bigger. Copy to a file with a different name in this repo, that will be gitignored.",
-    "duneswConfigPath":"/your/config/path/verbose-dev/",
+    "duneswConfigPath":"/your/config/path/",
     "duneswInstallPath":"/your/dunesw/install/path/",
     "userEmail":"your.email@cern.ch"
 }

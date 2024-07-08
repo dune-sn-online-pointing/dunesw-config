@@ -1,0 +1,3 @@
+REPO_HOME for script run-sn-simulation.sh: 
+When running in condor, this won't work. Use the --home-config flag to set the path to the dunesw-config folder
+JSON file with paths and settings is required, give it through the flag -j. Exiting...

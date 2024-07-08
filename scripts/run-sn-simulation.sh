@@ -20,7 +20,7 @@ delete_root_files=true
 clean_folder=true
 
 # fcls, just some casual defaults
-GEN_FCL='prodmarley_nue_spectrum_clean_dune10kt_1x2x6_CC'
+GEN_FCL='prodmarley_nue_spectrum_clean_dune10kt_1x2x6_ES'
 # GEN_FCL='prodmarley_nue_spectrum_radiological_decay0_dune10kt_refactored_1x2x6_ES_modifiedBkgRate' # just to not rerun
 G4_FCL='supernova_g4_dune10kt_1x2x6_modified'
 DETSIM_FCL='DAQdetsim_v5' 
@@ -201,9 +201,7 @@ EOS_FOLDER="/eos/user/e/evilla/dune/sn-data/"       # standard, for now. Subfold
 
 # Source the required scripts for execution
 if [ "$source_flag" = true ]; then
-    echo 'Setting up dune products...'
-    source /cvmfs/dune.opensciencegrid.org/products/dune/setup_dune.sh
-    echo 'Setting up local products...'
+    echo 'Setting up dune software...'
     source $setup_dunesw
 fi
 
@@ -376,6 +374,7 @@ fi
 
 # Move all products to the folder
 FINAL_FOLDER="${EOS_FOLDER}${SIMULATION_CATEGORY}/aggregated_${SIMULATION_NAME}_thr30/" # TODO grep threshold from somewhere
+echo "Creating final folder $FINAL_FOLDER"
 mkdir -p "$FINAL_FOLDER"
 
 echo "Moving custom direction, TPs and waveforms to $FINAL_FOLDER"
