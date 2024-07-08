@@ -1,0 +1,9 @@
+#include "prodmarley_nue_flat_clean_dune10kt_1x2x6_ES.fcl"
+
+physics.producers.marley.marley_parameters.direction.x: -0.263351229241
+physics.producers.marley.marley_parameters.direction.y: 0.651947340663
+physics.producers.marley.marley_parameters.direction.z: 0.711063144214
+
+physics.producers.marley.marley_parameters.source.Emin: 70
+physics.producers.marley.marley_parameters.source.Emax: 70
+

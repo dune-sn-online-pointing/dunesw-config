@@ -6,7 +6,7 @@ notification        = Error
 # this is for the training sample, fixed energy at 70 MeV, that will result in flat electron spectrum
 JOBNAME             = sn-custom-direction-3D-pointing-for-training
 executable          = /afs/cern.ch/work/e/evilla/private/dune/dunesw/dunesw-config/scripts/run-sn-simulation.sh
-arguments           = -m prodmarley_nue_flat_clean_dune10kt_1x2x6_ES --custom-direction --custom-energy 70 70 -g -d -r -n 100 -f 10$(ProcId)
+arguments           = -j mySettings.json --home-config /afs/cern.ch/work/e/evilla/private/dune/dunesw/dunesw-config/ -m prodmarley_nue_flat_clean_dune10kt_1x2x6_ES --custom-direction --custom-energy 70 70 -g -d -r -n 100 -f 10$(ProcId)
 output              = /afs/cern.ch/work/e/evilla/private/dune/dunesw/dunesw-config/job_output/job.$(JOBNAME).$(ClusterId).$(ProcId).out
 error               = /afs/cern.ch/work/e/evilla/private/dune/dunesw/dunesw-config/job_output/job.$(JOBNAME).$(ClusterId).$(ProcId).err
 log                 = /afs/cern.ch/work/e/evilla/private/dune/dunesw/dunesw-config/job_output/job.$(JOBNAME).$(ClusterId).log
@@ -18,7 +18,7 @@ requirements = (OpSysAndVer =?= "CentOS7")
 +JobFlavour         = "workday"
 #+MaxRunTime        = 1800
 
-queue 100
+queue 10
 
 
 #queue arguments from (

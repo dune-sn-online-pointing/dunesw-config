@@ -3,6 +3,7 @@
 # it contains the fcls and the scripts that are called here
 REPO_HOME="$(git rev-parse --show-toplevel)"
 echo "REPO_HOME for script run-sn-simulation.sh: $REPO_HOME"
+echo "When running in condor, this won't work. Use the --home-config flag to set the path to the dunesw-config folder"
 # this script has to be run from the dunesw-config area 
 
 # Default values for simulation stages
@@ -19,7 +20,6 @@ delete_root_files=true
 clean_folder=true
 
 # fcls, just some casual defaults
-FCL_FOLDER="$REPO_HOME/fcl/"
 GEN_FCL='prodmarley_nue_spectrum_clean_dune10kt_1x2x6_CC'
 # GEN_FCL='prodmarley_nue_spectrum_radiological_decay0_dune10kt_refactored_1x2x6_ES_modifiedBkgRate' # just to not rerun
 G4_FCL='supernova_g4_dune10kt_1x2x6_modified'
@@ -27,15 +27,17 @@ DETSIM_FCL='DAQdetsim_v5'
 RECO_FCL='TPdump_standardHF_noiseless_MCtruth'
 
 # other params that is better to initialize
+JSON_SETTINGS=""
 OUTFOLDER_ENDING=""
 number_events=1
 
 # Function to source scripts and print help message
 print_help() {
     echo "*****************************************************************************"
-    echo "Usage: ./run-sn-simulation.sh [options]"
+    echo "Usage: ./run-sn-simulation.sh -j <yoursettings.json> [options]"
     echo "Options:"
-    echo "  -j, --json-settings    JSON file with paths and settings. Default is ./settings.json"
+    echo "  -j, --json-settings    JSON file with paths and settings. It has to be in the dunesw-config/json folder"
+    echo "  --home-config          Path to the dunesw-config folder. Default is the current folder, but it won't work  in Condor"
     echo "  -m, --marley           Run Marley generation"
     echo "  --custom-direction Run Marley generation with custom random direction"
     echo "  --custom-energy        Run Marley generation with custom energy binning, requires two arguments (min and max)"
@@ -58,6 +60,14 @@ print_help() {
 # Parse command-line arguments
 while [[ $# -gt 0 ]]; do
     case "$1" in
+        --home-config)
+            REPO_HOME="$2"
+            # if it has / at the end, remove it
+            if [[ "$REPO_HOME" == */ ]]; then
+                REPO_HOME="${REPO_HOME::-1}"
+            fi
+            shift 2
+            ;;
         -j|--json-settings)
             JSON_SETTINGS="$2"
             shift 2
@@ -160,11 +170,32 @@ while [[ $# -gt 0 ]]; do
 done
 
 # USER SPECIFIC
+# If the JSON file is not provided, stop the script
+if [ -z "$JSON_SETTINGS" ]; then
+    echo "JSON file with paths and settings is required, give it through the flag -j. Exiting..."
+    exit 1
+fi
+
+# in case this is a relative path, add path
+if [[ "$JSON_SETTINGS" != /* ]]; then
+    JSON_SETTINGS="${REPO_HOME}/json/${JSON_SETTINGS}"
+    echo "JSON settings file is $JSON_SETTINGS"
+fi
+
+# If REPO_HOME is not set, stop the script
+if [ -z "$REPO_HOME" ]; then
+    echo "Path to the dunesw-config folder is required, give it through the flag --home-folder. Exiting..."
+    exit 1
+fi
+
+FCL_FOLDER="$REPO_HOME/fcl/"
 
 # Where the dunesw is installed
-JSON_SETTINGS="${REPO_HOME}/scripts/settings.json"
-DUNESW_FOLDER_NAME=(awk -F'""' '/' '"duneswInstallPath":/ {print $4}' $JSON_SETTINGS)
-setup_dunesw="${DUNESW_FOLDER_NAME}/setup-dunesw.sh"        # put this file in the code folder, selecting the correct version
+# DUNESW_FOLDER_NAME="$(awk -F'""' '/duneswInstallPath/{print $4}' "$JSON_SETTINGS")"
+DUNESW_FOLDER_NAME=$(awk -F'[:,]' '/duneswInstallPath/ {gsub(/"| /, "", $2); print $2}' "$JSON_SETTINGS")
+
+echo "Expecting the software to be in: $DUNESW_FOLDER_NAME"
+setup_dunesw="${DUNESW_FOLDER_NAME}setup-dunesw.sh"        # put this file in the code folder, selecting the correct version
 EOS_FOLDER="/eos/user/e/evilla/dune/sn-data/"       # standard, for now. Subfolders are selected automatically
 
 
@@ -184,7 +215,7 @@ if [ "$run_marley" = false ] && [ "$run_g4" = false ] && [ "$run_detsim" = false
 fi
 
 # Default path for data
-GLOBAL_OUTPUT_FOLDER="${INSTALL_FOLDER_NAME}output/"
+GLOBAL_OUTPUT_FOLDER="${DUNESW_FOLDER_NAME}output/"
 SIMULATION_CATEGORY="standard"
 GEN_FCL_CHANGED=$GEN_FCL # default value, will be changed if custom direction or energy is selected
 if [ "$custom_direction" = true ] && [ "$custom_energy" = false ]; then
@@ -238,7 +269,7 @@ fi
 
 cd "$DATA_PATH"
 echo "We are now in $(pwd)"
-echo "Items here are $(ll)"
+echo "Items here are $(ls)"
 
 # copying the original gen fcl to the folder, it is used by the GEN_FCL_CHANGED
 cp $REPO_HOME/fcl/${GEN_FCL}.fcl $DATA_PATH
