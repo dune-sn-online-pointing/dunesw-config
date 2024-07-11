@@ -368,7 +368,7 @@ echo ""
 # Delete root files
 if [ "$delete_root_files" = true ]; then
     echo "Deleting root files to save memory..."    
-    rm "${DATA_PATH}*.root"
+    rm -f "${DATA_PATH}*.root"
     rm -f ./-_detsim_hist.root # Sometimes there is this product, remove it
 fi
 

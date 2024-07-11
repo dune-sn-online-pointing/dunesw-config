@@ -1,9 +1,0 @@
-fatal: Not a git repository (or any parent up to mount point /pool)
-Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
-awk: fatal: cannot open file `/json/mySettings.json' for reading (No such file or directory)
-condor_exec.exe: line 201: /setup-dunesw.sh: No such file or directory
-mkdir: cannot create directory ‘/output’: Permission denied
-/afs/cern.ch/work/e/evilla/private/dune/dunesw/dunesw-config//scripts/custom-enAndDir.sh: line 120: /output/customEandD/prodmarley_nue_flat_clean_dune10kt_1x2x6_ES_70to70MeV_customDirection-TPdump_standardHF_noiseless_MCtruth-100events_106/prodmarley_nue_flat_clean_dune10kt_1x2x6_ES_70to70MeV_customDirection.fcl: No such file or directory
-condor_exec.exe: line 264: cd: /output/customEandD/prodmarley_nue_flat_clean_dune10kt_1x2x6_ES_70to70MeV_customDirection-TPdump_standardHF_noiseless_MCtruth-100events_106/: No such file or directory
-cp: cannot create regular file ‘/output/customEandD/prodmarley_nue_flat_clean_dune10kt_1x2x6_ES_70to70MeV_customDirection-TPdump_standardHF_noiseless_MCtruth-100events_106/’: No such file or directory
-condor_exec.exe: line 277: lar: command not found
