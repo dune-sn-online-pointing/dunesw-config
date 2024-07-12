@@ -94,6 +94,13 @@ if [[ "$original_fcl" != *"flat"* ]]; then
     exit 1
 fi
 
+# if output folder does not finish with /, add it
+if [[ ! -z "$output_folder" ]]; then
+    if [[ "$output_folder" != */ ]]; then
+        output_folder="${output_folder}/"
+    fi
+fi
+
 # Generate random direction
 echo "Generating random direction, all three directions..."
 direction=$(python3 $REPO_HOME/scripts/generate_direction.py)
@@ -107,13 +114,13 @@ fi
 
 
 # print this in a text file, but delete it first in case it already exists
-rm customDirection.txt
+rm -f ${output_folder}customDirection.txt
 echo "$x" >> customDirection.txt
 echo "$y" >> customDirection.txt
 echo "$z" >> customDirection.txt 
 
 # Generate custom energy range
-echo "Generating custom energy range: $min_energy to $max_energy MeV"
+echo "Generating fcl with custom energy range: $min_energy to $max_energy MeV"
 
 # Create the .fcl file with the random values
 filename="${output_folder}${original_fcl%.*}_${min_energy}to${max_energy}MeV_customDirection.fcl"
@@ -129,4 +136,6 @@ physics.producers.marley.marley_parameters.source.Emax: $max_energy
 
 EOF
 
-echo "Generated file: $filename"
+if [[ "$verbose" == true ]]; then
+    echo "Generated file: $filename"
+fi
