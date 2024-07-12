@@ -1,0 +1,120 @@
+fatal: Not a git repository (or any parent up to mount point /srv)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+Info in <TGeoManager::Import>: Reading geometry from file: /cvmfs/dune.opensciencegrid.org/products/dune/dunecore/v09_79_00d02/gdml/dune10kt_v5_refactored_1x2x6.gdml
+Info in <TGeoManager::TGeoManager>: Geometry GDMLImport, Geometry imported from GDML created
+Info in <TGeoManager::SetTopVolume>: Top volume is volWorld. Master volume is volWorld
+Info in <TGeoNavigator::BuildCache>: --- Maximum geometry depth set to 100
+Info in <TGeoManager::CheckGeometry>: Fixing runtime shapes...
+Info in <TGeoManager::CheckGeometry>: ...Nothing to fix
+Info in <TGeoManager::CloseGeometry>: Counting nodes...
+Info in <TGeoManager::Voxelize>: Voxelizing...
+Info in <TGeoManager::CloseGeometry>: Building cache...
+Info in <TGeoManager::CountLevels>: max level = 5, max placements = 1149
+Info in <TGeoManager::CloseGeometry>: 67545 nodes/ 3831 volume UID's in Geometry imported from GDML
+Info in <TGeoManager::CloseGeometry>: ----------------modeler ready----------------
+Warning in <TFile::Append>: Replacing existing TH1: FieldResponse_U (Potential memory leak).
+Warning in <TFile::Append>: Replacing existing TH1: FieldResponse_V (Potential memory leak).
+Warning in <TFile::Append>: Replacing existing TH1: FieldResponse_Y (Potential memory leak).
+Info in <TGeoManager::Import>: Reading geometry from file: /cvmfs/dune.opensciencegrid.org/products/dune/dunecore/v09_79_00d02/gdml/dune10kt_v5_refactored_1x2x6.gdml
+Info in <TGeoManager::TGeoManager>: Geometry GDMLImport, Geometry imported from GDML created
+Info in <TGeoManager::SetTopVolume>: Top volume is volWorld. Master volume is volWorld
+Info in <TGeoNavigator::BuildCache>: --- Maximum geometry depth set to 100
+Info in <TGeoManager::CheckGeometry>: Fixing runtime shapes...
+Info in <TGeoManager::CheckGeometry>: ...Nothing to fix
+Info in <TGeoManager::CloseGeometry>: Counting nodes...
+Info in <TGeoManager::Voxelize>: Voxelizing...
+Info in <TGeoManager::CloseGeometry>: Building cache...
+Info in <TGeoManager::CountLevels>: max level = 5, max placements = 1149
+Info in <TGeoManager::CloseGeometry>: 67545 nodes/ 3831 volume UID's in Geometry imported from GDML
+Info in <TGeoManager::CloseGeometry>: ----------------modeler ready----------------
+registering to  primaryGeneratorActionsMap_
+registering to   eventActionsMap_
+registering to   trackingActionsMap_
+registering to  steppingActionsMap_
+Warning in <TFile::Append>: Replacing existing TH1: FieldResponse_U (Potential memory leak).
+Warning in <TFile::Append>: Replacing existing TH1: FieldResponse_V (Potential memory leak).
+Warning in <TFile::Append>: Replacing existing TH1: FieldResponse_Y (Potential memory leak).
+Info in <TGeoManager::Import>: Reading geometry from file: /cvmfs/dune.opensciencegrid.org/products/dune/dunecore/v09_79_00d02/gdml/dune10kt_v5_refactored_1x2x6.gdml
+Info in <TGeoManager::TGeoManager>: Geometry GDMLImport, Geometry imported from GDML created
+Info in <TGeoManager::SetTopVolume>: Top volume is volWorld. Master volume is volWorld
+Info in <TGeoNavigator::BuildCache>: --- Maximum geometry depth set to 100
+Info in <TGeoManager::CheckGeometry>: Fixing runtime shapes...
+Info in <TGeoManager::CheckGeometry>: ...Nothing to fix
+Info in <TGeoManager::CloseGeometry>: Counting nodes...
+Info in <TGeoManager::Voxelize>: Voxelizing...
+Info in <TGeoManager::CloseGeometry>: Building cache...
+Info in <TGeoManager::CountLevels>: max level = 5, max placements = 1149
+Info in <TGeoManager::CloseGeometry>: 67545 nodes/ 3831 volume UID's in Geometry imported from GDML
+Info in <TGeoManager::CloseGeometry>: ----------------modeler ready----------------
+registering to  primaryGeneratorActionsMap_
+registering to   eventActionsMap_
+registering to   trackingActionsMap_
+registering to  steppingActionsMap_
+12-Jul-2024 15:31:05 CEST  Initiating request to open input file "/afs/cern.ch/work/e/evilla/private/dune/dunesw/verbose-dev/output/energies/prodmarley_nue_flat_clean_dune10kt_1x2x6_ES_69to70MeV-TPdump_standardHF_noiseless_MCtruth-100events_24/prodmarley_nue_flat_clean_dune10kt_1x2x6_ES_g4.root"
+12-Jul-2024 15:31:05 CEST  Opened input file "/afs/cern.ch/work/e/evilla/private/dune/dunesw/verbose-dev/output/energies/prodmarley_nue_flat_clean_dune10kt_1x2x6_ES_69to70MeV-TPdump_standardHF_noiseless_MCtruth-100events_24/prodmarley_nue_flat_clean_dune10kt_1x2x6_ES_g4.root"
+12-Jul-2024 15:31:08 CEST  Opened output file with pattern "/afs/cern.ch/work/e/evilla/private/dune/dunesw/verbose-dev/output/energies/prodmarley_nue_flat_clean_dune10kt_1x2x6_ES_69to70MeV-TPdump_standardHF_noiseless_MCtruth-100events_24/prodmarley_nue_flat_clean_dune10kt_1x2x6_ES_g4_detsim.root"
+12-Jul-2024 15:37:39 CEST  Closed output file "/afs/cern.ch/work/e/evilla/private/dune/dunesw/verbose-dev/output/energies/prodmarley_nue_flat_clean_dune10kt_1x2x6_ES_69to70MeV-TPdump_standardHF_noiseless_MCtruth-100events_24/prodmarley_nue_flat_clean_dune10kt_1x2x6_ES_g4_detsim.root"
+12-Jul-2024 15:37:39 CEST  Closed input file "/afs/cern.ch/work/e/evilla/private/dune/dunesw/verbose-dev/output/energies/prodmarley_nue_flat_clean_dune10kt_1x2x6_ES_69to70MeV-TPdump_standardHF_noiseless_MCtruth-100events_24/prodmarley_nue_flat_clean_dune10kt_1x2x6_ES_g4.root"
+
+================================================================================================================================
+TimeTracker printout (sec)                        Min           Avg           Max         Median          RMS         nEvts   
+================================================================================================================================
+Full event                                      2.22098       3.26462       4.76263       3.18285      0.713538        100    
+--------------------------------------------------------------------------------------------------------------------------------
+source:RootInput(read)                        0.000215167   0.000960504    0.0664037    0.000293927   0.00657785       100    
+simulate:daq:SimWireDUNE                        1.05753       1.50416       2.19242       1.46165      0.349194        100    
+simulate:opdigi:OpDetDigitizerDUNE            0.00542234     0.155448      0.372367      0.159792      0.0858519       100    
+simulate:rns:RandomNumberSaver                2.0848e-05    3.03842e-05   0.000230488   2.96355e-05   2.05171e-05      100    
+[art]:TriggerResults:TriggerResultInserter    1.1628e-05    1.6507e-05    4.3436e-05    1.7162e-05    4.1864e-06       100    
+end_path:out1:RootOutput                       3.109e-06    4.12331e-06   1.7894e-05    4.0435e-06    1.46117e-06      100    
+end_path:out1:RootOutput(write)                 1.14383       1.6037        2.54305       1.5749       0.371959        100    
+================================================================================================================================
+
+====================================================================================================
+MemoryTracker summary (base-10 MB units used)
+
+  Peak virtual memory usage (VmPeak)  : 2829.75 MB
+  Peak resident set size usage (VmHWM): 1984.75 MB
+====================================================================================================
+The following module label is either not assigned to any path,
+or it has been assigned to ignored path(s):
+  out1
+Info in <TGeoManager::Import>: Reading geometry from file: /cvmfs/dune.opensciencegrid.org/products/dune/dunecore/v09_79_00d02/gdml/dune10kt_v5_refactored_1x2x6.gdml
+Info in <TGeoManager::TGeoManager>: Geometry GDMLImport, Geometry imported from GDML created
+Info in <TGeoManager::SetTopVolume>: Top volume is volWorld. Master volume is volWorld
+Info in <TGeoNavigator::BuildCache>: --- Maximum geometry depth set to 100
+Info in <TGeoManager::CheckGeometry>: Fixing runtime shapes...
+Info in <TGeoManager::CheckGeometry>: ...Nothing to fix
+Info in <TGeoManager::CloseGeometry>: Counting nodes...
+Info in <TGeoManager::Voxelize>: Voxelizing...
+Info in <TGeoManager::CloseGeometry>: Building cache...
+Info in <TGeoManager::CountLevels>: max level = 5, max placements = 1149
+Info in <TGeoManager::CloseGeometry>: 67545 nodes/ 3831 volume UID's in Geometry imported from GDML
+Info in <TGeoManager::CloseGeometry>: ----------------modeler ready----------------
+registering to  primaryGeneratorActionsMap_
+registering to   eventActionsMap_
+registering to   trackingActionsMap_
+registering to  steppingActionsMap_
+12-Jul-2024 15:37:50 CEST  Initiating request to open input file "/afs/cern.ch/work/e/evilla/private/dune/dunesw/verbose-dev/output/energies/prodmarley_nue_flat_clean_dune10kt_1x2x6_ES_69to70MeV-TPdump_standardHF_noiseless_MCtruth-100events_24/prodmarley_nue_flat_clean_dune10kt_1x2x6_ES_g4_detsim.root"
+12-Jul-2024 15:37:51 CEST  Opened input file "/afs/cern.ch/work/e/evilla/private/dune/dunesw/verbose-dev/output/energies/prodmarley_nue_flat_clean_dune10kt_1x2x6_ES_69to70MeV-TPdump_standardHF_noiseless_MCtruth-100events_24/prodmarley_nue_flat_clean_dune10kt_1x2x6_ES_g4_detsim.root"
+12-Jul-2024 16:06:44 CEST  Closed input file "/afs/cern.ch/work/e/evilla/private/dune/dunesw/verbose-dev/output/energies/prodmarley_nue_flat_clean_dune10kt_1x2x6_ES_69to70MeV-TPdump_standardHF_noiseless_MCtruth-100events_24/prodmarley_nue_flat_clean_dune10kt_1x2x6_ES_g4_detsim.root"
+
+================================================================================================================================
+TimeTracker printout (sec)                        Min           Avg           Max         Median          RMS         nEvts   
+================================================================================================================================
+Full event                                      6.87343       17.2899       50.0389       15.1855       8.58295        100    
+--------------------------------------------------------------------------------------------------------------------------------
+source:RootInput(read)                        0.000325878   0.00364903     0.0674737     0.0005113     0.0135611       100    
+simulate:rns:RandomNumberSaver                3.1248e-05    5.40266e-05   0.00032512    4.62745e-05   3.04576e-05      100    
+simulate:simwire:SimWireDUNE                    1.83934       2.68431       3.86235       2.74442      0.305387        100    
+simulate:trigprim1:TriggerPrimitiveFinder       2.56553       3.94994       5.05766       4.05639       0.65608        100    
+[art]:TriggerResults:TriggerResultInserter    2.0171e-05    3.54808e-05   0.000108431   3.1997e-05    1.32815e-05      100    
+end_path:daqanatrigprim1:TPStreamer             1.02439       10.6514       45.2689       8.46168       8.73034        100    
+================================================================================================================================
+
+====================================================================================================
+MemoryTracker summary (base-10 MB units used)
+
+  Peak virtual memory usage (VmPeak)  : 2082.32 MB
+  Peak resident set size usage (VmHWM): 1260.96 MB
+====================================================================================================

@@ -63,7 +63,7 @@ gen_fcl="prodmarley_nue_flat_clean_dune10kt_1x2x6_ES"
 # generate list of arguments and put them in a file, but delete the file first to avoid issues
 rm -f $list_of_jobs
 for i in $(seq $first $last); do
-    echo "-j ${json_settings} --home-config ${REPO_HOME} -m ${gen_fcl} --custom-energy 69 70 -g -d -r -n $n_events -f $i" >> ${list_of_jobs}
+    echo "-j ${json_settings} --home-config ${REPO_HOME} -m ${gen_fcl} --custom-energy 69 70 --custom-direction -g -d -r -n $n_events -f $i" >> ${list_of_jobs}
 done
 
 echo "List of jobs:"
