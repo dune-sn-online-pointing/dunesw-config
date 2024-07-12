@@ -50,6 +50,10 @@ while [[ $# -gt 0 ]]; do
     esac
 done
 
+if [[ "$verbose" == "true" ]]; then
+    echo "REPO_HOME for script custom-enAndDir.sh: $REPO_HOME"
+fi
+
 # if no fcl file is provided, stop execution
 if [[ -z "$original_fcl" ]]; then
     echo "No fcl file provided. Exiting..."
