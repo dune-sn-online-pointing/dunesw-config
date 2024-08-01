@@ -47,17 +47,17 @@ physics: {
          # old daqsim settings, understand
          # adc simulator is not called in the standard detsim_sune10kt_1x2x6.fcl
          # still, there are the definition of the ideal ans noisy simulators
-         AdcSimulator: "adcsim_ideal"
+         # AdcSimulator: "adcsim_ideal"
          DistortOn: false
-         KeepEmptyChannels: false
-         NoiseOn: false
+         # KeepEmptyChannels: false
+         NoiseOn: true
          # what if the pedestal  is on, then the ADC threshold of the TPs has to  
          # take that into account or it does automatically?
          PedestalOn: true
          # in standard, this is called SimChannelModuleLabel and is in the backtrackerservice block
          # SimChannelLabel: "elecDrift"
          # what is the suppress? in standard, this is on
-         SuppressOn: false 
+         SuppressOn: true 
          # module_type: "daq"
       }
       opdigi: {
@@ -153,9 +153,9 @@ physics: {
             inputers: [
                "wclsSimDepoSource:"
             ]
-            loglevels: [
-               "debug"
-            ]
+            # loglevels: [
+            #    "debug"
+            # ]
             logsinks: [
                "stdout:info",
                "wcls-sim-drift-simchannel.log:debug"

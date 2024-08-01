@@ -87,7 +87,7 @@ physics: {
             }
          HitLabel: "trigprim1"
          HitWindow: 5
-         # InputTag: "simwire"
+         InputTag: "daq"
          GEANT4Label:   "largeant"
          # TODO change thresh30 to something that reads the threshold
          OutputFile: "tpstream_standardHF_thres100_nonoise_MCtruth.txt"
@@ -148,6 +148,7 @@ physics: {
       }
       trigprim1: {
          InputTag: "tpcrawdecoder:daq"
+         # InputTag: "simdigits"
          finder: {
             SignalKillLookahead: 6
             SignalKillNContig: 10

@@ -29,6 +29,7 @@ RECO_FCL='TPdump_standardHF_noiseless_MCtruth'
 # other params that is better to initialize
 JSON_SETTINGS=""
 OUTFOLDER_ENDING=""
+move_waveforms=false
 number_events=1
 
 # Function to source scripts and print help message
@@ -49,6 +50,7 @@ print_help() {
     echo "  -f, --folder-ending    Ending of the name of the output folder"
     echo "  --clean-folder         Clean the folder after simulation. Default is true, set to false to keep it"
     echo "  --delete-root          Delete root files after simulation, to save space. Default is true, set to false to keep them"
+    echo "  -w, --waveforms        Move waveform samples to the final folder. Default is false, set to true to move them"
     echo "  -h, --help             Print this help message"
     echo " "
     echo "Example: ./run-sn-simulation.sh -m myconfig.fcl --custom-energy 2 70 -g -d -r -s -n 1000 -f test --clean-folder false --delete-root false"
@@ -158,6 +160,10 @@ while [[ $# -gt 0 ]]; do
             ;;
         --delete-root)
             delete_root_files="$2"
+            shift 2
+            ;;
+        -w|--waveforms)
+            move_waveforms="$2"
             shift 2
             ;;
         -h|--help)
@@ -377,7 +383,7 @@ FINAL_FOLDER="${EOS_FOLDER}${SIMULATION_CATEGORY}/aggregated_${SIMULATION_NAME}_
 echo "Creating final folder $FINAL_FOLDER"
 mkdir -p "$FINAL_FOLDER"
 
-echo "Moving custom direction, TPs and waveforms to $FINAL_FOLDER"
+echo "Moving custom direction, TPs and waveforms (if true) to $FINAL_FOLDER"
 
 if [ "$custom_direction" = true ]; then
     # move the custom direction file
@@ -391,10 +397,12 @@ moving_tps="mv ${DATA_PATH}${TP_FILE} ${FINAL_FOLDER}tpstream_${OUTFOLDER_ENDING
 echo "$moving_tps"
 $moving_tps
 
-WF_FILE="waveforms.txt" # set in the TPStreamer module
-moving_waveforms="mv ${DATA_PATH}${WF_FILE} ${FINAL_FOLDER}waveforms_${OUTFOLDER_ENDING}.txt"
-echo "$moving_waveforms"
-$moving_waveforms
+if [ "$move_waveforms" = true ]; then
+    WF_FILE="waveforms.txt" # set in the TPStreamer module
+    moving_waveforms="mv ${DATA_PATH}${WF_FILE} ${FINAL_FOLDER}waveforms_${OUTFOLDER_ENDING}.txt"
+    echo "$moving_waveforms"
+    $moving_waveforms
+fi
 
 if [ "$clean_folder" = true ]; then
     echo "Cleaning folder..."
