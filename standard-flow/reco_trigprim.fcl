@@ -1,0 +1,55 @@
+BEGIN_PROLOG
+
+absrunningsumtppass1: 
+{
+  module_type: "AbsRunningSumTPFinder"
+  InputTag:    "tpcrawdecoder:daq"
+  finderCol: 
+  {
+    tool_type: "AbsRunningSumTPFinderPass1"
+    UseSignalKill: true        
+    SignalKillLookahead: 6
+    SignalKillThreshold: 15
+    SignalKillNContig:   10
+  }
+  finderInd: 
+  {
+    tool_type: "AbsRunningSumTPFinderPass1"
+    UseSignalKill: true        
+    SignalKillLookahead: 6
+    SignalKillThreshold: 15
+    SignalKillNContig:   10
+  }
+}
+
+END_PROLOG
+
+#include "reco1_1dsignalprocessing_dune10kt_1x2x6.fcl"
+
+services.Geometry.GDML: "dune10kt_v5_refactored_1x2x2.gdml"
+services.Geometry.Name: "dune10kt_v1"
+services.Geometry.ROOT: "dune10kt_v5_refactored_1x2x2.gdml"
+
+services.DetectorPropertiesService.NumberTimeSamples: 6000
+services.DetectorPropertiesService.ReadOutWindowSize: 6000
+
+physics:{
+   producers: {
+      trigprim: @local::absrunningsumtppass1
+   }
+   reco:[ "trigprim" ]
+   stream1: [
+      "out1"
+   ]
+   trigger_paths: [ "reco" ]  
+}
+
+physics.producers.trigprim.finderCol.Threshold: 27
+physics.producers.trigprim.finderCol.FrugalPedestalNContig: 10
+physics.producers.trigprim.finderCol.R: 0.9
+
+physics.producers.trigprim.finderInd.Threshold: 34
+physics.producers.trigprim.finderInd.FrugalPedestalNContig: 10
+physics.producers.trigprim.finderCol.R: 0.9
+
+
