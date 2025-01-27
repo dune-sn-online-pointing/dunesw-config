@@ -60,112 +60,21 @@ print_help() {
 # Parse command-line arguments
 while [[ $# -gt 0 ]]; do
     case "$1" in
-        --home-config)
-            REPO_HOME="$2"
-            # if it has / at the end, remove it
-            if [[ "$REPO_HOME" == */ ]]; then
-                REPO_HOME="${REPO_HOME::-1}"
-            fi
-            shift 2
-            ;;
-        -j|--json-settings)
-            JSON_SETTINGS="$2"
-            shift 2
-            ;;
-        -m|--marley)
-            run_marley=true
-            # in case there is an argument, save it as the fcl
-            if [[ "$2" != -* ]]; then
-                GEN_FCL="$2"
-                # if it has the extension, remove it
-                if [[ "$GEN_FCL" == *".fcl" ]]; then
-                    GEN_FCL="${GEN_FCL%.*}"
-                fi
-                shift
-            fi
-            shift
-            ;;
-        --custom-direction)
-            custom_direction=true
-            shift
-            ;;
-        --custom-energy)
-            custom_energy=true
-            # this has to have two arguments after it, the minimum and maximum energy
-            energy_min="$2"
-            energy_max="$3"
-            # if they are not numbers, stop the script
-            if ! [[ "$energy_min" =~ ^[0-9]+$ ]] || ! [[ "$energy_max" =~ ^[0-9]+$ ]]; then
-                echo "Energy range must be two numbers. Exiting..."
-                exit 1
-            fi
-            shift 3
-            ;;
-        -g|--g4)
-            run_g4=true
-            # in case there is an argument, save it as the fcl
-            if [[ "$2" != -* ]]; then
-                G4_FCL="$2"
-                # if it has the extension, remove it
-                if [[ "$G4_FCL" == *".fcl" ]]; then
-                    G4_FCL="${G4_FCL%.*}"
-                fi
-                shift
-            fi
-            shift
-            ;;
-        -d|--detsim)
-            run_detsim=true
-            # in case there is an argument, save it as the fcl
-            if [[ "$2" != -* ]]; then
-                DETSIM_FCL="$2"
-                #if it has the extension, remove it
-                if [[ "$DETSIM_FCL" == *".fcl" ]]; then
-                    DETSIM_FCL="${DETSIM_FCL%.*}"
-                fi
-                shift
-            fi
-            shift
-            ;;
-        -r|--reconstruction)
-            run_reconstruction=true
-            # in case there is an argument, save it as the fcl
-            if [[ "$2" != -* ]]; then
-                RECO_FCL="$2"
-                # if it has the extension, remove it
-                if [[ "$RECO_FCL" == *".fcl" ]]; then
-                    RECO_FCL="${RECO_FCL%.*}"
-                fi
-                shift
-            fi
-            shift
-            ;;
-        -n|--n-events)
-            number_events="$2"
-            shift 2
-            ;;
-        -s|--source)
-            source_flag=false
-            shift
-            ;;
-        -f|--folder-ending)
-            OUTFOLDER_ENDING="$2"
-            shift 2
-            ;;
-        --clean-folder)
-            clean_folder="$2"
-            shift 2
-            ;;
-        --delete-root)
-            delete_root_files="$2"
-            shift 2
-            ;;
-        -h|--help)
-            print_help
-            ;;
-        *)
-            shift
-            ;;
+        --home-config)       REPO_HOME="${2%/}"; shift 2 ;;
+        -j|--json-settings)  JSON_SETTINGS="$2"; shift 2 ;;
+        -m|--marley)         run_marley=true; [[ "$2" != -* ]] && GEN_FCL="${2%.fcl}" && shift; shift ;;
+        --custom-direction)  custom_direction=true; shift ;;
+        --custom-energy)     custom_energy=true; energy_min="$2"; energy_max="$3"; [[ ! "$energy_min" =~ ^[0-9]+$ || ! "$energy_max" =~ ^[0-9]+$ ]] && echo "Energy range must be two numbers. Exiting..." && exit 1; shift 3 ;;
+        -g|--g4)             run_g4=true; [[ "$2" != -* ]] && G4_FCL="${2%.fcl}" && shift; shift ;;
+        -d|--detsim)         run_detsim=true; [[ "$2" != -* ]] && DETSIM_FCL="${2%.fcl}" && shift; shift ;;
+        -r|--reconstruction) run_reconstruction=true; [[ "$2" != -* ]] && RECO_FCL="${2%.fcl}" && shift; shift ;;
+        -n|--n-events)       number_events="$2"; shift 2 ;;
+        -s|--source)         source_flag=false; shift ;;
+        -f|--folder-ending)  OUTFOLDER_ENDING="$2"; shift 2 ;;
+        --clean-folder)      clean_folder="$2"; shift 2 ;;
+        --delete-root)       delete_root_files="$2"; shift 2 ;;
+        -h|--help)           print_help ;;
+        *) shift ;;
     esac
 done
 
@@ -188,7 +97,7 @@ if [ -z "$REPO_HOME" ]; then
     exit 1
 fi
 
-FCL_FOLDER="$REPO_HOME/fcl/"
+FCL_FOLDER="$REPO_HOME/fcl/v9/" # this sim became legacy using dunesw v9, moved fcls here
 
 # Where the dunesw is installed
 # DUNESW_FOLDER_NAME="$(awk -F'""' '/duneswInstallPath/{print $4}' "$JSON_SETTINGS")"
@@ -377,7 +286,7 @@ FINAL_FOLDER="${EOS_FOLDER}${SIMULATION_CATEGORY}/aggregated_${SIMULATION_NAME}_
 echo "Creating final folder $FINAL_FOLDER"
 mkdir -p "$FINAL_FOLDER"
 
-echo "Moving custom direction, TPs and waveforms to $FINAL_FOLDER"
+echo "Moving custom direction, TPs and waveforms to $FINAL_FOLDER. Moving will fail if that bit of the simulation has not been run."
 
 if [ "$custom_direction" = true ]; then
     # move the custom direction file
