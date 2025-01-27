@@ -1,0 +1,12 @@
+#include "prodmarley_nue_spectrum_radiological_decay0_dune10kt_refactored_1x2x6.fcl"
+
+# setting maxEvents to -1 so it reads what is given from the command line
+source: {
+   firstEvent: 1
+   firstRun: 2.0000047e7
+   maxEvents: -1
+   module_type: "EmptyEvent"
+   timestampPlugin: {
+      plugin_type: "GeneratedEventTimestamp"
+   }
+}
