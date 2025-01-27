@@ -1,93 +1,13 @@
 # Produced from 'fhicl-dump' using:
-#   Input  : prodmarley_nue_spectrum_radiological_decay0_dune10kt_refactored_1x2x6.fcl
+#   Input  : prodmarley_nue_spectrum_dune10kt_1x2x2.fcl
 #   Policy : cet::filepath_maker
 #   Path   : "FHICL_FILE_PATH"
 
-dune10kt_1x2x2_neutron_from_rock: {
-   BqPercc: [
-      1.e-5,
-      1.e-5,
-      1.e-5,
-      1.e-5,
-      1.e-5
-   ]
-   Material: [
-      ".*",
-      ".*",
-      ".*",
-      ".*",
-      ".*"
-   ]
-   Nuclide: [
-      "Concrete_DUNE10MeV",
-      "Concrete_DUNE10MeV",
-      "Concrete_DUNE10MeV",
-      "Concrete_DUNE10MeV",
-      "Concrete_DUNE10MeV"
-   ]
-   T0: [
-      -2.246e6,
-      -2.246e6,
-      -2.246e6,
-      -2.246e6,
-      -2.246e6
-   ]
-   T1: [
-      2.246e6,
-      2.246e6,
-      2.246e6,
-      2.246e6,
-      2.246e6
-   ]
-   X0: [
-      0,
-      0,
-      0,
-      0,
-      -5e-1
-   ]
-   X1: [
-      350,
-      350,
-      350,
-      350,
-      5e-1
-   ]
-   Y0: [
-      -600,
-      -600,
-      -601,
-      600,
-      -600
-   ]
-   Y1: [
-      600,
-      600,
-      -600,
-      601,
-      600
-   ]
-   Z0: [
-      -5e-1,
-      4.665e2,
-      0,
-      0,
-      0
-   ]
-   Z1: [
-      5e-1,
-      4.675e2,
-      467,
-      467,
-      467
-   ]
-   module_type: "RadioGen"
-}
 outputs: {
    out1: {
       compressionLevel: 1
       dataTier: "generated"
-      fileName: "prodmarley_radiological_dune10kt_1x2x6_gen.root"
+      fileName: "prodmarley_nue_spectrum_dune10kt_1x2x2_gen.root"
       module_type: "RootOutput"
    }
 }
@@ -96,267 +16,6 @@ physics: {
       "stream1"
    ]
    producers: {
-      Ar39GenInLAr: {
-         BqPercc: 0.3e-4
-         isotope: "Ar39"
-         material: "LAr"
-         module_type: "Decay0Gen"
-         volume_rand: "volCryostat"
-      }
-      Ar42GenInLAr: {
-         BqPercc: 1.5e-5
-         isotope: "Ar42"
-         material: "LAr"
-         module_type: "Decay0Gen"
-         volume_rand: "volCryostat"
-      }
-      Co60GenInAPA: {
-         BqPercc: 1.5e-3
-         isotope: "Co60"
-         material: "STEEL_STAINLESS_Fe7Cr2Ni"
-         module_type: "Decay0Gen"
-         volume_gen: ".*APA.*"
-      }
-      K40GenInCPA: {
-         BqPercc: 1.e-1
-         isotope: "K40"
-         material: ".*"
-         module_type: "Decay0Gen"
-         volume_gen: ".*Cathode.*"
-      }
-      K42From42ArGenInCPA: {
-         BqPercc: 3.e-1
-         isotope: "K42"
-         module_type: "Decay0Gen"
-         volume_gen: ".*Cathode.*"
-      }
-      K42From42ArGenInLAr: {
-         BqPercc: 3.e-6
-         isotope: "K42"
-         material: "LAr"
-         module_type: "Decay0Gen"
-         volume_rand: "volCryostat"
-      }
-      Kr85GenInLAr: {
-         BqPercc: 1.e-5
-         isotope: "Kr85"
-         material: "LAr"
-         module_type: "Decay0Gen"
-         volume_rand: "volCryostat"
-      }
-      NeutronGenInRock: {
-         BqPercc: [
-            1.e-2,
-            1.e-2,
-            1.e-2,
-            1.e-2,
-            1.e-2
-         ]
-         Material: [
-            ".*",
-            ".*",
-            ".*",
-            ".*",
-            ".*"
-         ]
-         Nuclide: [
-            "Concrete_DUNE10MeV",
-            "Concrete_DUNE10MeV",
-            "Concrete_DUNE10MeV",
-            "Concrete_DUNE10MeV",
-            "Concrete_DUNE10MeV"
-         ]
-         T0: [
-            -2.246e6,
-            -2.246e6,
-            -2.246e6,
-            -2.246e6,
-            -2.246e6
-         ]
-         T1: [
-            2.246e6,
-            2.246e6,
-            2.246e6,
-            2.246e6,
-            2.246e6
-         ]
-         X0: [
-            0,
-            0,
-            0,
-            0,
-            -5e-1
-         ]
-         X1: [
-            350,
-            350,
-            350,
-            350,
-            5e-1
-         ]
-         Y0: [
-            -600,
-            -600,
-            -601,
-            600,
-            -600
-         ]
-         Y1: [
-            600,
-            600,
-            -600,
-            601,
-            600
-         ]
-         Z0: [
-            -5e-1,
-            4.665e2,
-            0,
-            0,
-            0
-         ]
-         Z1: [
-            5e-1,
-            4.675e2,
-            467,
-            467,
-            467
-         ]
-         module_type: "RadioGen"
-      }
-      Rn222ChainBi214GenInCPA: {
-         BqPercc: 5.e-2
-         isotope: "Bi214"
-         module_type: "Decay0Gen"
-         volume_gen: ".*Cathode.*"
-         volume_rand: "volCryostat"
-      }
-      Rn222ChainBi214GenInLAr: {
-         BqPercc: 5.e-7
-         distrib_x: "263.835+1.32691*TMath::Abs(x)-0.000128904*x*x-1.64996e-06*TMath::Power(TMath::Abs(x),3)"
-         isotope: "Bi214"
-         material: "LAr"
-         module_type: "Decay0Gen"
-         volume_rand: "volCryostat"
-      }
-      Rn222ChainFromBi210GenInCPA: {
-         BqPercc: 2.
-         decay_chain: {
-            isotope_0: "Bi210"
-            isotope_1: "Po210"
-         }
-         module_type: "Decay0Gen"
-         volume_gen: ".*Cathode.*"
-         volume_rand: "volCryostat"
-      }
-      Rn222ChainGenInPDS: {
-         BqPercc: 2.e-2
-         decay_chain: {
-            isotope_0: "Rn222"
-            isotope_1: "Po218"
-            isotope_2: "Pb214"
-            isotope_3: "Bi214"
-            isotope_4: "Pb210"
-            isotope_5: "Bi210"
-            isotope_6: "Po210"
-         }
-         module_type: "Decay0Gen"
-         volume_gen: ".*Arapuca.*"
-      }
-      Rn222ChainPb210GenInCPA: {
-         BqPercc: 30.
-         isotope: "Pb210"
-         module_type: "Decay0Gen"
-         volume_gen: ".*Cathode.*"
-         volume_rand: "volCryostat"
-      }
-      Rn222ChainPb210GenInLAr: {
-         BqPercc: 2.e-5
-         distrib_x: "259.482+1.58444*TMath::Abs(x)-0.00214077*x*x+1.95097e-06*TMath::Power(TMath::Abs(x),3)"
-         isotope: "Pb210"
-         material: "LAr"
-         module_type: "Decay0Gen"
-         volume_rand: "volCryostat"
-      }
-      Rn222ChainPb214GenInCPA: {
-         BqPercc: 2.e-1
-         isotope: "Pb214"
-         module_type: "Decay0Gen"
-         volume_gen: ".*Cathode.*"
-         volume_rand: "volCryostat"
-      }
-      Rn222ChainPb214GenInLAr: {
-         BqPercc: 1.5e-6
-         distrib_x: "590.016+1.83392*TMath::Abs(x)+0.00012101*x*x-5.42539e-06*TMath::Power(TMath::Abs(x),3)"
-         isotope: "Pb214"
-         material: "LAr"
-         module_type: "Decay0Gen"
-         volume_rand: "volCryostat"
-      }
-      Rn222ChainPo218GenInCPA: {
-         BqPercc: 15.
-         isotope: "Po218"
-         module_type: "Decay0Gen"
-         volume_gen: ".*Cathode.*"
-         volume_rand: "volCryostat"
-      }
-      Rn222ChainPo218GenInLAr: {
-         BqPercc: 1.e-5
-         distrib_x: "936.088+2.81714*TMath::Abs(x)-0.00403933*x*x-1.24485e-06*TMath::Power(TMath::Abs(x),3)"
-         isotope: "Po218"
-         material: "LAr"
-         module_type: "Decay0Gen"
-         volume_rand: "volCryostat"
-      }
-      Rn222ChainRn222GenInLAr: {
-         BqPercc: 2.e-5
-         isotope: "Rn222"
-         material: "LAr"
-         module_type: "Decay0Gen"
-         volume_rand: "volCryostat"
-      }
-      U238ChainGenInAPA: {
-         BqPercc: 1e-1
-         decay_chain: {
-            isotope_0: "U238"
-            isotope_1: "Th234"
-            isotope_10: "Pb210"
-            isotope_11: "Bi210"
-            isotope_12: "Po210"
-            isotope_2: "Pa234m"
-            isotope_3: "U234"
-            isotope_4: "Th230"
-            isotope_5: "Ra226"
-            isotope_6: "Rn222"
-            isotope_7: "Po218"
-            isotope_8: "Pb214"
-            isotope_9: "Bi214"
-         }
-         material: "STEEL_STAINLESS_Fe7Cr2Ni"
-         module_type: "Decay0Gen"
-         volume_gen: ".*APA.*"
-      }
-      U238ChainGenInCPA: {
-         BqPercc: 1.e-1
-         decay_chain: {
-            isotope_0: "U238"
-            isotope_1: "Th234"
-            isotope_10: "Pb210"
-            isotope_11: "Bi210"
-            isotope_12: "Po210"
-            isotope_2: "Pa234m"
-            isotope_3: "U234"
-            isotope_4: "Th230"
-            isotope_5: "Ra226"
-            isotope_6: "Rn222"
-            isotope_7: "Po218"
-            isotope_8: "Pb214"
-            isotope_9: "Bi214"
-         }
-         material: ".*"
-         module_type: "Decay0Gen"
-         volume_gen: ".*Cathode.*"
-      }
       marley: {
          marley_parameters: {
             direction: {
@@ -365,8 +24,7 @@ physics: {
                z: 1
             }
             reactions: [
-               "ES.react"
-               # "ve40ArCC_Bhattacharya2009.react"
+               "ve40ArCC_Bhattacharya2009.react"
             ]
             source: {
                namecycle: "NueSpectrum"
@@ -386,28 +44,7 @@ physics: {
    }
    simulate: [
       "rns",
-      "marley",
-      "Ar39GenInLAr",
-      "Kr85GenInLAr",
-      "Ar42GenInLAr",
-      "K42From42ArGenInLAr",
-      "Rn222ChainRn222GenInLAr",
-      "Rn222ChainPo218GenInLAr",
-      "Rn222ChainPb214GenInLAr",
-      "Rn222ChainBi214GenInLAr",
-      "Rn222ChainPb210GenInLAr",
-      "K40GenInCPA",
-      "U238ChainGenInCPA",
-      "K42From42ArGenInCPA",
-      "Rn222ChainPo218GenInCPA",
-      "Rn222ChainPb214GenInCPA",
-      "Rn222ChainBi214GenInCPA",
-      "Rn222ChainPb210GenInCPA",
-      "Rn222ChainFromBi210GenInCPA",
-      "Co60GenInAPA",
-      "U238ChainGenInAPA",
-      "Rn222ChainGenInPDS",
-      "NeutronGenInRock"
+      "marley"
    ]
    stream1: [
       "out1"
@@ -418,6 +55,12 @@ physics: {
 }
 process_name: "MARLEYGen"
 services: {
+   AuxDetGeometry: {
+      GDML: "dune10kt_v4_1x2x2.gdml"
+      SortingParameters: {
+         tool_type: "AuxDetGeoObjectSorterYZX"
+      }
+   }
    BackTrackerService: {
       BackTracker: {
          G4ModuleLabel: "largeant"
@@ -484,9 +127,6 @@ services: {
       UseIcarusMicrobooneDriftModel: false
       service_provider: "DetectorPropertiesServiceStandard"
    }
-   ExptGeoHelperInterface: {
-      service_provider: "DUNEGeometryHelper"
-   }
    FileCatalogMetadata: {
       applicationFamily: "art"
       applicationVersion: "development"
@@ -495,12 +135,10 @@ services: {
       runType: "physics"
    }
    Geometry: {
-      DisableWiresInG4: true
-      GDML: "dune10kt_v5_refactored_1x2x6.gdml"
-      Name: "dune10kt_v5_1x2x6"
-      ROOT: "dune10kt_v5_refactored_1x2x6.gdml"
+      GDML: "dune10kt_v6_refactored_1x2x2.gdml"
+      Name: "dune10kt_v6_1x2x2"
       SortingParameters: {
-         ChannelsPerOpDet: 1
+         tool_type: "GeoObjectSorterAPA"
       }
       SurfaceY: 147828
    }
@@ -809,6 +447,7 @@ services: {
       TpbTimeConstant: 2.5
       service_provider: "LArPropertiesServiceStandard"
    }
+   MemoryTracker: {}
    NuRandomService: {
       endOfJobSummary: true
       policy: "perEvent"
@@ -945,9 +584,13 @@ services: {
       service_provider: "SpaceChargeServiceStandard"
    }
    TFileService: {
-      fileName: "prodmarley_radiological_hist.root"
+      fileName: "prodmarley_nue_hist.root"
    }
    TimeTracker: {}
+   WireReadout: {
+      ChannelsPerOpDet: 1
+      service_provider: "DUNEWireReadout"
+   }
 }
 source: {
    firstEvent: 1

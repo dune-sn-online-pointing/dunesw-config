@@ -1,0 +1,150 @@
+# #include "services_refactored_pdune.fcl"
+# #include "protodune_tools_dune.fcl"
+# #include "tools_dune.fcl"
+
+#include "geometry_dune.fcl"
+#include "messageservice.fcl"
+#include "services_dune.fcl"
+#include "calorimetry_dune10kt.fcl"
+
+process_name: RunTP
+
+# OG file
+# services:
+# {
+#   TFileService: { fileName: "trigger_hist.root" }
+#   TimeTracker:       @local::dune_time_tracker
+#   MemoryTracker:     @local::dune_memory_tracker
+#   RandomNumberGenerator: {} #ART native random number generator
+#   message:              @local::dune_message_services_prod
+#   #FileCatalogMetadata:  @local::art_file_catalog_mc
+#   @table::protodunehd_reco_services
+#   #  ChannelStatusService: @local::pdsp_channel_status
+#   IFDH: {}
+# }
+
+
+services:
+{
+  # Load the service that manages root files for histograms.
+  # Any histograms or n-tuples that you create in the program will be
+  # written to this file. You can override the file name with the -T
+  # option on the command line; e.g.,
+  #  lar -c pointrestree.fcl -T myhistograms.root -s myinput.root
+
+  TFileService:           { fileName: "trigger_hist.root" }
+
+  # This constrols the display in the output of how long each job step
+  # takes for each event. A lot of configuration can be added: details at
+  # https://cdcvs.fnal.gov/redmine/projects/art/wiki/TimeTracker#TimeTracker
+
+  TimeTracker:            {}
+
+  # This parameter controls the level of descriptive output from
+  # various LArSoft modules. For a list of different message levels,
+  # see ${LARDATA_DIR}/job/messageservice.fcl. For most jobs this is
+  # set to standard_warning; here it is set to standard_info because I
+  # write some LogInfo messages in the analysis module for
+  # demonstration purposes.
+
+  message:                @local::standard_info
+
+  # The following services are from LArSoft.
+  # We pick exactly the ones we need here.
+  # In alternative, we could load a standard set provided by the experiment,
+  # but we would be wasting resources on unused services.
+  # 
+  # - Geometry service:
+  #   provides information about the geometry of the detector and the mapping
+  #   of TPC channels to the wires.
+  #   Needed by PointResTree module; from larcore/Geometry/geometry_dune.fcl .
+
+  #
+  # - Geometry service helper:
+  #   used internally by Geometry to set up the channel mappings.
+  #   Needed by Geometry service; from larcore/Geometry/geometry_dune.fcl .
+  WireReadout: @local::dune_wire_readout
+  #
+  # - Geant4 simulation parameters for liquid argon
+  #   Needed by PointResTree module; from larsim/Simulation/services_dune.fcl .
+  LArG4Parameters:        @local::dunefd_largeantparameters
+  @table::dunefd_simulation_services
+
+  AuxDetGeometry: @local::dune10kt_1x2x6_auxdet_geo
+  Geometry:		  @local::dune10kt_1x2x6_v6_refactored_geo
+} # services
+
+source:
+{
+  module_type: RootInput
+  maxEvents:  -1       # Number of events to create
+  saveMemoryObjectThreshold: 0
+}
+
+physics:
+{
+
+ producers:
+ {
+     tpmakerTPC:
+     {
+         module_type: TriggerPrimitiveMakerTPC
+         rawdigit_tag: "tpcrawdecoder:daq"
+         tpalg: {
+             tool_type: TPAlgTPCSimpleThreshold
+             threshold_tpg_plane0: -1
+             threshold_tpg_plane1: -1
+             threshold_tpg_plane2: 60
+             verbosity: 0
+         }
+         verbosity: 1
+     }
+
+     tamakerTPC:
+     {
+         module_type: TriggerActivityMakerTPC
+         tp_tag: "tpmakerTPC"
+         taalg: {
+	     tool_type: TAAlgTPCADCSimpleWindow 
+	     adc_threshold: 20000000
+	     window_length: 60000
+	     verbosity: 2
+         }
+         nmodules: 4
+         mergecollwires: true
+         verbosity: 1
+     }
+
+     tcmakerTPC:
+     {
+         module_type: TriggerCandidateMakerTPC
+         ta_tag: "tamakerTPC"
+         tcalg: {
+             tool_type: TCAlgTPCExample
+             multiplicity: 1
+             verbosity: 1
+         }
+         verbosity: 1
+     }
+
+ }
+
+
+
+ stream1:  [ out1 ]
+ reco: [ tpmakerTPC, tamakerTPC, tcmakerTPC ]
+ trigger_paths: [ reco ]
+
+ end_paths:     [stream1]
+}
+
+outputs:
+{
+ out1:
+ {
+   module_type: RootOutput
+   fileName:    "tc_output.root"
+   compressionLevel: 1
+   saveMemoryObjectThreshold: 0
+ }
+}

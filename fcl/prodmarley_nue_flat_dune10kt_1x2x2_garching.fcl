@@ -1,163 +1,79 @@
 # Produced from 'fhicl-dump' using:
-#   Input  : marley_anatree_dunevd10kt_1x8x14_3view_30deg.fcl
+#   Input  : prodmarley_nue_spectrum_dune10kt_1x2x2.fcl
 #   Policy : cet::filepath_maker
 #   Path   : "FHICL_FILE_PATH"
 
 outputs: {
    out1: {
       compressionLevel: 1
-      dataTier: "full-reconstructed"
-      fileName: "%ifb_%tc_merged.root"
+      dataTier: "generated"
+      fileName: "prodmarley_nue_spectrum_dune10kt_1x2x2_gen.root"
       module_type: "RootOutput"
    }
 }
 physics: {
-   ana: [
-      "analysistree",
-      "pmtracktceff",
-      "vdflashmatch"
+   end_paths: [
+      "stream1"
    ]
-   analyzers: {
-      analysistree: {
-         CalDataModuleLabel: "wclsdatanfsp:gauss"
-         CalorimetryModuleLabel: [
-            "pmtracktc"
-         ]
-         ClusterModuleLabel: "trajcluster"
-         CnnModuleLabel: "emtrkmichelid:emtrkmichel"
-         ContainmentTaggerAssocLabel: [
-            ""
-         ]
-         CosmicClusterTaggerAssocLabel: ""
-         CosmicTaggerAssocLabel: [
-            ""
-         ]
-         CryGenModuleLabel: "generator"
-         DigitModuleLabel: "tpcrawdecoder:daq"
-         ExternalCounterModuleLabel: "simcounter"
-         FlashMatchAssocLabel: [
-            ""
-         ]
-         FlashT0FinderLabel: [
-            "pmtracktc"
-         ]
-         G4ModuleLabel: "largeant"
-         G4minE: -1
-         GenieGenModuleLabel: "marley"
-         HitsModuleLabel: "gaushit"
-         IgnoreMissingShowers: false
-         LArGeantModuleLabel: "tpcrawdecoder:simpleSC"
-         MCShowerModuleLabel: ""
-         MCT0FinderLabel: [
-            "pmtracktc"
-         ]
-         MCTrackModuleLabel: ""
-         MCTruthModuleLabel: "marley"
-         MVAPIDShowerModuleLabel: [
-            ""
-         ]
-         MVAPIDTrackModuleLabel: [
-            ""
-         ]
-         OpFlashModuleLabel: "opflash"
-         PFParticleModuleLabel: "pandora"
-         POTModuleLabel: "generator"
-         PandoraNuVertexModuleLabel: "pandora"
-         ParticleIDModuleLabel: [
-            "pmtracktctc"
-         ]
-         ProtoGenModuleLabel: ""
-         RollUpUnsavedIDs: true
-         SaveAuxDetInfo: false
-         SaveCaloCosmics: false
-         SaveClusterInfo: false
-         SaveCnnInfo: false
-         SaveCryInfo: false
-         SaveExternCounterInfo: false
-         SaveFlashInfo: true
-         SaveGeantInfo: false
-         SaveGenieInfo: true
-         SaveHitInfo: true
-         SaveMCShowerInfo: false
-         SaveMCTrackInfo: false
-         SavePFParticleInfo: true
-         SavePandoraNuVertexInfo: true
-         SaveProtoInfo: false
-         SaveRawDigitInfo: false
-         SaveShowerInfo: false
-         SaveSpacePointSolverInfo: false
-         SaveTrackInfo: true
-         SaveVertexInfo: false
-         ShowerModuleLabel: [
-            "trajcluster"
-         ]
-         SimChannelLabel: "tpcrawdecoder:simpleSC"
-         SpacePointSolverModuleLabel: "reco3d"
-         TrackModuleLabel: [
-            "pmtracktc"
-         ]
-         UseBuffers: false
-         VertexModuleLabel: [
-            "pandora",
-            "pmtracktc",
-            "trajcluster",
-            "linecluster"
-         ]
-         module_type: "AnalysisTree"
+   producers: {
+      marley: {
+         marley_parameters: {
+            direction: {
+               x: 0
+               y: 0
+               z: 1
+            }
+            reactions: [
+               "ve40ArCC_Bhattacharya2009.react",
+               "ES.react"
+            ]
+            source: {
+               namecycle: "nue"
+               neutrino: "ve"
+               tfile: "garching_flux.root"
+               type: "tgraph"
+            }
+         }
+         module_type: "MARLEYGen"
+         vertex: {
+            type: "sampled"
+         }
       }
-      pmtracktceff: {
-         FidVolCutX: 10
-         FidVolCutY: 10
-         FidVolCutZ: 10
-         LeptonPDGcode: 11
-         MCTruthModuleLabel: "marley"
-         MaxLeptonP: 5e-2
-         MaxNeutrinoE: 5e-2
-         NeutrinoPDGcode: 12
-         SaveMCTree: false
-         TrackModuleLabel: "pmtracktc"
-         isNeutrinoInt: true
-         module_type: "NeutrinoTrackingEff"
-      }
-      vdflashmatch: {
-         Baseline: 500
-         DistanceCut: 360
-         EdepLabel: "IonAndScint"
-         GeantLabel: "largeant"
-         HighE: 5
-         HighX: 360
-         IsNDK: false
-         IsVD: true
-         LowE: 0
-         LowX: -360
-         NBinsE: 50
-         NBinsX: 50
-         OpDetWaveformLabel: "opdigi10ppm"
-         OpFlashModuleLabel: "opflash10ppm"
-         OpHitModuleLabel: "ophit10ppm"
-         PE: 10
-         SignalLabel: "marley"
-         elecDriftLabel: "elecDrift"
-         kgenerator: 3
-         module_type: "FlashMatchAna"
+      rns: {
+         module_type: "RandomNumberSaver"
       }
    }
-   end_paths: [
-      "stream1",
-      "ana"
+   simulate: [
+      "rns",
+      "marley"
    ]
    stream1: [
       "out1"
    ]
+   trigger_paths: [
+      "simulate"
+   ]
 }
-process_name: "Mergeana"
+process_name: "MARLEYGen"
 services: {
+   AuxDetGeometry: {
+      GDML: "dune10kt_v6_refactored_1x2x2.gdml"
+      Name: "dune10kt_v6_1x2x2"
+      SortingParameters: {
+         tool_type: "AuxDetGeoObjectSorterYZX"
+      }
+   }
    BackTrackerService: {
       BackTracker: {
          G4ModuleLabel: "largeant"
          MinimumHitEnergyFraction: 1e-1
          SimChannelModuleLabel: "tpcrawdecoder:simpleSC"
       }
+   }
+   ChannelGroupService: {
+      ApaRops: []
+      LogLevel: 1
+      service_provider: "GeoApaChannelGroupService"
    }
    ChannelStatusService: {
       BadChannels: []
@@ -181,7 +97,7 @@ services: {
       ClockSpeedTrigger: 16
       DefaultBeamTime: 0
       DefaultTrigTime: 0
-      FramePeriod: 4250
+      FramePeriod: 1600
       G4RefTime: 0
       InheritClockConfig: false
       TrigModuleName: ""
@@ -192,14 +108,14 @@ services: {
       DriftVelFudgeFactor: 1
       Efield: [
          5e-1,
-         1,
-         1
+         6.66e-1,
+         8e-1
       ]
       Electronlifetime: 10400
       ElectronsToADC: 6.8906513e-3
       IncludeInterPlanePitchInXTickOffsets: false
-      NumberTimeSamples: 8500
-      ReadOutWindowSize: 8500
+      NumberTimeSamples: 4492
+      ReadOutWindowSize: 4492
       SimpleBoundaryProcess: true
       SternheimerA: 1.956e-1
       SternheimerCbar: 5.2146
@@ -209,14 +125,9 @@ services: {
       Temperature: 87
       TimeOffsetU: 0
       TimeOffsetV: 0
-      TimeOffsetX: 0
-      TimeOffsetY: 0
       TimeOffsetZ: 0
       UseIcarusMicrobooneDriftModel: false
       service_provider: "DetectorPropertiesServiceStandard"
-   }
-   ExptGeoHelperInterface: {
-      service_provider: "DUNEGeometryHelper"
    }
    FileCatalogMetadata: {
       applicationFamily: "art"
@@ -226,12 +137,10 @@ services: {
       runType: "physics"
    }
    Geometry: {
-      DisableWiresInG4: true
-      GDML: "dunevd10kt_3view_30deg_v5_refactored_1x8x14ref.gdml"
-      Name: "dunevd10kt_3view_30deg_v5_refactored_1x8x14ref"
-      ROOT: "dunevd10kt_3view_30deg_v5_refactored_1x8x14ref.gdml"
+      GDML: "dune10kt_v6_refactored_1x2x2.gdml"
+      Name: "dune10kt_v6_1x2x2"
       SortingParameters: {
-         ChannelsPerOpDet: 1
+         tool_type: "GeoObjectSorterAPA"
       }
       SurfaceY: 147828
    }
@@ -553,13 +462,9 @@ services: {
    }
    PhotonBackTrackerService: {
       PhotonBackTracker: {
-         Delay: 0
-         G4ModuleLabel: "largeant"
+         Delay: 260
          G4ModuleLabels: [
-            "PDFastSimAr",
-            "PDFastSimXe",
-            "PDFastSimArExternal",
-            "PDFastSimXeExternal"
+            "PDFastSim"
          ]
          MinimumHitEnergyFraction: 1e-1
       }
@@ -681,48 +586,20 @@ services: {
       service_provider: "SpaceChargeServiceStandard"
    }
    TFileService: {
-      fileName: "ana_hist.root"
+      fileName: "prodmarley_nue_hist.root"
    }
    TimeTracker: {}
-   message: {
-      debugModules: [
-         "*"
-      ]
-      destinations: {
-         LogDebugFile: {
-            append: false
-            categories: {
-               default: {
-                  limit: 0
-               }
-            }
-            filename: "debugprod.log"
-            threshold: "DEBUG"
-            type: "file"
-         }
-         LogStandardError: {
-            categories: {
-               default: {}
-}
-            threshold: "ERROR"
-            type: "cerr"
-}
-         LogStandardOut: {
-            categories: {
-               ArtReport: {
-                  limit: -1
-               }
-               default: {
-                  limit: 0
-               }
-            }
-            threshold: "INFO"
-            type: "cout"
-         }
-      }
+   WireReadout: {
+      ChannelsPerOpDet: 1
+      service_provider: "DUNEWireReadout"
    }
 }
 source: {
+   firstEvent: 1
+   firstRun: 2.0000047e7
    maxEvents: 10
-   module_type: "RootInput"
+   module_type: "EmptyEvent"
+   timestampPlugin: {
+      plugin_type: "GeneratedEventTimestamp"
+   }
 }

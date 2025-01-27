@@ -18,20 +18,16 @@ physics: {
    producers: {
       marley: {
          marley_parameters: {
-            direction: {
-               x: 0
-               y: 0
-               z: 1
-            }
+            direction: "isotropic"
             reactions: [
-               "ve40ArCC_Bhattacharya2009.react"
+               "ve40ArCC_Bhattacharya2009.react",
+               "ES.react"
             ]
             source: {
                E_bin_lefts: [
                   4
                ]
                Emax: 70
-               Emin: 5
                neutrino: "ve"
                type: "histogram"
                weight_flux: false
@@ -62,6 +58,13 @@ physics: {
 }
 process_name: "MARLEYGen"
 services: {
+   AuxDetGeometry: {
+      GDML: "dune10kt_v4_1x2x6.gdml"
+      Name: "dune10kt_v4_1x2x6"
+      SortingParameters: {
+         tool_type: "AuxDetGeoObjectSorterYZX"
+      }
+   }
    BackTrackerService: {
       BackTracker: {
          G4ModuleLabel: "largeant"
@@ -128,9 +131,6 @@ services: {
       UseIcarusMicrobooneDriftModel: false
       service_provider: "DetectorPropertiesServiceStandard"
    }
-   ExptGeoHelperInterface: {
-      service_provider: "DUNEGeometryHelper"
-   }
    FileCatalogMetadata: {
       applicationFamily: "art"
       applicationVersion: "development"
@@ -139,12 +139,10 @@ services: {
       runType: "physics"
    }
    Geometry: {
-      DisableWiresInG4: true
-      GDML: "dune10kt_v5_refactored_1x2x6.gdml"
-      Name: "dune10kt_v5_1x2x6"
-      ROOT: "dune10kt_v5_refactored_1x2x6.gdml"
+      GDML: "dune10kt_v6_refactored_1x2x6.gdml"
+      Name: "dune10kt_v6_1x2x6"
       SortingParameters: {
-         ChannelsPerOpDet: 1
+         tool_type: "GeoObjectSorterAPA"
       }
       SurfaceY: 147828
    }
@@ -593,6 +591,10 @@ services: {
       fileName: "prodmarley_nue_hist.root"
    }
    TimeTracker: {}
+   WireReadout: {
+      ChannelsPerOpDet: 1
+      service_provider: "DUNEWireReadout"
+   }
 }
 source: {
    firstEvent: 1

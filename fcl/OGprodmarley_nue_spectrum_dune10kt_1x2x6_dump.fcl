@@ -1,200 +1,78 @@
 # Produced from 'fhicl-dump' using:
-#   Input  : TPdump_AbsRSHF.fcl
+#   Input  : prodmarley_nue_spectrum_dune10kt_1x2x6.fcl
 #   Policy : cet::filepath_maker
 #   Path   : "FHICL_FILE_PATH"
 
-dune10kt_1x2x2_neutron_from_rock: {
-   BqPercc: [
-      7.6e-6,
-      7.6e-6,
-      7.6e-6,
-      7.6e-6,
-      7.6e-6
-   ]
-   Material: [
-      ".*",
-      ".*",
-      ".*",
-      ".*",
-      ".*"
-   ]
-   Nuclide: [
-      "Concrete_DUNE10MeV",
-      "Concrete_DUNE10MeV",
-      "Concrete_DUNE10MeV",
-      "Concrete_DUNE10MeV",
-      "Concrete_DUNE10MeV"
-   ]
-   T0: [
-      -2.246e6,
-      -2.246e6,
-      -2.246e6,
-      -2.246e6,
-      -2.246e6
-   ]
-   T1: [
-      2.246e6,
-      2.246e6,
-      2.246e6,
-      2.246e6,
-      2.246e6
-   ]
-   X0: [
-      0,
-      0,
-      0,
-      0,
-      -5e-1
-   ]
-   X1: [
-      350,
-      350,
-      350,
-      350,
-      5e-1
-   ]
-   Y0: [
-      -600,
-      -600,
-      -601,
-      600,
-      -600
-   ]
-   Y1: [
-      600,
-      600,
-      -600,
-      601,
-      600
-   ]
-   Z0: [
-      -5e-1,
-      4.665e2,
-      0,
-      0,
-      0
-   ]
-   Z1: [
-      5e-1,
-      4.675e2,
-      467,
-      467,
-      467
-   ]
-   module_type: "RadioGen"
-}
 outputs: {
    out1: {
       compressionLevel: 1
       dataTier: "generated"
-      fileName: "prodmarley_radiological_dune10kt_1x2x6_gen.root"
+      fileName: "prodmarley_nue_spectrum_dune10kt_1x2x6_gen.root"
       module_type: "RootOutput"
    }
 }
 physics: {
-   ana: [
-      "daqanatrigprim1"
-   ]
-   analyzers: {
-      daqanatrigprim1: {
-         AbsRSHits: true
-         GEANT4Label: "largeant"
-         GenLabel: "marley"
-         HitLabel: "trigprim1"
-         HitWindow: 25
-         InputTag: "simwire"
-         OutputFile: "tpstream_AbsRS.txt"
-         module_type: "TPStreamer"
-      }
-   }
    end_paths: [
-      "ana"
+      "stream1"
    ]
    producers: {
+      marley: {
+         marley_parameters: {
+            direction: {
+               x: 0
+               y: 0
+               z: 1
+            }
+            reactions: [
+               "ve40ArCC_Bhattacharya2009.react"
+            ]
+            source: {
+               namecycle: "NueSpectrum"
+               neutrino: "ve"
+               tfile: "nue_spectrum.root"
+               type: "tgraph"
+            }
+         }
+         module_type: "MARLEYGen"
+         vertex: {
+            type: "sampled"
+         }
+      }
       rns: {
          module_type: "RandomNumberSaver"
-      }
-      simwire: {
-         AdcSimulator: "adcsim_ideal"
-         DistortOn: false
-         KeepEmptyChannels: true
-         NoiseOn: true
-         PedestalOn: true
-         RawDigitInputLabel: "daq"
-         SimChannelLabel: "elecDrift"
-         SuppressOn: false
-         UseRawDigitInput: false
-         module_type: "SimWireDUNE"
-      }
-      trigprim1: {
-         InputTag: "simwire"
-         finderCol: {
-            SignalKillLookahead: 6
-            SignalKillNContig: 10
-            SignalKillThreshold: 15
-            Threshold: 25
-            UseSignalKill: true
-            tool_type: "AbsRunningSumTPFinderPass1"
-         }
-         finderInd: {
-            SignalKillLookahead: 6
-            SignalKillNContig: 10
-            SignalKillThreshold: 15
-            Threshold: 20
-            UseSignalKill: true
-            tool_type: "AbsRunningSumTPFinderPass1"
-         }
-         module_type: "AbsRunningSumTPFinder"
       }
    }
    simulate: [
       "rns",
-      "simwire",
-      "trigprim1"
+      "marley"
+   ]
+   stream1: [
+      "out1"
    ]
    trigger_paths: [
       "simulate"
    ]
 }
-process_name: "TPGen"
+process_name: "MARLEYGen"
 services: {
-   ActionHolder: {}
-   AdcCompressService: {
-      Zero: 0
-      service_provider: "ReplaceCompressService"
-   }
-   AdcDistortService: {
-      StuckBitsOverflowProbHistoName: "pCorrFracOverflowVsInputLsbCell"
-      StuckBitsProbabilitiesFname: "ADCStuckCodeProbabilities35t/output_produceDcScanSummaryPlots_20150827_coldTest_0p1to1p4_step0p0010.root"
-      StuckBitsUnderflowProbHistoName: "pCorrFracUnderflowVsInputLsbCell"
-      service_provider: "StuckBitAdcDistortionService"
-   }
-   AdcSuppressService: {
-      service_provider: "FixedZeroSuppressService"
+   AuxDetGeometry: {
+      GDML: "dune10kt_v4_1x2x6.gdml"
+      Name: "dune10kt_v4_1x2x6"
+      SortingParameters: {
+         tool_type: "AuxDetGeoObjectSorterYZX"
+      }
    }
    BackTrackerService: {
       BackTracker: {
          G4ModuleLabel: "largeant"
          MinimumHitEnergyFraction: 1e-1
-         SimChannelModuleLabel: "elecDrift"
+         SimChannelModuleLabel: "tpcrawdecoder:simpleSC"
       }
    }
-   ChannelNoiseService: {
-      LowCutoffU: 7.5
-      LowCutoffV: 7.5
-      LowCutoffZ: 7.5
-      NoiseArrayPoints: 1000
-      NoiseNormU: 3.16
-      NoiseNormV: 3.16
-      NoiseNormZ: 3.16
-      NoiseWidthU: 2000
-      NoiseWidthV: 2000
-      NoiseWidthZ: 2000
-      OldNoiseIndex: true
-      WhiteNoiseU: 0
-      WhiteNoiseV: 0
-      WhiteNoiseZ: 0
-      service_provider: "ExponentialChannelNoiseService"
+   ChannelGroupService: {
+      ApaRops: []
+      LogLevel: 1
+      service_provider: "GeoApaChannelGroupService"
    }
    ChannelStatusService: {
       BadChannels: []
@@ -211,31 +89,6 @@ services: {
       TableName: "main_run"
       ToughErrorTreatment: false
    }
-   DetPedestalService: {
-      FixedDetPedestal: {
-         PedMeanErrU: 1e-1
-         PedMeanErrV: 1e-1
-         PedMeanErrX: 0
-         PedMeanErrY: 0
-         PedMeanErrZ: 1e-1
-         PedMeanU: 1800
-         PedMeanV: 1800
-         PedMeanX: -999
-         PedMeanY: -999
-         PedMeanZ: 500
-         PedRmsErrU: 1e-1
-         PedRmsErrV: 1e-1
-         PedRmsErrX: 0
-         PedRmsErrY: 0
-         PedRmsErrZ: 1e-1
-         PedRmsU: 2.5
-         PedRmsV: 2.5
-         PedRmsX: 0
-         PedRmsY: 0
-         PedRmsZ: 2.5
-      }
-      service_provider: "FixedDetPedestalService"
-   }
    DetectorClocksService: {
       ClockSpeedExternal: 3.125e1
       ClockSpeedOptical: 6.25e1
@@ -250,7 +103,6 @@ services: {
       TriggerOffsetTPC: 0
       service_provider: "DetectorClocksServiceStandard"
    }
-   DetectorHolder: {}
    DetectorPropertiesService: {
       DriftVelFudgeFactor: 1
       Efield: [
@@ -276,16 +128,18 @@ services: {
       UseIcarusMicrobooneDriftModel: false
       service_provider: "DetectorPropertiesServiceStandard"
    }
-   ExptGeoHelperInterface: {
-      service_provider: "DUNEGeometryHelper"
+   FileCatalogMetadata: {
+      applicationFamily: "art"
+      applicationVersion: "development"
+      fileType: "mc"
+      group: "dune"
+      runType: "physics"
    }
    Geometry: {
-      DisableWiresInG4: true
-      GDML: "dune10kt_v5_refactored_1x2x6.gdml"
-      Name: "dune10kt_v5_1x2x6"
-      ROOT: "dune10kt_v5_refactored_1x2x6.gdml"
+      GDML: "dune10kt_v6_refactored_1x2x6.gdml"
+      Name: "dune10kt_v6_1x2x6"
       SortingParameters: {
-         ChannelsPerOpDet: 1
+         tool_type: "GeoObjectSorterAPA"
       }
       SurfaceY: 147828
    }
@@ -294,79 +148,6 @@ services: {
       FFTOption: ""
       FFTSize: 0
       FitBins: 5
-   }
-   LArG4Parameters: {
-      CosmogenicK0Bias: 0
-      CosmogenicXSMNBiasFactor: 1
-      CosmogenicXSMNBiasOn: 0
-      DisableWireplanes: false
-      ElectronClusterSize: 600
-      EnabledPhysics: [
-         "Em",
-         "SynchrotronAndGN",
-         "Ion",
-         "Hadron",
-         "Decay",
-         "HadronElastic",
-         "Stopping",
-         "NeutronTrackingCut"
-      ]
-      KeepEMShowerDaughters: false
-      LarqlAlpha: 3.72e-2
-      LarqlBeta: 1.24e-2
-      LarqlChi0A: 3.38427e-3
-      LarqlChi0B: -6.57037
-      LarqlChi0C: 1.88418
-      LarqlChi0D: 1.29379e-4
-      LongitudinalDiffusion: 4e-9
-      MinNumberOfElCluster: 0
-      ModBoxA: 9.3e-1
-      ModBoxB: 2.12e-1
-      ModifyProtonCut: false
-      NewProtonCut: 0
-      OpticalParamModels: [
-         "OverlaidWireplanes"
-      ]
-      OpticalParamOrientations: [
-         0
-      ]
-      OpticalParamParameters: [
-         [
-            [
-               60,
-               3,
-               1.5e-1
-            ],
-            [
-               -60,
-               3,
-               1.5e-1
-            ],
-            [
-               0,
-               3,
-               1.5e-1
-            ]
-         ]
-      ]
-      OpticalParamVolumes: [
-         "volTPCPlaneVert_PV"
-      ]
-      OpticalSimVerbosity: 0
-      ParticleKineticEnergyCut: 1e-5
-      QAlpha: 7.2e-1
-      RecombA: 8e-1
-      Recombk: 4.86e-2
-      SkipWireSignalInTPCs: []
-      StoreTrajectories: true
-      TransverseDiffusion: 8.8e-9
-      UseCustomPhysics: false
-      UseLitePhotons: true
-      UseModBoxRecomb: true
-      UseModLarqlRecomb: false
-      VisualizationEnergyCut: 1e-2
-      VisualizeNeutrals: false
-      Wph: 1.95e1
    }
    LArPropertiesService: {
       AbsLengthEnergies: [
@@ -667,75 +448,16 @@ services: {
       TpbTimeConstant: 2.5
       service_provider: "LArPropertiesServiceStandard"
    }
-   LArVoxelCalculator: {
-      VoxelEnergyCut: 1e-6
-      VoxelOffsetT: -2500
-      VoxelOffsetX: 0
-      VoxelOffsetY: 0
-      VoxelOffsetZ: 0
-      VoxelSizeT: 5000
-      VoxelSizeX: 3e-2
-      VoxelSizeY: 3e-2
-      VoxelSizeZ: 3e-2
-   }
-   MCTruthEventAction: {
-      service_type: "MCTruthEventActionService"
-   }
-   MagneticField: {
-      FieldDescriptions: [
-         {
-            ConstantField: [
-               0,
-               0,
-               0
-            ]
-            MagnetizedVolume: "volWorld"
-            UseField: 0
-         }
-      ]
-      service_provider: "MagneticFieldServiceStandard"
-   }
    MemoryTracker: {}
    NuRandomService: {
-      endOfJobSummary: false
+      endOfJobSummary: true
       policy: "perEvent"
-   }
-   OpDetResponseInterface: {
-      ChannelConversion: "none"
-      FracLong: 0
-      FracShort: 0
-      LambdaLong: 0
-      LambdaShort: 0
-      LightGuideAttenuation: false
-      LongAxis: "z"
-      QuantumEfficiency: 3.5e-2
-      WavelengthCutHigh: 10000
-      WavelengthCutLow: 0
-      service_provider: "DUNEOpDetResponse"
    }
    ParticleInventoryService: {
       ParticleInventory: {
          EveIdCalculator: "EmEveIdCalculator"
          G4ModuleLabel: "largeant"
       }
-   }
-   ParticleListAction: {
-      EnergyCut: 1e-5
-      KeepSecondToLast: true
-      KeepTransportation: true
-      SparsifyMargin: 1.5e-2
-      SparsifyTrajectories: true
-      keepEMShowerDaughters: false
-      keepGenTrajectories: [
-         "generator"
-      ]
-      keepOnlyPrimaryFullTrajectories: false
-      service_type: "ParticleListActionService"
-      storeTrajectories: true
-   }
-   PedestalAdditionService: {
-      NoiseScale: 0
-      service_provider: "ProvidedPedestalAdditionService"
    }
    PhotonBackTrackerService: {
       PhotonBackTracker: {
@@ -746,33 +468,6 @@ services: {
          MinimumHitEnergyFraction: 1e-1
       }
    }
-   PhysicsList: {
-      BoundaryInvokeSD: false
-      CerenkovMaxBetaChange: 10
-      CerenkovMaxNumPhotons: 100
-      CerenkovStackPhotons: false
-      DumpList: true
-      NeutronKinELimit: 0
-      NeutronTimeLimit: 0
-      PhysicsListName: "QGSP_BERT"
-      ScintillationByParticleType: false
-      ScintillationStackPhotons: false
-      ScintillationTrackInfo: false
-      ScintillationTrackSecondariesFirst: false
-      Verbosity: 1
-      WLSProfile: "delta"
-      enableAbsorption: false
-      enableBoundary: false
-      enableCerenkov: false
-      enableMieHG: false
-      enableNeutronLimit: false
-      enableOptical: false
-      enableRayleigh: false
-      enableScintillation: false
-      enableStepLimit: true
-      enableWLS: false
-   }
-   PhysicsListHolder: {}
    RandomNumberGenerator: {}
    SignalShapingServiceDUNE: {
       ADCPerPCAtLowestASICGain: 13160
@@ -878,9 +573,6 @@ services: {
       UseFunctionFieldShape: false
       UseHistogramFieldShape: true
    }
-   SimChannelExtractService: {
-      service_provider: "GenericSimChannelExtractService"
-   }
    SpaceCharge: {
       CalibrationInputFilename: "SCEoffsets.root"
       EnableCalEfieldSCE: false
@@ -893,54 +585,20 @@ services: {
       service_provider: "SpaceChargeServiceStandard"
    }
    TFileService: {
-      fileName: "DAQSimAna_TPGenAbsRS.root"
+      fileName: "prodmarley_nue_hist.root"
    }
    TimeTracker: {}
-   message: {
-      debugModules: [
-         "*"
-      ]
-      destinations: {
-         LogDebugFile: {
-            append: false
-            categories: {
-               default: {
-                  limit: 0
-               }
-            }
-            filename: "debugprod.log"
-            threshold: "DEBUG"
-            type: "file"
-         }
-         LogStandardError: {
-            categories: {
-               BackTracker: {
-                  limit: 0
-               }
-               default: {}
-}
-            threshold: "ERROR"
-            type: "cerr"
-}
-         LogStandardOut: {
-            categories: {
-               ArtReport: {
-                  limit: -1
-               }
-               BackTracker: {
-                  limit: 0
-               }
-               default: {
-                  limit: 0
-               }
-            }
-            threshold: "INFO"
-            type: "cout"
-         }
-      }
+   WireReadout: {
+      ChannelsPerOpDet: 1
+      service_provider: "DUNEWireReadout"
    }
 }
 source: {
-   maxEvents: -1
-   module_type: "RootInput"
+   firstEvent: 1
+   firstRun: 2.0000047e7
+   maxEvents: 10
+   module_type: "EmptyEvent"
+   timestampPlugin: {
+      plugin_type: "GeneratedEventTimestamp"
+   }
 }

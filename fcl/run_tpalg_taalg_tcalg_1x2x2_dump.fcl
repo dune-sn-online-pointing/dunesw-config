@@ -1,0 +1,9 @@
+#include "run_tpalg_taalg_tcalg.fcl"
+
+services: 
+{
+    @table::services
+    @table::dunefd_1x2x2_services
+}
+
+outputs.out1.fileName: "run_tpalg_taalg_tcalg_1x2x2_reco.root"

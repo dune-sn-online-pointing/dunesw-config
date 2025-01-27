@@ -1,0 +1,9 @@
+#include "run_tpalg.fcl"
+
+services: 
+{
+    @table::services
+    @table::dunefd_1x2x2_services
+    @table::dunefd_1x2x2_reco_services
+}
+
