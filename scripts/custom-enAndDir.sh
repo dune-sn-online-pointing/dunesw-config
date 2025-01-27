@@ -38,37 +38,13 @@ output_folder="./" # by default, here
 # Parse command-line arguments
 while [[ $# -gt 0 ]]; do
     case "$1" in
-        -f|--fcl-file)
-            original_fcl="$2"
-            shift
-            shift
-            ;;
-        -m|--min-energy)
-            min_energy="$2"
-            shift
-            shift
-            ;;
-        -M|--max-energy)
-            max_energy="$2"
-            shift
-            shift
-            ;;
-        -o|--output)
-            output_folder="$2"
-            shift
-            shift
-            ;;
-        -v|--verbose)
-            verbose=true
-            shift
-            ;;
-        -h|--help)
-            print_help
-            ;;
-        *)
-            echo "Unknown option: $1"
-            print_help
-            ;;
+        -f|--fcl-file) original_fcl="$2"; shift; shift;; 
+        -m|--min-energy) min_energy="$2"; shift; shift;; 
+        -M|--max-energy) max_energy="$2"; shift; shift;; 
+        -o|--output) output_folder="$2"; shift; shift;; 
+        -v|--verbose) verbose=true; shift;; 
+        -h|--help) print_help;; 
+        *) echo "Unknown option: $1"; print_help;;
     esac
 done
 
@@ -133,6 +109,8 @@ physics.producers.marley.marley_parameters.direction.z: $z
 
 physics.producers.marley.marley_parameters.source.Emin: $min_energy
 physics.producers.marley.marley_parameters.source.Emax: $max_energy
+
+source.maxEvents: -1
 
 EOF
 

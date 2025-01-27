@@ -26,27 +26,11 @@ output_folder="./" # by default, here
 # Parse command-line arguments
 while [[ $# -gt 0 ]]; do
     case "$1" in
-        -f|--fcl-file)
-            original_fcl="$2"
-            shift
-            shift
-            ;;
-        -v|--verbose)
-            verbose=true
-            shift
-            ;;
-        -o|--output)
-            output_folder="$2"
-            shift
-            shift
-            ;;
-        -h|--help)
-            print_help
-            ;;
-        *)
-            echo "Unknown option: $1"
-            print_help
-            ;;
+        -f|--fcl-file) original_fcl="$2"; shift; shift ;; 
+        -v|--verbose) verbose=true; shift ;; 
+        -o|--output) output_folder="$2"; shift; shift ;; 
+        -h|--help) print_help ;; 
+        *) echo "Unknown option: $1"; print_help ;;
     esac
 done
 
@@ -106,10 +90,11 @@ filename="${output_folder}${original_fcl%.*}_customDirection.fcl"
 cat <<EOF > $filename
 #include "${original_fcl}.fcl"
 
-
 physics.producers.marley.marley_parameters.direction.x: $x
 physics.producers.marley.marley_parameters.direction.y: $y
 physics.producers.marley.marley_parameters.direction.z: $z
+
+source.maxEvents: -1
 
 EOF
 
