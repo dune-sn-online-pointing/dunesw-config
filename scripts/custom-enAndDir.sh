@@ -101,7 +101,7 @@ echo "Generating fcl with custom energy range: $min_energy to $max_energy MeV"
 # Create the .fcl file with the random values
 filename="${output_folder}${original_fcl%.*}_${min_energy}to${max_energy}MeV_customDirection.fcl"
 cat <<EOF > $filename
-#include "${original_fcl}.fcl"
+#include "${original_fcl}_dump.fcl"
 
 physics.producers.marley.marley_parameters.direction.x: $x
 physics.producers.marley.marley_parameters.direction.y: $y

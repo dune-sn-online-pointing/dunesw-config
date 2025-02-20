@@ -86,7 +86,7 @@ fi
 # move that file to here just to avoid parsing problems
 filename="${output_folder}${original_fcl%.*}_${min_energy}to${max_energy}MeV.fcl"
 cat <<EOF > $filename
-#include "${original_fcl}.fcl"
+#include "${original_fcl}_dump.fcl"
 
 physics.producers.marley.marley_parameters.source.Emin: $min_energy
 physics.producers.marley.marley_parameters.source.Emax: $max_energy

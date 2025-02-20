@@ -1,60 +1,111 @@
 # Produced from 'fhicl-dump' using:
-#   Input  : prodmarley_nue_spectrum_dune10kt_1x2x6.fcl
+#   Input  : /afs/cern.ch/work/e/evilla/private/dune/dunesw/v10_04_00d00/srcs/dunetrigger/dunetrigger/TriggerSim/fcl/triggersim_1x2x6_simpleThr_simpleWin_example.fcl
 #   Policy : cet::filepath_maker
 #   Path   : "FHICL_FILE_PATH"
 
 outputs: {
    out1: {
       compressionLevel: 1
-      dataTier: "generated"
-      fileName: "prodmarley_nue_spectrum_dune10kt_1x2x6_gen.root"
+      fileName: "triggersim.root"
       module_type: "RootOutput"
+      saveMemoryObjectThreshold: 0
    }
 }
 physics: {
    end_paths: [
       "stream1"
    ]
+   makers: [
+      "tpmakerTPC",
+      "tamakerTPC",
+      "tcmakerTPC"
+   ]
    producers: {
-      marley: {
-         marley_parameters: {
-            direction: {
-               x: 0
-               y: 0
-               z: 1
+      tamakerTPC: {
+         adj_tolerance: 3
+         adjacency_threshold: 15
+         mergecollwires: true
+         module_type: "TriggerActivityMakerTPC"
+         nmodules: "nmodules_dune10kt_1x2x6"
+         prescale: 1
+         print_tp_info: false
+         taalg: {
+            algconfig_plane0: {
+               adc_threshold: 2e7
+               window_length: 60000
             }
-            reactions: [
-               "ve40ArCC_Bhattacharya2009.react"
-            ]
-            source: {
-               namecycle: "NueSpectrum"
-               neutrino: "ve"
-               tfile: "nue_spectrum.root"
-               type: "tgraph"
+            algconfig_plane1: {
+               adc_threshold: 2e7
+               window_length: 60000
             }
+            algconfig_plane2: {
+               adc_threshold: 2e7
+               window_length: 60000
+            }
+            algconfig_plane3: {
+               adc_threshold: 2e7
+               window_length: 60000
+            }
+            tool_type: "TAAlgTPCADCSimpleWindow"
+            verbosity: 1
          }
-         module_type: "MARLEYGen"
-         vertex: {
-            type: "sampled"
-         }
+         tp_tag: "tpmakerTPC"
+         verbosity: 1
       }
-      rns: {
-         module_type: "RandomNumberSaver"
+      tcmakerTPC: {
+         module_type: "TriggerCandidateMakerTPC"
+         ta_tag: "tamakerTPC"
+         tcalg: {
+            algconfig: {
+               adc_threshold: 1000
+               n_channels_threshold: 10
+               trigger_on_adc: true
+               trigger_on_n_channels: true
+            }
+            multiplicity: 1
+            tool_type: "TCAlgTPCExample"
+            verbosity: 1
+         }
+         verbosity: 1
+      }
+      tpmakerTPC: {
+         module_type: "TriggerPrimitiveMakerTPC"
+         rawdigit_tag: "daq"
+         tpalg: {
+            threshold_tpg_plane0: -1
+            threshold_tpg_plane1: -1
+            threshold_tpg_plane2: 60
+            tool_type: "TPAlgTPCSimpleThreshold"
+            verbosity: 0
+         }
+         verbosity: 1
       }
    }
-   simulate: [
-      "rns",
-      "marley"
-   ]
    stream1: [
       "out1"
    ]
    trigger_paths: [
-      "simulate"
+      "makers"
    ]
 }
-process_name: "MARLEYGen"
+process_name: "Triggersim1x2x6SimpleThrSimpleWinExample"
 services: {
+   AdcDeconvolutionService: {
+      LogLevel: 1
+      service_provider: "DuneDeconvolutionService"
+   }
+   AdcRoiBuildingService: {
+      LogLevel: 1
+      NSigmaEnd: 1
+      NSigmaStart: 3
+      PadHigh: 50
+      PadLow: 50
+      service_provider: "DuneRoiBuildingService"
+   }
+   AdcWireBuildingService: {
+      LogLevel: 1
+      service_provider: "StandardAdcWireBuildingService"
+   }
    AuxDetGeometry: {
       GDML: "dune10kt_v4_1x2x6.gdml"
       Name: "dune10kt_v4_1x2x6"
@@ -128,13 +179,6 @@ services: {
       UseIcarusMicrobooneDriftModel: false
       service_provider: "DetectorPropertiesServiceStandard"
    }
-   FileCatalogMetadata: {
-      applicationFamily: "art"
-      applicationVersion: "development"
-      fileType: "mc"
-      group: "dune"
-      runType: "physics"
-   }
    Geometry: {
       GDML: "dune10kt_v6_refactored_1x2x6.gdml"
       Name: "dune10kt_v6_1x2x6"
@@ -144,6 +188,7 @@ services: {
       SurfaceY: 147828
    }
    GeometryConfigurationWriter: {}
+   IFDH: {}
    LArFFT: {
       FFTOption: ""
       FFTSize: 0
@@ -448,7 +493,13 @@ services: {
       TpbTimeConstant: 2.5
       service_provider: "LArPropertiesServiceStandard"
    }
-   MemoryTracker: {}
+   MemoryTracker: {
+      dbOutput: {
+         filename: "mem.db"
+         overwrite: true
+      }
+      includeMallocInfo: true
+   }
    NuRandomService: {
       endOfJobSummary: true
       policy: "perEvent"
@@ -469,6 +520,29 @@ services: {
       }
    }
    RandomNumberGenerator: {}
+   RawDigitExtractService: {
+      DigitReadTool: "digitReader"
+      FlagStuckOff: false
+      FlagStuckOn: false
+      LogLevel: 1
+      PedestalOption: 1
+      service_provider: "StandardRawDigitExtractService"
+   }
+   RawDigitPrepService: {
+      DisplayTools: []
+      DoDeconvolution: true
+      DoEarlySignalFinding: false
+      DoIntermediateStates: false
+      DoMitigation: false
+      DoNoiseRemoval: false
+      DoPedestalAdjustment: false
+      DoROI: true
+      DoWires: true
+      LogLevel: 1
+      SkipBad: true
+      SkipNoisy: false
+      service_provider: "StandardRawDigitPrepService"
+   }
    SignalShapingServiceDUNE: {
       ADCPerPCAtLowestASICGain: 13160
       ASICGainInMVPerFC: [
@@ -585,20 +659,59 @@ services: {
       service_provider: "SpaceChargeServiceStandard"
    }
    TFileService: {
-      fileName: "prodmarley_nue_hist.root"
+      fileName: "triggersim_hist.root"
    }
-   TimeTracker: {}
+   TimeTracker: {
+      dbOutput: {
+         filename: "time.db"
+         overwrite: true
+      }
+      printSummary: true
+   }
    WireReadout: {
       ChannelsPerOpDet: 1
       service_provider: "DUNEWireReadout"
    }
+   message: {
+      debugModules: [
+         "*"
+      ]
+      destinations: {
+         LogDebugFile: {
+            append: false
+            categories: {
+               default: {
+                  limit: 0
+               }
+            }
+            filename: "debugprod.log"
+            threshold: "DEBUG"
+            type: "file"
+         }
+         LogStandardError: {
+            categories: {
+               default: {}
+}
+            threshold: "ERROR"
+            type: "cerr"
+}
+         LogStandardOut: {
+            categories: {
+               ArtReport: {
+                  limit: -1
+               }
+               default: {
+                  limit: 0
+               }
+            }
+            threshold: "INFO"
+            type: "cout"
+         }
+      }
+   }
 }
 source: {
-   firstEvent: 1
-   firstRun: 2.0000047e7
    maxEvents: 10
-   module_type: "EmptyEvent"
-   timestampPlugin: {
-      plugin_type: "GeneratedEventTimestamp"
-   }
+   module_type: "RootInput"
+   saveMemoryObjectThreshold: 0
 }

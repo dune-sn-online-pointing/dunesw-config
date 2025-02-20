@@ -88,7 +88,7 @@ echo "$z" >> ${output_folder}customDirection.txt
 # Create the .fcl file with the random values, adding a suffix and .fcl to original_fcl
 filename="${output_folder}${original_fcl%.*}_customDirection.fcl"
 cat <<EOF > $filename
-#include "${original_fcl}.fcl"
+#include "${original_fcl}_dump.fcl"
 
 physics.producers.marley.marley_parameters.direction.x: $x
 physics.producers.marley.marley_parameters.direction.y: $y

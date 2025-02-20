@@ -24,7 +24,8 @@ GEN_FCL='prodmarley_nue_spectrum_dune10kt_1x2x2'
 # GEN_FCL='prodmarley_nue_spectrum_radiological_decay0_dune10kt_1x2x2' 
 G4_FCL='supernova_g4_dune10kt_1x2x2'
 DETSIM_FCL='detsim_dune10kt_1x2x2_notpcsigproc'   # check noise
-RECO_FCL='run_tpalg_dune10kt_1x2x2'           # more complicated than this
+# RECO_FCL='run_tpalg_dune10kt_1x2x2'           # more complicated than this
+RECO_FCL='run_triggersim_anaTree_1x2x2'           # more complicated than this
 
 # other params that is better to initialize
 JSON_SETTINGS=""
@@ -39,11 +40,15 @@ print_help() {
     echo "  -j, --json-settings    JSON file with paths and settings. It has to be in the dunesw-config/json folder"
     echo "  --home-config          Path to the dunesw-config folder. Default is the current folder, but it won't work  in Condor"
     echo "  -m, --marley           Run Marley generation"
+    echo "  -M, --Marley           Parse marley fcl for the folder, without (re)running this step"
     echo "  --custom-direction Run Marley generation with custom random direction"
     echo "  --custom-energy        Run Marley generation with custom energy binning, requires two arguments (min and max)"
     echo "  -g, --g4               Run Geant4 simulation"
+    echo "  -G, --G4               Parse g4 fcl for the folder, without (re)running this step"
     echo "  -d, --detsim           Run detector simulation"
+    echo "  -D, --Detsim           Parse detsim fcl for the folder, without (re)running this step"
     echo "  -r, --reconstruction   Run event reconstruction"
+    echo "  -R, --Reconstruction   Parse reco fcl for the folder, without (re)running this step"
     echo "  -n, --n-events         Number of events, default is 1"
     echo "  -s, --source           Parse to NOT source dunesw and local products"
     echo "  -f, --folder-ending    Ending of the name of the output folder"
@@ -63,6 +68,7 @@ while [[ $# -gt 0 ]]; do
         --home-config)       REPO_HOME="${2%/}"; shift 2 ;;
         -j|--json-settings)  JSON_SETTINGS="$2"; shift 2 ;;
         -m|--marley)         run_marley=true; [[ "$2" != -* ]] && GEN_FCL="${2%.fcl}" && shift; shift ;;
+        -M|--Marley)         GEN_FCL="${2%.fcl}"; shift 2 ;;
         --custom-direction)  custom_direction=true; shift ;;
         --custom-energy)     custom_energy=true; 
                                 energy_min="$2"; 
@@ -70,8 +76,11 @@ while [[ $# -gt 0 ]]; do
                                 [[ ! "$energy_min" =~ ^[0-9]+$ || ! "$energy_max" =~ ^[0-9]+$ ]] && echo "Energy range must be two numbers. Exiting..." && exit 1; 
                                 shift 3 ;;
         -g|--g4)             run_g4=true; [[ "$2" != -* ]] && G4_FCL="${2%.fcl}" && shift; shift ;;
+        -G|--G4)             G4_FCL="${2%.fcl}"; shift 2 ;;
         -d|--detsim)         run_detsim=true; [[ "$2" != -* ]] && DETSIM_FCL="${2%.fcl}" && shift; shift ;;
+        -D|--Detsim)         DETSIM_FCL="${2%.fcl}"; shift 2 ;;
         -r|--reconstruction) run_reconstruction=true; [[ "$2" != -* ]] && RECO_FCL="${2%.fcl}" && shift; shift ;;
+        -R|--Reconstruction) RECO_FCL="${2%.fcl}"; shift 2 ;;
         -n|--n-events)       number_events="$2"; shift 2 ;;
         -s|--source)         source_flag=false; shift ;;
         -f|--folder-ending)  OUTFOLDER_ENDING="$2"; shift 2 ;;
@@ -147,8 +156,8 @@ SIMULATION_NAME="${GEN_FCL_CHANGED}-${RECO_FCL}-${number_events}events"
 DATA_PATH="${GLOBAL_OUTPUT_FOLDER}${SIMULATION_CATEGORY}/${SIMULATION_NAME}_${OUTFOLDER_ENDING}/"
 FCL_FOLDER="$REPO_HOME/fcl/" 
 
-export FHICL_FILE_PATH=$FHICL_FILE_PATH:"$FCL_FOLDER" # in this way lar will find the fcl without needing the path
-export FHICL_FILE_PATH=$FHICL_FILE_PATH:"$DATA_PATH" # some fcls are going to be here
+export FHICL_FILE_PATH="$FCL_FOLDER":$FHICL_FILE_PATH # in this way lar will find the fcl without needing the path
+export FHICL_FILE_PATH="$DATA_PATH":$FHICL_FILE_PATH # some fcls are going to be here
 
 # in case there is a previous one, clean it
 if [ "$clean_folder" = true ]; then
@@ -164,11 +173,11 @@ echo "We are in $(pwd)"
 mkdir -p "$DATA_PATH"
 echo "Data will be saved in $DATA_PATH"
 
-# copying the original gen fcl to the folder, it is used by the GEN_FCL_CHANGED
-fhicl-dump ${GEN_FCL}.fcl > $DATA_PATH/${GEN_FCL}.fcl
-fhicl-dump ${G4_FCL}.fcl > $DATA_PATH/${G4_FCL}.fcl
-fhicl-dump ${DETSIM_FCL}.fcl > $DATA_PATH/${DETSIM_FCL}.fcl
-fhicl-dump ${RECO_FCL}.fcl > $DATA_PATH/${RECO_FCL}.fcl
+# dump the original gen fcl to the folder, it is used by the GEN_FCL_CHANGED
+fhicl-dump ${GEN_FCL}.fcl > $DATA_PATH/${GEN_FCL}_dump.fcl
+fhicl-dump ${G4_FCL}.fcl > $DATA_PATH/${G4_FCL}_dump.fcl
+fhicl-dump ${DETSIM_FCL}.fcl > $DATA_PATH/${DETSIM_FCL}_dump.fcl
+fhicl-dump ${RECO_FCL}.fcl > $DATA_PATH/${RECO_FCL}_dump.fcl
 
 # If standard, generate new fcl using standard-fcl.sh
 if [ "$SIMULATION_CATEGORY" = "standard" ]; then
@@ -207,8 +216,9 @@ echo "Starting simulation at $start_time"
 
 # Execute simulations based on options
 if [ "$run_marley" = true ]; then
-    echo "Executing command: lar -c ${DATA_PATH}${GEN_FCL_CHANGED}.fcl -n $number_events -o ${DATA_PATH}${GEN_FCL}.root"
-    lar -c "${DATA_PATH}${GEN_FCL_CHANGED}.fcl" -n "$number_events" -o "${DATA_PATH}${GEN_FCL}.root"
+    command_marley="lar -c ${DATA_PATH}${GEN_FCL_CHANGED}.fcl -n $number_events -o ${DATA_PATH}${GEN_FCL}.root"
+    echo "Executing command: $command_marley"
+    $command_marley
 
     # if returns 0, then it was successful
     if [ $? -eq 0 ]; then
@@ -222,8 +232,9 @@ if [ "$run_marley" = true ]; then
 fi
 
 if [ "$run_g4" = true ]; then
-    echo "Executing command: lar -c ${G4_FCL}.fcl -n $number_events -s ${DATA_PATH}${GEN_FCL}.root -o ${DATA_PATH}${GEN_FCL}_g4.root"
-    lar -c "${G4_FCL}.fcl" -n "$number_events" -s "${DATA_PATH}${GEN_FCL}.root" -o "${DATA_PATH}${GEN_FCL}_g4.root"
+    command_g4="lar -c ${G4_FCL}.fcl -n $number_events -s ${DATA_PATH}${GEN_FCL}.root -o ${DATA_PATH}${GEN_FCL}_g4.root"
+    echo "Executing command: $command_g4"
+    $command_g4
     
     # if returns 0, then it was successful
     if [ $? -eq 0 ]; then
@@ -240,8 +251,9 @@ if [ "$run_g4" = true ]; then
 fi
 
 if [ "$run_detsim" = true ]; then
-    echo "Executing command: lar -c ${DETSIM_FCL}.fcl -n $number_events -s ${DATA_PATH}${GEN_FCL}_g4.root -o ${DATA_PATH}${GEN_FCL}_g4_detsim.root"
-    lar -c "${DETSIM_FCL}.fcl" -n "$number_events" -s "${DATA_PATH}${GEN_FCL}_g4.root" -o "${DATA_PATH}${GEN_FCL}_g4_detsim.root"
+    command_detsim="lar -c ${DETSIM_FCL}.fcl -n $number_events -s ${DATA_PATH}${GEN_FCL}_g4.root -o ${DATA_PATH}${GEN_FCL}_g4_detsim.root"
+    echo "Executing command: $command_detsim"
+    $command_detsim
     
     if [ $? -eq 0 ]; then
         echo -e " Detector simulation done!\n"
@@ -258,9 +270,10 @@ if [ "$run_detsim" = true ]; then
 fi
 
 if [ "$run_reconstruction" = true ]; then
-    TP_FILE="${DATA_PATH}${GEN_FCL}_g4_detsim_reco1.root"
-    echo "Executing command: lar -c ${RECO_FCL}.fcl -n $number_events -s ${DATA_PATH}${GEN_FCL}_g4_detsim.root -o "$TP_FILE""
-    lar -c "${RECO_FCL}.fcl" -n "$number_events" -s "${DATA_PATH}${GEN_FCL}_g4_detsim.root" -o "$TP_FILE"
+    RECO_OUTPUT="${DATA_PATH}${GEN_FCL}_g4_detsim_reco1.root"
+    command_reco="lar -c ${RECO_FCL}.fcl -n $number_events -s ${DATA_PATH}${GEN_FCL}_g4_detsim.root -o "$RECO_OUTPUT""
+    echo "Executing command: $command_reco"
+    $command_reco
     
     if [ $? -eq 0 ]; then
         echo -e " Reconstruction done! \n"
@@ -310,6 +323,7 @@ if [ "$custom_direction" = true ]; then
 fi
 
 # TP_FILE="tpstream_standardHF_thresh30_nonoise_MCtruth.root" # TODO make this absolute or grep it
+TP_FILE="triggerAna.root" # TODO make this absolute or grep it
 moving_tps="cp ${TP_FILE} ${FINAL_FOLDER}tpstream_${OUTFOLDER_ENDING}.root"
 echo "$moving_tps"
 $moving_tps
