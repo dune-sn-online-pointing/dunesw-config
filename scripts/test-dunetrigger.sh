@@ -8,6 +8,7 @@ echo "________________________________________________________"
 echo "Starting test-dunetrigger.sh"
 success=true
 timeout=200000
+only_reco=false
 
 # protodunehd
 # echo " protodunehd"
@@ -19,6 +20,9 @@ timeout=200000
 
 # for reco_fcl in ${protodune_reco_fcls[@]}; do
 #     command_protodune="./triggersim.sh -m ${protodune_gen_fcl} -g -d -r ${reco_fcl} -j trig.json -f testPdune"
+#     if [ $only_reco = true ]; then
+#         command_protodune="./triggersim.sh -M ${protodune_gen_fcl} -G -D -r ${reco_fcl} -j trig.json -f testPdune"
+#     fi
 #     echo " Running command: ${command_protodune}"
 #     ${command_protodune} 
 #     if [ $? -ne 0 ]; then
@@ -38,6 +42,9 @@ onetwosix_reco_fcls=("triggersim_1x2x6_simpleThr_simpleWin_simpleWin.fcl"
 
 for reco_fcl in ${onetwosix_reco_fcls[@]}; do
     command_1x2x6="./triggersim.sh -m ${onetwosix_gen_fcl} -g $onetwosix_g4_fcl -d $onetwosix_detsim_fcl -r ${reco_fcl} -j trig.json -f test1x2x6"
+    if [ $only_reco = true ]; then
+        command_1x2x6="./triggersim.sh -M ${onetwosix_gen_fcl} -G $onetwosix_g4_fcl -D $onetwosix_detsim_fcl -r ${reco_fcl} -j trig.json -f test1x2x6"
+    fi
     echo " Running command: ${command_1x2x6}"
     ${command_1x2x6}
     if [ $? -ne 0 ]; then
@@ -57,6 +64,9 @@ onetwotwo_reco_fcls=("triggersim_1x2x2_simpleThr_simpleWin_simpleWin.fcl"
 
 for reco_fcl in ${onetwotwo_reco_fcls[@]}; do
     command_1x2x2="./triggersim.sh -m ${onetwotwo_gen_fcl} -g $onetwotwo_g4_fcl -d $onetwotwo_detsim_fcl -r ${reco_fcl} -j trig.json -f test1x2x2"
+    if [ $only_reco = true ]; then
+        command_1x2x2="./triggersim.sh -M ${onetwotwo_gen_fcl} -G $onetwotwo_g4_fcl -D $onetwotwo_detsim_fcl -r ${reco_fcl} -j trig.json -f test1x2x2"
+    fi
     echo " Running command: ${command_1x2x2}"
     ${command_1x2x2}
     if [ $? -ne 0 ]; then
