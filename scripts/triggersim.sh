@@ -2,7 +2,7 @@
 
 # it contains the fcls and the scripts that are called here
 REPO_HOME="$(git rev-parse --show-toplevel)"
-echo "REPO_HOME for script run-sn-simulation.sh: $REPO_HOME"
+echo "REPO_HOME for script triggersim.sh: $REPO_HOME"
 echo "When running in condor, this won't work. Use the --home-config flag to set the path to the dunesw-config folder"
 # this script has to be run from the dunesw-config area 
 
