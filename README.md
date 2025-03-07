@@ -18,41 +18,43 @@ Usage, visible with the -h option, is
 ## dunesw (aka larsoft) and setting up
 
 In order for this to run, you need to have a local install of the dune software and add the path of your install in the `scripts/settings.json` file.
-You can install following these [instructions](https://docs.google.com/document/d/14ORCEtpXWSIT_1hXJxtW2PMGMVWozzRK1GxgPKaptCk/edit).
-For the TP SN analysis, you need to install locally the `duneana` repo and then check out to the branch `evilla/tpstream`.
-In the code folder, also set up a script called `setup-dunesw.sh` that has to be similar to this one (remember to set your path):
+You can install following these [instructions](https://docs.google.com/document/d/14ORCEtpXWSIT_1hXJxtW2PMGMVWozzRK1GxgPKaptCk/edit) or the larsoft tutorial from the workshop in Feb '25.
+In the code folder, also set up a script called `setup.sh` that has to be similar to this one (remember to set your path):
 
 ```bash
 #!/bin/bash
 
-echo 'Setting up dune products...'
 source /cvmfs/dune.opensciencegrid.org/products/dune/setup_dune.sh
 
-echo 'Setting up local products...'
-source /your/install/path/localProducts_larsoft_v09_79_00d02_prof_e26/setup
+version="v10_04_04"
+extension="d01" 
+export DUNESW_VERSION=$version$extension; # this is what Klaudia used to test the workflow
+qualifier="e26"
+specifier="prof"
+export DUNESW_QUALIFIER=${qualifier}:${specifier}
 
+source /afs/cern.ch/work/e/evilla/private/dune/dunesw/$DUNESW_VERSION/localProducts_larsoft_${version}_${qualifier}_${specifier}/setup # this will be the setup in your local installation
+THIS_PWD=$PWD
 cd $MRB_BUILDDIR
 mrbslp
 
-export DUNESW_VERSION=v09_79_00d02; 
-export DUNESW_QUALIFIER=e26:prof;
 echo 'Setting up dunesw version' $DUNESW_VERSION', qualifier' $DUNESW_QUALIFIER '...'
 setup dunesw $DUNESW_VERSION -q $DUNESW_QUALIFIER
-echo 'Done!'
 
-cd .. # going back to the home directory
+echo 'Done!'
+cd $THIS_PWD # go back where we were
 ```
     
 To run lar, you need a centos7 environment or run in condor (selecting the environment to run in). 
 You can use a container by running:
 
 ```bash
-/cvmfs/oasis.opensciencegrid.org/mis/apptainer/current/bin/apptainer shell --shell=/bin/bash -B /cvmfs,/opt,/run/user,/etc/hostname,/etc/hosts,/etc/krb5.conf, /eos/user/ --ipc --pid /cvmfs/singularity.opensciencegrid.org/fermilab/fnal-dev-sl7:latest
+/cvmfs/oasis.opensciencegrid.org/mis/apptainer/current/bin/apptainer shell --shell=/bin/bash -B /cvmfs,/opt,/run/user,/etc/hostname,/etc/hosts,/etc/krb5.conf,/eos --ipc --pid /cvmfs/singularity.opensciencegrid.org/fermilab/fnal-dev-sl7:latest
 ```
 
 See the sub scripts or file under `condor/` for different examples or the ready-to-use scripts.
 
-## run-sn-simulation.sh
+## Run the simulation 
 
 This script is the only interface that is needed in order to run a simulation and print TPs to file.
 The only thing that needs to be changed is a json settings file that you should create copying `json/settings_template.json`:
@@ -82,11 +84,13 @@ The script should be easy to read, but to summarize what it does:
 - **Cleans up files**: Deletes intermediate files to save space if specified.
 - **Saves results**: Moves the final results to a predefined directory for further analysis. The output is currently set to be `/eos/user/e/evilla/sn-data`, don't change it.
 
-An example of how to run is:
+An example of how to run is (use -h to see all options):
     
 ```bash
-./run-sn-simulation.sh -j mySettings.json --home-config /my/dunesw-config/ -m --custom-direction -g -d -r -n 10 -f test
+./triggersim.sh -j mySettings.json --home-config /my/dunesw-config/ -m [<gen_fcl>] -g [<g4_fcl>] -d [<detsim_fcl>] -r [<reco1_fcl>] -n 10 -f test
 ```
+
+There is also a `protoduneana.sh` that works similarly but in a simplified way and can accept also a data file as input.
 
 ## Running in HTCondor
 
@@ -95,4 +99,3 @@ There are several examples here, but more scripts will be created in order to ru
 
 The script `condor/submit_pointing_training_ES_70MeV_noiseless.sh` is set up for what the name says.
 See the usage with -h, it's should be simple to use. 
-See the Google sheet to know what samples you are supposed to produce.
