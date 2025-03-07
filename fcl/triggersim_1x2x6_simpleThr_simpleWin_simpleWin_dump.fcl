@@ -1,22 +1,7 @@
 # Produced from 'fhicl-dump' using:
-#   Input  : TPdump_standardHF_noiseless_fixed.fcl
+#   Input  : triggersim_1x2x6_simpleThr_simpleWin_simpleWin.fcl
 #   Policy : cet::filepath_maker
 #   Path   : "FHICL_FILE_PATH"
-
-
-
-BEGIN_PROLOG
-
-tagged_TP_dump_config: {
-   module_type:   TPStreamer
-   OutputFile:    "tpstream_standardHF_thresh30_nonoise.txt"
-   HitLabel:      "trigprim1"
-   InputTag:      "simwire"
-   # GenLabel:      "marley" # should be able to comment this
-   GEANT4Label:   "largeant"
-   HitWindow:      5
-}
-END_PROLOG
 
 adcPlotDftTemplate: {
    ChannelSelection: ""
@@ -47,798 +32,128 @@ data: {
 outputs: {
    out1: {
       compressionLevel: 1
-      dataTier: "detector-simulated"
-      fileName: "%ifb_detsim.root"
+      fileName: "triggersim.root"
       module_type: "RootOutput"
+      saveMemoryObjectThreshold: 0
    }
 }
 physics: {
-   ana: [
-      "daqanatrigprim1"
-   ]
-   analyzers: {
-      daqanatrigprim1: {
-         # the following labels refer to the labels in the Gen fcl: 
-         # prodmarley_nue_spectrum_radiological_decay0_dune10kt_refactored_1x2x6.fcl
-         # not sure if these can be put inside the module only, so putting them here for the moment
-         GenLabels: {
-               MarleyLabel: "marley"
-               Ar39GenInLarLabel: "Ar39GenInLAr"
-               Kr85GenInLarLabel: "Kr85GenInLAr"
-               Ar42GenInLarLabel: "Ar42GenInLAr"
-               K42From42ArGenInLarLabel: "K42From42ArGenInLAr"
-               Rn222ChainRn222GenInLarLabel: "Rn222ChainRn222GenInLAr"
-               Rn222ChainPo218GenInLarLabel: "Rn222ChainPo218GenInLAr"
-               Rn222ChainPb214GenInLarLabel: "Rn222ChainPb214GenInLAr"
-               Rn222ChainBi214GenInLarLabel: "Rn222ChainBi214GenInLAr"
-               Rn222ChainPb210GenInLarLabel: "Rn222ChainPb210GenInLAr"
-               K40GenInCPALabel: "K40GenInCPA"
-               U238ChainGenInCPALabel: "U238ChainGenInCPA"
-               K42From42ArGenInCPALabel: "K42From42ArGenInCPA"
-               Rn222ChainPo218GenInCPALabel: "Rn222ChainPo218GenInCPA"
-               Rn222ChainPb214GenInCPALabel: "Rn222ChainPb214GenInCPA"
-               Rn222ChainBi214GenInCPALabel: "Rn222ChainBi214GenInCPA"
-               Rn222ChainPb210GenInCPALabel: "Rn222ChainPb210GenInCPA"
-               Rn222ChainFromBi210GenInCPALabel: "Rn222ChainFromBi210GenInCPA"
-               Co60GenInAPALabel: "Co60GenInAPA"
-               U238ChainGenInAPALabel: "U238ChainGenInAPA"
-               Rn222ChainGenInPDSLabel: "Rn222ChainGenInPDS"
-               NeutronGenInRockLabel: "NeutronGenInRock"
-            }
-         HitLabel: "trigprim1"
-         HitWindow: 5
-         InputTag: "simwire"
-         GEANT4Label:   "largeant"
-         # TODO change thresh30 to something that reads the threshold
-         OutputFile: "tpstream_standardHF_thresh30_nonoise_MCtruth.txt"
-         module_type: "TPStreamer"
-      }
-   }
    end_paths: [
-      "ana"
+      "stream1"
+   ]
+   makers: [
+      "tpmakerTPC",
+      "tamakerTPC",
+      "tcmakerTPC"
    ]
    producers: {
-      rns: {
-         module_type: "RandomNumberSaver"
-      }
-      simwire: {
-         AdcSimulator: "adcsim_ideal"
-         DistortOn: false
-         KeepEmptyChannels: true
-         NoiseOn: false
-         PedestalOn: false
-         RawDigitInputLabel: "daq"
-         SimChannelLabel: "elecDrift"
-         SuppressOn: false
-         UseRawDigitInput: false
-         module_type: "SimWireDUNE"
-      }
-      trigprim1: {
-         InputTag: "simwire"
-         finder: {
-            SignalKillLookahead: 6
-            SignalKillNContig: 10
-            SignalKillThreshold: 15
-            Threshold: 30
-            UseSignalKill: true
-            tool_type: "TriggerPrimitiveFinderPass1"
+      tamakerTPC: {
+         algconfig_plane0: {
+            adc_threshold: 2000
+            window_length: 6000
          }
-         module_type: "TriggerPrimitiveFinder"
+         algconfig_plane1: {
+            adc_threshold: 2000
+            window_length: 6000
+         }
+         algconfig_plane2: {
+            adc_threshold: 2000
+            window_length: 6000
+         }
+         algconfig_plane3: {
+            adc_threshold: 2000
+            window_length: 6000
+         }
+         algorithm: "TriggerActivityMakerADCSimpleWindow"
+         flush: true
+         mergecollwires: true
+         module_type: "TriggerActivityMakerTPC"
+         nmodules: 12
+         prescale: 1
+         print_tp_info: false
+         tp_tag: "tpmakerTPC"
+         verbosity: 1
+      }
+      tcmakerTPC: {
+         algconfig: {
+            adc_threshold: 1000
+            adj_tolerance: 4
+            adjacency_threshold: 6
+            bundle_size: 100
+            eps: 20
+            max_channel_distance: 50
+            max_tp_count: 1000
+            min_pts: 7
+            min_tps: 20
+            n_channels_threshold: 10
+            prescale: 1
+            print_tp_info: 0
+            trigger_on_adc: true
+            trigger_on_adjacency: 0
+            trigger_on_n_channels: true
+            window_length: 8000
+         }
+         algorithm: "TriggerCandidateMakerADCSimpleWindowPlugin"
+         module_type: "TriggerCandidateMakerTPC"
+         multiplicity: 1
+         ta_tag: "tamakerTPC"
+         verbosity: 1
+      }
+      tpmakerTPC: {
+         module_type: "TriggerPrimitiveMakerTPC"
+         rawdigit_tag: "tpcrawdecoder:daq"
+         tpalg: {
+            threshold_tpg_plane0: -1
+            threshold_tpg_plane1: -1
+            threshold_tpg_plane2: 60
+            tool_type: "TPAlgTPCSimpleThreshold"
+            verbosity: 0
+         }
       }
    }
-   simulate: [
-      "rns",
-      "simwire",
-      "trigprim1"
+   stream1: [
+      "out1"
    ]
    trigger_paths: [
-      "simulate"
+      "makers"
    ]
 }
-process_name: "TPGen"
+process_name: "Triggersim1x2x6SimplethrSimplewinSimplewin"
 services: {
-   ActionHolder: {}
-   AdcCompressService: {
-      Zero: 0
-      service_provider: "ReplaceCompressService"
+   AdcDeconvolutionService: {
+      LogLevel: 1
+      service_provider: "DuneDeconvolutionService"
    }
-   AdcDistortService: {
-      StuckBitsOverflowProbHistoName: "pCorrFracOverflowVsInputLsbCell"
-      StuckBitsProbabilitiesFname: "ADCStuckCodeProbabilities35t/output_produceDcScanSummaryPlots_20150827_coldTest_0p1to1p4_step0p0010.root"
-      StuckBitsUnderflowProbHistoName: "pCorrFracUnderflowVsInputLsbCell"
-      service_provider: "StuckBitAdcDistortionService"
+   AdcRoiBuildingService: {
+      LogLevel: 1
+      NSigmaEnd: 1
+      NSigmaStart: 3
+      PadHigh: 50
+      PadLow: 50
+      service_provider: "DuneRoiBuildingService"
    }
-   AdcSuppressService: {
-      service_provider: "FixedZeroSuppressService"
+   AdcWireBuildingService: {
+      LogLevel: 1
+      service_provider: "StandardAdcWireBuildingService"
+   }
+   AuxDetGeometry: {
+      GDML: "dune10kt_v4_1x2x6.gdml"
+      Name: "dune10kt_v4_1x2x6"
+      SortingParameters: {
+         tool_type: "AuxDetGeoObjectSorterYZX"
+      }
    }
    BackTrackerService: {
       BackTracker: {
          G4ModuleLabel: "largeant"
          MinimumHitEnergyFraction: 1e-1
-         SimChannelModuleLabel: "elecDrift"
+         SimChannelModuleLabel: "tpcrawdecoder:simpleSC"
       }
    }
-   ChannelNoiseService: {
-      FEMBCo_Amp: [
-         [
-            1,
-            2e-1,
-            2,
-            1,
-            1.1,
-            1.2,
-            8e-1,
-            1.2,
-            3
-         ],
-         [
-            1,
-            2e-1,
-            2,
-            1,
-            1.1,
-            1.2,
-            8e-1,
-            1.2,
-            3
-         ],
-         [
-            1,
-            2e-1,
-            2,
-            1,
-            1.1,
-            1.2,
-            8e-1,
-            1.2,
-            3
-         ],
-         [
-            1,
-            2e-1,
-            2,
-            1,
-            1.1,
-            1.2,
-            8e-1,
-            1.2,
-            3
-         ],
-         [
-            1,
-            2e-1,
-            2,
-            1,
-            1.1,
-            1.2,
-            8e-1,
-            1.2,
-            3
-         ],
-         [
-            1,
-            2e-1,
-            2,
-            1,
-            1.1,
-            1.2,
-            8e-1,
-            1.2,
-            3
-         ],
-         [
-            1,
-            2e-1,
-            2,
-            1,
-            1.1,
-            1.2,
-            8e-1,
-            1.2,
-            3
-         ],
-         [
-            1,
-            2e-1,
-            2,
-            1,
-            1.1,
-            1.2
-         ],
-         [
-            1,
-            2e-1,
-            2,
-            1,
-            1.1,
-            1.2,
-            8e-1,
-            1.2,
-            3
-         ],
-         [
-            1,
-            2e-1,
-            2,
-            1,
-            1.1,
-            1.2,
-            8e-1,
-            1.2,
-            3
-         ],
-         [
-            1,
-            2e-1,
-            2,
-            1,
-            1.1,
-            1.2,
-            8e-1,
-            1.2,
-            3
-         ],
-         [
-            1,
-            2e-1,
-            2,
-            1,
-            1.1,
-            1.2,
-            8e-1,
-            1.2,
-            3
-         ],
-         [
-            1,
-            2e-1,
-            2,
-            1,
-            1.1,
-            1.2,
-            8e-1,
-            1.2,
-            3
-         ],
-         [
-            1,
-            2e-1,
-            2,
-            1,
-            1.1,
-            1.2,
-            8e-1,
-            1.2,
-            3
-         ],
-         [
-            1,
-            2e-1,
-            2,
-            1,
-            1.1,
-            1.2,
-            8e-1,
-            1.2,
-            3
-         ],
-         [
-            1,
-            2e-1,
-            2,
-            1,
-            1.1,
-            1.2,
-            8e-1,
-            1.2,
-            3
-         ],
-         [
-            1,
-            2e-1,
-            2,
-            1,
-            1.1,
-            1.2,
-            8e-1,
-            1.2,
-            3
-         ],
-         [
-            1,
-            2e-1,
-            2,
-            1,
-            1.1,
-            1.2,
-            8e-1,
-            1.2,
-            3
-         ],
-         [
-            1,
-            2e-1,
-            2,
-            1,
-            1.1,
-            1.2,
-            8e-1,
-            1.2,
-            3
-         ],
-         [
-            1,
-            2e-1,
-            2,
-            1,
-            1.1,
-            1.2,
-            8e-1,
-            1.2,
-            3
-         ]
-      ]
-      FEMBCo_Frq: [
-         [
-            200,
-            3000,
-            4000,
-            12000,
-            31000,
-            42000,
-            53200,
-            120000,
-            330000
-         ],
-         [
-            200,
-            3000,
-            4000,
-            12000,
-            31000,
-            42000,
-            53200,
-            120000,
-            330000
-         ],
-         [
-            200,
-            3000,
-            4000,
-            12000,
-            31000,
-            42000,
-            53200,
-            120000,
-            330000
-         ],
-         [
-            200,
-            3000,
-            4000,
-            12000,
-            31000,
-            42000,
-            53200,
-            120000,
-            330000
-         ],
-         [
-            200,
-            3000,
-            4000,
-            12000,
-            31000,
-            42000,
-            53200,
-            120000,
-            330000
-         ],
-         [
-            200,
-            3000,
-            4000,
-            12000,
-            31000,
-            42000,
-            53200,
-            120000,
-            330000
-         ],
-         [
-            200,
-            3000,
-            4000,
-            12000,
-            31000,
-            42000,
-            53200,
-            120000,
-            330000
-         ],
-         [
-            200,
-            3000,
-            4000,
-            12000,
-            31000,
-            42000
-         ],
-         [
-            200,
-            3000,
-            4000,
-            12000,
-            31000,
-            42000,
-            53200,
-            120000,
-            330000
-         ],
-         [
-            200,
-            3000,
-            4000,
-            12000,
-            31000,
-            42000,
-            53200,
-            120000,
-            330000
-         ],
-         [
-            200,
-            3000,
-            4000,
-            12000,
-            31000,
-            42000,
-            53200,
-            120000,
-            330000
-         ],
-         [
-            200,
-            3000,
-            4000,
-            12000,
-            31000,
-            42000,
-            53200,
-            120000,
-            330000
-         ],
-         [
-            200,
-            3000,
-            4000,
-            12000,
-            31000,
-            42000,
-            53200,
-            120000,
-            330000
-         ],
-         [
-            200,
-            3000,
-            4000,
-            12000,
-            31000,
-            42000,
-            53200,
-            120000,
-            330000
-         ],
-         [
-            200,
-            3000,
-            4000,
-            12000,
-            31000,
-            42000,
-            53200,
-            120000,
-            330000
-         ],
-         [
-            200,
-            3000,
-            4000,
-            12000,
-            31000,
-            42000,
-            53200,
-            120000,
-            330000
-         ],
-         [
-            200,
-            3000,
-            4000,
-            12000,
-            31000,
-            42000,
-            53200,
-            120000,
-            330000
-         ],
-         [
-            200,
-            3000,
-            4000,
-            12000,
-            31000,
-            42000,
-            53200,
-            120000,
-            330000
-         ],
-         [
-            200,
-            3000,
-            4000,
-            12000,
-            31000,
-            42000,
-            53200,
-            120000,
-            330000
-         ],
-         [
-            200,
-            3000,
-            4000,
-            12000,
-            31000,
-            42000,
-            53200,
-            120000,
-            330000
-         ]
-      ]
-      FEMBCo_Phs: [
-         [
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0
-         ],
-         [
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0
-         ],
-         [
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0
-         ],
-         [
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0
-         ],
-         [
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0
-         ],
-         [
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0
-         ],
-         [
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0
-         ],
-         [
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0
-         ],
-         [
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0
-         ],
-         [
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0
-         ],
-         [
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0
-         ],
-         [
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0
-         ],
-         [
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0
-         ],
-         [
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0
-         ],
-         [
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0
-         ],
-         [
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0
-         ],
-         [
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0
-         ],
-         [
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0
-         ],
-         [
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0
-         ],
-         [
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0
-         ]
-      ]
-      HV1_Amp: [
-         5e-1,
-         3e-1
-      ]
-      HV1_Frq: [
-         50,
-         3000
-      ]
-      HV1_Phs: [
-         0,
-         0
-      ]
-      amp_rms: 5e-1
-      amplitude_multiplicator_collection: 46
-      amplitude_multiplicator_induction: 5.051e1
-      collection_plane_noise: 3.8
-      collection_plane_noise_rms: 9e-1
-      frequency_rms: 21
-      induction_plane_noise: 5
-      induction_plane_noise_rms: 1
-      random_phase_noise: true
-      service_provider: "ShapedCohProtoDUNENoiseService"
+   ChannelGroupService: {
+      ApaRops: []
+      LogLevel: 1
+      service_provider: "GeoApaChannelGroupService"
    }
    ChannelStatusService: {
       BadChannels: []
@@ -855,31 +170,6 @@ services: {
       TableName: "main_run"
       ToughErrorTreatment: false
    }
-   DetPedestalService: {
-      FixedDetPedestal: {
-         PedMeanErrU: 1e-1
-         PedMeanErrV: 1e-1
-         PedMeanErrX: 0
-         PedMeanErrY: 0
-         PedMeanErrZ: 1e-1
-         PedMeanU: 1800
-         PedMeanV: 1800
-         PedMeanX: -999
-         PedMeanY: -999
-         PedMeanZ: 500
-         PedRmsErrU: 1e-1
-         PedRmsErrV: 1e-1
-         PedRmsErrX: 0
-         PedRmsErrY: 0
-         PedRmsErrZ: 1e-1
-         PedRmsU: 2.5
-         PedRmsV: 2.5
-         PedRmsX: 0
-         PedRmsY: 0
-         PedRmsZ: 2.5
-      }
-      service_provider: "FixedDetPedestalService"
-   }
    DetectorClocksService: {
       ClockSpeedExternal: 3.125e1
       ClockSpeedOptical: 6.25e1
@@ -894,7 +184,6 @@ services: {
       TriggerOffsetTPC: 0
       service_provider: "DetectorClocksServiceStandard"
    }
-   DetectorHolder: {}
    DetectorPropertiesService: {
       DriftVelFudgeFactor: 1
       Efield: [
@@ -920,97 +209,20 @@ services: {
       UseIcarusMicrobooneDriftModel: false
       service_provider: "DetectorPropertiesServiceStandard"
    }
-   ExptGeoHelperInterface: {
-      service_provider: "DUNEGeometryHelper"
-   }
    Geometry: {
-      DisableWiresInG4: true
-      GDML: "dune10kt_v5_refactored_1x2x6.gdml"
-      Name: "dune10kt_v5_1x2x6"
-      ROOT: "dune10kt_v5_refactored_1x2x6.gdml"
+      GDML: "dune10kt_v6_refactored_1x2x6.gdml"
+      Name: "dune10kt_v6_1x2x6"
       SortingParameters: {
-         ChannelsPerOpDet: 1
+         tool_type: "GeoObjectSorterAPA"
       }
       SurfaceY: 147828
    }
    GeometryConfigurationWriter: {}
+   IFDH: {}
    LArFFT: {
       FFTOption: ""
       FFTSize: 0
       FitBins: 5
-   }
-   LArG4Parameters: {
-      CosmogenicK0Bias: 0
-      CosmogenicXSMNBiasFactor: 1
-      CosmogenicXSMNBiasOn: 0
-      DisableWireplanes: false
-      ElectronClusterSize: 600
-      EnabledPhysics: [
-         "Em",
-         "SynchrotronAndGN",
-         "Ion",
-         "Hadron",
-         "Decay",
-         "HadronElastic",
-         "Stopping",
-         "NeutronTrackingCut"
-      ]
-      KeepEMShowerDaughters: false
-      LarqlAlpha: 3.72e-2
-      LarqlBeta: 1.24e-2
-      LarqlChi0A: 3.38427e-3
-      LarqlChi0B: -6.57037
-      LarqlChi0C: 1.88418
-      LarqlChi0D: 1.29379e-4
-      LongitudinalDiffusion: 4e-9
-      MinNumberOfElCluster: 0
-      ModBoxA: 9.3e-1
-      ModBoxB: 2.12e-1
-      ModifyProtonCut: false
-      NewProtonCut: 0
-      OpticalParamModels: [
-         "OverlaidWireplanes"
-      ]
-      OpticalParamOrientations: [
-         0
-      ]
-      OpticalParamParameters: [
-         [
-            [
-               60,
-               3,
-               1.5e-1
-            ],
-            [
-               -60,
-               3,
-               1.5e-1
-            ],
-            [
-               0,
-               3,
-               1.5e-1
-            ]
-         ]
-      ]
-      OpticalParamVolumes: [
-         "volTPCPlaneVert_PV"
-      ]
-      OpticalSimVerbosity: 0
-      ParticleKineticEnergyCut: 1e-5
-      QAlpha: 7.2e-1
-      RecombA: 8e-1
-      Recombk: 4.86e-2
-      SkipWireSignalInTPCs: []
-      StoreTrajectories: true
-      TransverseDiffusion: 8.8e-9
-      UseCustomPhysics: false
-      UseLitePhotons: true
-      UseModBoxRecomb: true
-      UseModLarqlRecomb: false
-      VisualizationEnergyCut: 1e-2
-      VisualizeNeutrals: false
-      Wph: 1.95e1
    }
    LArPropertiesService: {
       AbsLengthEnergies: [
@@ -1311,82 +523,22 @@ services: {
       TpbTimeConstant: 2.5
       service_provider: "LArPropertiesServiceStandard"
    }
-   LArVoxelCalculator: {
-      VoxelEnergyCut: 1e-6
-      VoxelOffsetT: -2500
-      VoxelOffsetX: 0
-      VoxelOffsetY: 0
-      VoxelOffsetZ: 0
-      VoxelSizeT: 5000
-      VoxelSizeX: 3e-2
-      VoxelSizeY: 3e-2
-      VoxelSizeZ: 3e-2
+   MemoryTracker: {
+      dbOutput: {
+         filename: "mem.db"
+         overwrite: true
+      }
+      includeMallocInfo: true
    }
-   MCTruthEventAction: {
-      service_type: "MCTruthEventActionService"
-   }
-   MagneticField: {
-      FieldDescriptions: [
-         {
-            ConstantField: [
-               0,
-               0,
-               0
-            ]
-            MagnetizedVolume: "volWorld"
-            UseField: 0
-         }
-      ]
-      service_provider: "MagneticFieldServiceStandard"
-   }
-   MemoryTracker: {}
    NuRandomService: {
-      endOfJobSummary: false
+      endOfJobSummary: true
       policy: "perEvent"
-   }
-   OpDetResponseInterface: {
-      ChannelConversion: "none"
-      FracLong: 0
-      FracShort: 0
-      LambdaLong: 0
-      LambdaShort: 0
-      LightGuideAttenuation: false
-      LongAxis: "z"
-      QuantumEfficiency: 3.5e-2
-      WavelengthCutHigh: 10000
-      WavelengthCutLow: 0
-      service_provider: "DUNEOpDetResponse"
    }
    ParticleInventoryService: {
       ParticleInventory: {
          EveIdCalculator: "EmEveIdCalculator"
          G4ModuleLabel: "largeant"
       }
-   }
-   ParticleListAction: {
-      EnergyCut: 1e-5
-      KeepSecondToLast: true
-      KeepTransportation: true
-      SparsifyMargin: 1.5e-2
-      SparsifyTrajectories: true
-      keepEMShowerDaughters: false
-      keepGenTrajectories: [
-         "generator"
-      ]
-      keepOnlyPrimaryFullTrajectories: false
-      service_type: "ParticleListActionService"
-      storeTrajectories: true
-   }
-   PdspChannelMapService: {
-      FELIXFileName: "protoDUNETPCChannelMap_FELIX_v4.txt"
-      FileName: "protoDUNETPCChannelMap_RCE_v4.txt"
-      LogLevel: 1
-      SSPFileName: "protoDUNESSPChannelMap_v1.txt"
-      service_type: "PdspChannelMapService"
-   }
-   PedestalAdditionService: {
-      NoiseScale: 0
-      service_provider: "ProvidedPedestalAdditionService"
    }
    PhotonBackTrackerService: {
       PhotonBackTracker: {
@@ -1397,34 +549,30 @@ services: {
          MinimumHitEnergyFraction: 1e-1
       }
    }
-   PhysicsList: {
-      BoundaryInvokeSD: false
-      CerenkovMaxBetaChange: 10
-      CerenkovMaxNumPhotons: 100
-      CerenkovStackPhotons: false
-      DumpList: true
-      NeutronKinELimit: 0
-      NeutronTimeLimit: 0
-      PhysicsListName: "QGSP_BERT"
-      ScintillationByParticleType: false
-      ScintillationStackPhotons: false
-      ScintillationTrackInfo: false
-      ScintillationTrackSecondariesFirst: false
-      Verbosity: 1
-      WLSProfile: "delta"
-      enableAbsorption: false
-      enableBoundary: false
-      enableCerenkov: false
-      enableMieHG: false
-      enableNeutronLimit: false
-      enableOptical: false
-      enableRayleigh: false
-      enableScintillation: false
-      enableStepLimit: true
-      enableWLS: false
-   }
-   PhysicsListHolder: {}
    RandomNumberGenerator: {}
+   RawDigitExtractService: {
+      DigitReadTool: "digitReader"
+      FlagStuckOff: false
+      FlagStuckOn: false
+      LogLevel: 1
+      PedestalOption: 1
+      service_provider: "StandardRawDigitExtractService"
+   }
+   RawDigitPrepService: {
+      DisplayTools: []
+      DoDeconvolution: true
+      DoEarlySignalFinding: false
+      DoIntermediateStates: false
+      DoMitigation: false
+      DoNoiseRemoval: false
+      DoPedestalAdjustment: false
+      DoROI: true
+      DoWires: true
+      LogLevel: 1
+      SkipBad: true
+      SkipNoisy: false
+      service_provider: "StandardRawDigitPrepService"
+   }
    SignalShapingServiceDUNE: {
       ADCPerPCAtLowestASICGain: 13160
       ASICGainInMVPerFC: [
@@ -1529,9 +677,6 @@ services: {
       UseFunctionFieldShape: false
       UseHistogramFieldShape: true
    }
-   SimChannelExtractService: {
-      service_provider: "GenericSimChannelExtractService"
-   }
    SpaceCharge: {
       CalibrationInputFilename: "SCEoffsets.root"
       EnableCalEfieldSCE: false
@@ -1544,9 +689,19 @@ services: {
       service_provider: "SpaceChargeServiceStandard"
    }
    TFileService: {
-      fileName: "delete_me.root"
+      fileName: "triggersim_hist.root"
    }
-   TimeTracker: {}
+   TimeTracker: {
+      dbOutput: {
+         filename: "time.db"
+         overwrite: true
+      }
+      printSummary: true
+   }
+   WireReadout: {
+      ChannelsPerOpDet: 1
+      service_provider: "DUNEWireReadout"
+   }
    message: {
       debugModules: [
          "*"
@@ -1565,9 +720,6 @@ services: {
          }
          LogStandardError: {
             categories: {
-               BackTracker: {
-                  limit: 0
-               }
                default: {}
 }
             threshold: "ERROR"
@@ -1577,9 +729,6 @@ services: {
             categories: {
                ArtReport: {
                   limit: -1
-               }
-               BackTracker: {
-                  limit: 0
                }
                default: {
                   limit: 0
@@ -1592,8 +741,9 @@ services: {
    }
 }
 source: {
-   maxEvents: -1
+   maxEvents: 10
    module_type: "RootInput"
+   saveMemoryObjectThreshold: 0
 }
 tools: {
    adcChannelDumper: {
