@@ -83,7 +83,7 @@ notify_user         = ${user_email}
 notification        = Error
 
 JOBNAME             = pointing_training_ES_70MeV_noiseless-from${first}to${last}
-executable          = ${REPO_HOME}/scripts/run-sn-simulation.sh
+executable          = ${REPO_HOME}/scripts/triggersim.sh
 # using the arguments from below, not this line
 # arguments           = -m ${gen_fcl} --custom-energy 70 70 -g -d -r -n 100 -f \$(ProcId)
 output              = ${REPO_HOME}/condor/job_output/job.\$(JOBNAME).\$(ClusterId).\$(ProcId).out

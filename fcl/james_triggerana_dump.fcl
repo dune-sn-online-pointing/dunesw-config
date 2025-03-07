@@ -1,0 +1,1040 @@
+# Produced from 'fhicl-dump' using:
+#   Input  : james_triggerana.fcl
+#   Policy : cet::filepath_maker
+#   Path   : "FHICL_FILE_PATH"
+
+adcPlotDftTemplate: {
+   ChannelSelection: ""
+   ChannelStatusFlag: 0
+   HistSummaryTitle: ""
+   LogLevel: 1
+   PlotChannelGroups: []
+   PlotChannelRanges: []
+   PlotDataView: ""
+   PlotName: ""
+   PlotOverlayGroups: 1
+   PlotSizeX: 1400
+   PlotSizeY: 1000
+   PlotSplitX: 4
+   PlotSplitY: 4
+   PlotSummaryNames: []
+   SampleFreq: 2000
+   XMax: 0
+   XMin: 0
+   YMinLog: 0
+   tool_type: "AdcChannelDftPlotter"
+}
+adcSampleFreq: 2000
+data: {
+   dune_ClockUnit: "Mtick"
+   dune_TriggerClockRate: 5e7
+}
+outputs: {
+   out1: {
+      compressionLevel: 1
+      fileName: "tc_output.root"
+      module_type: "RootOutput"
+      saveMemoryObjectThreshold: 0
+   }
+}
+physics: {
+   ana: [
+      "triggerAna"
+   ]
+   analyzers: {
+      triggerAna: {
+         dump_mctruths: true
+         dump_simides: false
+         dump_ta: true
+         dump_tc: true
+         dump_tp: true
+         module_type: "TriggerAnaTree"
+         simchannel_tag: "tpcrawdecoder:simpleSC"
+      }
+   }
+   end_paths: [
+      "stream1",
+      "ana"
+   ]
+   producers: {
+      tamakerTPC: {
+         algconfig_plane0: {
+            adj_tolerance: 0
+            adjacency_threshold: 2
+            window_length: 4000
+         }
+         algconfig_plane1: {
+            adj_tolerance: 0
+            adjacency_threshold: 2
+            window_length: 4000
+         }
+         algconfig_plane2: {
+            adj_tolerance: 0
+            adjacency_threshold: 2
+            window_length: 4000
+         }
+         algorithm: "TriggerActivityMakerChannelAdjacencyPlugin"
+         flush: true
+         module_type: "TriggerActivityMakerTPC"
+         tp_tag: "tpmakerTPC"
+         verbosity: 1
+      }
+      tcmakerTPC: {
+         algconfig: {
+            adc_threshold: 2000
+            adj_tolerance: 4
+            adjacency_threshold: 6
+            bundle_size: 100
+            eps: 20
+            max_channel_distance: 50
+            max_tp_count: 1000
+            min_pts: 7
+            min_tps: 20
+            n_channels_threshold: 120
+            prescale: 1
+            print_tp_info: 0
+            trigger_on_adc: 1
+            trigger_on_adjacency: 1
+            trigger_on_n_channels: 0
+            window_length: 8000
+         }
+         algorithm: "TriggerCandidateMakerADCSimpleWindowPlugin"
+         module_type: "TriggerCandidateMakerTPC"
+         ta_tag: "tamakerTPC"
+         verbosity: 1
+      }
+      tpmakerTPC: {
+         module_type: "TriggerPrimitiveMakerTPC"
+         rawdigit_tag: "tpcrawdecoder:daq"
+         tpalg: {
+            threshold_tpg_plane0: -1
+            threshold_tpg_plane1: -1
+            threshold_tpg_plane2: 14
+            tool_type: "TPAlgTPCSimpleThreshold"
+            verbosity: 0
+         }
+      }
+   }
+   reco: [
+      "tpmakerTPC",
+      "tamakerTPC",
+      "tcmakerTPC"
+   ]
+   stream1: [
+      "out1"
+   ]
+   trigger_paths: [
+      "reco"
+   ]
+}
+process_name: "TriggerSimOnline"
+services: {
+   Geometry: {
+      GDML: "dune10kt_v6_refactored_1x2x6.gdml"
+      Name: "dune10kt_v6_1x2x6"
+      SortingParameters: {
+         tool_type: "GeoObjectSorterAPA"
+      }
+      SurfaceY: 147828
+   }
+   IFDH: {}
+   RandomNumberGenerator: {}
+   TFileService: {
+      fileName: "triggerAna.root"
+   }
+   WireReadout: {
+      ChannelsPerOpDet: 1
+      service_provider: "DUNEWireReadout"
+   }
+   message: {
+      debugModules: [
+         "*"
+      ]
+      destinations: {
+         LogDebugFile: {
+            append: false
+            categories: {
+               default: {
+                  limit: 0
+               }
+            }
+            filename: "debugprod.log"
+            threshold: "DEBUG"
+            type: "file"
+         }
+         LogStandardError: {
+            categories: {
+               default: {}
+}
+            threshold: "ERROR"
+            type: "cerr"
+}
+         LogStandardOut: {
+            categories: {
+               ArtReport: {
+                  limit: -1
+               }
+               default: {
+                  limit: 0
+               }
+            }
+            threshold: "INFO"
+            type: "cout"
+         }
+      }
+   }
+}
+source: {
+   maxEvents: 10
+   module_type: "RootInput"
+   saveMemoryObjectThreshold: 0
+}
+tools: {
+   adcChannelDumper: {
+      FileName: ""
+      MaxSample: 0
+      NewFile: false
+      Prefix: "ADC dump: "
+      tool_type: "AdcChannelDumper"
+   }
+   adcChannelNotSignalRmsPlotter: {
+      ChannelLineModulus: 0
+      ChannelLinePattern: []
+      ChannelLinePatternSolid: []
+      ChannelRanges: []
+      DataView: ""
+      HistName: "hchnsgrms_%0RUN%_%0EVENT%_%0CHAN1%_%0CHAN2%"
+      HistTitle: "ADC not-signal RMS for run %RUN% event %EVENT%"
+      LogLevel: 1
+      MetadataFlags: []
+      Metric: "nsgRms"
+      MetricBins: 0
+      MetricLabel: "RMS [ke]"
+      MetricMax: 11
+      MetricMin: 0
+      MetricSummaryView: ""
+      PedestalReference: ""
+      PlotFileName: "%TPMPRE%hchnsgrms_run%0RUN%_evt%0EVENT%_chans%0CHAN1%-%0CHAN2%%TPMSUF%"
+      PlotSizeX: 1400
+      PlotSizeY: 500
+      PlotUsesStatus: 0
+      RootFileName: ""
+      tool_type: "AdcChannelMetric"
+   }
+   adcChannelPedestalPlotter: {
+      ChannelLineModulus: 0
+      ChannelLinePattern: []
+      ChannelLinePatternSolid: []
+      ChannelRanges: []
+      DataView: ""
+      HistName: "hchped_%0RUN%_%0EVENT%_%0CHAN1%_%0CHAN2%"
+      HistTitle: "ADC pedestals for run %RUN% event %EVENT%"
+      LogLevel: 1
+      MetadataFlags: []
+      Metric: "pedestal"
+      MetricBins: 0
+      MetricLabel: "Pedestal"
+      MetricMax: 4096
+      MetricMin: 0
+      MetricSummaryView: ""
+      PedestalReference: ""
+      PlotFileName: "%TPMPRE%hchped_run%0RUN%_evt%0EVENT%_chans%0CHAN1%-%0CHAN2%%TPMSUF%"
+      PlotSizeX: 1400
+      PlotSizeY: 500
+      PlotUsesStatus: 0
+      RootFileName: ""
+      tool_type: "AdcChannelMetric"
+   }
+   adcChannelPedestalRmsPlotter: {
+      ChannelLineModulus: 0
+      ChannelLinePattern: []
+      ChannelLinePatternSolid: []
+      ChannelRanges: []
+      DataView: ""
+      HistName: "hchpedrms_%0RUN%_%0EVENT%_%0CHAN1%_%0CHAN2%"
+      HistTitle: "ADC pedestal RMS for run %RUN% event %EVENT%"
+      LogLevel: 1
+      MetadataFlags: []
+      Metric: "pedestalRms"
+      MetricBins: 0
+      MetricLabel: "RMS"
+      MetricMax: 11
+      MetricMin: 0
+      MetricSummaryView: ""
+      PedestalReference: ""
+      PlotFileName: "%TPMPRE%hchpedrms_run%0RUN%_evt%0EVENT%_chans%0CHAN1%-%0CHAN2%%TPMSUF%"
+      PlotSizeX: 1400
+      PlotSizeY: 500
+      PlotUsesStatus: 0
+      RootFileName: ""
+      tool_type: "AdcChannelMetric"
+   }
+   adcChannelSamplelRmsPlotter: {
+      ChannelLineModulus: 0
+      ChannelLinePattern: []
+      ChannelLinePatternSolid: []
+      ChannelRanges: []
+      DataView: ""
+      HistName: "hchsamrms_%0RUN%_%0EVENT%_%0CHAN1%_%0CHAN2%"
+      HistTitle: "ADC sample RMS for run %RUN% event %EVENT%"
+      LogLevel: 1
+      MetadataFlags: []
+      Metric: "samRms"
+      MetricBins: 0
+      MetricLabel: "RMS [ke]"
+      MetricMax: 11
+      MetricMin: 0
+      MetricSummaryView: ""
+      PedestalReference: ""
+      PlotFileName: "%TPMPRE%hchsamrms_run%0RUN%_evt%0EVENT%_chans%0CHAN1%-%0CHAN2%%TPMSUF%"
+      PlotSizeX: 1400
+      PlotSizeY: 500
+      PlotUsesStatus: 0
+      RootFileName: ""
+      tool_type: "AdcChannelMetric"
+   }
+   adcChannelSignalRmsPlotter: {
+      ChannelLineModulus: 0
+      ChannelLinePattern: []
+      ChannelLinePatternSolid: []
+      ChannelRanges: []
+      DataView: ""
+      HistName: "hchsigrms_%0RUN%_%0EVENT%_%0CHAN1%_%0CHAN2%"
+      HistTitle: "ADC signal RMS for run %RUN% event %EVENT%"
+      LogLevel: 1
+      MetadataFlags: []
+      Metric: "sigRms"
+      MetricBins: 0
+      MetricLabel: "RMS [ke]"
+      MetricMax: 11
+      MetricMin: 0
+      MetricSummaryView: ""
+      PedestalReference: ""
+      PlotFileName: "%TPMPRE%hchsigrms_run%0RUN%_evt%0EVENT%_chans%0CHAN1%-%0CHAN2%%TPMSUF%"
+      PlotSizeX: 1400
+      PlotSizeY: 500
+      PlotUsesStatus: 0
+      RootFileName: ""
+      tool_type: "AdcChannelMetric"
+   }
+   adcDPhase3x1x1LocalRoiBuilder: {
+      BinsToAverageForPedestal: 100
+      BinsToSkip: 2
+      LogLevel: 1
+      NConsecBinsAboveThreshold1: 9
+      NConsecBinsAboveThreshold2: 4
+      NSigmaEnd1: 0
+      NSigmaMax: 5
+      NSigmaStart1: 5e-1
+      NSigmaStart2: 1.8
+      PadHigh: 30
+      PadLow: 10
+      UseStandardDeviation: true
+      tool_type: "AdcDPhase3x1x1LocalRoiBuilder"
+   }
+   adcDPhase3x1x1RoiBuilder: {
+      BinsToAverageForRMS: 100
+      BinsToSkip: 0
+      LogLevel: 1
+      NConsecBinsAboveThreshold1: 30
+      NConsecBinsAboveThreshold2: 10
+      NSigmaEnd1: 0
+      NSigmaMax: 7
+      NSigmaStart1: 1
+      NSigmaStart2: 2
+      PadHigh: 50
+      PadLow: 20
+      UseStandardDeviation: false
+      tool_type: "AdcDPhase3x1x1RoiBuilder"
+   }
+   adcDumper: {
+      FileName: ""
+      LogLevel: 1
+      NewFile: false
+      Prefix: "ADC dump for "
+      ShowChannelCount: true
+      ShowFirst: 10
+      ShowFlags: false
+      ShowMax: 20
+      ShowOpt: 2
+      ShowPrepared: true
+      ShowRaw: false
+      ShowRebin: 5
+      ShowThreshold: 10
+      ShowTickCounts: false
+      tool_type: "AdcDataDumper"
+   }
+   adcDuneSignalFinder: {
+      LogLevel: 1
+      NSigmaEnd: 1
+      NSigmaStart: 3
+      NoiseSigma: 0
+      TicksAfter: 50
+      TicksBefore: 50
+      tool_type: "DuneAdcSignalFinder"
+   }
+   adcFFT: {
+      Action: 3
+      DataView: ""
+      FirstTick: 0
+      LogLevel: 1
+      NTick: 0
+      NormOpt: 1
+      ReturnOpt: 1
+      tool_type: "AdcChannelFFT"
+   }
+   adcFFTinv: {
+      Action: 13
+      DataView: ""
+      FirstTick: 0
+      LogLevel: 1
+      NTick: 0
+      NormOpt: 1
+      ReturnOpt: 10
+      tool_type: "AdcChannelFFT"
+   }
+   adcKeepAllSignalFinder: {
+      DataPath: ""
+      LogLevel: 1
+      tool_type: "AdcKeepAllSignalFinder"
+   }
+   adcNoiseSignalFinder: {
+      BinsAfter: 20
+      BinsBefore: 10
+      FlagNegative: true
+      FlagPositive: true
+      LogLevel: 1
+      MaxLoop: 20
+      SigFracMax: 8e-1
+      ThresholdMin: 20
+      ThresholdRatio: 4
+      ThresholdRatioTol: 1e-1
+      tool_type: "AdcNoiseSignalFinder"
+   }
+   adcPlotDftMag: {
+      ChannelSelection: ""
+      ChannelStatusFlag: 0
+      HistName: "hdftmags_run%0RUN%_evt%0EVENT%_ch%0CHAN%"
+      HistSummaryTitle: ""
+      HistTitle: "DFT amplitudes for run %RUN% event %EVENT% channel %CHAN%"
+      LogLevel: 1
+      PlotChannelGroups: []
+      PlotChannelRanges: []
+      PlotDataView: ""
+      PlotName: "%TPMPRE%dftmag_run%0RUN%_evt%0EVENT%_ch%0CHAN%%TPMSUF%"
+      PlotOverlayGroups: 1
+      PlotSizeX: 1400
+      PlotSizeY: 1000
+      PlotSplitX: 4
+      PlotSplitY: 4
+      PlotSummaryNames: []
+      SampleFreq: 2000
+      Variable: "magnitude"
+      XMax: 0
+      XMin: 0
+      YMax: 50
+      YMinLog: 0
+      tool_type: "AdcChannelDftPlotter"
+   }
+   adcPlotDftPhase: {
+      ChannelSelection: ""
+      ChannelStatusFlag: 0
+      HistName: "hdftphas_run%0RUN%_evt%0EVENT%_ch%0CHAN%"
+      HistSummaryTitle: ""
+      HistTitle: "DFT phases for run %RUN% event %EVENT% channel %CHAN%"
+      LogLevel: 1
+      PlotChannelGroups: []
+      PlotChannelRanges: []
+      PlotDataView: ""
+      PlotName: "%TPMPRE%dftpha_run%0RUN%_evt%0EVENT%_ch%0CHAN%%TPMSUF%"
+      PlotOverlayGroups: 1
+      PlotSizeX: 1400
+      PlotSizeY: 1000
+      PlotSplitX: 4
+      PlotSplitY: 4
+      PlotSummaryNames: []
+      SampleFreq: 2000
+      Variable: "phase"
+      XMax: 0
+      XMin: 0
+      YMinLog: 0
+      tool_type: "AdcChannelDftPlotter"
+   }
+   adcPlotDftPower: {
+      ChannelSelection: ""
+      ChannelStatusFlag: 0
+      HistName: "hdftpower_run%0RUN%_evt%0EVENT%_ch%0CHAN%"
+      HistSummaryTitle: ""
+      HistSummaryTitles: [
+         "DFT power for run %RUN%",
+         "DFT power for run %RUN% event %EVENT%"
+      ]
+      HistTitle: "DFT power for run %RUN% event %EVENT% channel %CHAN%"
+      LogLevel: 1
+      NBinX: 50
+      PlotChannelGroups: []
+      PlotChannelRanges: []
+      PlotDataView: ""
+      PlotName: "%TPMPRE%dftpower_run%0RUN%_evt%0EVENT%_ch%0CHAN%%TPMSUF%"
+      PlotOverlayGroups: 1
+      PlotSizeX: 1400
+      PlotSizeY: 1000
+      PlotSplitX: 4
+      PlotSplitY: 4
+      PlotSummaryNames: []
+      SampleFreq: 2000
+      Variable: "power"
+      XMax: 0
+      XMin: 0
+      YMax: 10000
+      YMinLog: 0
+      tool_type: "AdcChannelDftPlotter"
+   }
+   adcPlotDftTickPower: {
+      ChannelSelection: ""
+      ChannelStatusFlag: 0
+      HistName: "hdftpowt_run%0RUN%_evt%0EVENT%_ch%0CHAN%"
+      HistSummaryTitle: ""
+      HistSummaryTitles: [
+         "DFT power for run %RUN%",
+         "DFT power for run %RUN% event %EVENT%"
+      ]
+      HistTitle: "DFT power for run %RUN% event %EVENT% channel %CHAN%"
+      LogLevel: 1
+      NBinX: 50
+      PlotChannelGroups: []
+      PlotChannelRanges: []
+      PlotDataView: ""
+      PlotName: "%TPMPRE%dftpowt_run%0RUN%_evt%0EVENT%_ch%0CHAN%%TPMSUF%"
+      PlotOverlayGroups: 1
+      PlotSizeX: 1400
+      PlotSizeY: 1000
+      PlotSplitX: 4
+      PlotSplitY: 4
+      PlotSummaryNames: [
+         "%TPMPRE%dftpowtlog_run%0RUN%%TPMSUF",
+         ""
+      ]
+      SampleFreq: 2000
+      Variable: "power/tick"
+      XMax: 0
+      XMin: 0
+      YMax: -2
+      YMinLog: 0
+      tool_type: "AdcChannelDftPlotter"
+   }
+   adcPlotDftTickPowerLog: {
+      ChannelSelection: ""
+      ChannelStatusFlag: 0
+      HistName: "hdftpowtlog_run%0RUN%_evt%0EVENT%_ch%0CHAN%"
+      HistSummaryTitle: ""
+      HistSummaryTitles: [
+         "DFT power for run %RUN%",
+         "DFT power for run %RUN% event %EVENT%"
+      ]
+      HistTitle: "DFT power for run %RUN% event %EVENT% channel %CHAN%"
+      LogLevel: 1
+      NBinX: 50
+      PlotChannelGroups: []
+      PlotChannelRanges: []
+      PlotDataView: ""
+      PlotName: "%TPMPRE%dftpowtlog_run%0RUN%_evt%0EVENT%_ch%0CHAN%%TPMSUF%"
+      PlotOverlayGroups: 1
+      PlotSizeX: 1400
+      PlotSizeY: 1000
+      PlotSplitX: 4
+      PlotSplitY: 4
+      PlotSummaryNames: [
+         "%TPMPRE%dftpowtlog_run%0RUN%%TPMSUF",
+         ""
+      ]
+      SampleFreq: 2000
+      Variable: "power/tick"
+      XMax: 0
+      XMin: 0
+      YMax: 100
+      YMinLog: 1e-2
+      tool_type: "AdcChannelDftPlotter"
+   }
+   adcPlotPrepared: {
+      ColorBad: 633
+      ColorNoisy: 636
+      HistName: "adc_%TYPE%_ev%EVENT%_ch%CHAN%"
+      HistTitle: "ADC %TYPE% run %RUN% event %EVENT% channel %CHAN%"
+      HistTypes: [
+         "prepared"
+      ]
+      LabelSize: 1e-2
+      LogLevel: 1
+      PlotDistMax: 0
+      PlotDistMin: 0
+      PlotFileName: ""
+      PlotSamMax: 1000
+      PlotSamMin: 0
+      PlotSigMax: 0
+      PlotSigMin: 0
+      PlotSigOpt: "full"
+      RootFileName: ""
+      SkipFlags: []
+      tool_type: "AdcChannelPlotter"
+   }
+   adcPlotRaw: {
+      ColorBad: 633
+      ColorNoisy: 636
+      HistName: "adc_%TYPE%_ev%EVENT%_ch%CHAN%"
+      HistTitle: "ADC %TYPE% run %RUN% event %EVENT% channel %CHAN%"
+      HistTypes: [
+         "raw"
+      ]
+      LabelSize: 1e-2
+      LogLevel: 1
+      PlotDistMax: 0
+      PlotDistMin: 0
+      PlotFileName: ""
+      PlotSamMax: 1000
+      PlotSamMin: 0
+      PlotSigMax: 0
+      PlotSigMin: 100
+      PlotSigOpt: "pedestal"
+      RootFileName: ""
+      SkipFlags: []
+      tool_type: "AdcChannelPlotter"
+   }
+   adcPlotRawDist: {
+      ColorBad: 633
+      ColorNoisy: 636
+      HistName: "adc_%TYPE%_ev%EVENT%_ch%CHAN%"
+      HistTitle: "ADC %TYPE% run %RUN% event %EVENT% channel %CHAN%"
+      HistTypes: [
+         "rawdist"
+      ]
+      LabelSize: 1e-2
+      LogLevel: 1
+      PlotDistMax: 0
+      PlotDistMin: 0
+      PlotFileName: ""
+      PlotSamMax: 1000
+      PlotSamMin: 0
+      PlotSigMax: 0
+      PlotSigMin: 0
+      PlotSigOpt: "full"
+      RootFileName: ""
+      SkipFlags: []
+      tool_type: "AdcChannelPlotter"
+   }
+   adcRawDumper: {
+      FileName: ""
+      LogLevel: 1
+      NewFile: false
+      Prefix: "ADC raw dump for "
+      ShowChannelCount: true
+      ShowFirst: 0
+      ShowFlags: false
+      ShowMax: 20
+      ShowOpt: 1
+      ShowPrepared: false
+      ShowRaw: true
+      ShowRebin: 0
+      ShowThreshold: 10
+      ShowTickCounts: false
+      tool_type: "AdcDataDumper"
+   }
+   adcRoiFitter: {
+      ChanSumHists: []
+      ChanSumRootFileName: ""
+      ChannelLineModulus: 0
+      ChannelLinePattern: []
+      ChannelLinePatternSolid: []
+      ChannelRanges: []
+      FitOpt: 1
+      LogLevel: 1
+      MaxRoiPlots: 1000
+      PlotLabels: []
+      PulserChargeUnit: ""
+      PulserDacOffset: 0
+      PulserStepCharge: 0
+      RoiHistOpt: 1
+      RoiPlotOpt: 2
+      RoiPlotPadX: 4
+      RoiPlotPadY: 4
+      RoiRootFileName: ""
+      RunDataTool: ""
+      SigThresh: 0
+      StartTime: 0
+      SumHists: []
+      SumNegate: false
+      SumPlotPadX: 4
+      SumPlotPadY: 4
+      SumRootFileName: ""
+      TickBorder: 0
+      TickOffsetTool: ""
+      tool_type: "AdcRoiViewer"
+   }
+   adcRoiTreeMaker: {
+      LogLevel: 1
+      MetadataFields: []
+      OutFile: "adcrois.root"
+      tool_type: "AdcRoiToTree"
+   }
+   adcRoiViewer: {
+      ChanSumHists: []
+      ChanSumRootFileName: ""
+      ChannelLineModulus: 0
+      ChannelLinePattern: []
+      ChannelLinePatternSolid: []
+      ChannelRanges: []
+      FitOpt: 0
+      LogLevel: 1
+      MaxRoiPlots: 1000
+      PlotLabels: []
+      PulserChargeUnit: ""
+      PulserDacOffset: 0
+      PulserStepCharge: 0
+      RoiHistOpt: 1
+      RoiPlotOpt: 2
+      RoiPlotPadX: 4
+      RoiPlotPadY: 4
+      RoiRootFileName: ""
+      RunDataTool: ""
+      SigThresh: 0
+      StartTime: 0
+      SumHists: []
+      SumNegate: false
+      SumPlotPadX: 4
+      SumPlotPadY: 4
+      SumRootFileName: ""
+      TickBorder: 0
+      TickOffsetTool: ""
+      tool_type: "AdcRoiViewer"
+   }
+   adcSampleCalibration: {
+      AdcOverflowDefault: 4095
+      AdcUnderflowDefault: 0
+      GainDefault: 0
+      GainTool: "areaGain_calib20191213_dec18ext"
+      LogLevel: 1
+      ScaleFactor: 1
+      Unit: "ke/tick"
+      tool_type: "FloatArrayGainCalibration"
+   }
+   adcSampleFiller: {
+      AdcOverflow: 4095
+      AdcUnderflow: 0
+      LogLevel: 1
+      tool_type: "AdcSampleFiller"
+   }
+   adcScaleAdcToKe: {
+      InputUnit: "ADC count"
+      LogLevel: 1
+      OutputUnit: "ke/tick"
+      ScaleFactor: 2.5e-2
+      tool_type: "AdcSampleScaler"
+   }
+   adcScaleKeToAdc: {
+      InputUnit: "ke/tick"
+      LogLevel: 1
+      OutputUnit: "ADC count"
+      ScaleFactor: 40
+      tool_type: "AdcSampleScaler"
+   }
+   adcSliceNotRoi: {
+      CopyRaw: false
+      LogLevel: 1
+      OutViewName: "notrois"
+      SliceOpt: 2
+      tool_type: "AdcRoiSlicer"
+   }
+   adcSliceRoi: {
+      CopyRaw: false
+      LogLevel: 1
+      OutViewName: "rois"
+      SliceOpt: 1
+      tool_type: "AdcRoiSlicer"
+   }
+   adcStringBuilder: {
+      ChannelWidth: 5
+      CountWidth: 4
+      EventWidth: 6
+      FembWidth: 3
+      LogLevel: 1
+      RunWidth: 6
+      SubRunWidth: 4
+      TpmPrefix: ""
+      TpmSuffix: ".png"
+      TrigNames: [
+         "flag 0",
+         "flag 1",
+         "flag 2",
+         "flag 3",
+         "flag 4",
+         "flag 5",
+         "flag 6",
+         "flag 7",
+         "random",
+         "flag 9",
+         "flag 10",
+         "flag 11",
+         "beam",
+         "CRT",
+         "NGT"
+      ]
+      TriggerWidth: 2
+      tool_type: "StandardAdcChannelStringTool"
+   }
+   adcSubtractBaseline: {
+      BaseSampleBins: 32
+      BaseVarCut: 5
+      LogLevel: 1
+      tool_type: "SubtractBaseline"
+   }
+   adcThresholdSignalFinder: {
+      BinsAfter: 20
+      BinsBefore: 10
+      FlagNegative: true
+      FlagPositive: true
+      LogLevel: 1
+      Threshold: "3.0"
+      tool_type: "AdcThresholdSignalFinder"
+   }
+   adcVintageDeconvoluter: {
+      LogLevel: 1
+      tool_type: "VintageDeconvoluter"
+   }
+   adcsim_ideal: {
+      Nbit: 12
+      Vsen: 1
+      tool_type: "IdealAdcSimulator"
+   }
+   adcsim_noisy: {
+      Nbit: 12
+      Noise: 5
+      Vsen: 1
+      tool_type: "NoisyAdcSimulator"
+   }
+   apa_evtviewNfemb: {
+      ChannelRangeLabel: ""
+      ChannelRanges: []
+      ClockRate: 5e7
+      ClockUnit: "Mtick"
+      EventGraphs: [
+         "event:events:1:nfemb:0:21"
+      ]
+      EventHists: [
+         "hnfemb:21:0:21"
+      ]
+      LogLevel: 2
+      tool_type: "AdcEventViewer"
+   }
+   calibNoiseSignalFinder: {
+      BinsAfter: 20
+      BinsBefore: 10
+      FlagNegative: true
+      FlagPositive: true
+      LogLevel: 1
+      MaxLoop: 20
+      SigFracMax: 8e-1
+      ThresholdMin: 2e-1
+      ThresholdRatio: 4
+      ThresholdRatioTol: 1e-1
+      tool_type: "AdcNoiseSignalFinder"
+   }
+   calibThresholdSignalFinder: {
+      BinsAfter: 20
+      BinsBefore: 10
+      FlagNegative: true
+      FlagPositive: true
+      LogLevel: 1
+      Threshold: 5e-1
+      tool_type: "AdcThresholdSignalFinder"
+   }
+   channelStatus: {
+      LogLevel: 1
+      tool_type: "ChannelStatusServiceTool"
+   }
+   channelStatusFromService: {
+      LogLevel: 1
+      tool_type: "ChannelStatusServiceTool"
+   }
+   def_adcPedestalFit: {
+      AdcFitRange: 100
+      AdcRange: 4096
+      FitOpt: 0
+      FitPrecision: 1
+      FitRmsMax: 20
+      FitRmsMin: 1
+      HistManager: ""
+      HistName: "adcped_ev%0EVENT%_ch%0CHAN%"
+      HistTitle: "ADC pedestal fit for run %RUN% event %EVENT% channel %CHAN%"
+      LogLevel: 1
+      PlotFileName: ""
+      PlotShowFit: 1
+      PlotSizeX: 1400
+      PlotSizeY: 1000
+      PlotSplitX: 4
+      PlotSplitY: 4
+      RemoveStickyCode: false
+      RootFileName: ""
+      SkipFlags: []
+      tool_type: "AdcPedestalFitter"
+   }
+   digitReader: {
+      LogLevel: 1
+      tool_type: "AcdDigitReader"
+   }
+   hdcbRunDataTool: {
+      FileNames: [
+         "rundata/hdcb/rundata.fcl",
+         "rundata/hdcb/rundata%RUN%.fcl"
+      ]
+      LogLevel: 1
+      tool_type: "FclRunDataTool"
+   }
+   histMgr: {
+      LogLevel: 1
+      tool_type: "SimpleHistogramManager"
+   }
+   jobRanges: {
+      LogLevel: 1
+      events: {
+         begin: 0
+         end: 0
+         labels: []
+      }
+      tool_type: "FclIndexRangeTool"
+   }
+   lemEfficiency: {
+      DefaultValue: 0
+      FileNames: [
+         "crp/protodunedp/lem_efficiency_v29102019.fcl"
+      ]
+      Label: "lem_eff_29102019"
+      LogLevel: 1
+      tool_type: "FclFileFloatArray"
+   }
+   preparedAdcPlotter: {
+      ChannelLineModulus: 2560
+      ChannelLinePattern: [
+         0,
+         800,
+         1600,
+         2080
+      ]
+      ChannelLinePatternSolid: []
+      ChannelRanges: []
+      ClockFactor: 0
+      ClockOffset: 0
+      DataType: 0
+      DataView: ""
+      EmptyColor: 18
+      FembTickOffsets: []
+      HistName: "hadcprp_evt%EVENT%_ch_%CHAN1%"
+      HistTitle: "Prepared ADC for run %RUN% event %EVENT%"
+      LogLevel: 1
+      MaxSignal: 200
+      Palette: 2020
+      PlotFileName: "%TPMPRE%adcprep_evt%EVENT%_ch%CHAN1%-%CHAN2%%TPMSUF%"
+      PlotSizeX: 1400
+      PlotSizeY: 1000
+      PlotTitle: ""
+      RootFileName: ""
+      SkipChannelStatus: []
+      TickRange: "plotTicks"
+      TickRebin: 1
+      tool_type: "AdcDataPlotter"
+   }
+   protoduneRunDataTool: {
+      FileNames: [
+         "rundata/protodune/rundata.fcl",
+         "rundata/protodune/rundata%RUN%.fcl"
+      ]
+      LogLevel: 1
+      tool_type: "FclRunDataTool"
+   }
+   rawAdcPlotter: {
+      ChannelLineModulus: 2560
+      ChannelLinePattern: [
+         0,
+         800,
+         1600,
+         2080
+      ]
+      ChannelLinePatternSolid: []
+      ChannelRanges: []
+      ClockFactor: 0
+      ClockOffset: 0
+      DataType: 1
+      DataView: ""
+      EmptyColor: 18
+      FembTickOffsets: []
+      HistName: "hadcraw_evt%EVENT%_ch_%CHAN1%"
+      HistTitle: "Raw ADC for run %RUN% event %EVENT%"
+      LogLevel: 1
+      MaxSignal: 200
+      Palette: 2020
+      PlotFileName: "%TPMPRE%adcrawRun%0RUN%Event%0EVENT%Chan%CHAN1%-%CHAN2%%TPMSUF%"
+      PlotSizeX: 1400
+      PlotSizeY: 1000
+      PlotTitle: ""
+      RootFileName: ""
+      SkipChannelStatus: []
+      TickRange: "plotTicks"
+      TickRebin: 1
+      tool_type: "AdcDataPlotter"
+   }
+   signalAdcPlotter: {
+      ChannelLineModulus: 2560
+      ChannelLinePattern: [
+         0,
+         800,
+         1600,
+         2080
+      ]
+      ChannelLinePatternSolid: []
+      ChannelRanges: []
+      ClockFactor: 0
+      ClockOffset: 0
+      DataType: 2
+      DataView: ""
+      EmptyColor: 18
+      FembTickOffsets: []
+      HistName: "hadcsig_evt%EVENT%_ch_%CHAN1%"
+      HistTitle: "Signal ADC for run %RUN% event %EVENT%"
+      LogLevel: 1
+      MaxSignal: 200
+      Palette: 2020
+      PlotFileName: "%TPMPRE%adcsig_evt%EVENT%_ch%CHAN1%-%CHAN2%%TPMSUF%"
+      PlotSizeX: 1400
+      PlotSizeY: 1000
+      PlotTitle: ""
+      RootFileName: ""
+      SkipChannelStatus: []
+      TickRange: "plotTicks"
+      TickRebin: 1
+      tool_type: "AdcDataPlotter"
+   }
+   tickRanges: {
+      LogLevel: 1
+      allTicks: {
+         begin: 0
+         end: 0
+         labels: [
+            "All ticks"
+         ]
+      }
+      plotAllTicks: {
+         begin: 0
+         end: 0
+         labels: [
+            "All ticks"
+         ]
+      }
+      plotTicks: {
+         begin: 3000
+         end: 4000
+         labels: [
+            "Plot ticks"
+         ]
+      }
+      tool_type: "FclIndexRangeTool"
+   }
+}

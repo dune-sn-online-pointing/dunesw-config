@@ -32,37 +32,13 @@ function print_help() {
 # Parse command-line arguments
 while [[ $# -gt 0 ]]; do
     case "$1" in
-        -f|--fcl-file)
-            original_fcl="$2"
-            shift
-            shift
-            ;;
-        -m|--min-energy)
-            min_energy="$2"
-            shift
-            shift
-            ;;
-        -M|--max-energy)
-            max_energy="$2"
-            shift
-            shift
-            ;;
-        -o|--output)
-            output_folder="$2"
-            shift
-            shift
-            ;;
-        -v|--verbose)
-            verbose=true
-            shift
-            ;;
-        -h|--help)
-            print_help
-            ;;
-        *)
-            echo "Unknown option: $1"
-            print_help
-            ;;
+        -f|--fcl-file)   original_fcl="$2" shift; shift;;
+        -m|--min-energy) min_energy="$2"; shift; shift;;
+        -M|--max-energy) max_energy="$2"; shift; shift;;
+        -o|--output)     output_folder="$2"; shift; shift;;
+        -v|--verbose)    verbose=true; shift;;
+        -h|--help)       print_help;;
+        *)               echo "Unknown option: $1"; print_help;;
     esac
 done
 
@@ -110,10 +86,12 @@ fi
 # move that file to here just to avoid parsing problems
 filename="${output_folder}${original_fcl%.*}_${min_energy}to${max_energy}MeV.fcl"
 cat <<EOF > $filename
-#include "${original_fcl}.fcl"
+#include "${original_fcl}_dump.fcl"
 
 physics.producers.marley.marley_parameters.source.Emin: $min_energy
 physics.producers.marley.marley_parameters.source.Emax: $max_energy
+
+source.maxEvents: -1
 
 EOF
 

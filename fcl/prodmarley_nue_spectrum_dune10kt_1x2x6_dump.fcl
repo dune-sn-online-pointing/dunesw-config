@@ -1,5 +1,5 @@
 # Produced from 'fhicl-dump' using:
-#   Input  : prodmarley_nue_flat_dune10kt_1x2x6.fcl
+#   Input  : ../../mydunesw/fcl/dunefd/gen/supernova/prodmarley_nue_spectrum_dune10kt_1x2x6.fcl
 #   Policy : cet::filepath_maker
 #   Path   : "FHICL_FILE_PATH"
 
@@ -7,7 +7,7 @@ outputs: {
    out1: {
       compressionLevel: 1
       dataTier: "generated"
-      fileName: "prodmarley_nue_flat_dune10kt_1x2x6_gen.root"
+      fileName: "prodmarley_nue_spectrum_dune10kt_1x2x6_gen.root"
       module_type: "RootOutput"
    }
 }
@@ -18,22 +18,19 @@ physics: {
    producers: {
       marley: {
          marley_parameters: {
-            direction: "isotropic"
+            direction: {
+               x: 0
+               y: 0
+               z: 1
+            }
             reactions: [
-               "ve40ArCC_Bhattacharya2009.react",
-               "ES.react"
+               "ve40ArCC_Bhattacharya2009.react"
             ]
             source: {
-               E_bin_lefts: [
-                  4
-               ]
-               Emax: 70
+               namecycle: "NueSpectrum"
                neutrino: "ve"
-               type: "histogram"
-               weight_flux: false
-               weights: [
-                  1
-               ]
+               tfile: "nue_spectrum.root"
+               type: "tgraph"
             }
          }
          module_type: "MARLEYGen"

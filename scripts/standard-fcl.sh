@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# This script generates a random direction for the neutrino SN explosion
+# This script just updates the maxEvents variable and creates a new fcl file
 
 # this script is meant to be run from inside the dunesw-config repository
 # or git might have problems
@@ -49,11 +49,6 @@ if [[ "$original_fcl" == *".fcl" ]]; then
     original_fcl="${original_fcl%.*}"
 fi
 
-# if the file ends in _customDirection, remove this part
-if [[ "$original_fcl" == *"_customDirection" ]]; then
-    original_fcl="${original_fcl%_*}"
-fi
-
 # if output folder does not finish with /, add it
 if [[ ! -z "$output_folder" ]]; then
     if [[ "$output_folder" != */ ]]; then
@@ -61,38 +56,10 @@ if [[ ! -z "$output_folder" ]]; then
     fi
 fi
 
-# sample theta and phi from a uniform distribution, using generate_theta.py
-if [[ "$verbose" == true ]]; then
-    echo "Generating random theta and phi..."
-fi
-
-direction=$(python3 $REPO_HOME/scripts/generate_direction.py)
-x=$(echo $direction | awk '{print $1}')
-y=$(echo $direction | awk '{print $2}')
-z=$(echo $direction | awk '{print $3}')
-
-if [[ "$verbose" == true ]]; then
-    echo "Generated random direction..."
-    echo "x: $x"
-    echo "y: $y"
-    echo "z: $z"
-fi
-
-# print this in a text file, but delete it first in case it already exists
-rm -f customDirection.txt
-echo "$x" >> ${output_folder}customDirection.txt
-echo "$y" >> ${output_folder}customDirection.txt
-echo "$z" >> ${output_folder}customDirection.txt
-
-
 # Create the .fcl file with the random values, adding a suffix and .fcl to original_fcl
-filename="${output_folder}${original_fcl%.*}_customDirection.fcl"
+filename="${output_folder}${original_fcl}_standard.fcl"
 cat <<EOF > $filename
 #include "${original_fcl}_dump.fcl"
-
-physics.producers.marley.marley_parameters.direction.x: $x
-physics.producers.marley.marley_parameters.direction.y: $y
-physics.producers.marley.marley_parameters.direction.z: $z
 
 source.maxEvents: -1
 
