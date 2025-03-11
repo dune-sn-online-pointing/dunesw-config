@@ -147,8 +147,8 @@ echo "Starting simulation at $start_time"
 
 
 if [ "$run_convert" = true ]; then
-    converted_file="${DATA_PATH}TESTFILE_converted.root"
-    command_convert="lar -c ${CONVERT_FCL}.fcl -n ${number_events} -s ${RAW_DATA_TESTER} -o  ${converted_file}"
+    converted_file="${DATA_PATH}TESTFILE_converted"
+    command_convert="lar -c ${CONVERT_FCL}.fcl -n ${number_events} -s ${RAW_DATA_TESTER} -o  ${converted_file}.root"
     echo "Executing command: $command_convert"
     $command_convert
     
@@ -164,7 +164,7 @@ fi
 
 if [ "$run_reconstruction" = true ]; then
     RECO_OUTPUT="${converted_file}_reco1"
-    command_reco="lar -c ${RECO_FCL}.fcl -s ${converted_file} -o "${RECO_OUTPUT}""
+    command_reco="lar -c ${RECO_FCL}.fcl -s ${converted_file}.root -o ${RECO_OUTPUT}.root"
     echo "Executing command: $command_reco"
     $command_reco
     
@@ -205,6 +205,9 @@ if [ "$clean_folder" = true ]; then
     echo "Cleaning folder..."
     rm -r "$DATA_PATH"
 fi
+
+# go back here
+cd $REPO_HOME
 
 # Print the data path
 echo "If it has not been cleaned, all products are in $DATA_PATH"
