@@ -16,7 +16,8 @@ clean_folder=false
 # fcls, just some casual defaults
 CONVERT_FCL='run_pdhd_tpc_decoder'   
 # RECO_FCL='triggerana_tpc_infodisplay_protodunehd_simpleThr_simpleWin_simpleWin'           
-RECO_FCL='triggerana_tpc_infocomparator_protodunehd_simpleThr_simpleWin_simpleWin'           
+RECO_FCL='triggerana_tpc_infocomparator_protodunehd_simpleThr_simpleWin_simpleWin'     
+HDF5_TESTER="/eos/experiment/neutplatform/protodune/dune/hd-protodune/fd/cd/np04hd_raw_run029424_0003_dataflow0_datawriter_0_20241004T174144.hdf5"      
 
 # other params that is better to initialize
 JSON_SETTINGS=""
@@ -148,7 +149,7 @@ echo "Starting simulation at $start_time"
 
 if [ "$run_convert" = true ]; then
     converted_file="${DATA_PATH}TESTFILE_converted"
-    command_convert="lar -c ${CONVERT_FCL}.fcl -n ${number_events} -s ${RAW_DATA_TESTER} -o  ${converted_file}.root"
+    command_convert="lar -c ${CONVERT_FCL}.fcl -n ${number_events} -s ${HDF5_TESTER} -o  ${converted_file}.root"
     echo "Executing command: $command_convert"
     $command_convert
     

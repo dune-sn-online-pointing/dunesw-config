@@ -29,10 +29,11 @@ protodune_reco_fcls=("triggerana_tree_protodunehd_simpleThr_simpleWin_simpleWin.
     "triggersim_protodunehd_simpleThr_simpleWin_simpleWin")
 
 # pdune_decoder="run_pdhd_wibeth3_tpc_decoder" 
-pdune_decoder="run_pdhd_wibeth_tpc_decoder.fcl" 
-protodune_data_reco_fcls=( "triggerana_tpc_infodisplay_protodunehd_simpleThr_simpleWin_simpleWin.fcl"
-    "triggerana_tpc_infocomparator_protodunehd_simpleThr_simpleWin_simpleWin.fcl"
-    "triggersim_protodunehd_simpleThr_simpleWin_simpleWin")
+pdune_decoder="run_pdhd_tpc_decoder.fcl" 
+protodune_data_reco_fcls=( "triggersim_protodunehd_simpleThr_simpleWin_simpleWin"
+    "triggerana_tree_protodunehd_simpleThr_simpleWin_simpleWin.fcl"
+    "triggerana_tpc_infodisplay_protodunehd_simpleThr_simpleWin_simpleWin.fcl"
+    "triggerana_tpc_infocomparator_protodunehd_simpleThr_simpleWin_simpleWin.fcl")
 
 
 if [ $pdune = true ]; then

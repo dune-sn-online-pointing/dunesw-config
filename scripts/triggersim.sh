@@ -24,8 +24,7 @@ GEN_FCL='prodmarley_nue_spectrum_dune10kt_1x2x2'
 # GEN_FCL='prodmarley_nue_spectrum_radiological_decay0_dune10kt_1x2x2' 
 G4_FCL='supernova_g4_dune10kt_1x2x2'
 DETSIM_FCL='detsim_dune10kt_1x2x2_notpcsigproc'   # check noise
-# RECO_FCL='run_tpalg_dune10kt_1x2x2'           # more complicated than this
-RECO_FCL='run_triggersim_anaTree_1x2x2'           # more complicated than this
+RECO_FCL='triggerana_tree_1x2x2_simpleThr_simpleWin_simpleWin'       
 
 # other params that is better to initialize
 JSON_SETTINGS=""
@@ -39,16 +38,16 @@ print_help() {
     echo "Options:"
     echo "  -j, --json-settings    JSON file with paths and settings. It has to be in the dunesw-config/json folder"
     echo "  --home-config          Path to the dunesw-config folder. Default is the current folder, but it won't work  in Condor"
-    echo "  -m, --marley           Run Marley generation"
-    echo "  -M, --Marley           Parse marley fcl for the folder, without (re)running this step"
-    echo "  --custom-direction Run Marley generation with custom random direction"
-    echo "  --custom-energy        Run Marley generation with custom energy binning, requires two arguments (min and max)"
+    echo "  -m, --marley           Run Generation, historically marley  but can be anything"
+    echo "  -M, --Marley           Parse gen fcl, without (re)running this step"
+    echo "  --custom-direction Run Generation with custom random direction"
+    echo "  --custom-energy        Run Generation with custom energy binning, requires two arguments (min and max)"
     echo "  -g, --g4               Run Geant4 simulation"
-    echo "  -G, --G4               Parse g4 fcl for the folder, without (re)running this step"
+    echo "  -G, --G4               Parse g4 fcl, without (re)running this step"
     echo "  -d, --detsim           Run detector simulation"
-    echo "  -D, --Detsim           Parse detsim fcl for the folder, without (re)running this step"
+    echo "  -D, --Detsim           Parse detsim fcl, without (re)running this step"
     echo "  -r, --reconstruction   Run event reconstruction"
-    echo "  -R, --Reconstruction   Parse reco fcl for the folder, without (re)running this step"
+    echo "  -R, --Reconstruction   Parse reco fcl, without (re)running this step"
     echo "  -n, --n-events         Number of events, default is 1"
     echo "  -s, --source           Parse to NOT source dunesw and local products"
     echo "  -f, --folder-ending    Ending of the name of the output folder"
@@ -56,7 +55,7 @@ print_help() {
     echo "  --delete-root          Delete root files after simulation, to save space. Default is false"
     echo "  -h, --help             Print this help message"
     echo " "
-    echo "Example: ./run-sn-simulation.sh -m myconfig.fcl --custom-energy 2 70 -g -d -r -s -n 1000 -f test --clean-folder false --delete-root false"
+    echo "Example: ./triggersim.sh -m myconfig.fcl --custom-energy 2 70 -g -d -r -s -n 1000 -f test --clean-folder false --delete-root false"
     echo "*****************************************************************************"
     exit 0
 }
@@ -115,14 +114,16 @@ fi
 DUNESW_FOLDER_NAME=$(awk -F'[:,]' '/duneswInstallPath/ {gsub(/"| /, "", $2); print $2}' "$JSON_SETTINGS")
 
 echo "Expecting the software to be in: $DUNESW_FOLDER_NAME"
-setup_dunesw="${DUNESW_FOLDER_NAME}setup.sh"        # put this file in the code folder, selecting the correct version
+setup_dunesw="${REPO_HOME}/scripts/setup_dunesw.sh"        # put this file in the code folder, selecting the correct version
 EOS_FOLDER="/eos/user/e/evilla/dune/sn-tps/"       # standard, for now. Subfolders are selected automatically
-
 
 # Source the required scripts for execution
 if [ "$source_flag" = true ]; then
-    echo 'Setting up dune software...'
-    source $setup_dunesw
+    # extract dunesw version from filename, it assumes there is a local install
+    # and the location is the one in the json file
+    dsw_version=$(basename "$DUNESW_FOLDER_NAME")
+    echo "Setting up dunesw ${dsw_version}..."
+    source $setup_dunesw $dsw_version
 fi
 
 # Add flux files to the path
@@ -156,7 +157,7 @@ SIMULATION_NAME="${GEN_FCL_CHANGED}-${RECO_FCL}-${number_events}events"
 DATA_PATH="${GLOBAL_OUTPUT_FOLDER}${SIMULATION_CATEGORY}/${SIMULATION_NAME}_${OUTFOLDER_ENDING}/"
 FCL_FOLDER="$REPO_HOME/fcl/" 
 
-export FHICL_FILE_PATH="$FCL_FOLDER":$FHICL_FILE_PATH # in this way lar will find the fcl without needing the path
+export FHICL_FILE_PATH="$FCL_FOLDER":$FHICL_FILE_PATH # in this way lar will find the fcls under ../fcl/
 export FHICL_FILE_PATH="$DATA_PATH":$FHICL_FILE_PATH # some fcls are going to be here
 
 # in case there is a previous one, clean it
@@ -209,29 +210,46 @@ fi
 
 cd "$DATA_PATH"
 echo "We are now in $(pwd)"
-echo "Items here are $(ls)"
+echo "Items here are $(ls -l)"
 
 start_time=$(date +%s)
 echo "Starting simulation at $start_time"
 
 # Execute simulations based on options
 if [ "$run_marley" = true ]; then
+
+    echo "Starting Generation..."
+    gen_start_time=$(date +%s)
+    echo "Starting generation at $gen_start_time"
+
     command_marley="lar -c ${DATA_PATH}${GEN_FCL_CHANGED}.fcl -n $number_events -o ${DATA_PATH}${GEN_FCL}.root"
     echo "Executing command: $command_marley"
     $command_marley
 
     # if returns 0, then it was successful
     if [ $? -eq 0 ]; then
-        echo -e " Marley generation done!\n"
+        echo -e " Generation done!\n"
         echo -e " In the folder now we have"
-        echo -e " $(ls) \n"
+        echo -e " $(ls -l) \n"
     else
-        echo " Marley generation failed. Exiting..."
+        echo " Generation failed. Exiting..."
         exit 1
     fi
+
+    gen_end_time=$(date +%s)
+    echo "Ending generation at $gen_end_time"
+    gen_exec_time=$(($gen_end_time - $gen_start_time))
+    echo "Generation took $gen_exec_time seconds"
+    echo "$gen_exec_time" > "${DATA_PATH}execTime.txt"
+
 fi
 
 if [ "$run_g4" = true ]; then
+    
+    echo "Starting Geant4 simulation..."
+    detsim_start_time=$(date +%s)
+    echo "Starting detector simulation at $detsim_start_time"
+
     command_g4="lar -c ${G4_FCL}.fcl -n $number_events -s ${DATA_PATH}${GEN_FCL}.root -o ${DATA_PATH}${GEN_FCL}_g4.root"
     echo "Executing command: $command_g4"
     $command_g4
@@ -248,9 +266,20 @@ if [ "$run_g4" = true ]; then
         exit 1
     fi
     echo ""
+
+    detsim_end_time=$(date +%s)
+    echo "Ending detector simulation at $detsim_end_time"
+    detsim_exec_time=$(($detsim_end_time - $detsim_start_time))
+    echo "G4 simulation took $detsim_exec_time seconds"
+    echo "$detsim_exec_time" > "${DATA_PATH}execTime.txt"
+
 fi
 
 if [ "$run_detsim" = true ]; then
+    
+    detsim_start_time=$(date +%s)
+    echo "Starting detector simulation at $detsim_start_time"
+
     command_detsim="lar -c ${DETSIM_FCL}.fcl -n $number_events -s ${DATA_PATH}${GEN_FCL}_g4.root -o ${DATA_PATH}${GEN_FCL}_g4_detsim.root"
     echo "Executing command: $command_detsim"
     $command_detsim
@@ -258,7 +287,7 @@ if [ "$run_detsim" = true ]; then
     if [ $? -eq 0 ]; then
         echo -e " Detector simulation done!\n"
         echo -e " In the folder now we have"
-        echo -e " $(ls) \n"
+        echo -e " $(ls -l) \n"
         # remove the root file to save memory
         if [ "$delete_root_files" = true ]; then
             rm "${DATA_PATH}${GEN_FCL}_g4.root"
@@ -267,9 +296,20 @@ if [ "$run_detsim" = true ]; then
         echo " Detector simulation failed. Exiting..."
         exit 1
     fi
+
+    detsim_end_time=$(date +%s)
+    echo "Ending detector simulation at $detsim_end_time"
+    detsim_exec_time=$(($detsim_end_time - $detsim_start_time))
+    echo "Detsim took $detsim_exec_time seconds"
+    echo "$detsim_exec_time" > "${DATA_PATH}execTime.txt"
+
 fi
 
 if [ "$run_reconstruction" = true ]; then
+    
+    start_recotime=$(date +%s)
+    echo "Starting reconstruction at $start_recotime"
+
     RECO_OUTPUT="${DATA_PATH}${GEN_FCL}_g4_detsim_reco1.root"
     command_reco="lar -c ${RECO_FCL}.fcl -n $number_events -s ${DATA_PATH}${GEN_FCL}_g4_detsim.root -o "$RECO_OUTPUT""
     echo "Executing command: $command_reco"
@@ -278,7 +318,7 @@ if [ "$run_reconstruction" = true ]; then
     if [ $? -eq 0 ]; then
         echo -e " Reconstruction done! \n"
         echo -e " In the folder now we have"
-        echo "$(ls) \n"
+        echo "$(ls -l) \n"
         # remove the root file to save memory
         if [ "$delete_root_files" = true ]; then
             rm "${DATA_PATH}${GEN_FCL}_g4_detsim.root"
@@ -287,6 +327,12 @@ if [ "$run_reconstruction" = true ]; then
         echo " Reconstruction failed. Exiting..."
         exit 1
     fi
+
+    end_recotime=$(date +%s)
+    echo "Ending reconstruction at $end_recotime"
+    reco_exec_time=$(($end_recotime - $start_recotime))
+    echo "Reconstruction took $reco_exec_time seconds"
+    echo "$reco_exec_time" > "${DATA_PATH}execTime.txt"
 fi
 
 
@@ -299,7 +345,7 @@ echo "Simulation took $exec_time seconds"
 echo "$exec_time" > "${DATA_PATH}execTime.txt"
 
 echo "Currently in ${PWD}"
-echo "Items here are $(ls)"
+echo "Items here are $(ls -l)"
 
 # Delete root files
 if [ "$delete_root_files" = true ]; then
@@ -308,25 +354,24 @@ if [ "$delete_root_files" = true ]; then
     rm -f ./-_detsim_hist.root # Sometimes there is this product, remove it
 fi
 
-# Move all products to the folder
-FINAL_FOLDER="${EOS_FOLDER}${SIMULATION_CATEGORY}/aggregated_${SIMULATION_NAME}/" # TODO grep threshold from somewhere
-echo "Creating final folder $FINAL_FOLDER"
-mkdir -p "$FINAL_FOLDER"
+if [ "$run_reconstruction" = true ] && [[ "$RECO_FCL" == *"trigger"* ]]; then
+    # Move all products to the folder
+    FINAL_FOLDER="${EOS_FOLDER}${SIMULATION_CATEGORY}/aggregated_${SIMULATION_NAME}/" # TODO grep threshold from somewhere
+    echo "Creating final folder $FINAL_FOLDER"
+    mkdir -p "$FINAL_FOLDER"
+    echo "Moving custom direction and TPs to $FINAL_FOLDER"
+    TP_FILE="triggersim_hist.root" # TODO make this absolute or grep it
+    moving_tps="cp ${TP_FILE} ${FINAL_FOLDER}tpstream_${OUTFOLDER_ENDING}.root"
+    echo "$moving_tps"
+    $moving_tps
 
-echo "Moving custom direction, TPs and waveforms to $FINAL_FOLDER"
-
-if [ "$custom_direction" = true ]; then
-    # move the custom direction file
-    moving_custom_direction="cp ${DATA_PATH}customDirection.txt ${FINAL_FOLDER}customDirection_${OUTFOLDER_ENDING}.txt"
-    echo "$moving_custom_direction"
-    $moving_custom_direction
+    if [ "$custom_direction" = true ]; then
+        # move the custom direction file
+        moving_custom_direction="cp ${DATA_PATH}customDirection.txt ${FINAL_FOLDER}customDirection_${OUTFOLDER_ENDING}.txt"
+        echo "$moving_custom_direction"
+        $moving_custom_direction
+    fi
 fi
-
-# TP_FILE="tpstream_standardHF_thresh30_nonoise_MCtruth.root" # TODO make this absolute or grep it
-TP_FILE="triggerAna.root" # TODO make this absolute or grep it
-moving_tps="cp ${TP_FILE} ${FINAL_FOLDER}tpstream_${OUTFOLDER_ENDING}.root"
-echo "$moving_tps"
-$moving_tps
 
 if [ "$clean_folder" = true ]; then
     echo "Cleaning folder..."
@@ -334,5 +379,10 @@ if [ "$clean_folder" = true ]; then
 fi
 
 # Print the data path
+echo "Moving back to $REPO_HOME/scripts"
+cd "$REPO_HOME/scripts"
 echo "If it has not been cleaned, all products are in $DATA_PATH"
-echo "TPs are in $FINAL_FOLDER"
+
+if [ "$run_reconstruction" = true ] && [[ "$RECO_FCL" == *"trigger"* ]]; then
+    echo "TPs are in $FINAL_FOLDER"
+fi
