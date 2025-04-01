@@ -58,7 +58,7 @@ echo "In the file $list_of_jobs there are $n_simulations simulations"
 for i in $(seq 3 $n_lines); do
     
     # if the simulation name containts a "-", stop the execution 
-    if [ "$(sed -n "${i}p" $list_of_jobs | grep -c '\-')" -eq 1 ]; then
+    if [ "$(sed -n "${i}p" $list_of_jobs | grep -c '\--')" -eq 1 ]; then
         echo "Reached end of valid area in the file containing the list of simulations, stopping execution."
         break
     fi
@@ -95,7 +95,7 @@ for i in $(seq 3 $n_lines); do
     executable          = ${REPO_HOME}/scripts/triggersim.sh
     arguments           = -m ${gen_fcl} -g ${g4_fcl} -d ${detsim_fcl} -r ${reco_fcl} -j ${json_settings} -f ${sim_name}_triggerValidationTest -n ${n_events} --home-config ${REPO_HOME}
     output              = ${REPO_HOME}/condor/job_output/${now}_job.\$(JOBNAME).\$(ClusterId).\$(ProcId).out
-    error               = ${REPO_HOME}/condor/job_output/${now}_job.\$(JOBNAME).\$(ClusterId).\$(ProcId).err
+    error               = ${REPO_HOME}/condor/job_output/${now}_job.\$(JOBNAME).\$(ClusterId).\$(ProcId).out
     log                 = ${REPO_HOME}/condor/job_output/${now}_job.\$(JOBNAME).\$(ClusterId).log
     # request_cpus        = 1
     # request_memory      = 2000

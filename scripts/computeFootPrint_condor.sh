@@ -31,13 +31,6 @@ while [[ "$#" -gt 0 ]]; do
     shift
 done
 
-# # if options are null, print help and stop execution
-# if [ -z "$json_settings" ] ; then
-#     echo "Error: Missing json settings"
-#     print_help
-# fi
-
-# read email from json settings file
 user_name=$(whoami)
 
 # for output of condor jobs, TODO make more general
@@ -53,16 +46,16 @@ times=()
 
 # skipping first two lines, header
 for i in $(seq 3 $n_lines); do
-    
-    # if the simulation name containts a "-" or it's the message, skip since it's just the separator
-    # TODO this can be made better everywhere
-    if [ "$(sed -n "${i}p" $list_of_jobs | grep -c '\-')" -eq 1 ] || [ "$(sed -n "${i}p" $list_of_jobs | grep -c 'Under')" -eq 1 ]; then
+    echo ""
+    echo "Reading line $i:"
+    echo "$(sed -n "${i}p" $list_of_jobs)"
+    # if the simulation name contains a "-" or it's the message, skip since it's just the separator
+    if [ "$(sed -n "${i}p" $list_of_jobs | grep -c '\-\-')" -eq 1 ] || [ "$(sed -n "${i}p" $list_of_jobs | grep -c 'Under')" -eq 1 ]; then
         echo "Skipping this line, it's a separator or a comment"
         continue
     fi
 
     line=$(sed -n "${i}p" $list_of_jobs | tr -d '|')
-    # split the line
     sim_name=$(echo $line | awk '{print $1}')
     echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
     echo "Simulation: $sim_name"
@@ -72,16 +65,12 @@ for i in $(seq 3 $n_lines); do
     echo "Output files found: $out_files"
 
     # keep only the most recent one 
-    # this could be done by looking at the date at the beginning of the name, but this works
     most_recent_out_file=$(ls -t $out_files | head -n 1)
     echo "Most recent output file: $most_recent_out_file"
 
     # read lines and find "Simulation took" and "TimeReport CPU"
-    total_time=$(grep "Simulation took" $most_recent_out_file | awk '{print $3}')
+    tot_time=$(grep "Simulation took" $most_recent_out_file | awk '{print $3}')
     echo "Whole simulation took: $total_time"
-    cpu_time=$(grep "TimeReport CPU" $most_recent_out_file | awk '{print $4}')
-    echo "TimeReport CPU: $cpu_time"
-
     echo ""
     gen_time=$(grep "Generation took" $most_recent_out_file | awk '{print $3}')
     echo "Generation took: $gen_time"
@@ -92,17 +81,52 @@ for i in $(seq 3 $n_lines); do
     reco_time=$(grep "Reco took" $most_recent_out_file | awk '{print $3}')
     echo "Reconstruction took: $reco_time"
 
+    stages=("gen" "g4" "detsim" "reco")
+    avg_time=()
+    vmhwm=()
+    vmpeak=()
+
+    for i in {0..3}; do
+        # print the line where Full event first appears
+        echo "Full event appears in line:"
+        grep -n "Full event" "$most_recent_out_file" | awk "NR==$((i+1)) {print}"
+        avg_time[i]=$(grep "Full event" "$most_recent_out_file" | awk "NR==$((i+1)) {print \$4}")
+        echo "VmHWM event appears in line:"
+        grep -n "VmHWM" "$most_recent_out_file" | awk "NR==$((i+1)) {print}"
+        vmhwm[i]=$(grep "VmHWM" "$most_recent_out_file" | awk "NR==$((i+1)) {print \$NF}")
+        echo "Vmpeak event appears in line:"
+        grep -n "VmPeak" "$most_recent_out_file" | awk "NR==$((i+1)) {print}"
+        vmpeak[i]=$(grep "VmPeak" "$most_recent_out_file" | awk "NR==$((i+1)) {print \$NF}")
+        echo "${stages[i]}, time per event ${avg_time[i]}, hw memory ${vmhwm[i]}, memory peak ${vmpeak[i]}"
+    done
+
     # store the times in the array, in columns, aligned
     times+=("$sim_name $total_time $cpu_time $gen_time $g4_time $detsim_time $reco_time")
 
     echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
 done
 
-# echo "sim_short_name | Total time | TimeReport CPU | Generation | G4 | Detsim | Reconstruction"
+# echo "sim_short_name | tot time | Gen tot | Gen per event | G4 tot | G4 per event | Detsim tot | Detsim per event | Reco tot | Reco per event |"
 echo "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
 echo ""
-printf "%-20s | %-12s | %-15s | %-10s | %-5s | %-10s | %-15s\n" "sim_short_name" "Total time" "TimeReport CPU" "Generation" "G4" "Detsim" "Reconstruction"
-echo "--------------------------------------------------------------------------------------------------------------"
+printf "%-20s | %-12s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s |  %-15s |  %-15s |  %-15s |  %-15s |\n" \
+"Simulation" "tot Time" \
+"Gen tot time" "Gen time/ev" "Gen peak mem" "Gen HW mem" \
+"G4 tot time" "G4 time/ev" "G4 peak mem" "G4 HW mem" \
+"Detsim tot time" "Detsim time/ev" "Detsim peak mem" "Detsim HW mem" \
+"Reco tot time" "Reco time/ev" "Reco peak mem" "Reco HW mem"
+
+printf "%-20s | %-12s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s |\n" \
+"Simulation" "tot Time" \
+"Gen tot time" "Gen time/ev" "Gen peak mem" "Gen HW mem" \
+"G4 tot time" "G4 time/ev" "G4 peak mem" "G4 HW mem" \
+"Detsim tot time" "Detsim time/ev" "Detsim peak mem" "Detsim HW mem" \
+"Reco tot time" "Reco time/ev" "Reco peak mem" "Reco HW mem"> $REPO_HOME"/dat/triggerValidation_times.dat"
+
 for time in "${times[@]}"; do
-    printf "%-20s | %-12s | %-15s | %-10s | %-5s | %-10s | %-15s\n" $time
+    echo " IT IS $time"
+    printf "%-20s | %-12s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s |\n" $time
+    printf "%-20s | %-12s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s |\n" $time >> $REPO_HOME"/dat/triggerValidation_times.dat"
 done
+
+echo "Results printed also to $REPO_HOME/dat/triggerValidation_times.dat"

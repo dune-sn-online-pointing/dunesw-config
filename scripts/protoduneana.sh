@@ -91,15 +91,19 @@ fi
 DUNESW_FOLDER_NAME=$(awk -F'[:,]' '/duneswInstallPath/ {gsub(/"| /, "", $2); print $2}' "$JSON_SETTINGS")
 
 echo "Expecting the software to be in: $DUNESW_FOLDER_NAME"
-setup_dunesw="${DUNESW_FOLDER_NAME}setup.sh"        # put this file in the code folder, selecting the correct version
+setup_dunesw="${REPO_HOME}/scripts/setup_dunesw.sh"        # put this file in the code folder, selecting the correct version
 EOS_FOLDER="/eos/user/e/evilla/dune/sn-tps/"       # standard, for now. Subfolders are selected automatically
 
 
 # Source the required scripts for execution
 if [ "$source_flag" = true ]; then
-    echo 'Setting up dune software...'
-    source $setup_dunesw
+    # extract dunesw version from filename, it assumes there is a local install
+    # and the location is the one in the json file
+    dsw_version=$(basename "$DUNESW_FOLDER_NAME")
+    echo "Setting up dunesw ${dsw_version}..."
+    source $setup_dunesw $dsw_version
 fi
+
 
 # Add flux files to the path
 export FW_SEARCH_PATH=$FW_SEARCH_PATH:"$REPO_HOME/dat/"
