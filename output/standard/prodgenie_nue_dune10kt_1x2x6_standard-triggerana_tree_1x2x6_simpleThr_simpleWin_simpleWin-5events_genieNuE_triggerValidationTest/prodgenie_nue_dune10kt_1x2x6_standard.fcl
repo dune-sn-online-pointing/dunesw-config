@@ -1,4 +1,0 @@
-#include "prodgenie_nue_dune10kt_1x2x6_dump.fcl"
-
-source.maxEvents: -1
-

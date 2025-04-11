@@ -1,4 +1,0 @@
-#include "prodbackground_radiological_decay0_dune10kt_1x2x6_centralAPA_dump.fcl"
-
-source.maxEvents: -1
-

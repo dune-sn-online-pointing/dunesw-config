@@ -18,10 +18,10 @@ qualifier="e26"
 specifier="prof"
 export DUNESW_QUALIFIER=${qualifier}:${specifier}
 
-source /afs/cern.ch/work/e/evilla/private/dune/dunesw/$DUNESW_VERSION/localProducts_larsoft_${version}_${qualifier}_${specifier}/setup # this will be the setup in your local installation
+#source /exp/dune/app/users/emvilla/$DUNESW_VERSION/localProducts_larsoft_${version}_${qualifier}_${specifier}/setup # this will be the setup in your local installation
 THIS_PWD=$PWD
-cd $MRB_BUILDDIR
-mrbslp
+#cd $MRB_BUILDDIR
+#mrbslp
 
 echo 'Setting up dunesw version' $DUNESW_VERSION', qualifier' $DUNESW_QUALIFIER '...'
 setup dunesw $DUNESW_VERSION -q $DUNESW_QUALIFIER
