@@ -1,7 +1,9 @@
 #!/bin/bash
 
-REPO_HOME="$(git rev-parse --show-toplevel)"
-echo "REPO_HOME for script submit_triggerProductionTests.sh: $REPO_HOME"
+CONDOR_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+export CONDOR_DIR
+export REPO_HOME=$(dirname $CONDOR_DIR)
+source $REPO_HOME/scripts/init.sh
 
 # parser
 print_help() {
@@ -20,7 +22,7 @@ delete_submit_files=false
 json_settings=""
 first=""
 last=""
-n_events=5 # default, sounds sensible
+n_events=10
 list_of_jobs=$REPO_HOME"/dat/triggerValidation_fcls.dat"
 
 
@@ -36,11 +38,11 @@ while [[ "$#" -gt 0 ]]; do
     shift
 done
 
-# if options are null, print help and stop execution
-if [ -z "$json_settings" ] ; then
-    echo "Error: Missing json settings"
-    print_help
-fi
+echo "Looking for settings file $JSON_SETTINGS. If execution stops, it means that the file was not found."
+findSettings_command="$SCRIPT_DIR/findSettings.sh -s $JSON_SETTINGS"
+# last line of the output of findSettings.sh is the full path of the settings file
+JSON_SETTINGS=$( $findSettings_command | tail -n 1)
+echo -e "Settings file found, full path is: $JSON_SETTINGS \n"
 
 # read email from json settings file
 user_name=$(whoami)
