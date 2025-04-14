@@ -1,0 +1,5 @@
+#include "prodbackground_radiological_decay0_dune10kt_1x2x6_centralAPA.fcl"
+
+physics.simulate: [ rns, CavernwallNeutronsAtLAr1x2x6 ]
+physics.producers.CavernwallNeutronsAtLAr1x2x6.BqPercc: [ 0.00026996, 0.00026996, 0.00026996, 0.00026996, 0.000099313 ]
+# outputs.out1.fileName:    "prodradiological_decay0_cavernneutrons_dune10kt_1x2x6_gen.root"
