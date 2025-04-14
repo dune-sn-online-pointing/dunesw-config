@@ -1,10 +1,9 @@
 #!/bin/bash
 
-# it contains the fcls and the scripts that are called here
-REPO_HOME="$(git rev-parse --show-toplevel)"
-echo "REPO_HOME for script triggersim.sh: $REPO_HOME"
-echo "When running in condor, this won't work. Use the --home-config flag to set the path to the dunesw-config folder"
-# this script has to be run from the dunesw-config area 
+# Initialize env variables
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+export SCRIPT_DIR
+source $SCRIPT_DIR/init.sh
 
 # Default values for simulation stages
 run_marley=false
@@ -55,7 +54,7 @@ print_help() {
     echo "  --delete-root          Delete root files after simulation, to save space. Default is false"
     echo "  -h, --help             Print this help message"
     echo " "
-    echo "Example: ./triggersim.sh -m myconfig.fcl --custom-energy 2 70 -g -d -r -s -n 1000 -f test --clean-folder false --delete-root false"
+    echo "Example: ./$1 -j settings.json -m myconfig.fcl --custom-energy 2 70 -g -d -r -s -n 1000 -f test --clean-folder false --delete-root false"
     echo "*****************************************************************************"
     exit 0
 }
@@ -90,18 +89,11 @@ while [[ $# -gt 0 ]]; do
     esac
 done
 
-# USER SPECIFIC
-# If the JSON file is not provided, stop the script
-if [ -z "$JSON_SETTINGS" ]; then
-    echo "JSON file with paths and settings is required, give it through the flag -j. Exiting..."
-    exit 1
-fi
-
-# in case this is a relative path, add path
-if [[ "$JSON_SETTINGS" != /* ]]; then
-    JSON_SETTINGS="${REPO_HOME}/json/${JSON_SETTINGS}"
-    echo "JSON settings file is $JSON_SETTINGS"
-fi
+echo "Looking for settings file $JSON_SETTINGS. If execution stops, it means that the file was not found."
+findSettings_command="$SCRIPT_DIR/findSettings.sh -s $JSON_SETTINGS"
+# last line of the output of findSettings.sh is the full path of the settings file
+JSON_SETTINGS=$( $findSettings_command | tail -n 1)
+echo -e "Settings file found, full path is: $JSON_SETTINGS \n"
 
 # If REPO_HOME is not set, stop the script
 if [ -z "$REPO_HOME" ]; then
@@ -110,24 +102,21 @@ if [ -z "$REPO_HOME" ]; then
 fi
 
 # Where the dunesw is installed
-# DUNESW_FOLDER_NAME="$(awk -F'""' '/duneswInstallPath/{print $4}' "$JSON_SETTINGS")"
-DUNESW_FOLDER_NAME=$(awk -F'[:,]' '/duneswInstallPath/ {gsub(/"| /, "", $2); print $2}' "$JSON_SETTINGS")
-
-echo "Expecting the software to be in: $DUNESW_FOLDER_NAME"
-setup_dunesw="${REPO_HOME}/scripts/setup_dunesw.sh"        # put this file in the code folder, selecting the correct version
-EOS_FOLDER="/eos/user/e/evilla/dune/sn-tps/"       # standard, for now. Subfolders are selected automatically
+export DUNESW_VERSION=$(awk -F'[:,]' '/duneswVersion/ {gsub(/"| /, "", $2); print $2}' "$JSON_SETTINGS")
+export DUNESW_FOLDER_NAME=$(awk -F'[:,]' '/duneswInstallPath/ {gsub(/"| /, "", $2); print $2}' "$JSON_SETTINGS")
+echo "Setting up dunesw version $DUNESW_VERSION"
+echo "Expecting the software to be in: $DUNESW_FOLDER_NAME. (If empty, no local products are sourced)"
+setup_dunesw="${REPO_HOME}/scripts/setup_dunesw.sh" 
 
 # Source the required scripts for execution
 if [ "$source_flag" = true ]; then
     # extract dunesw version from filename, it assumes there is a local install
     # and the location is the one in the json file
-    dsw_version=$(basename "$DUNESW_FOLDER_NAME")
-    echo "Setting up dunesw ${dsw_version}..."
-    source $setup_dunesw $dsw_version
+    source $setup_dunesw $DUNESW_VERSION
 fi
 
 # Add flux files to the path
-export FW_SEARCH_PATH=$FW_SEARCH_PATH:"$REPO_HOME/dat/"
+export FW_SEARCH_PATH=$FW_SEARCH_PATH:"$DAT_DIR"
 
 # if none of the run commands are true, stop script
 if [ "$run_marley" = false ] && [ "$run_g4" = false ] && [ "$run_detsim" = false ] && [ "$run_reconstruction" = false ]; then
@@ -137,7 +126,14 @@ if [ "$run_marley" = false ] && [ "$run_g4" = false ] && [ "$run_detsim" = false
 fi
 
 # Default path for data
-GLOBAL_OUTPUT_FOLDER="${DUNESW_FOLDER_NAME}output/"
+if [ -n "$DUNESW_FOLDER_NAME" ]; then
+    GLOBAL_OUTPUT_FOLDER="${DUNESW_FOLDER_NAME}output/"
+else
+    GLOBAL_OUTPUT_FOLDER="$(cd "$REPO_HOME/.." && pwd)/${DUNESW_VERSION}/output/"
+fi
+echo "Output folder is $GLOBAL_OUTPUT_FOLDER, creating it in case it does not exist"
+mkdir -p "$GLOBAL_OUTPUT_FOLDER"
+
 GEN_FCL_CHANGED=$GEN_FCL # default value, but will always be changed 
 if [ "$custom_direction" = false ] && [ "$custom_energy" = false ]; then
     SIMULATION_CATEGORY="standard"
@@ -333,6 +329,7 @@ if [ "$run_reconstruction" = true ]; then
     reco_exec_time=$(($end_recotime - $start_recotime))
     echo "Reconstruction took $reco_exec_time seconds"
     echo "$reco_exec_time" > "${DATA_PATH}execTime.txt"
+    echo "Size of the reco file is $(du -h $RECO_OUTPUT | awk '{print $1}')"
 fi
 
 
@@ -354,7 +351,8 @@ if [ "$delete_root_files" = true ]; then
     rm -f ./-_detsim_hist.root # Sometimes there is this product, remove it
 fi
 
-if [ "$run_reconstruction" = true ] && [[ "$RECO_FCL" == *"trigger"* ]]; then
+if [ "$run_reconstruction" = true ] && [[ "$RECO_FCL" == *"trigger"* ]] && [[ $(whoami) == "*villa" ]]; then
+    EOS_FOLDER="/eos/user/e/evilla/dune/sn-tps/"       # standard, for now. Subfolders are selected automatically
     # Move all products to the folder
     FINAL_FOLDER="${EOS_FOLDER}${SIMULATION_CATEGORY}/aggregated_${SIMULATION_NAME}/" # TODO grep threshold from somewhere
     echo "Creating final folder $FINAL_FOLDER"
@@ -383,6 +381,6 @@ echo "Moving back to $REPO_HOME/scripts"
 cd "$REPO_HOME/scripts"
 echo "If it has not been cleaned, all products are in $DATA_PATH"
 
-if [ "$run_reconstruction" = true ] && [[ "$RECO_FCL" == *"trigger"* ]]; then
+if [ "$run_reconstruction" = true ] && [[ "$RECO_FCL" == *"trigger"* ]] && [[ $(whoami) == "*villa" ]]; then
     echo "TPs are in $FINAL_FOLDER"
 fi
