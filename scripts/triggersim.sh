@@ -26,7 +26,7 @@ DETSIM_FCL='detsim_dune10kt_1x2x2_notpcsigproc'   # check noise
 RECO_FCL='triggerana_tree_1x2x2_simpleThr_simpleWin_simpleWin'       
 
 # other params that is better to initialize
-JSON_SETTINGS=""
+JSON_SETTINGS="settings_template.json"
 OUTFOLDER_ENDING=""
 number_events=1
 
@@ -105,7 +105,21 @@ fi
 export DUNESW_VERSION=$(awk -F'[:,]' '/duneswVersion/ {gsub(/"| /, "", $2); print $2}' "$JSON_SETTINGS")
 export DUNESW_FOLDER_NAME=$(awk -F'[:,]' '/duneswInstallPath/ {gsub(/"| /, "", $2); print $2}' "$JSON_SETTINGS")
 echo "Setting up dunesw version $DUNESW_VERSION"
-echo "Expecting the software to be in: $DUNESW_FOLDER_NAME. (If empty, no local products are sourced)"
+echo "Expecting the software to be in: $DUNESW_FOLDER_NAME. (If empty or not valid, no local products are sourced)"
+# check if the folder exists
+if [ -d "$DUNESW_FOLDER_NAME" ]; then
+    echo "Folder $DUNESW_FOLDER_NAME exists"
+    GLOBAL_OUTPUT_FOLDER="${DUNESW_FOLDER_NAME}output/"
+else
+    echo "Folder $DUNESW_FOLDER_NAME does not exist, no local products being sourced."
+    echo "A folder with the dunesw version will be created for the outputs"
+    export DUNESW_FOLDER_NAME="" # empty it
+    GLOBAL_OUTPUT_FOLDER="$(cd "$REPO_HOME/.." && pwd)/${DUNESW_VERSION}/output/"
+fi
+
+echo "Output folder is $GLOBAL_OUTPUT_FOLDER, creating it in case it does not exist"
+mkdir -p "$GLOBAL_OUTPUT_FOLDER"
+
 setup_dunesw="${REPO_HOME}/scripts/setup_dunesw.sh" 
 
 # Source the required scripts for execution
@@ -124,15 +138,6 @@ if [ "$run_marley" = false ] && [ "$run_g4" = false ] && [ "$run_detsim" = false
     print_help
     exit 0
 fi
-
-# Default path for data
-if [ -n "$DUNESW_FOLDER_NAME" ]; then
-    GLOBAL_OUTPUT_FOLDER="${DUNESW_FOLDER_NAME}output/"
-else
-    GLOBAL_OUTPUT_FOLDER="$(cd "$REPO_HOME/.." && pwd)/${DUNESW_VERSION}/output/"
-fi
-echo "Output folder is $GLOBAL_OUTPUT_FOLDER, creating it in case it does not exist"
-mkdir -p "$GLOBAL_OUTPUT_FOLDER"
 
 GEN_FCL_CHANGED=$GEN_FCL # default value, but will always be changed 
 if [ "$custom_direction" = false ] && [ "$custom_energy" = false ]; then

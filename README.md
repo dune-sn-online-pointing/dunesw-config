@@ -2,24 +2,34 @@
 Config to run the simulation to generate TPs from offline, plus some other tools.
 
 These are all bash and python scripts, no installation is needed.  
+The only thing you need to do to run almost everything is set up the dunesw version in the json file.
+Copy from the template to generate your custom file, with also the local install if you have one (not strictly needed).
+The basic json file can be like:
+```json
+{
+  "duneswVersion": "v10_04_07d01"
+}
+```
 
-## Production footpring
+## Production footprint
 
 These are some scripts to run some simulations to validate a pipeline in sight of a possible production.
+They compute the execution time and the memory footprint of a whole simulation until reco1.
 This has been done for a trigger production, but things should be general enough to be adaptable to anything.
 
 On FNAL cluster, the jobs don't take too long to run, so there is no need to submit jobs. 
 The list of simulations is under `dat/triggerValidation_fcls.dat`. 
 All jobs above the separator will be considered by the scripts, one can add or remove (by moving the separator) the jobs to run.
-To run the simulations (recommended 10 events, default), one can use:
+
+The only thing to do is have your json file to give as argument, otherwise the template will be used (and the dunesw version might be out of date).
+It's enough to specify the dunesw version and, only if you installed a dunesw version locally, the local install path.
+After setting upt the slf7 container, to run the simulations (recommended 10 events, default), one can use:
 
 ```bash
-  ./trigger_production/validation-sims.sh -j <json_settings_file> [-n <number_of_events>]
+  ./trigger_production/productionValidationSims.sh -j <json_settings_file> [-n <number_of_events>]
 ```
 
 This is a wrapper around the script `scripts/triggersims.sh`, using the fcls in the dat file.
-The only thing to do is create a json settings file and put it under `json/`. 
-It's enough to specify the dunesw version and, only if you installed a dunesw version locally, the local install path.
 The printout during job execution will be in `trigger_production/`, which is the input folder for the next step.
 You can also run the script to get a printout of the commands with -p, and run the commands separately if you want to do so.
 

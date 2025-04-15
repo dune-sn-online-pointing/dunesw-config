@@ -19,12 +19,13 @@ print_help() {
 
 # init
 delete_submit_files=false
-json_settings=""
+json_settings="settings_template.json"
 first=""
 last=""
-n_events=5 # default, sounds sensible
+n_events=10
 list_of_jobs=$REPO_HOME"/dat/triggerValidation_fcls.dat"
 output_folder="${REPO_HOME}/trigger_production/"
+print_only=false
 
 # parse
 while [[ "$#" -gt 0 ]]; do
