@@ -4,7 +4,7 @@
 echo "Script tagNewVersion.sh started"
 
 export SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
-source ${SCRIPT_DIR}/initialize.sh
+source ${SCRIPT_DIR}/init.sh
 
 print_help() {
     echo "*****************************************************************************"
