@@ -16,7 +16,8 @@ clean_folder=false
 # fcls, just some casual defaults
 CONVERT_FCL='run_pdhd_tpc_decoder'   
 # RECO_FCL='triggerana_tpc_infodisplay_protodunehd_simpleThr_simpleWin_simpleWin'           
-RECO_FCL='triggerana_tpc_infocomparator_protodunehd_simpleThr_simpleWin_simpleWin'           
+RECO_FCL='triggerana_tpc_infocomparator_protodunehd_simpleThr_simpleWin_simpleWin'     
+HDF5_TESTER="/eos/experiment/neutplatform/protodune/dune/hd-protodune/fd/cd/np04hd_raw_run029424_0003_dataflow0_datawriter_0_20241004T174144.hdf5"      
 
 # other params that is better to initialize
 JSON_SETTINGS=""
@@ -90,15 +91,19 @@ fi
 DUNESW_FOLDER_NAME=$(awk -F'[:,]' '/duneswInstallPath/ {gsub(/"| /, "", $2); print $2}' "$JSON_SETTINGS")
 
 echo "Expecting the software to be in: $DUNESW_FOLDER_NAME"
-setup_dunesw="${DUNESW_FOLDER_NAME}setup.sh"        # put this file in the code folder, selecting the correct version
+setup_dunesw="${REPO_HOME}/scripts/setup_dunesw.sh"        # put this file in the code folder, selecting the correct version
 EOS_FOLDER="/eos/user/e/evilla/dune/sn-tps/"       # standard, for now. Subfolders are selected automatically
 
 
 # Source the required scripts for execution
 if [ "$source_flag" = true ]; then
-    echo 'Setting up dune software...'
-    source $setup_dunesw
+    # extract dunesw version from filename, it assumes there is a local install
+    # and the location is the one in the json file
+    dsw_version=$(basename "$DUNESW_FOLDER_NAME")
+    echo "Setting up dunesw ${dsw_version}..."
+    source $setup_dunesw $dsw_version
 fi
+
 
 # Add flux files to the path
 export FW_SEARCH_PATH=$FW_SEARCH_PATH:"$REPO_HOME/dat/"
@@ -147,8 +152,8 @@ echo "Starting simulation at $start_time"
 
 
 if [ "$run_convert" = true ]; then
-    converted_file="${DATA_PATH}TESTFILE_converted.root"
-    command_convert="lar -c ${CONVERT_FCL}.fcl -n ${number_events} -s ${RAW_DATA_TESTER} -o  ${converted_file}"
+    converted_file="${DATA_PATH}TESTFILE_converted"
+    command_convert="lar -c ${CONVERT_FCL}.fcl -n ${number_events} -s ${HDF5_TESTER} -o  ${converted_file}.root"
     echo "Executing command: $command_convert"
     $command_convert
     
@@ -164,7 +169,7 @@ fi
 
 if [ "$run_reconstruction" = true ]; then
     RECO_OUTPUT="${converted_file}_reco1"
-    command_reco="lar -c ${RECO_FCL}.fcl -s ${converted_file} -o "${RECO_OUTPUT}""
+    command_reco="lar -c ${RECO_FCL}.fcl -s ${converted_file}.root -o ${RECO_OUTPUT}.root"
     echo "Executing command: $command_reco"
     $command_reco
     
@@ -205,6 +210,9 @@ if [ "$clean_folder" = true ]; then
     echo "Cleaning folder..."
     rm -r "$DATA_PATH"
 fi
+
+# go back here
+cd $REPO_HOME
 
 # Print the data path
 echo "If it has not been cleaned, all products are in $DATA_PATH"

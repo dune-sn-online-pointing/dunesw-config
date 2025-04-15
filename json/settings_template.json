@@ -1,7 +1,7 @@
 {
-    "IMPORTANT":"This file is just a template with the current settings, it will become bigger. Copy to a file with a different name in this repo, that will be gitignored.",
-    "duneswConfigPath":"/your/config/path/",
-    "duneswInstallPath":"/your/dunesw/install/path/",
-    "username":"evilla/hakins/dpullia/ngallice",
-    "userEmail":"your.email@cern.ch"
+    "COMMENT":"This file is just a template with the current settings. Copy to a file with a different name in this repo, that will be gitignored.",
+    "COMMENT": "The parameter below is the only one that is strictly required.",
+    "duneswVersion":"v10_04_07d01",
+    "COMMENT": "The local install folder is not needed in case you don't have a local install",
+    "duneswInstallPath":"/your/dunesw/install/path/"
 }
