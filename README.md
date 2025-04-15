@@ -3,6 +3,33 @@ Config to run the simulation to generate TPs from offline, plus some other tools
 
 These are all bash and python scripts, no installation is needed.  
 
+## Production footpring
+
+These are some scripts to run some simulations to validate a pipeline in sight of a possible production.
+This has been done for a trigger production, but things should be general enough to be adaptable to anything.
+
+On FNAL cluster, the jobs don't take too long to run, so there is no need to submit jobs. 
+The list of simulations is under `dat/triggerValidation_fcls.dat`. 
+All jobs above the separator will be considered by the scripts, one can add or remove (by moving the separator) the jobs to run.
+To run the simulations (recommended 10 events, default), one can use:
+
+```bash
+  ./trigger_production/validation-sims.sh -j <json_settings_file> [-n <number_of_events>]
+```
+
+This is a wrapper around the script `scripts/triggersims.sh`, using the fcls in the dat file.
+The only thing to do is create a json settings file and put it under `json/`. 
+It's enough to specify the dunesw version and, only if you installed a dunesw version locally, the local install path.
+The printout during job execution will be in `trigger_production/`, which is the input folder for the next step.
+You can also run the script to get a printout of the commands with -p, and run the commands separately if you want to do so.
+
+To extract the footprint of the simulations from the txt files just produced, you can use the python script `scripts/computeFootprint.py` or, easier, the script to do it for all simulations automatically (looking again at the same dat file):
+
+```bash
+  ./trigger_production/allFootprints.sh 
+```
+The output will be in `trigger_production/footprintSummary.txt`.
+
 ## create_random_directions
 
 In here there is a script that can create a catalog of random directions. 
@@ -13,7 +40,6 @@ Usage, visible with the -h option, is
 ```bash
 ./create_random_directions.sh -f <fcl_file> -n <number_of_directions> [-o <output_dir>] [-v]
 ```
-
 
 ## dunesw (aka larsoft) and setting up
 
