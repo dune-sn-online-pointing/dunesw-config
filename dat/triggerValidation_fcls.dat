@@ -12,5 +12,7 @@
 | supernovaES         | prodmarley_nue_flat_ES_dune10kt_1x2x6.fcl                          | supernova_g4_dune10kt_1x2x6.fcl                | detsim_dune10kt_1x2x6_notpcsigproc.fcl | triggerana_tree_1x2x6_simpleThr_simpleWin_simpleWin.fcl |
 | genieNuE            | prodgenie_nue_dune10kt_1x2x6.fcl                                   | standard_g4_dune10kt_1x2x6.fcl             	| detsim_dune10kt_1x2x6_notpcsigproc.fcl | triggerana_tree_1x2x6_simpleThr_simpleWin_simpleWin.fcl |
 | genieNuMu           | prodgenie_nu_dune10kt_1x2x6.fcl                                    | standard_g4_dune10kt_1x2x6.fcl             	| detsim_dune10kt_1x2x6_notpcsigproc.fcl | triggerana_tree_1x2x6_simpleThr_simpleWin_simpleWin.fcl |
+| supernovaCC122      | prodmarley_nue_flat_CC_dune10kt_1x2x2.fcl                          | supernova_g4_dune10kt_1x2x2.fcl                | detsim_dune10kt_1x2x2_notpcsigproc.fcl | triggerana_tree_1x2x2_simpleThr_simpleWin_simpleWin.fcl |
+| supernovaES122      | prodmarley_nue_flat_ES_dune10kt_1x2x2.fcl                          | supernova_g4_dune10kt_1x2x2.fcl                | detsim_dune10kt_1x2x2_notpcsigproc.fcl | triggerana_tree_1x2x2_simpleThr_simpleWin_simpleWin.fcl |
 |---------------------|--------------------------------------------------------------------|------------------------------------------------|----------------------------------------|---------------------------------------------------------|
 Under the separator above, lines won't be read. Move here the simulations you don't want to run.
