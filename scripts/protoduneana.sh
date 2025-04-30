@@ -16,8 +16,9 @@ clean_folder=false
 CONVERT_FCL='run_pdhd_tpc_decoder'   
 # RECO_FCL='triggerana_tpc_infodisplay_protodunehd_simpleThr_simpleWin_simpleWin'           
 RECO_FCL='triggerana_tpc_infocomparator_protodunehd_simpleThr_simpleWin_simpleWin'     
-HDF5_TESTER="/exp/dune/app/users/emvilla/np04hd_raw_run029424_0003_dataflow0_datawriter_0_20241004T174144.hdf5"      
-# HDF5_TESTER="/exp/dune/app/users/dpullia/trigger_dev_test/np04hd_raw_run029424_0011_dataflow0_datawriter_0_20241004T175209.hdf5"
+TESTER_FILE="/exp/dune/app/users/emvilla/np04hd_raw_run029424_0003_dataflow0_datawriter_0_20241004T174144.hdf5"      
+# TESTER_FILE="/exp/dune/app/users/dpullia/trigger_dev_test/np04hd_raw_run029424_0011_dataflow0_datawriter_0_20241004T175209.hdf5"
+INPUT_FILE="$TESTER_FILE" # Default input file, change it if needed
 
 # other params that is better to initialize
 JSON_SETTINGS="settings_template.json"
@@ -31,6 +32,7 @@ print_help() {
     echo "Options:"
     echo "  -j, --json-settings    JSON file with paths and settings. It has to be in the dunesw-config/json folder"
     echo "  --home-config          Path to the dunesw-config folder. Default is the current folder, but it won't work  in Condor"
+    echo "  -i, --input-file       Input hdf5 file"
     echo "  -c, --convert          Convert raw data to root"
     echo "  -C, --convert          Without running"
     echo "  -r, --reconstruction   Run event reconstruction"
@@ -53,6 +55,7 @@ while [[ $# -gt 0 ]]; do
     case "$1" in
         --home-config)       REPO_HOME="${2%/}"; shift 2 ;;
         -j|--json-settings)  JSON_SETTINGS="$2"; shift 2 ;;
+        -i|--input-file)     INPUT_FILE="$2"; shift 2 ;;
         -c|--convert)        run_convert=true; [[ "$2" != -* ]] && CONVERT_FCL="${2%.fcl}" && shift; shift ;;
         -C|--convert)        CONVERT_FCL="${2%.fcl}"; shift 2 ;;
         -r|--reconstruction) run_reconstruction=true; [[ "$2" != -* ]] && RECO_FCL="${2%.fcl}" && shift; shift ;;
@@ -158,7 +161,7 @@ echo "Starting simulation at $start_time"
 
 if [ "$run_convert" = true ]; then
     converted_file="${DATA_PATH}TESTFILE_converted"
-    command_convert="lar -c ${CONVERT_FCL}.fcl -n ${number_events} -s ${HDF5_TESTER} -o  ${converted_file}.root"
+    command_convert="lar -c ${CONVERT_FCL}.fcl -n ${number_events} -s ${INPUT_FILE} -o  ${converted_file}.root"
     echo "Executing command: $command_convert"
     $command_convert
     
