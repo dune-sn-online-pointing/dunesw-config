@@ -1,10 +1,9 @@
 #!/bin/bash
 
-# it contains the fcls and the scripts that are called here
-REPO_HOME="$(git rev-parse --show-toplevel)"
-echo "REPO_HOME for script protoduneana.sh: $REPO_HOME"
-echo "When running in condor, this won't work. Use the --home-config flag to set the path to the dunesw-config folder"
-# this script has to be run from the dunesw-config area 
+# Initialize env variables
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+export SCRIPT_DIR
+source $SCRIPT_DIR/init.sh
 
 # Default values for simulation stages
 run_convert=false
@@ -17,17 +16,18 @@ clean_folder=false
 CONVERT_FCL='run_pdhd_tpc_decoder'   
 # RECO_FCL='triggerana_tpc_infodisplay_protodunehd_simpleThr_simpleWin_simpleWin'           
 RECO_FCL='triggerana_tpc_infocomparator_protodunehd_simpleThr_simpleWin_simpleWin'     
-HDF5_TESTER="/eos/experiment/neutplatform/protodune/dune/hd-protodune/fd/cd/np04hd_raw_run029424_0003_dataflow0_datawriter_0_20241004T174144.hdf5"      
+HDF5_TESTER="/exp/dune/app/users/emvilla/np04hd_raw_run029424_0003_dataflow0_datawriter_0_20241004T174144.hdf5"      
+# HDF5_TESTER="/exp/dune/app/users/dpullia/trigger_dev_test/np04hd_raw_run029424_0011_dataflow0_datawriter_0_20241004T175209.hdf5"
 
 # other params that is better to initialize
-JSON_SETTINGS=""
+JSON_SETTINGS="settings_template.json"
 OUTFOLDER_ENDING=""
 number_events=1
 
 # Function to source scripts and print help message
 print_help() {
     echo "*****************************************************************************"
-    echo "Usage: ./run-sn-simulation.sh -j <yoursettings.json> [options]"
+    echo "Usage: ./$0 -j <yoursettings.json> [options]"
     echo "Options:"
     echo "  -j, --json-settings    JSON file with paths and settings. It has to be in the dunesw-config/json folder"
     echo "  --home-config          Path to the dunesw-config folder. Default is the current folder, but it won't work  in Condor"
@@ -39,7 +39,7 @@ print_help() {
     echo "  -s, --source           Parse to NOT source dunesw and local products"
     echo "  -f, --folder-ending    Ending of the name of the output folder"
     echo "  --clean-folder         Clean the folder after simulation. Default is false"
-    echo "  --celete-root          Delete root files after simulation, to save space. Default is false"
+    echo "  --delete-root          Delete root files after simulation, to save space. Default is false"
     echo "  -h, --help             Print this help message"
     echo " "
     echo "Example: ./run-sn-simulation.sh -m myconfig.fcl --custom-energy 2 70 -g -c -r -s -n 1000 -f test --clean-folder false --celete-root false"
@@ -67,18 +67,12 @@ while [[ $# -gt 0 ]]; do
     esac
 done
 
-# USER SPECIFIC
-# If the JSON file is not provided, stop the script
-if [ -z "$JSON_SETTINGS" ]; then
-    echo "JSON file with paths and settings is required, give it through the flag -j. Exiting..."
-    exit 1
-fi
 
-# in case this is a relative path, add path
-if [[ "$JSON_SETTINGS" != /* ]]; then
-    JSON_SETTINGS="${REPO_HOME}/json/${JSON_SETTINGS}"
-    echo "JSON settings file is $JSON_SETTINGS"
-fi
+echo "Looking for settings file $JSON_SETTINGS. If execution stops, it means that the file was not found."
+findSettings_command="$SCRIPT_DIR/findSettings.sh -s $JSON_SETTINGS"
+# last line of the output of findSettings.sh is the full path of the settings file
+JSON_SETTINGS=$( $findSettings_command | tail -n 1)
+echo -e "Settings file found, full path is: $JSON_SETTINGS \n"
 
 # If REPO_HOME is not set, stop the script
 if [ -z "$REPO_HOME" ]; then
@@ -87,22 +81,35 @@ if [ -z "$REPO_HOME" ]; then
 fi
 
 # Where the dunesw is installed
-# DUNESW_FOLDER_NAME="$(awk -F'""' '/duneswInstallPath/{print $4}' "$JSON_SETTINGS")"
-DUNESW_FOLDER_NAME=$(awk -F'[:,]' '/duneswInstallPath/ {gsub(/"| /, "", $2); print $2}' "$JSON_SETTINGS")
+export DUNESW_VERSION=$(awk -F'[:,]' '/duneswVersion/ {gsub(/"| /, "", $2); print $2}' "$JSON_SETTINGS")
+export DUNESW_FOLDER_NAME=$(awk -F'[:,]' '/duneswInstallPath/ {gsub(/"| /, "", $2); print $2}' "$JSON_SETTINGS")
+echo "Setting up dunesw version $DUNESW_VERSION"
+echo "Expecting the software to be in: $DUNESW_FOLDER_NAME. (If empty or not valid, no local products are sourced)"
+# check if the folder exists
+if [ -d "$DUNESW_FOLDER_NAME" ]; then
+    echo "Folder $DUNESW_FOLDER_NAME exists"
+    GLOBAL_OUTPUT_FOLDER="${DUNESW_FOLDER_NAME}output/"
+else
+    echo "Folder $DUNESW_FOLDER_NAME does not exist, no local products being sourced."
+    echo "A folder with the dunesw version will be created for the outputs"
+    export DUNESW_FOLDER_NAME="" # empty it
+    GLOBAL_OUTPUT_FOLDER="$(cd "$REPO_HOME/.." && pwd)/${DUNESW_VERSION}/output/"
+fi
 
-echo "Expecting the software to be in: $DUNESW_FOLDER_NAME"
-setup_dunesw="${REPO_HOME}/scripts/setup_dunesw.sh"        # put this file in the code folder, selecting the correct version
-EOS_FOLDER="/eos/user/e/evilla/dune/sn-tps/"       # standard, for now. Subfolders are selected automatically
+echo "Output folder is $GLOBAL_OUTPUT_FOLDER, creating it in case it does not exist"
+mkdir -p "$GLOBAL_OUTPUT_FOLDER"
 
+setup_dunesw="${REPO_HOME}/scripts/setup_dunesw.sh" 
 
 # Source the required scripts for execution
 if [ "$source_flag" = true ]; then
     # extract dunesw version from filename, it assumes there is a local install
     # and the location is the one in the json file
-    dsw_version=$(basename "$DUNESW_FOLDER_NAME")
-    echo "Setting up dunesw ${dsw_version}..."
-    source $setup_dunesw $dsw_version
+    source $setup_dunesw $DUNESW_VERSION
 fi
+
+
+EOS_FOLDER="/eos/user/e/evilla/dune/sn-tps/"       # standard, for now. Subfolders are selected automatically
 
 
 # Add flux files to the path
@@ -115,8 +122,6 @@ if [ "$run_convert" = false ] && [ "$run_reconstruction" = false ]; then
     exit 0
 fi
 
-# Default path for data
-GLOBAL_OUTPUT_FOLDER="${DUNESW_FOLDER_NAME}output/"
 
 SIMULATION_NAME="${CONVERT_FCL}-${RECO_FCL}-${number_events}events"
 DATA_PATH="${GLOBAL_OUTPUT_FOLDER}/${SIMULATION_NAME}_${OUTFOLDER_ENDING}/"

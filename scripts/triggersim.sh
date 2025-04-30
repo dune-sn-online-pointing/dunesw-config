@@ -19,8 +19,8 @@ delete_root_files=false
 clean_folder=false
 
 # fcls, just some casual defaults
-GEN_FCL='prodmarley_nue_spectrum_dune10kt_1x2x2'
-# GEN_FCL='prodmarley_nue_spectrum_radiological_decay0_dune10kt_1x2x2' 
+GEN_FCL='prodmarley_nue_flat_CC_dune10kt_1x2x2'
+# GEN_FCL='prodmarley_nue_cc_spectrum_radiological_decay0_dune10kt_1x2x2' 
 G4_FCL='supernova_g4_dune10kt_1x2x2'
 DETSIM_FCL='detsim_dune10kt_1x2x2_notpcsigproc'   # check noise
 RECO_FCL='triggerana_tree_1x2x2_simpleThr_simpleWin_simpleWin'       
@@ -33,7 +33,7 @@ number_events=1
 # Function to source scripts and print help message
 print_help() {
     echo "*****************************************************************************"
-    echo "Usage: ./run-sn-simulation.sh -j <yoursettings.json> [options]"
+    echo "Usage: ./$0 -j <yoursettings.json> [options]"
     echo "Options:"
     echo "  -j, --json-settings    JSON file with paths and settings. It has to be in the dunesw-config/json folder"
     echo "  --home-config          Path to the dunesw-config folder. Default is the current folder, but it won't work  in Condor"

@@ -1,3 +1,4 @@
 job_output/*
 ./*.txt
 *.cc
+output/

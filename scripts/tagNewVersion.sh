@@ -33,7 +33,7 @@ fi
 # Update the version number in the version file
 version_file="${REPO_HOME}/docs/dunesw-config-version.txt"
 echo "$versionNumber" > $version_file
-git add $version_file; git commit -m "Update version number to $versionNumber"; git push
+git add $version_file; git commit -m "Update version to $versionNumber"; git push
 
 # If not in the main branch, print a warning TODO add more severe handling, require input to continue
 currentBranch=$(git branch --show-current)
