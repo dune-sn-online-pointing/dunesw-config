@@ -39,7 +39,7 @@ print_help() {
     echo "  -s, --source           Parse to NOT source dunesw and local products"
     echo "  -f, --folder-ending    Ending of the name of the output folder"
     echo "  --clean-folder         Clean the folder after simulation. Default is false"
-    echo "  --celete-root          Delete root files after simulation, to save space. Default is false"
+    echo "  --delete-root          Delete root files after simulation, to save space. Default is false"
     echo "  -h, --help             Print this help message"
     echo " "
     echo "Example: ./run-sn-simulation.sh -m myconfig.fcl --custom-energy 2 70 -g -c -r -s -n 1000 -f test --clean-folder false --celete-root false"
@@ -112,16 +112,6 @@ fi
 EOS_FOLDER="/eos/user/e/evilla/dune/sn-tps/"       # standard, for now. Subfolders are selected automatically
 
 
-# Source the required scripts for execution
-if [ "$source_flag" = true ]; then
-    # extract dunesw version from filename, it assumes there is a local install
-    # and the location is the one in the json file
-    dsw_version=$(basename "$DUNESW_FOLDER_NAME")
-    echo "Setting up dunesw ${dsw_version}..."
-    source $setup_dunesw $dsw_version
-fi
-
-
 # Add flux files to the path
 export FW_SEARCH_PATH=$FW_SEARCH_PATH:"$REPO_HOME/dat/"
 
@@ -132,8 +122,6 @@ if [ "$run_convert" = false ] && [ "$run_reconstruction" = false ]; then
     exit 0
 fi
 
-# Default path for data
-GLOBAL_OUTPUT_FOLDER="${DUNESW_FOLDER_NAME}output/"
 
 SIMULATION_NAME="${CONVERT_FCL}-${RECO_FCL}-${number_events}events"
 DATA_PATH="${GLOBAL_OUTPUT_FOLDER}/${SIMULATION_NAME}_${OUTFOLDER_ENDING}/"
