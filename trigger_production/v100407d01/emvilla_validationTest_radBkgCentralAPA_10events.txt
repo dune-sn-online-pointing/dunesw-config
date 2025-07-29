@@ -1,0 +1,8 @@
+init.sh script started
+ Repository home is /exp/dune/app/users/emvilla/dunesw-config
+Set up local directories
+init.sh script finished
+
+Looking for settings file -f. If execution stops, it means that the file was not found.
+Settings file found, full path is:  
+

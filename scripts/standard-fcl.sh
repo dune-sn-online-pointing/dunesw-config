@@ -61,6 +61,7 @@ filename="${output_folder}${original_fcl}_standard.fcl"
 cat <<EOF > $filename
 #include "${original_fcl}_dump.fcl"
 
+services.MemoryTracker: { }
 source.maxEvents: -1
 
 EOF

@@ -19,11 +19,11 @@ delete_root_files=false
 clean_folder=false
 
 # fcls, just some casual defaults
-GEN_FCL='prodmarley_nue_flat_CC_dune10kt_1x2x2'
-# GEN_FCL='prodmarley_nue_cc_spectrum_radiological_decay0_dune10kt_1x2x2' 
+# GEN_FCL='prodmarley_nue_flat_CC_dune10kt_1x2x2'
+GEN_FCL='prodmarley_nue_cc_spectrum_radiological_decay0_dune10kt_1x2x2' 
 G4_FCL='supernova_g4_dune10kt_1x2x2'
 DETSIM_FCL='detsim_dune10kt_1x2x2_notpcsigproc'   # check noise
-RECO_FCL='triggerana_tree_1x2x2_simpleThr_simpleWin_simpleWin'       
+RECO_FCL='triggerana_tree_1x2x2_simpleThr60_allPlanes' # current default, might change       
 
 # other params that is better to initialize
 JSON_SETTINGS="settings_template.json"
@@ -242,13 +242,13 @@ if [ "$run_marley" = true ]; then
     gen_exec_time=$(($gen_end_time - $gen_start_time))
     echo "Generation took $gen_exec_time seconds"
     echo "$gen_exec_time" > "${DATA_PATH}execTime.txt"
-
+    echo "Size of the gen file is $(du -h ${DATA_PATH}${GEN_FCL}.root | awk '{print $1}')"
 fi
 
 if [ "$run_g4" = true ]; then
     
     echo "Starting Geant4 simulation..."
-    detsim_start_time=$(date +%s)
+    g4_start_time=$(date +%s)
     echo "Starting detector simulation at $detsim_start_time"
 
     command_g4="lar -c ${G4_FCL}.fcl -n $number_events -s ${DATA_PATH}${GEN_FCL}.root -o ${DATA_PATH}${GEN_FCL}_g4.root"
@@ -268,12 +268,12 @@ if [ "$run_g4" = true ]; then
     fi
     echo ""
 
-    detsim_end_time=$(date +%s)
-    echo "Ending detector simulation at $detsim_end_time"
-    detsim_exec_time=$(($detsim_end_time - $detsim_start_time))
-    echo "G4 simulation took $detsim_exec_time seconds"
-    echo "$detsim_exec_time" > "${DATA_PATH}execTime.txt"
-
+    g4_end_time=$(date +%s)
+    echo "Ending G4 at $g4_end_time"
+    g4_exec_time=$(($g4_end_time - $g4_start_time))
+    echo "G4 simulation took $g4_exec_time seconds"
+    echo "$g4_exec_time" > "${DATA_PATH}execTime.txt"
+    echo "Size of the g4 file is $(du -h ${DATA_PATH}${GEN_FCL}_g4.root | awk '{print $1}')"
 fi
 
 if [ "$run_detsim" = true ]; then
@@ -303,7 +303,7 @@ if [ "$run_detsim" = true ]; then
     detsim_exec_time=$(($detsim_end_time - $detsim_start_time))
     echo "Detsim took $detsim_exec_time seconds"
     echo "$detsim_exec_time" > "${DATA_PATH}execTime.txt"
-
+    echo "Size of the detsim file is $(du -h ${DATA_PATH}${GEN_FCL}_g4_detsim.root | awk '{print $1}')"
 fi
 
 if [ "$run_reconstruction" = true ]; then
@@ -352,14 +352,23 @@ echo "Items here are $(ls -l)"
 # Delete root files
 if [ "$delete_root_files" = true ]; then
     echo "Deleting root files to save memory..."    
-    rm -f "${DATA_PATH}*.root"
+    # rm -f "${DATA_PATH}*.root"
+    rm -f "${DATA_PATH}${GEN_FCL}_*.root"
     rm -f ./-_detsim_hist.root # Sometimes there is this product, remove it
 fi
 
+# if in lxplus, storage is in eos. If on gpvms, storage is in /exp/dune/data/users/emvilla/sn-tps/
+if [[ $(hostname) == *"lxplus"* ]]; then
+    STORAGE_FOLDER="/eos/user/e/evilla/dune/sn-tps/"       # standard, for now. Subfolders are selected automatically
+elif [[ $(hostname) == *"fnal"* ]]; then
+    STORAGE_FOLDER="/exp/dune/data/users/emvilla/sn-tps/"  # standard, for now. Subfolders are selected automatically
+fi 
+
+
 if [ "$run_reconstruction" = true ] && [[ "$RECO_FCL" == *"trigger"* ]] && [[ $(whoami) == "*villa" ]]; then
-    EOS_FOLDER="/eos/user/e/evilla/dune/sn-tps/"       # standard, for now. Subfolders are selected automatically
+    
     # Move all products to the folder
-    FINAL_FOLDER="${EOS_FOLDER}${SIMULATION_CATEGORY}/aggregated_${SIMULATION_NAME}/" # TODO grep threshold from somewhere
+    FINAL_FOLDER="${STORAGE_FOLDER}${SIMULATION_CATEGORY}/aggregated_${SIMULATION_NAME}/" # TODO grep threshold from somewhere
     echo "Creating final folder $FINAL_FOLDER"
     mkdir -p "$FINAL_FOLDER"
     echo "Moving custom direction and TPs to $FINAL_FOLDER"
@@ -367,13 +376,6 @@ if [ "$run_reconstruction" = true ] && [[ "$RECO_FCL" == *"trigger"* ]] && [[ $(
     moving_tps="cp ${TP_FILE} ${FINAL_FOLDER}tpstream_${OUTFOLDER_ENDING}.root"
     echo "$moving_tps"
     $moving_tps
-
-    if [ "$custom_direction" = true ]; then
-        # move the custom direction file
-        moving_custom_direction="cp ${DATA_PATH}customDirection.txt ${FINAL_FOLDER}customDirection_${OUTFOLDER_ENDING}.txt"
-        echo "$moving_custom_direction"
-        $moving_custom_direction
-    fi
 fi
 
 if [ "$clean_folder" = true ]; then

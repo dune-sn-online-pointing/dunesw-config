@@ -14,6 +14,8 @@ fi
 
 echo "Argument is $1"
 
+success=true
+
 # if argument is *, then test all fcl files in the folder
 if [ $1 == "all" ]; then
     list_of_fcls=$(ls *.fcl)
@@ -25,6 +27,7 @@ fi
 
 check_success(){
     if [ $? -ne 0 ]; then
+        success=false
         echo "Error in testing $fcl, pausing execution. CTRL+C to stop"
         echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
         sleep 20
@@ -39,3 +42,9 @@ for fcl in $list_of_fcls; do
     check_success
     echo -e "=====================\n"
 done
+
+if [ $success = true ]; then
+    echo "All fcls passed the test"
+else
+    echo "Some fcls failed the test"
+fi
