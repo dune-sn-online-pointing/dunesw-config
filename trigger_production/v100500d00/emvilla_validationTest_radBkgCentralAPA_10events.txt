@@ -35,7 +35,7 @@ We are in /exp/dune/app/users/emvilla/dunesw-config
 Data will be saved in /exp/dune/app/users/emvilla/v10_05_00d00/output/standard/prodbackground_radiological_decay0_dune10kt_1x2x6_centralAPA_standard-triggerana_tree_1x2x6_simpleThr_simpleWin_simpleWin-10events_radBkgCentralAPA_triggerValidationTest/
 Generating fcl file with standard values...
 If you see a git error, it is because the script must be run from inside the dunesw-config repository.
-REPO_HOME for script custom-enAndDir.sh: /exp/dune/app/users/emvilla/dunesw-config
+HOME_DIR for script custom-enAndDir.sh: /exp/dune/app/users/emvilla/dunesw-config
 Generated file: /exp/dune/app/users/emvilla/v10_05_00d00/output/standard/prodbackground_radiological_decay0_dune10kt_1x2x6_centralAPA_standard-triggerana_tree_1x2x6_simpleThr_simpleWin_simpleWin-10events_radBkgCentralAPA_triggerValidationTest/prodbackground_radiological_decay0_dune10kt_1x2x6_centralAPA_standard.fcl
  
 We are now in /exp/dune/app/users/emvilla/v10_05_00d00/output/standard/prodbackground_radiological_decay0_dune10kt_1x2x6_centralAPA_standard-triggerana_tree_1x2x6_simpleThr_simpleWin_simpleWin-10events_radBkgCentralAPA_triggerValidationTest

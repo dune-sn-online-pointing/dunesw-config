@@ -31,13 +31,13 @@ then
     exit 1
 fi
 
-# if absolute path, all good. If path starting with settings, just add REPO_HOME.
+# if absolute path, all good. If path starting with settings, just add HOME_DIR.
 # if it's a local path, add the current directory path
 if [[ ! "$settingsFile" == /* ]]
 then
     if [[ "$settingsFile" == json/* ]] # contains relative path
     then
-        settingsFile="$REPO_HOME/$settingsFile"
+        settingsFile="$HOME_DIR/$settingsFile"
     else # no path 
         settingsFile="$JSON_DIR/$settingsFile"
     fi

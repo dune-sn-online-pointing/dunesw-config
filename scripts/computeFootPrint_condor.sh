@@ -1,7 +1,7 @@
 #!/bin/bash
 
-REPO_HOME="$(git rev-parse --show-toplevel)"
-echo "REPO_HOME for script submit_triggerProductionTests.sh: $REPO_HOME"
+HOME_DIR="$(git rev-parse --show-toplevel)"
+echo "HOME_DIR for script submit_triggerProductionTests.sh: $HOME_DIR"
 
 # parser
 print_help() {
@@ -19,7 +19,7 @@ json_settings=""
 first=""
 last=""
 n_events=5 # default, sounds sensible
-list_of_jobs=$REPO_HOME"/dat/triggerValidation_fcls.dat"
+list_of_jobs=$HOME_DIR"/dat/triggerValidation_fcls.dat"
 
 # parse
 while [[ "$#" -gt 0 ]]; do
@@ -34,7 +34,7 @@ done
 user_name=$(whoami)
 
 # for output of condor jobs, TODO make more general
-condor_output_folder="${REPO_HOME}/condor/job_output/"
+condor_output_folder="${HOME_DIR}/condor/job_output/"
 
 # count lines in triggerValidation_fcls.txt
 n_lines=$(wc -l < $list_of_jobs)
@@ -121,12 +121,12 @@ printf "%-20s | %-12s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | 
 "Gen tot time" "Gen time/ev" "Gen peak mem" "Gen HW mem" \
 "G4 tot time" "G4 time/ev" "G4 peak mem" "G4 HW mem" \
 "Detsim tot time" "Detsim time/ev" "Detsim peak mem" "Detsim HW mem" \
-"Reco tot time" "Reco time/ev" "Reco peak mem" "Reco HW mem"> $REPO_HOME"/dat/triggerValidation_times.dat"
+"Reco tot time" "Reco time/ev" "Reco peak mem" "Reco HW mem"> $HOME_DIR"/dat/triggerValidation_times.dat"
 
 for time in "${times[@]}"; do
     echo " IT IS $time"
     printf "%-20s | %-12s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s |\n" $time
-    printf "%-20s | %-12s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s |\n" $time >> $REPO_HOME"/dat/triggerValidation_times.dat"
+    printf "%-20s | %-12s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s | %-15s |\n" $time >> $HOME_DIR"/dat/triggerValidation_times.dat"
 done
 
-echo "Results printed also to $REPO_HOME/dat/triggerValidation_times.dat"
+echo "Results printed also to $HOME_DIR/dat/triggerValidation_times.dat"

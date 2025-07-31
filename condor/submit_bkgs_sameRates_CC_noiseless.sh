@@ -1,7 +1,7 @@
 #!/bin/bash
 
-REPO_HOME="$(git rev-parse --show-toplevel)"
-echo "REPO_HOME for script submit_pointing_training_ES_70MeV_noiseless.sh: $REPO_HOME"
+HOME_DIR="$(git rev-parse --show-toplevel)"
+echo "HOME_DIR for script submit_pointing_training_ES_70MeV_noiseless.sh: $HOME_DIR"
 
 # parser
 print_help() {
@@ -44,10 +44,10 @@ if [ -z "$json_settings" ] || [ -z "$first" ] || [ -z "$last" ]; then
 fi
 
 # read email from json settings file
-username=$(awk -F'"' '/username/ {print $4}' $REPO_HOME/json/${json_settings})
-user_email=$(awk -F'"' '/userEmail/ {print $4}' $REPO_HOME/json/${json_settings})
+username=$(awk -F'"' '/username/ {print $4}' $HOME_DIR/json/${json_settings})
+user_email=$(awk -F'"' '/userEmail/ {print $4}' $HOME_DIR/json/${json_settings})
 
-output_folder="${REPO_HOME}/condor/${username}/"
+output_folder="${HOME_DIR}/condor/${username}/"
 list_of_jobs="${output_folder}list_of_jobs.txt"
 
 # gen fcl
@@ -60,7 +60,7 @@ gen_fcl="prodmarley_nue_spectrum_radiological_decay0_dune10kt_refactored_1x2x6_C
 # generate list of arguments and put them in a file, but delete the file first to avoid issues
 rm -f $list_of_jobs
 for i in $(seq $first $last); do
-    echo "-j ${json_settings} --home-config ${REPO_HOME} -m ${gen_fcl} -g -d -r -n $n_events -f $i" >> ${list_of_jobs}
+    echo "-j ${json_settings} --home-config ${HOME_DIR} -m ${gen_fcl} -g -d -r -n $n_events -f $i" >> ${list_of_jobs}
 done
 
 echo "List of jobs:"
@@ -80,12 +80,12 @@ notify_user         = ${user_email}
 notification        = Error
 
 JOBNAME             = pointing_training_ES_70MeV_noiseless-from${first}to${last}
-executable          = ${REPO_HOME}/scripts/dunetrigger.sh
+executable          = ${HOME_DIR}/scripts/dunetrigger.sh
 # using the arguments from below, not this line
 # arguments           = -m ${gen_fcl} -g -d -r -n 10 -f \$(ProcId)
-output              = ${REPO_HOME}/condor/job_output/job.\$(JOBNAME).\$(ClusterId).\$(ProcId).out
-error               = ${REPO_HOME}/condor/job_output/job.\$(JOBNAME).\$(ClusterId).\$(ProcId).err
-log                 = ${REPO_HOME}/condor/job_output/job.\$(JOBNAME).\$(ClusterId).log
+output              = ${HOME_DIR}/condor/job_output/job.\$(JOBNAME).\$(ClusterId).\$(ProcId).out
+error               = ${HOME_DIR}/condor/job_output/job.\$(JOBNAME).\$(ClusterId).\$(ProcId).err
+log                 = ${HOME_DIR}/condor/job_output/job.\$(JOBNAME).\$(ClusterId).log
 # request_cpus        = 1
 # request_memory      = 2000
 

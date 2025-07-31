@@ -1,0 +1,726 @@
+HOME_DIR for script triggersim.sh: /exp/dune/app/users/emvilla/dunesw-config
+When running in condor, this won't work. Use the --home-config flag to set the path to the dunesw-config folder
+JSON settings file is /exp/dune/app/users/emvilla/dunesw-config/json/100407.json
+Expecting the software to be in: /exp/dune/app/users/emvilla/v10_04_07d00/
+Setting up dunesw v10_04_07d00...
+Setting up larsoft UPS area... /cvmfs/larsoft.opensciencegrid.org
+Setting up DUNE UPS area... /cvmfs/dune.opensciencegrid.org/products/dune/
+Setting up dunesw v10_04_07d00
+Setting up dunesw version v10_04_07d00, qualifier e26:prof ...
+Done!
+We are in /exp/dune/app/users/emvilla/dunesw-config
+Data will be saved in /exp/dune/app/users/emvilla/v10_04_07d00/output/standard/prodmarley_nue_flat_ES_dune10kt_1x2x6_dump_standard-triggerana_tree_1x2x6_simpleThr_simpleWin_simpleWin-5events_supernovaES_triggerValidationTest/
+Generating fcl file with standard values...
+If you see a git error, it is because the script must be run from inside the dunesw-config repository.
+HOME_DIR for script custom-enAndDir.sh: /exp/dune/app/users/emvilla/dunesw-config
+Generated file: /exp/dune/app/users/emvilla/v10_04_07d00/output/standard/prodmarley_nue_flat_ES_dune10kt_1x2x6_dump_standard-triggerana_tree_1x2x6_simpleThr_simpleWin_simpleWin-5events_supernovaES_triggerValidationTest/prodmarley_nue_flat_ES_dune10kt_1x2x6_dump_standard.fcl
+ 
+We are now in /exp/dune/app/users/emvilla/v10_04_07d00/output/standard/prodmarley_nue_flat_ES_dune10kt_1x2x6_dump_standard-triggerana_tree_1x2x6_simpleThr_simpleWin_simpleWin-5events_supernovaES_triggerValidationTest
+Items here are total 1222092
+-rw-r--r-- 1 emvilla dune         0 Apr  4 10:04 debugprod.log
+-rw-r--r-- 1 emvilla dune     40030 Apr  6 14:29 detsim_dune10kt_1x2x6_notpcsigproc_dump.fcl
+-rw-r--r-- 1 emvilla dune         4 Apr  4 10:05 execTime.txt
+-rw-r--r-- 1 emvilla dune       519 Apr  4 10:03 g4_hist.root
+-rw-r--r-- 1 emvilla dune     53248 Apr  4 10:05 mem.db
+-rw-r--r-- 1 emvilla dune     12403 Apr  6 14:29 prodmarley_nue_flat_ES_dune10kt_1x2x6_dump_dump.fcl
+-rw-r--r-- 1 emvilla dune       519 Apr  4 10:04 prodmarley_nue_flat_ES_dune10kt_1x2x6_dump_g4_detsim_hist.root
+-rw-r--r-- 1 emvilla dune 625317099 Apr  4 10:05 prodmarley_nue_flat_ES_dune10kt_1x2x6_dump_g4_detsim_reco1.root
+-rw-r--r-- 1 emvilla dune 625272421 Apr  4 10:04 prodmarley_nue_flat_ES_dune10kt_1x2x6_dump_g4_detsim.root
+-rw-r--r-- 1 emvilla dune    229911 Apr  4 10:03 prodmarley_nue_flat_ES_dune10kt_1x2x6_dump_g4.root
+-rw-r--r-- 1 emvilla dune     87886 Apr  4 10:00 prodmarley_nue_flat_ES_dune10kt_1x2x6_dump.root
+-rw-r--r-- 1 emvilla dune        86 Apr  6 14:29 prodmarley_nue_flat_ES_dune10kt_1x2x6_dump_standard.fcl
+-rw-r--r-- 1 emvilla dune      9361 Apr  4 10:00 prodmarley_nue_hist.root
+-rw-r--r-- 1 emvilla dune     29092 Apr  6 14:29 supernova_g4_dune10kt_1x2x6_dump.fcl
+-rw-r--r-- 1 emvilla dune     16384 Apr  4 10:05 time.db
+-rw-r--r-- 1 emvilla dune     37070 Apr  6 14:29 triggerana_tree_1x2x6_simpleThr_simpleWin_simpleWin_dump.fcl
+-rw-r--r-- 1 emvilla dune     75910 Apr  4 10:05 triggersim_hist.root
+-rw-r--r-- 1 emvilla dune    234725 Apr  4 10:04 wcls-sim-drift-simchannel.log
+Starting simulation at 1743967788
+Starting Generation...
+Starting generation at 1743967788
+Executing command: lar -c /exp/dune/app/users/emvilla/v10_04_07d00/output/standard/prodmarley_nue_flat_ES_dune10kt_1x2x6_dump_standard-triggerana_tree_1x2x6_simpleThr_simpleWin_simpleWin-5events_supernovaES_triggerValidationTest/prodmarley_nue_flat_ES_dune10kt_1x2x6_dump_standard.fcl -n 5 -o /exp/dune/app/users/emvilla/v10_04_07d00/output/standard/prodmarley_nue_flat_ES_dune10kt_1x2x6_dump_standard-triggerana_tree_1x2x6_simpleThr_simpleWin_simpleWin-5events_supernovaES_triggerValidationTest/prodmarley_nue_flat_ES_dune10kt_1x2x6_dump.root
+%MSG-i MF_INIT_OK:  Early 06-Apr-2025 14:29:48 CDT JobSetup
+Messagelogger initialization complete.
+%MSG
+Info in <TGeoManager::Import>: Reading geometry from file: /cvmfs/dune.opensciencegrid.org/products/dune/dunecore/v10_04_07d00/gdml/dune10kt_v4_1x2x6.gdml
+Info in <TGeoManager::TGeoManager>: Geometry GDMLImport, Geometry imported from GDML created
+Info in <TGeoManager::SetTopVolume>: Top volume is volWorld. Master volume is volWorld
+Info in <TGeoNavigator::BuildCache>: --- Maximum geometry depth set to 100
+Info in <TGeoManager::CheckGeometry>: Fixing runtime shapes...
+Info in <TGeoManager::CheckGeometry>: ...Nothing to fix
+Info in <TGeoManager::CloseGeometry>: Counting nodes...
+Info in <TGeoManager::Voxelize>: Voxelizing...
+Info in <TGeoManager::CloseGeometry>: Building cache...
+Info in <TGeoManager::CountLevels>: max level = 5, max placements = 1149
+Info in <TGeoManager::CloseGeometry>: 67545 nodes/ 3831 volume UID's in Geometry imported from GDML
+Info in <TGeoManager::CloseGeometry>: ----------------modeler ready----------------
+%MSG-i AuxDetGeometryCore:  Early 06-Apr-2025 14:29:49 CDT JobSetup
+New detector geometry loaded from
+	/cvmfs/dune.opensciencegrid.org/products/dune/dunecore/v10_04_07d00/gdml/dune10kt_v4_1x2x6.gdml
+%MSG
+%MSG-i GeometryCore:  Early 06-Apr-2025 14:29:49 CDT JobSetup
+Sorting volumes...
+%MSG
+%MSG-i GeometryCore:  Early 06-Apr-2025 14:29:49 CDT JobSetup
+New detector geometry loaded from
+	/cvmfs/dune.opensciencegrid.org/products/dune/dunecore/v10_04_07d00/gdml/dune10kt_v6_refactored_1x2x6.gdml
+%MSG
+%MSG-i DuneApaWireReadoutGeom:  Early 06-Apr-2025 14:29:49 CDT JobSetup
+Initializing wire readout...
+%MSG
+Cryostat 0:
+  30720 total channels
+  12 APAs
+  For all identical APA:
+    Number of channels per APA = 2560
+    U channels per APA = 800
+    V channels per APA = 800
+    Z channels per APA = 960
+    Pitch in U Plane = 0.4667
+    Pitch in V Plane = 0.4667
+    Pitch in Z Plane = 0.479
+GeoApaChannelGroupService::ctor: Group 0 (apa00) has 2560 channels from 4/4 readout planes.
+GeoApaChannelGroupService::ctor: Group 1 (apa01) has 2560 channels from 4/4 readout planes.
+GeoApaChannelGroupService::ctor: Group 2 (apa02) has 2560 channels from 4/4 readout planes.
+GeoApaChannelGroupService::ctor: Group 3 (apa03) has 2560 channels from 4/4 readout planes.
+GeoApaChannelGroupService::ctor: Group 4 (apa04) has 2560 channels from 4/4 readout planes.
+GeoApaChannelGroupService::ctor: Group 5 (apa05) has 2560 channels from 4/4 readout planes.
+GeoApaChannelGroupService::ctor: Group 6 (apa06) has 2560 channels from 4/4 readout planes.
+GeoApaChannelGroupService::ctor: Group 7 (apa07) has 2560 channels from 4/4 readout planes.
+GeoApaChannelGroupService::ctor: Group 8 (apa08) has 2560 channels from 4/4 readout planes.
+GeoApaChannelGroupService::ctor: Group 9 (apa09) has 2560 channels from 4/4 readout planes.
+GeoApaChannelGroupService::ctor: Group 10 (apa10) has 2560 channels from 4/4 readout planes.
+GeoApaChannelGroupService::ctor: Group 11 (apa11) has 2560 channels from 4/4 readout planes.
+%MSG-i SimpleChannelStatusService:  Early 06-Apr-2025 14:29:49 CDT JobSetup
+Loaded from configuration:
+  - 0 bad channels
+  - 0 noisy channels
+  - largest channel ID: 30719, largest present: 30719
+%MSG
+%MSG-i setupProvider<DetectorPropertiesStandard>:  Early  06-Apr-2025 14:29:49 CDT JobSetup
+Asked to ignore 1 keys: 'InheritNumberTimeSamples'
+%MSG
+%MSG-i SignalShapingServiceDUNE:  Early 06-Apr-2025 14:29:49 CDT JobSetup
+Getting Filter from .fcl file
+%MSG
+%MSG-i SignalShapingServiceDUNE:  Early 06-Apr-2025 14:29:49 CDT JobSetup
+ using the field response provided from a .root file 
+%MSG
+Warning in <TFile::Append>: Replacing existing TH1: FieldResponse_U (Potential memory leak).
+Warning in <TFile::Append>: Replacing existing TH1: FieldResponse_V (Potential memory leak).
+Warning in <TFile::Append>: Replacing existing TH1: FieldResponse_Y (Potential memory leak).
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:29:49 CDT ModuleConstruction
+Computing analytically weight of volTPCActiveInner
+ROOT severity: 1000
+%MSG
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:29:49 CDT ModuleConstruction
+Computed weight: 70162.732071 [kg]
+
+ROOT severity: 1000
+%MSG
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:29:49 CDT ModuleConstruction
+Computing analytically weight of volTPCActiveInner
+ROOT severity: 1000
+%MSG
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:29:49 CDT ModuleConstruction
+Computed weight: 70162.732071 [kg]
+
+ROOT severity: 1000
+%MSG
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:29:49 CDT ModuleConstruction
+Computing analytically weight of volTPCActiveInner
+ROOT severity: 1000
+%MSG
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:29:49 CDT ModuleConstruction
+Computed weight: 70162.732071 [kg]
+
+ROOT severity: 1000
+%MSG
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:29:49 CDT ModuleConstruction
+Computing analytically weight of volTPCActiveInner
+ROOT severity: 1000
+%MSG
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:29:49 CDT ModuleConstruction
+Computed weight: 70162.732071 [kg]
+
+ROOT severity: 1000
+%MSG
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:29:49 CDT ModuleConstruction
+Computing analytically weight of volTPCActiveInner
+ROOT severity: 1000
+%MSG
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:29:49 CDT ModuleConstruction
+Computed weight: 70162.732071 [kg]
+
+ROOT severity: 1000
+%MSG
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:29:49 CDT ModuleConstruction
+Computing analytically weight of volTPCActiveInner
+ROOT severity: 1000
+%MSG
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:29:49 CDT ModuleConstruction
+Computed weight: 70162.732071 [kg]
+
+ROOT severity: 1000
+%MSG
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:29:49 CDT ModuleConstruction
+Computing analytically weight of volTPCActiveInner
+ROOT severity: 1000
+%MSG
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:29:49 CDT ModuleConstruction
+Computed weight: 70162.732071 [kg]
+
+ROOT severity: 1000
+%MSG
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:29:49 CDT ModuleConstruction
+Computing analytically weight of volTPCActiveInner
+ROOT severity: 1000
+%MSG
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:29:49 CDT ModuleConstruction
+Computed weight: 70162.732071 [kg]
+
+ROOT severity: 1000
+%MSG
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:29:49 CDT ModuleConstruction
+Computing analytically weight of volTPCActiveInner
+ROOT severity: 1000
+%MSG
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:29:49 CDT ModuleConstruction
+Computed weight: 70162.732071 [kg]
+
+ROOT severity: 1000
+%MSG
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:29:49 CDT ModuleConstruction
+Computing analytically weight of volTPCActiveInner
+ROOT severity: 1000
+%MSG
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:29:49 CDT ModuleConstruction
+Computed weight: 70162.732071 [kg]
+
+ROOT severity: 1000
+%MSG
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:29:49 CDT ModuleConstruction
+Computing analytically weight of volTPCActiveInner
+ROOT severity: 1000
+%MSG
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:29:49 CDT ModuleConstruction
+Computed weight: 70162.732071 [kg]
+
+ROOT severity: 1000
+%MSG
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:29:49 CDT ModuleConstruction
+Computing analytically weight of volTPCActiveInner
+ROOT severity: 1000
+%MSG
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:29:49 CDT ModuleConstruction
+Computed weight: 70162.732071 [kg]
+
+ROOT severity: 1000
+%MSG
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:29:49 CDT ModuleConstruction
+Computing analytically weight of volTPCActiveInner
+ROOT severity: 1000
+%MSG
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:29:49 CDT ModuleConstruction
+Computed weight: 70162.732071 [kg]
+
+ROOT severity: 1000
+%MSG
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:29:49 CDT ModuleConstruction
+Computing analytically weight of volTPCActiveInner
+ROOT severity: 1000
+%MSG
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:29:49 CDT ModuleConstruction
+Computed weight: 70162.732071 [kg]
+
+ROOT severity: 1000
+%MSG
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:29:49 CDT ModuleConstruction
+Computing analytically weight of volTPCActiveInner
+ROOT severity: 1000
+%MSG
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:29:49 CDT ModuleConstruction
+Computed weight: 70162.732071 [kg]
+
+ROOT severity: 1000
+%MSG
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:29:49 CDT ModuleConstruction
+Computing analytically weight of volTPCActiveInner
+ROOT severity: 1000
+%MSG
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:29:49 CDT ModuleConstruction
+Computed weight: 70162.732071 [kg]
+
+ROOT severity: 1000
+%MSG
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:29:49 CDT ModuleConstruction
+Computing analytically weight of volTPCActiveInner
+ROOT severity: 1000
+%MSG
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:29:49 CDT ModuleConstruction
+Computed weight: 70162.732071 [kg]
+
+ROOT severity: 1000
+%MSG
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:29:49 CDT ModuleConstruction
+Computing analytically weight of volTPCActiveInner
+ROOT severity: 1000
+%MSG
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:29:49 CDT ModuleConstruction
+Computed weight: 70162.732071 [kg]
+
+ROOT severity: 1000
+%MSG
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:29:49 CDT ModuleConstruction
+Computing analytically weight of volTPCActiveInner
+ROOT severity: 1000
+%MSG
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:29:49 CDT ModuleConstruction
+Computed weight: 70162.732071 [kg]
+
+ROOT severity: 1000
+%MSG
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:29:49 CDT ModuleConstruction
+Computing analytically weight of volTPCActiveInner
+ROOT severity: 1000
+%MSG
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:29:49 CDT ModuleConstruction
+Computed weight: 70162.732071 [kg]
+
+ROOT severity: 1000
+%MSG
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:29:49 CDT ModuleConstruction
+Computing analytically weight of volTPCActiveInner
+ROOT severity: 1000
+%MSG
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:29:49 CDT ModuleConstruction
+Computed weight: 70162.732071 [kg]
+
+ROOT severity: 1000
+%MSG
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:29:49 CDT ModuleConstruction
+Computing analytically weight of volTPCActiveInner
+ROOT severity: 1000
+%MSG
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:29:49 CDT ModuleConstruction
+Computed weight: 70162.732071 [kg]
+
+ROOT severity: 1000
+%MSG
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:29:49 CDT ModuleConstruction
+Computing analytically weight of volTPCActiveInner
+ROOT severity: 1000
+%MSG
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:29:49 CDT ModuleConstruction
+Computed weight: 70162.732071 [kg]
+
+ROOT severity: 1000
+%MSG
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:29:49 CDT ModuleConstruction
+Computing analytically weight of volTPCActiveInner
+ROOT severity: 1000
+%MSG
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:29:49 CDT ModuleConstruction
+Computed weight: 70162.732071 [kg]
+
+ROOT severity: 1000
+%MSG
+%MSG-i MARLEYHelper MARLEY:  MARLEYGen:marley@Construction  06-Apr-2025 14:29:49 CDT ModuleConstruction MARLEYHelper.cxx:245
+MARLEY will now use the JSON configuration
+{"direction":"isotropic","reactions":["/cvmfs/larsoft.opensciencegrid.org/products/marley/v1_2_1d/Linux64bit+3.10-2.17-e26-prof/share/marley/data/react/ES.react"],"source":{"E_bin_lefts":[4],"Emax":70,"neutrino":"ve","type":"histogram","weight_flux":false,"weights":[1]}}
+
+%MSG
+
+╔╦╗╔═╗╦═╗╦  ╔═╗╦ ╦
+║║║╠═╣╠╦╝║  ║╣ ╚╦╝
+╩ ╩╩ ╩╩╚═╩═╝╚═╝ ╩
+
+Don't worry about a thing,
+'Cause every little thing gonna be all right.
+-- Bob, "Three Little Birds"
+
+Model of Argon Reaction Low Energy Yields
+version 1.2.1
+
+Seeded random number generator with 1743967789632474051
+Projectile directions will be sampled isotropically
+Created histogram νe source
+Loading particle and atomic masses from /cvmfs/larsoft.opensciencegrid.org/products/marley/v1_2_1d/Linux64bit+3.10-2.17-e26-prof/share/marley/data/mass_table.js
+Loaded (anti-)ν + e⁻ ES reaction data for 40Ar from /cvmfs/larsoft.opensciencegrid.org/products/marley/v1_2_1d/Linux64bit+3.10-2.17-e26-prof/share/marley/data/react/ES.react
+Configured pure 40Ar neutrino target
+Generator configuration complete. Active reactions:
+  ES on 40Ar: νe + e⁻ --> νe + e⁻ (KE @ threshold: 0 MeV)
+Flux-averaged total cross section per atom: 0 * 10^(-40) cm^2
+Seeded random number generator with 0
+%MSG-i MARLEY:  MARLEYGen:marley@Construction 06-Apr-2025 14:29:49 CDT  ModuleConstruction MARLEYHelper.cxx:76
+
+%MSG
+%MSG-i MARLEYHelper MARLEY:  MARLEYGen:marley@Construction  06-Apr-2025 14:29:49 CDT ModuleConstruction MARLEYHelper.cxx:271
+ROOT 6 or greater detected. Loading class information
+from headers "marley/Particle.hh" and "marley/Event.hh"
+%MSG
+%MSG-i GeneratedEventTimestamp:   TriggerResultInserter:TriggerResults@Construction 06-Apr-2025 14:29:50 CDT  ModuleConstruction
+Timestamp plugin: timestamp from local clock time in nanoseconds
+%MSG
+Begin processing the 1st record. run: 20000047 subRun: 0 event: 1 at 06-Apr-2025 14:29:50 CDT
+%MSG-w ParticleInventory:  ProcessEvent 06-Apr-2025 14:29:50 CDT  run: 20000047 subRun: 0 event: 1
+Rebuild failed to get the MCParticles. This is expected when running on a generation or simulation step.
+%MSG
+%MSG-w ParticleInventory:  ProcessEvent 06-Apr-2025 14:29:50 CDT  run: 20000047 subRun: 0 event: 1
+Rebuild failed to get the MCParticles. This is expected when running on a generation or simulation step.
+%MSG
+%MSG-w ParticleInventory:  ProcessEvent 06-Apr-2025 14:29:50 CDT  run: 20000047 subRun: 0 event: 1
+Rebuild failed to get the MCParticles. This is expected when running on a generation or simulation step.
+%MSG
+%MSG-w BackTrackerService:  ProcessEvent 06-Apr-2025 14:29:50 CDT  run: 20000047 subRun: 0 event: 1
+Rebuild failed to get the SimChannels. This is expected when running on a generation or simulation step.
+%MSG
+%MSG-w PhotonBackTrackerService:  ProcessEvent 06-Apr-2025 14:29:50 CDT  run: 20000047 subRun: 0 event: 1
+Rebuild failed to get the OpDetBTRs. This is expected when running on a generation or simulation step.
+%MSG
+Seeded random number generator with 490057756
+%MSG-i NuRandomService:  MARLEYGen:marley@BeginModule 06-Apr-2025 14:29:50 CDT  run: 20000047 subRun: 0 event: 1
+Random seed for this event, engine 'marley.MARLEY': 490057756
+%MSG
+%MSG-i NuRandomService:  MARLEYGen:marley@BeginModule 06-Apr-2025 14:29:50 CDT  run: 20000047 subRun: 0 event: 1
+Random seed for this event, engine 'marley.MARLEY_Vertex_Sampler': 762864433
+%MSG
+%MSG-i ActiveVolumeVertexSampler MARLEY_Vertex_Sampler:   MARLEYGen:marley@BeginModule 06-Apr-2025 14:29:50 CDT  run: 20000047 subRun: 0 event: 1 ActiveVolumeVertexSampler.cxx:83
+Sampled primary vertex in TPC #19, x = 61.9618, y = 386.686, z = 950.441
+%MSG
+06-Apr-2025 14:29:50 CDT  Opened output file with pattern "/exp/dune/app/users/emvilla/v10_04_07d00/output/standard/prodmarley_nue_flat_ES_dune10kt_1x2x6_dump_standard-triggerana_tree_1x2x6_simpleThr_simpleWin_simpleWin-5events_supernovaES_triggerValidationTest/prodmarley_nue_flat_ES_dune10kt_1x2x6_dump.root"
+%MSG-w FastCloning:  PostProcessEvent 06-Apr-2025 14:29:50 CDT  run: 20000047 subRun: 0 event: 1
+Fast cloning has been deactivated for the following reasons:
+ - Input source does not read art/ROOT files.
+%MSG
+Begin processing the 2nd record. run: 20000047 subRun: 0 event: 2 at 06-Apr-2025 14:29:50 CDT
+%MSG-w ParticleInventory:  ProcessEvent 06-Apr-2025 14:29:50 CDT  run: 20000047 subRun: 0 event: 2
+Rebuild failed to get the MCParticles. This is expected when running on a generation or simulation step.
+%MSG
+%MSG-w ParticleInventory:  ProcessEvent 06-Apr-2025 14:29:50 CDT  run: 20000047 subRun: 0 event: 2
+Rebuild failed to get the MCParticles. This is expected when running on a generation or simulation step.
+%MSG
+%MSG-w ParticleInventory:  ProcessEvent 06-Apr-2025 14:29:50 CDT  run: 20000047 subRun: 0 event: 2
+Rebuild failed to get the MCParticles. This is expected when running on a generation or simulation step.
+%MSG
+%MSG-w BackTrackerService:  ProcessEvent 06-Apr-2025 14:29:50 CDT  run: 20000047 subRun: 0 event: 2
+Rebuild failed to get the SimChannels. This is expected when running on a generation or simulation step.
+%MSG
+%MSG-w PhotonBackTrackerService:  ProcessEvent 06-Apr-2025 14:29:50 CDT  run: 20000047 subRun: 0 event: 2
+Rebuild failed to get the OpDetBTRs. This is expected when running on a generation or simulation step.
+%MSG
+Seeded random number generator with 138295098
+%MSG-i NuRandomService:  MARLEYGen:marley@BeginModule 06-Apr-2025 14:29:50 CDT  run: 20000047 subRun: 0 event: 2
+Random seed for this event, engine 'marley.MARLEY': 138295098
+%MSG
+%MSG-i NuRandomService:  MARLEYGen:marley@BeginModule 06-Apr-2025 14:29:50 CDT  run: 20000047 subRun: 0 event: 2
+Random seed for this event, engine 'marley.MARLEY_Vertex_Sampler': 695424248
+%MSG
+%MSG-i ActiveVolumeVertexSampler MARLEY_Vertex_Sampler:   MARLEYGen:marley@BeginModule 06-Apr-2025 14:29:50 CDT  run: 20000047 subRun: 0 event: 2 ActiveVolumeVertexSampler.cxx:83
+Sampled primary vertex in TPC #15, x = 85.0767, y = 420.416, z = 809.106
+%MSG
+Begin processing the 3rd record. run: 20000047 subRun: 0 event: 3 at 06-Apr-2025 14:29:50 CDT
+%MSG-w ParticleInventory:  ProcessEvent 06-Apr-2025 14:29:50 CDT  run: 20000047 subRun: 0 event: 3
+Rebuild failed to get the MCParticles. This is expected when running on a generation or simulation step.
+%MSG
+%MSG-w ParticleInventory:  ProcessEvent 06-Apr-2025 14:29:50 CDT  run: 20000047 subRun: 0 event: 3
+Rebuild failed to get the MCParticles. This is expected when running on a generation or simulation step.
+%MSG
+%MSG-w ParticleInventory:  ProcessEvent 06-Apr-2025 14:29:50 CDT  run: 20000047 subRun: 0 event: 3
+Rebuild failed to get the MCParticles. This is expected when running on a generation or simulation step.
+%MSG
+%MSG-w BackTrackerService:  ProcessEvent 06-Apr-2025 14:29:50 CDT  run: 20000047 subRun: 0 event: 3
+Rebuild failed to get the SimChannels. This is expected when running on a generation or simulation step.
+%MSG
+%MSG-w PhotonBackTrackerService:  ProcessEvent 06-Apr-2025 14:29:50 CDT  run: 20000047 subRun: 0 event: 3
+Rebuild failed to get the OpDetBTRs. This is expected when running on a generation or simulation step.
+%MSG
+Seeded random number generator with 248180398
+%MSG-i NuRandomService:  MARLEYGen:marley@BeginModule 06-Apr-2025 14:29:50 CDT  run: 20000047 subRun: 0 event: 3
+Random seed for this event, engine 'marley.MARLEY': 248180398
+%MSG
+%MSG-i NuRandomService:  MARLEYGen:marley@BeginModule 06-Apr-2025 14:29:50 CDT  run: 20000047 subRun: 0 event: 3
+Random seed for this event, engine 'marley.MARLEY_Vertex_Sampler': 124453383
+%MSG
+%MSG-i ActiveVolumeVertexSampler MARLEY_Vertex_Sampler:   MARLEYGen:marley@BeginModule 06-Apr-2025 14:29:50 CDT  run: 20000047 subRun: 0 event: 3 ActiveVolumeVertexSampler.cxx:83
+Sampled primary vertex in TPC #14, x = -258.167, y = 88.3758, z = 708.853
+%MSG
+Begin processing the 4th record. run: 20000047 subRun: 0 event: 4 at 06-Apr-2025 14:29:50 CDT
+%MSG-w ParticleInventory:  ProcessEvent 06-Apr-2025 14:29:50 CDT  run: 20000047 subRun: 0 event: 4
+Rebuild failed to get the MCParticles. This is expected when running on a generation or simulation step.
+%MSG
+%MSG-w ParticleInventory:  ProcessEvent 06-Apr-2025 14:29:50 CDT  run: 20000047 subRun: 0 event: 4
+Rebuild failed to get the MCParticles. This is expected when running on a generation or simulation step.
+%MSG
+%MSG-w ParticleInventory:  ProcessEvent 06-Apr-2025 14:29:50 CDT  run: 20000047 subRun: 0 event: 4
+Rebuild failed to get the MCParticles. This is expected when running on a generation or simulation step.
+%MSG
+%MSG-w BackTrackerService:  ProcessEvent 06-Apr-2025 14:29:50 CDT  run: 20000047 subRun: 0 event: 4
+Rebuild failed to get the SimChannels. This is expected when running on a generation or simulation step.
+%MSG
+%MSG-w PhotonBackTrackerService:  ProcessEvent 06-Apr-2025 14:29:50 CDT  run: 20000047 subRun: 0 event: 4
+Rebuild failed to get the OpDetBTRs. This is expected when running on a generation or simulation step.
+%MSG
+Seeded random number generator with 204398125
+%MSG-i NuRandomService:  MARLEYGen:marley@BeginModule 06-Apr-2025 14:29:50 CDT  run: 20000047 subRun: 0 event: 4
+Random seed for this event, engine 'marley.MARLEY': 204398125
+%MSG
+%MSG-i NuRandomService:  MARLEYGen:marley@BeginModule 06-Apr-2025 14:29:50 CDT  run: 20000047 subRun: 0 event: 4
+Random seed for this event, engine 'marley.MARLEY_Vertex_Sampler': 580652494
+%MSG
+%MSG-i ActiveVolumeVertexSampler MARLEY_Vertex_Sampler:   MARLEYGen:marley@BeginModule 06-Apr-2025 14:29:50 CDT  run: 20000047 subRun: 0 event: 4 ActiveVolumeVertexSampler.cxx:83
+Sampled primary vertex in TPC #2, x = -44.996, y = 286.396, z = 10.749
+%MSG
+Begin processing the 5th record. run: 20000047 subRun: 0 event: 5 at 06-Apr-2025 14:29:50 CDT
+%MSG-w ParticleInventory:  ProcessEvent 06-Apr-2025 14:29:50 CDT  run: 20000047 subRun: 0 event: 5
+Rebuild failed to get the MCParticles. This is expected when running on a generation or simulation step.
+%MSG
+%MSG-w ParticleInventory:  ProcessEvent 06-Apr-2025 14:29:50 CDT  run: 20000047 subRun: 0 event: 5
+Rebuild failed to get the MCParticles. This is expected when running on a generation or simulation step.
+%MSG
+%MSG-w ParticleInventory:  ProcessEvent 06-Apr-2025 14:29:50 CDT  run: 20000047 subRun: 0 event: 5
+Rebuild failed to get the MCParticles. This is expected when running on a generation or simulation step.
+%MSG
+%MSG-w BackTrackerService:  ProcessEvent 06-Apr-2025 14:29:50 CDT  run: 20000047 subRun: 0 event: 5
+Rebuild failed to get the SimChannels. This is expected when running on a generation or simulation step.
+%MSG
+%MSG-w PhotonBackTrackerService:  ProcessEvent 06-Apr-2025 14:29:50 CDT  run: 20000047 subRun: 0 event: 5
+Rebuild failed to get the OpDetBTRs. This is expected when running on a generation or simulation step.
+%MSG
+Seeded random number generator with 691890060
+%MSG-i NuRandomService:  MARLEYGen:marley@BeginModule 06-Apr-2025 14:29:50 CDT  run: 20000047 subRun: 0 event: 5
+Random seed for this event, engine 'marley.MARLEY': 691890060
+%MSG
+%MSG-i NuRandomService:  MARLEYGen:marley@BeginModule 06-Apr-2025 14:29:50 CDT  run: 20000047 subRun: 0 event: 5
+Random seed for this event, engine 'marley.MARLEY_Vertex_Sampler': 87485300
+%MSG
+%MSG-i ActiveVolumeVertexSampler MARLEY_Vertex_Sampler:   MARLEYGen:marley@BeginModule 06-Apr-2025 14:29:50 CDT  run: 20000047 subRun: 0 event: 5 ActiveVolumeVertexSampler.cxx:83
+Sampled primary vertex in TPC #9, x = 342.816, y = -182.795, z = 560.206
+%MSG
+06-Apr-2025 14:29:50 CDT  Closed output file "/exp/dune/app/users/emvilla/v10_04_07d00/output/standard/prodmarley_nue_flat_ES_dune10kt_1x2x6_dump_standard-triggerana_tree_1x2x6_simpleThr_simpleWin_simpleWin-5events_supernovaES_triggerValidationTest/prodmarley_nue_flat_ES_dune10kt_1x2x6_dump.root"
+
+================================================================================================================================
+TimeTracker printout (sec)                        Min           Avg           Max         Median          RMS         nEvts   
+================================================================================================================================
+Full event                                    0.000200944   0.000969876   0.00374111    0.000233887   0.00138844        5     
+--------------------------------------------------------------------------------------------------------------------------------
+source:EmptyEvent(read)                        3.142e-05    8.14958e-05   0.000184122    3.712e-05    6.18686e-05       5     
+simulate:rns:RandomNumberSaver                 7.874e-06    3.77196e-05   0.000142442    9.297e-06    5.25865e-05       5     
+simulate:marley:MARLEYGen                     4.4154e-05    0.00035265    0.00152103    5.3442e-05    0.000584483       5     
+[art]:TriggerResults:TriggerResultInserter     4.578e-06    1.33312e-05   2.6471e-05     8.536e-06    9.11084e-06       5     
+end_path:out1:RootOutput                       7.52e-07     2.2906e-06     7.274e-06     8.62e-07     2.51864e-06       5     
+end_path:out1:RootOutput(write)               3.2031e-05    0.00030661    0.00137722    3.9165e-05    0.000535349       5     
+================================================================================================================================
+%MSG-i NuRandomService:  RootOutput:out1@EndJob 06-Apr-2025 14:29:50 CDT  ModuleEndJob
+
+Summary of seeds computed by the NuRandomService
+Random policy: 'perEvent'
+  algorithm version: EventTimestamp_v1
+   Configured value          Last value   ModuleLabel.InstanceName
+        (per event)           691890060   marley.MARLEY
+        (per event)            87485300   marley.MARLEY_Vertex_Sampler
+
+%MSG
+
+====================================================================================================
+MemoryTracker summary (base-10 MB units used)
+
+  Peak virtual memory usage (VmPeak)  : 1077.56 MB
+  Peak resident set size usage (VmHWM): 527.032 MB
+====================================================================================================
+
+TrigReport ---------- Event summary -------------
+TrigReport Events total = 5 passed = 5 failed = 0
+
+TrigReport ---------- Modules in End-path ----------
+TrigReport        Run    Success      Error Name
+TrigReport          5          5          0 out1
+
+TimeReport ---------- Time summary [sec] -------
+TimeReport CPU = 0.536372 Real = 0.906397
+
+MemReport  ---------- Memory summary [base-10 MB] ------
+MemReport  VmPeak = 1077.56 VmHWM = 527.032
+
+Art has completed and will exit with status 0.
+ Generation done!
+
+ In the folder now we have
+ total 1222092
+-rw-r--r-- 1 emvilla dune         0 Apr  4 10:04 debugprod.log
+-rw-r--r-- 1 emvilla dune     40030 Apr  6 14:29 detsim_dune10kt_1x2x6_notpcsigproc_dump.fcl
+-rw-r--r-- 1 emvilla dune         4 Apr  4 10:05 execTime.txt
+-rw-r--r-- 1 emvilla dune       519 Apr  4 10:03 g4_hist.root
+-rw-r--r-- 1 emvilla dune     53248 Apr  4 10:05 mem.db
+-rw-r--r-- 1 emvilla dune     12403 Apr  6 14:29 prodmarley_nue_flat_ES_dune10kt_1x2x6_dump_dump.fcl
+-rw-r--r-- 1 emvilla dune       519 Apr  4 10:04 prodmarley_nue_flat_ES_dune10kt_1x2x6_dump_g4_detsim_hist.root
+-rw-r--r-- 1 emvilla dune 625317099 Apr  4 10:05 prodmarley_nue_flat_ES_dune10kt_1x2x6_dump_g4_detsim_reco1.root
+-rw-r--r-- 1 emvilla dune 625272421 Apr  4 10:04 prodmarley_nue_flat_ES_dune10kt_1x2x6_dump_g4_detsim.root
+-rw-r--r-- 1 emvilla dune    229911 Apr  4 10:03 prodmarley_nue_flat_ES_dune10kt_1x2x6_dump_g4.root
+-rw-r--r-- 1 emvilla dune     87886 Apr  6 14:29 prodmarley_nue_flat_ES_dune10kt_1x2x6_dump.root
+-rw-r--r-- 1 emvilla dune        86 Apr  6 14:29 prodmarley_nue_flat_ES_dune10kt_1x2x6_dump_standard.fcl
+-rw-r--r-- 1 emvilla dune      9363 Apr  6 14:29 prodmarley_nue_hist.root
+-rw-r--r-- 1 emvilla dune     29092 Apr  6 14:29 supernova_g4_dune10kt_1x2x6_dump.fcl
+-rw-r--r-- 1 emvilla dune     16384 Apr  4 10:05 time.db
+-rw-r--r-- 1 emvilla dune     37070 Apr  6 14:29 triggerana_tree_1x2x6_simpleThr_simpleWin_simpleWin_dump.fcl
+-rw-r--r-- 1 emvilla dune     75910 Apr  4 10:05 triggersim_hist.root
+-rw-r--r-- 1 emvilla dune    234725 Apr  4 10:04 wcls-sim-drift-simchannel.log 
+
+Ending generation at 1743967791
+Generation took 3 seconds
+Starting Geant4 simulation...
+Starting detector simulation at 1743967791
+Executing command: lar -c supernova_g4_dune10kt_1x2x6.fcl -n 5 -s /exp/dune/app/users/emvilla/v10_04_07d00/output/standard/prodmarley_nue_flat_ES_dune10kt_1x2x6_dump_standard-triggerana_tree_1x2x6_simpleThr_simpleWin_simpleWin-5events_supernovaES_triggerValidationTest/prodmarley_nue_flat_ES_dune10kt_1x2x6_dump.root -o /exp/dune/app/users/emvilla/v10_04_07d00/output/standard/prodmarley_nue_flat_ES_dune10kt_1x2x6_dump_standard-triggerana_tree_1x2x6_simpleThr_simpleWin_simpleWin-5events_supernovaES_triggerValidationTest/prodmarley_nue_flat_ES_dune10kt_1x2x6_dump_g4.root
+%MSG-i MF_INIT_OK:  Early 06-Apr-2025 14:29:54 CDT JobSetup
+Messagelogger initialization complete.
+%MSG
+Info in <TGeoManager::Import>: Reading geometry from file: /cvmfs/dune.opensciencegrid.org/products/dune/dunecore/v10_04_07d00/gdml/dune10kt_v6_refactored_1x2x6.gdml
+Info in <TGeoManager::TGeoManager>: Geometry GDMLImport, Geometry imported from GDML created
+Error: Unsupported GDML Tag Used :gdml_simple_extension. Please Check Geometry/Schema.
+Error: Unsupported GDML Tag Used :extension. Please Check Geometry/Schema.
+Info in <TGeoManager::SetTopVolume>: Top volume is volWorld. Master volume is volWorld
+Info in <TGeoNavigator::BuildCache>: --- Maximum geometry depth set to 100
+Info in <TGeoManager::CheckGeometry>: Fixing runtime shapes...
+Info in <TGeoManager::CheckGeometry>: ...Nothing to fix
+Info in <TGeoManager::CloseGeometry>: Counting nodes...
+Info in <TGeoManager::Voxelize>: Voxelizing...
+Info in <TGeoManager::CloseGeometry>: Building cache...
+Info in <TGeoManager::CountLevels>: max level = 5, max placements = 1149
+Info in <TGeoManager::CloseGeometry>: 67545 nodes/ 5439 volume UID's in Geometry imported from GDML
+Info in <TGeoManager::CloseGeometry>: ----------------modeler ready----------------
+%MSG-i AuxDetGeometryCore:  Early 06-Apr-2025 14:29:57 CDT JobSetup
+New detector geometry loaded from
+	/cvmfs/dune.opensciencegrid.org/products/dune/dunecore/v10_04_07d00/gdml/dune10kt_v6_refactored_1x2x6.gdml
+%MSG
+%MSG-i GeometryCore:  Early 06-Apr-2025 14:29:57 CDT JobSetup
+Sorting volumes...
+%MSG
+%MSG-i GeometryCore:  Early 06-Apr-2025 14:29:57 CDT JobSetup
+New detector geometry loaded from
+	/cvmfs/dune.opensciencegrid.org/products/dune/dunecore/v10_04_07d00/gdml/dune10kt_v6_refactored_1x2x6.gdml
+%MSG
+%MSG-i DuneApaWireReadoutGeom:  Early 06-Apr-2025 14:29:57 CDT JobSetup
+Initializing wire readout...
+%MSG
+Cryostat 0:
+  30720 total channels
+  12 APAs
+  For all identical APA:
+    Number of channels per APA = 2560
+    U channels per APA = 800
+    V channels per APA = 800
+    Z channels per APA = 960
+    Pitch in U Plane = 0.4667
+    Pitch in V Plane = 0.4667
+    Pitch in Z Plane = 0.479
+%MSG-i SimpleChannelStatusService:  Early 06-Apr-2025 14:29:57 CDT JobSetup
+Loaded from configuration:
+  - 0 bad channels
+  - 0 noisy channels
+  - largest channel ID: 30719, largest present: 30719
+%MSG
+%MSG-i setupProvider<DetectorPropertiesStandard>:  Early  06-Apr-2025 14:29:57 CDT JobSetup
+Asked to ignore 1 keys: 'InheritNumberTimeSamples'
+%MSG
+%MSG-i LArG4DetectorService::Ctr:  Early 06-Apr-2025 14:29:57 CDT JobSetup
+Reading stepLimit(s) from the configuration file, for volume(s):
+%MSG
+%MSG-i LArG4DetectorService::Ctr:  Early 06-Apr-2025 14:29:57 CDT JobSetup
+Volume: volTPCActiveInner0, stepLimit: 0.4
+%MSG
+%MSG-i LArG4DetectorService::Ctr:  Early 06-Apr-2025 14:29:57 CDT JobSetup
+Volume: volTPCActiveInner1, stepLimit: 0.4
+%MSG
+%MSG-i LArG4DetectorService::Ctr:  Early 06-Apr-2025 14:29:57 CDT JobSetup
+Volume: volTPCActiveOuter, stepLimit: 0.4
+%MSG
+registering to  primaryGeneratorActionsMap_
+registering to   eventActionsMap_
+registering to   trackingActionsMap_
+registering to  steppingActionsMap_
+%MSG-i ParticleListActionService:  Early 06-Apr-2025 14:29:57 CDT JobSetup
+The full tracking information will not be stored for particles resulting from the following processes: 
+{ "conv" "LowEnConversion" "Pair" "compt" "Compt" "Brem" "phot" "Photo" "Ion" "annihil" }
+
+%MSG
+%MSG-i ParticleListActionService:  Early 06-Apr-2025 14:29:57 CDT JobSetup
+Trajectory sparsification enabled with SparsifyMargin : 0.015
+
+%MSG
+%MSG-i SignalShapingServiceDUNE:  Early 06-Apr-2025 14:29:57 CDT JobSetup
+Getting Filter from .fcl file
+%MSG
+%MSG-i SignalShapingServiceDUNE:  Early 06-Apr-2025 14:29:57 CDT JobSetup
+ using the field response provided from a .root file 
+%MSG
+Warning in <TFile::Append>: Replacing existing TH1: FieldResponse_U (Potential memory leak).
+Warning in <TFile::Append>: Replacing existing TH1: FieldResponse_V (Potential memory leak).
+Warning in <TFile::Append>: Replacing existing TH1: FieldResponse_Y (Potential memory leak).
+%MSG-i RANDOM:  IonAndScint:IonAndScint@Construction 06-Apr-2025 14:29:57 CDT  ModuleConstruction
+Instantiated HepJamesRandom engine "IonAndScint:0:ISCalcAlg" with seed 0.
+%MSG
+%MSG-i NuRandomService:  IonAndScint:IonAndScint@Construction  06-Apr-2025 14:29:57 CDT ModuleConstruction
+Seeding HepJamesRandom engine "IonAndScint:ISCalcAlg" with seed 0.
+%MSG
+IonAndScint Module Construct
+Produce SimEnergyDeposit in volumes: 
+ - LArG4DetectorServicevolTPCInner
+ - LArG4DetectorServicevolTPCPlaneVInner
+ - LArG4DetectorServicevolTPCActiveOuter
+ - LArG4DetectorServicevolTPCPlaneUInner
+ - LArG4DetectorServicevolTPCPlaneZInner
+ - LArG4DetectorServicevolTPCActiveInner
+ - LArG4DetectorServicevolTPCActive,LArG4DetectorServicevolTPCInner0
+ - LArG4DetectorServicevolTPCPlaneVInner0
+ - LArG4DetectorServicevolTPCPlaneUInner0
+ - LArG4DetectorServicevolTPCPlaneZInner0
+ - LArG4DetectorServicevolTPCActiveInner0
+ - LArG4DetectorServicevolTPCActive0
+ - LArG4DetectorServicevolTPCInner1
+ - LArG4DetectorServicevolTPCPlaneVInner1
+ - LArG4DetectorServicevolTPCPlaneUInner1
+ - LArG4DetectorServicevolTPCPlaneZInner1
+ - LArG4DetectorServicevolTPCActiveInner1
+ - LArG4DetectorServicevolTPCActive1
+%MSG-i RANDOM:  PDFastSimPAR:PDFastSim@Construction 06-Apr-2025 14:29:57 CDT  ModuleConstruction
+Instantiated HepJamesRandom engine "PDFastSim:0:photon" with seed 0.
+%MSG
+%MSG-i NuRandomService:  PDFastSimPAR:PDFastSim@Construction  06-Apr-2025 14:29:57 CDT ModuleConstruction
+Seeding HepJamesRandom engine "PDFastSim:photon" with seed 0.
+%MSG
+%MSG-i RANDOM:  PDFastSimPAR:PDFastSim@Construction 06-Apr-2025 14:29:57 CDT  ModuleConstruction
+Instantiated HepJamesRandom engine "PDFastSim:0:scinttime" with seed 0.
+%MSG
+%MSG-i NuRandomService:  PDFastSimPAR:PDFastSim@Construction  06-Apr-2025 14:29:57 CDT ModuleConstruction
+Seeding HepJamesRandom engine "PDFastSim:scinttime" with seed 0.
+%MSG
+ScintTimeLAr Tool configure:
+Fast rising time: 0, Fast decay time: 6, Slow rising time: 0, Slow decay time: 1600
+%MSG-i PDFastSimPAR:  PDFastSimPAR:PDFastSim@Construction  06-Apr-2025 14:29:57 CDT ModuleConstruction
+Initializing PDFastSimPAR.
+%MSG
+%MSG-i SemiAnalyticalModel:  PDFastSimPAR:PDFastSim@Construction  06-Apr-2025 14:29:57 CDT ModuleConstruction
+Initializing Semi-analytical model.
+%MSG
+%MSG-i SemiAnalyticalModel:  PDFastSimPAR:PDFastSim@Construction  06-Apr-2025 14:29:57 CDT ModuleConstruction
+Using VUV visibility parameterization
+%MSG
+%MSG-i SemiAnalyticalModel:  PDFastSimPAR:PDFastSim@Construction  06-Apr-2025 14:29:57 CDT ModuleConstruction
+Setting absorption length to: 2000
+%MSG
+%MSG-i SemiAnalyticalModel:  PDFastSimPAR:PDFastSim@Construction  06-Apr-2025 14:29:57 CDT ModuleConstruction
+Semi-analytical model initialized.
+%MSG
+%MSG-i PropagationTimeModel:  PDFastSimPAR:PDFastSim@Construction  06-Apr-2025 14:29:57 CDT ModuleConstruction
+Initializing Photon propagation time model.
+%MSG
+%MSG-i PropagationTimeModel:  PDFastSimPAR:PDFastSim@Construction  06-Apr-2025 14:29:57 CDT ModuleConstruction
+Using VUV timing parameterization
+%MSG
+%MSG-i PropagationTimeModel:  PDFastSimPAR:PDFastSim@Construction  06-Apr-2025 14:29:57 CDT ModuleConstruction
+Generating VUV parameters
+%MSG
+User signal SIGINT terminating the process
+terminate called without an active exception
+./scripts/triggersim.sh: line 276: 10867 Aborted                 (core dumped) $command_g4
+ Geant4 simulation failed. Exiting...

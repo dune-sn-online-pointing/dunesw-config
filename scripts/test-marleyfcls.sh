@@ -76,7 +76,7 @@ marley_gen_fcls_garching=(
 if [ "$flat" = true ]; then
     marley_gen_fcls=("${marley_gen_fcls_flat[@]}")
     for gen_fcl in ${marley_gen_fcls[@]}; do
-        command_gen=". ${REPO_HOME}/scripts/triggersim.sh -m ${gen_fcl} -j 100407.json -f testFcl"
+        command_gen=". ${HOME_DIR}/scripts/triggersim.sh -m ${gen_fcl} -j 100407.json -f testFcl"
         echo " Running command: ${command_gen}"
         ${command_gen} 
         if [ $? -ne 0 ]; then
@@ -92,7 +92,7 @@ fi
 if [ "$gkvm" = true ]; then
     marley_gen_fcls=("${marley_gen_fcls_gkvm[@]}")
     for gen_fcl in ${marley_gen_fcls[@]}; do
-        command_gen=". ${REPO_HOME}/scripts/triggersim.sh -m ${gen_fcl} -j 100407.json -f testFcl"
+        command_gen=". ${HOME_DIR}/scripts/triggersim.sh -m ${gen_fcl} -j 100407.json -f testFcl"
         echo " Running command: ${command_gen}"
         ${command_gen} 
         if [ $? -ne 0 ]; then
@@ -108,7 +108,7 @@ fi
 if [ "$livermore" = true ]; then
     marley_gen_fcls=("${marley_gen_fcls_livermore[@]}")
     for gen_fcl in ${marley_gen_fcls[@]}; do
-        command_gen=". ${REPO_HOME}/scripts/triggersim.sh -m ${gen_fcl} -j 100407.json -f testFcl"
+        command_gen=". ${HOME_DIR}/scripts/triggersim.sh -m ${gen_fcl} -j 100407.json -f testFcl"
         echo " Running command: ${command_gen}"
         ${command_gen} 
         if [ $? -ne 0 ]; then
@@ -124,7 +124,7 @@ fi
 if [ "$garching" = true ]; then
     marley_gen_fcls=("${marley_gen_fcls_garching[@]}")
     for gen_fcl in ${marley_gen_fcls[@]}; do
-        command_gen=". ${REPO_HOME}/scripts/triggersim.sh -m ${gen_fcl} -j 100407.json -f testFcl"
+        command_gen=". ${HOME_DIR}/scripts/triggersim.sh -m ${gen_fcl} -j 100407.json -f testFcl"
         echo " Running command: ${command_gen}"
         ${command_gen} 
         if [ $? -ne 0 ]; then

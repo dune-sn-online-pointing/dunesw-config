@@ -31,7 +31,7 @@ then
 fi
 
 # Update the version number in the version file
-version_file="${REPO_HOME}/docs/dunesw-config-version.txt"
+version_file="${HOME_DIR}/docs/dunesw-config-version.txt"
 echo "$versionNumber" > $version_file
 git add $version_file; git commit -m "Update version to $versionNumber"; git push
 

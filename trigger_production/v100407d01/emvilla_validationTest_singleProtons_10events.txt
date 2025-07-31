@@ -1,4 +1,4 @@
-REPO_HOME for script triggersim.sh: /exp/dune/app/users/emvilla/dunesw-config
+HOME_DIR for script triggersim.sh: /exp/dune/app/users/emvilla/dunesw-config
 When running in condor, this won't work. Use the --home-config flag to set the path to the dunesw-config folder
 JSON settings file is /exp/dune/app/users/emvilla/dunesw-config/json/100407.json
 Expecting the software to be in: /exp/dune/app/users/emvilla/v10_04_07d01/
@@ -12,7 +12,7 @@ We are in /exp/dune/app/users/emvilla/dunesw-config
 Data will be saved in /exp/dune/app/users/emvilla/v10_04_07d01/output/standard/prod_p_1-500MeV_dune10kt_1x2x6_standard-triggerana_tree_1x2x6_simpleThr_simpleWin_simpleWin-10events_singleProtons_triggerValidationTest/
 Generating fcl file with standard values...
 If you see a git error, it is because the script must be run from inside the dunesw-config repository.
-REPO_HOME for script custom-enAndDir.sh: /exp/dune/app/users/emvilla/dunesw-config
+HOME_DIR for script custom-enAndDir.sh: /exp/dune/app/users/emvilla/dunesw-config
 Generated file: /exp/dune/app/users/emvilla/v10_04_07d01/output/standard/prod_p_1-500MeV_dune10kt_1x2x6_standard-triggerana_tree_1x2x6_simpleThr_simpleWin_simpleWin-10events_singleProtons_triggerValidationTest/prod_p_1-500MeV_dune10kt_1x2x6_standard.fcl
  
 We are now in /exp/dune/app/users/emvilla/v10_04_07d01/output/standard/prod_p_1-500MeV_dune10kt_1x2x6_standard-triggerana_tree_1x2x6_simpleThr_simpleWin_simpleWin-10events_singleProtons_triggerValidationTest

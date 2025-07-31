@@ -1,0 +1,3115 @@
+HOME_DIR for script triggersim.sh: /exp/dune/app/users/emvilla/dunesw-config
+When running in condor, this won't work. Use the --home-config flag to set the path to the dunesw-config folder
+JSON settings file is /exp/dune/app/users/emvilla/dunesw-config/json/100407.json
+Expecting the software to be in: /exp/dune/app/users/emvilla/v10_04_07d00/
+Setting up dunesw v10_04_07d00...
+Setting up larsoft UPS area... /cvmfs/larsoft.opensciencegrid.org
+Setting up DUNE UPS area... /cvmfs/dune.opensciencegrid.org/products/dune/
+Setting up dunesw v10_04_07d00
+Setting up dunesw version v10_04_07d00, qualifier e26:prof ...
+Done!
+We are in /exp/dune/app/users/emvilla/dunesw-config
+Data will be saved in /exp/dune/app/users/emvilla/v10_04_07d00/output/standard/prodmarley_nue_flat_CC_dune10kt_1x2x6_dump_standard-triggerana_tree_1x2x6_simpleThr_simpleWin_simpleWin-5events_supernovaCC_triggerValidationTest/
+Generating fcl file with standard values...
+If you see a git error, it is because the script must be run from inside the dunesw-config repository.
+HOME_DIR for script custom-enAndDir.sh: /exp/dune/app/users/emvilla/dunesw-config
+Generated file: /exp/dune/app/users/emvilla/v10_04_07d00/output/standard/prodmarley_nue_flat_CC_dune10kt_1x2x6_dump_standard-triggerana_tree_1x2x6_simpleThr_simpleWin_simpleWin-5events_supernovaCC_triggerValidationTest/prodmarley_nue_flat_CC_dune10kt_1x2x6_dump_standard.fcl
+ 
+We are now in /exp/dune/app/users/emvilla/v10_04_07d00/output/standard/prodmarley_nue_flat_CC_dune10kt_1x2x6_dump_standard-triggerana_tree_1x2x6_simpleThr_simpleWin_simpleWin-5events_supernovaCC_triggerValidationTest
+Items here are total 1224412
+-rw-r--r-- 1 emvilla dune         0 Apr  6 14:28 debugprod.log
+-rw-r--r-- 1 emvilla dune     40030 Apr  6 14:32 detsim_dune10kt_1x2x6_notpcsigproc_dump.fcl
+-rw-r--r-- 1 emvilla dune         4 Apr  6 14:29 execTime.txt
+-rw-r--r-- 1 emvilla dune       519 Apr  6 14:27 g4_hist.root
+-rw-r--r-- 1 emvilla dune     61440 Apr  6 14:29 mem.db
+-rw-r--r-- 1 emvilla dune     12426 Apr  6 14:32 prodmarley_nue_flat_CC_dune10kt_1x2x6_dump_dump.fcl
+-rw-r--r-- 1 emvilla dune       519 Apr  6 14:28 prodmarley_nue_flat_CC_dune10kt_1x2x6_dump_g4_detsim_hist.root
+-rw-r--r-- 1 emvilla dune 626155053 Apr  6 14:29 prodmarley_nue_flat_CC_dune10kt_1x2x6_dump_g4_detsim_reco1.root
+-rw-r--r-- 1 emvilla dune 626100558 Apr  6 14:28 prodmarley_nue_flat_CC_dune10kt_1x2x6_dump_g4_detsim.root
+-rw-r--r-- 1 emvilla dune    545651 Apr  6 14:27 prodmarley_nue_flat_CC_dune10kt_1x2x6_dump_g4.root
+-rw-r--r-- 1 emvilla dune     89481 Apr  6 14:24 prodmarley_nue_flat_CC_dune10kt_1x2x6_dump.root
+-rw-r--r-- 1 emvilla dune        86 Apr  6 14:32 prodmarley_nue_flat_CC_dune10kt_1x2x6_dump_standard.fcl
+-rw-r--r-- 1 emvilla dune     10028 Apr  6 14:24 prodmarley_nue_hist.root
+-rw-r--r-- 1 emvilla dune     29092 Apr  6 14:32 supernova_g4_dune10kt_1x2x6_dump.fcl
+-rw-r--r-- 1 emvilla dune     16384 Apr  6 14:29 time.db
+-rw-r--r-- 1 emvilla dune     37070 Apr  6 14:32 triggerana_tree_1x2x6_simpleThr_simpleWin_simpleWin_dump.fcl
+-rw-r--r-- 1 emvilla dune    224512 Apr  6 14:29 triggersim_hist.root
+-rw-r--r-- 1 emvilla dune    469636 Apr  6 14:28 wcls-sim-drift-simchannel.log
+Starting simulation at 1743967947
+Starting Generation...
+Starting generation at 1743967947
+Executing command: lar -c /exp/dune/app/users/emvilla/v10_04_07d00/output/standard/prodmarley_nue_flat_CC_dune10kt_1x2x6_dump_standard-triggerana_tree_1x2x6_simpleThr_simpleWin_simpleWin-5events_supernovaCC_triggerValidationTest/prodmarley_nue_flat_CC_dune10kt_1x2x6_dump_standard.fcl -n 5 -o /exp/dune/app/users/emvilla/v10_04_07d00/output/standard/prodmarley_nue_flat_CC_dune10kt_1x2x6_dump_standard-triggerana_tree_1x2x6_simpleThr_simpleWin_simpleWin-5events_supernovaCC_triggerValidationTest/prodmarley_nue_flat_CC_dune10kt_1x2x6_dump.root
+%MSG-i MF_INIT_OK:  Early 06-Apr-2025 14:32:27 CDT JobSetup
+Messagelogger initialization complete.
+%MSG
+Info in <TGeoManager::Import>: Reading geometry from file: /cvmfs/dune.opensciencegrid.org/products/dune/dunecore/v10_04_07d00/gdml/dune10kt_v4_1x2x6.gdml
+Info in <TGeoManager::TGeoManager>: Geometry GDMLImport, Geometry imported from GDML created
+Info in <TGeoManager::SetTopVolume>: Top volume is volWorld. Master volume is volWorld
+Info in <TGeoNavigator::BuildCache>: --- Maximum geometry depth set to 100
+Info in <TGeoManager::CheckGeometry>: Fixing runtime shapes...
+Info in <TGeoManager::CheckGeometry>: ...Nothing to fix
+Info in <TGeoManager::CloseGeometry>: Counting nodes...
+Info in <TGeoManager::Voxelize>: Voxelizing...
+Info in <TGeoManager::CloseGeometry>: Building cache...
+Info in <TGeoManager::CountLevels>: max level = 5, max placements = 1149
+Info in <TGeoManager::CloseGeometry>: 67545 nodes/ 3831 volume UID's in Geometry imported from GDML
+Info in <TGeoManager::CloseGeometry>: ----------------modeler ready----------------
+%MSG-i AuxDetGeometryCore:  Early 06-Apr-2025 14:32:28 CDT JobSetup
+New detector geometry loaded from
+	/cvmfs/dune.opensciencegrid.org/products/dune/dunecore/v10_04_07d00/gdml/dune10kt_v4_1x2x6.gdml
+%MSG
+%MSG-i GeometryCore:  Early 06-Apr-2025 14:32:28 CDT JobSetup
+Sorting volumes...
+%MSG
+%MSG-i GeometryCore:  Early 06-Apr-2025 14:32:28 CDT JobSetup
+New detector geometry loaded from
+	/cvmfs/dune.opensciencegrid.org/products/dune/dunecore/v10_04_07d00/gdml/dune10kt_v6_refactored_1x2x6.gdml
+%MSG
+%MSG-i DuneApaWireReadoutGeom:  Early 06-Apr-2025 14:32:28 CDT JobSetup
+Initializing wire readout...
+%MSG
+Cryostat 0:
+  30720 total channels
+  12 APAs
+  For all identical APA:
+    Number of channels per APA = 2560
+    U channels per APA = 800
+    V channels per APA = 800
+    Z channels per APA = 960
+    Pitch in U Plane = 0.4667
+    Pitch in V Plane = 0.4667
+    Pitch in Z Plane = 0.479
+GeoApaChannelGroupService::ctor: Group 0 (apa00) has 2560 channels from 4/4 readout planes.
+GeoApaChannelGroupService::ctor: Group 1 (apa01) has 2560 channels from 4/4 readout planes.
+GeoApaChannelGroupService::ctor: Group 2 (apa02) has 2560 channels from 4/4 readout planes.
+GeoApaChannelGroupService::ctor: Group 3 (apa03) has 2560 channels from 4/4 readout planes.
+GeoApaChannelGroupService::ctor: Group 4 (apa04) has 2560 channels from 4/4 readout planes.
+GeoApaChannelGroupService::ctor: Group 5 (apa05) has 2560 channels from 4/4 readout planes.
+GeoApaChannelGroupService::ctor: Group 6 (apa06) has 2560 channels from 4/4 readout planes.
+GeoApaChannelGroupService::ctor: Group 7 (apa07) has 2560 channels from 4/4 readout planes.
+GeoApaChannelGroupService::ctor: Group 8 (apa08) has 2560 channels from 4/4 readout planes.
+GeoApaChannelGroupService::ctor: Group 9 (apa09) has 2560 channels from 4/4 readout planes.
+GeoApaChannelGroupService::ctor: Group 10 (apa10) has 2560 channels from 4/4 readout planes.
+GeoApaChannelGroupService::ctor: Group 11 (apa11) has 2560 channels from 4/4 readout planes.
+%MSG-i SimpleChannelStatusService:  Early 06-Apr-2025 14:32:28 CDT JobSetup
+Loaded from configuration:
+  - 0 bad channels
+  - 0 noisy channels
+  - largest channel ID: 30719, largest present: 30719
+%MSG
+%MSG-i setupProvider<DetectorPropertiesStandard>:  Early  06-Apr-2025 14:32:28 CDT JobSetup
+Asked to ignore 1 keys: 'InheritNumberTimeSamples'
+%MSG
+%MSG-i SignalShapingServiceDUNE:  Early 06-Apr-2025 14:32:28 CDT JobSetup
+Getting Filter from .fcl file
+%MSG
+%MSG-i SignalShapingServiceDUNE:  Early 06-Apr-2025 14:32:28 CDT JobSetup
+ using the field response provided from a .root file 
+%MSG
+Warning in <TFile::Append>: Replacing existing TH1: FieldResponse_U (Potential memory leak).
+Warning in <TFile::Append>: Replacing existing TH1: FieldResponse_V (Potential memory leak).
+Warning in <TFile::Append>: Replacing existing TH1: FieldResponse_Y (Potential memory leak).
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:32:29 CDT ModuleConstruction
+Computing analytically weight of volTPCActiveInner
+ROOT severity: 1000
+%MSG
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:32:29 CDT ModuleConstruction
+Computed weight: 70162.732071 [kg]
+
+ROOT severity: 1000
+%MSG
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:32:29 CDT ModuleConstruction
+Computing analytically weight of volTPCActiveInner
+ROOT severity: 1000
+%MSG
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:32:29 CDT ModuleConstruction
+Computed weight: 70162.732071 [kg]
+
+ROOT severity: 1000
+%MSG
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:32:29 CDT ModuleConstruction
+Computing analytically weight of volTPCActiveInner
+ROOT severity: 1000
+%MSG
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:32:29 CDT ModuleConstruction
+Computed weight: 70162.732071 [kg]
+
+ROOT severity: 1000
+%MSG
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:32:29 CDT ModuleConstruction
+Computing analytically weight of volTPCActiveInner
+ROOT severity: 1000
+%MSG
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:32:29 CDT ModuleConstruction
+Computed weight: 70162.732071 [kg]
+
+ROOT severity: 1000
+%MSG
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:32:29 CDT ModuleConstruction
+Computing analytically weight of volTPCActiveInner
+ROOT severity: 1000
+%MSG
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:32:29 CDT ModuleConstruction
+Computed weight: 70162.732071 [kg]
+
+ROOT severity: 1000
+%MSG
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:32:29 CDT ModuleConstruction
+Computing analytically weight of volTPCActiveInner
+ROOT severity: 1000
+%MSG
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:32:29 CDT ModuleConstruction
+Computed weight: 70162.732071 [kg]
+
+ROOT severity: 1000
+%MSG
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:32:29 CDT ModuleConstruction
+Computing analytically weight of volTPCActiveInner
+ROOT severity: 1000
+%MSG
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:32:29 CDT ModuleConstruction
+Computed weight: 70162.732071 [kg]
+
+ROOT severity: 1000
+%MSG
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:32:29 CDT ModuleConstruction
+Computing analytically weight of volTPCActiveInner
+ROOT severity: 1000
+%MSG
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:32:29 CDT ModuleConstruction
+Computed weight: 70162.732071 [kg]
+
+ROOT severity: 1000
+%MSG
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:32:29 CDT ModuleConstruction
+Computing analytically weight of volTPCActiveInner
+ROOT severity: 1000
+%MSG
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:32:29 CDT ModuleConstruction
+Computed weight: 70162.732071 [kg]
+
+ROOT severity: 1000
+%MSG
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:32:29 CDT ModuleConstruction
+Computing analytically weight of volTPCActiveInner
+ROOT severity: 1000
+%MSG
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:32:29 CDT ModuleConstruction
+Computed weight: 70162.732071 [kg]
+
+ROOT severity: 1000
+%MSG
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:32:29 CDT ModuleConstruction
+Computing analytically weight of volTPCActiveInner
+ROOT severity: 1000
+%MSG
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:32:29 CDT ModuleConstruction
+Computed weight: 70162.732071 [kg]
+
+ROOT severity: 1000
+%MSG
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:32:29 CDT ModuleConstruction
+Computing analytically weight of volTPCActiveInner
+ROOT severity: 1000
+%MSG
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:32:29 CDT ModuleConstruction
+Computed weight: 70162.732071 [kg]
+
+ROOT severity: 1000
+%MSG
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:32:29 CDT ModuleConstruction
+Computing analytically weight of volTPCActiveInner
+ROOT severity: 1000
+%MSG
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:32:29 CDT ModuleConstruction
+Computed weight: 70162.732071 [kg]
+
+ROOT severity: 1000
+%MSG
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:32:29 CDT ModuleConstruction
+Computing analytically weight of volTPCActiveInner
+ROOT severity: 1000
+%MSG
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:32:29 CDT ModuleConstruction
+Computed weight: 70162.732071 [kg]
+
+ROOT severity: 1000
+%MSG
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:32:29 CDT ModuleConstruction
+Computing analytically weight of volTPCActiveInner
+ROOT severity: 1000
+%MSG
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:32:29 CDT ModuleConstruction
+Computed weight: 70162.732071 [kg]
+
+ROOT severity: 1000
+%MSG
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:32:29 CDT ModuleConstruction
+Computing analytically weight of volTPCActiveInner
+ROOT severity: 1000
+%MSG
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:32:29 CDT ModuleConstruction
+Computed weight: 70162.732071 [kg]
+
+ROOT severity: 1000
+%MSG
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:32:29 CDT ModuleConstruction
+Computing analytically weight of volTPCActiveInner
+ROOT severity: 1000
+%MSG
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:32:29 CDT ModuleConstruction
+Computed weight: 70162.732071 [kg]
+
+ROOT severity: 1000
+%MSG
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:32:29 CDT ModuleConstruction
+Computing analytically weight of volTPCActiveInner
+ROOT severity: 1000
+%MSG
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:32:29 CDT ModuleConstruction
+Computed weight: 70162.732071 [kg]
+
+ROOT severity: 1000
+%MSG
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:32:29 CDT ModuleConstruction
+Computing analytically weight of volTPCActiveInner
+ROOT severity: 1000
+%MSG
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:32:29 CDT ModuleConstruction
+Computed weight: 70162.732071 [kg]
+
+ROOT severity: 1000
+%MSG
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:32:29 CDT ModuleConstruction
+Computing analytically weight of volTPCActiveInner
+ROOT severity: 1000
+%MSG
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:32:29 CDT ModuleConstruction
+Computed weight: 70162.732071 [kg]
+
+ROOT severity: 1000
+%MSG
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:32:29 CDT ModuleConstruction
+Computing analytically weight of volTPCActiveInner
+ROOT severity: 1000
+%MSG
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:32:29 CDT ModuleConstruction
+Computed weight: 70162.732071 [kg]
+
+ROOT severity: 1000
+%MSG
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:32:29 CDT ModuleConstruction
+Computing analytically weight of volTPCActiveInner
+ROOT severity: 1000
+%MSG
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:32:29 CDT ModuleConstruction
+Computed weight: 70162.732071 [kg]
+
+ROOT severity: 1000
+%MSG
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:32:29 CDT ModuleConstruction
+Computing analytically weight of volTPCActiveInner
+ROOT severity: 1000
+%MSG
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:32:29 CDT ModuleConstruction
+Computed weight: 70162.732071 [kg]
+
+ROOT severity: 1000
+%MSG
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:32:29 CDT ModuleConstruction
+Computing analytically weight of volTPCActiveInner
+ROOT severity: 1000
+%MSG
+%MSG-i Root_Information:  MARLEYGen:marley@Construction TGeoManager::Weight()  06-Apr-2025 14:32:29 CDT ModuleConstruction
+Computed weight: 70162.732071 [kg]
+
+ROOT severity: 1000
+%MSG
+%MSG-i MARLEYHelper MARLEY:  MARLEYGen:marley@Construction  06-Apr-2025 14:32:29 CDT ModuleConstruction MARLEYHelper.cxx:245
+MARLEY will now use the JSON configuration
+{"direction":"isotropic","reactions":["/cvmfs/larsoft.opensciencegrid.org/products/marley/v1_2_1d/Linux64bit+3.10-2.17-e26-prof/share/marley/data/react/ve40ArCC_Bhattacharya2009.react"],"source":{"E_bin_lefts":[4],"Emax":70,"neutrino":"ve","type":"histogram","weight_flux":false,"weights":[1]}}
+
+%MSG
+
+╔╦╗╔═╗╦═╗╦  ╔═╗╦ ╦
+║║║╠═╣╠╦╝║  ║╣ ╚╦╝
+╩ ╩╩ ╩╩╚═╩═╝╚═╝ ╩
+
+Don't worry about a thing,
+'Cause every little thing gonna be all right.
+-- Bob, "Three Little Birds"
+
+Model of Argon Reaction Low Energy Yields
+version 1.2.1
+
+Seeded random number generator with 1743967949350433917
+Projectile directions will be sampled isotropically
+Created histogram νe source
+Loaded structure data index from /cvmfs/larsoft.opensciencegrid.org/products/marley/v1_2_1d/Linux64bit+3.10-2.17-e26-prof/share/marley/data/structure/nuclide_index.txt
+Loaded structure data for 24 nuclides from the file /cvmfs/larsoft.opensciencegrid.org/products/marley/v1_2_1d/Linux64bit+3.10-2.17-e26-prof/share/marley/data/structure/K.dat
+Loading particle and atomic masses from /cvmfs/larsoft.opensciencegrid.org/products/marley/v1_2_1d/Linux64bit+3.10-2.17-e26-prof/share/marley/data/mass_table.js
+Loading ground-state nuclear spin-parities from /cvmfs/larsoft.opensciencegrid.org/products/marley/v1_2_1d/Linux64bit+3.10-2.17-e26-prof/share/marley/data/gs_spin_parity_table.txt
+Loaded ν CC reaction data for 40Ar from /cvmfs/larsoft.opensciencegrid.org/products/marley/v1_2_1d/Linux64bit+3.10-2.17-e26-prof/share/marley/data/react/ve40ArCC_Bhattacharya2009.react
+Configured pure 40Ar neutrino target
+Configured Coulomb correction method: Fermi-MEMA
+Generator configuration complete. Active reactions:
+  CC: νe + 40Ar --> e⁻ + 40K* (KE @ threshold: 1.50443 MeV)
+Flux-averaged total cross section per atom: 0 * 10^(-40) cm^2
+Seeded random number generator with 0
+%MSG-i MARLEY:  MARLEYGen:marley@Construction 06-Apr-2025 14:32:29 CDT  ModuleConstruction MARLEYHelper.cxx:76
+
+%MSG
+%MSG-i MARLEYHelper MARLEY:  MARLEYGen:marley@Construction  06-Apr-2025 14:32:29 CDT ModuleConstruction MARLEYHelper.cxx:271
+ROOT 6 or greater detected. Loading class information
+from headers "marley/Particle.hh" and "marley/Event.hh"
+%MSG
+%MSG-i GeneratedEventTimestamp:   TriggerResultInserter:TriggerResults@Construction 06-Apr-2025 14:32:29 CDT  ModuleConstruction
+Timestamp plugin: timestamp from local clock time in nanoseconds
+%MSG
+Begin processing the 1st record. run: 20000047 subRun: 0 event: 1 at 06-Apr-2025 14:32:29 CDT
+%MSG-w ParticleInventory:  ProcessEvent 06-Apr-2025 14:32:29 CDT  run: 20000047 subRun: 0 event: 1
+Rebuild failed to get the MCParticles. This is expected when running on a generation or simulation step.
+%MSG
+%MSG-w ParticleInventory:  ProcessEvent 06-Apr-2025 14:32:29 CDT  run: 20000047 subRun: 0 event: 1
+Rebuild failed to get the MCParticles. This is expected when running on a generation or simulation step.
+%MSG
+%MSG-w ParticleInventory:  ProcessEvent 06-Apr-2025 14:32:29 CDT  run: 20000047 subRun: 0 event: 1
+Rebuild failed to get the MCParticles. This is expected when running on a generation or simulation step.
+%MSG
+%MSG-w BackTrackerService:  ProcessEvent 06-Apr-2025 14:32:29 CDT  run: 20000047 subRun: 0 event: 1
+Rebuild failed to get the SimChannels. This is expected when running on a generation or simulation step.
+%MSG
+%MSG-w PhotonBackTrackerService:  ProcessEvent 06-Apr-2025 14:32:29 CDT  run: 20000047 subRun: 0 event: 1
+Rebuild failed to get the OpDetBTRs. This is expected when running on a generation or simulation step.
+%MSG
+Seeded random number generator with 195037379
+%MSG-i NuRandomService:  MARLEYGen:marley@BeginModule 06-Apr-2025 14:32:29 CDT  run: 20000047 subRun: 0 event: 1
+Random seed for this event, engine 'marley.MARLEY': 195037379
+%MSG
+%MSG-i NuRandomService:  MARLEYGen:marley@BeginModule 06-Apr-2025 14:32:29 CDT  run: 20000047 subRun: 0 event: 1
+Random seed for this event, engine 'marley.MARLEY_Vertex_Sampler': 315621983
+%MSG
+%MSG-i ActiveVolumeVertexSampler MARLEY_Vertex_Sampler:   MARLEYGen:marley@BeginModule 06-Apr-2025 14:32:29 CDT  run: 20000047 subRun: 0 event: 1 ActiveVolumeVertexSampler.cxx:83
+Sampled primary vertex in TPC #2, x = -183.259, y = 274.408, z = 221.607
+%MSG
+Loaded structure data for 22 nuclides from the file /cvmfs/larsoft.opensciencegrid.org/products/marley/v1_2_1d/Linux64bit+3.10-2.17-e26-prof/share/marley/data/structure/Ar.dat
+Loaded structure data for 23 nuclides from the file /cvmfs/larsoft.opensciencegrid.org/products/marley/v1_2_1d/Linux64bit+3.10-2.17-e26-prof/share/marley/data/structure/Cl.dat
+06-Apr-2025 14:32:30 CDT  Opened output file with pattern "/exp/dune/app/users/emvilla/v10_04_07d00/output/standard/prodmarley_nue_flat_CC_dune10kt_1x2x6_dump_standard-triggerana_tree_1x2x6_simpleThr_simpleWin_simpleWin-5events_supernovaCC_triggerValidationTest/prodmarley_nue_flat_CC_dune10kt_1x2x6_dump.root"
+%MSG-w FastCloning:  PostProcessEvent 06-Apr-2025 14:32:30 CDT  run: 20000047 subRun: 0 event: 1
+Fast cloning has been deactivated for the following reasons:
+ - Input source does not read art/ROOT files.
+%MSG
+Begin processing the 2nd record. run: 20000047 subRun: 0 event: 2 at 06-Apr-2025 14:32:30 CDT
+%MSG-w ParticleInventory:  ProcessEvent 06-Apr-2025 14:32:30 CDT  run: 20000047 subRun: 0 event: 2
+Rebuild failed to get the MCParticles. This is expected when running on a generation or simulation step.
+%MSG
+%MSG-w ParticleInventory:  ProcessEvent 06-Apr-2025 14:32:30 CDT  run: 20000047 subRun: 0 event: 2
+Rebuild failed to get the MCParticles. This is expected when running on a generation or simulation step.
+%MSG
+%MSG-w ParticleInventory:  ProcessEvent 06-Apr-2025 14:32:30 CDT  run: 20000047 subRun: 0 event: 2
+Rebuild failed to get the MCParticles. This is expected when running on a generation or simulation step.
+%MSG
+%MSG-w BackTrackerService:  ProcessEvent 06-Apr-2025 14:32:30 CDT  run: 20000047 subRun: 0 event: 2
+Rebuild failed to get the SimChannels. This is expected when running on a generation or simulation step.
+%MSG
+%MSG-w PhotonBackTrackerService:  ProcessEvent 06-Apr-2025 14:32:30 CDT  run: 20000047 subRun: 0 event: 2
+Rebuild failed to get the OpDetBTRs. This is expected when running on a generation or simulation step.
+%MSG
+Seeded random number generator with 326706336
+%MSG-i NuRandomService:  MARLEYGen:marley@BeginModule 06-Apr-2025 14:32:30 CDT  run: 20000047 subRun: 0 event: 2
+Random seed for this event, engine 'marley.MARLEY': 326706336
+%MSG
+%MSG-i NuRandomService:  MARLEYGen:marley@BeginModule 06-Apr-2025 14:32:30 CDT  run: 20000047 subRun: 0 event: 2
+Random seed for this event, engine 'marley.MARLEY_Vertex_Sampler': 454827324
+%MSG
+%MSG-i ActiveVolumeVertexSampler MARLEY_Vertex_Sampler:   MARLEYGen:marley@BeginModule 06-Apr-2025 14:32:30 CDT  run: 20000047 subRun: 0 event: 2 ActiveVolumeVertexSampler.cxx:83
+Sampled primary vertex in TPC #5, x = 255.417, y = -94.5156, z = 433.758
+%MSG
+Begin processing the 3rd record. run: 20000047 subRun: 0 event: 3 at 06-Apr-2025 14:32:30 CDT
+%MSG-w ParticleInventory:  ProcessEvent 06-Apr-2025 14:32:30 CDT  run: 20000047 subRun: 0 event: 3
+Rebuild failed to get the MCParticles. This is expected when running on a generation or simulation step.
+%MSG
+%MSG-w ParticleInventory:  ProcessEvent 06-Apr-2025 14:32:30 CDT  run: 20000047 subRun: 0 event: 3
+Rebuild failed to get the MCParticles. This is expected when running on a generation or simulation step.
+%MSG
+%MSG-w ParticleInventory:  ProcessEvent 06-Apr-2025 14:32:30 CDT  run: 20000047 subRun: 0 event: 3
+Rebuild failed to get the MCParticles. This is expected when running on a generation or simulation step.
+%MSG
+%MSG-w BackTrackerService:  ProcessEvent 06-Apr-2025 14:32:30 CDT  run: 20000047 subRun: 0 event: 3
+Rebuild failed to get the SimChannels. This is expected when running on a generation or simulation step.
+%MSG
+%MSG-w PhotonBackTrackerService:  ProcessEvent 06-Apr-2025 14:32:30 CDT  run: 20000047 subRun: 0 event: 3
+Rebuild failed to get the OpDetBTRs. This is expected when running on a generation or simulation step.
+%MSG
+Seeded random number generator with 525790963
+%MSG-i NuRandomService:  MARLEYGen:marley@BeginModule 06-Apr-2025 14:32:30 CDT  run: 20000047 subRun: 0 event: 3
+Random seed for this event, engine 'marley.MARLEY': 525790963
+%MSG
+%MSG-i NuRandomService:  MARLEYGen:marley@BeginModule 06-Apr-2025 14:32:30 CDT  run: 20000047 subRun: 0 event: 3
+Random seed for this event, engine 'marley.MARLEY_Vertex_Sampler': 611023179
+%MSG
+%MSG-i ActiveVolumeVertexSampler MARLEY_Vertex_Sampler:   MARLEYGen:marley@BeginModule 06-Apr-2025 14:32:30 CDT  run: 20000047 subRun: 0 event: 3 ActiveVolumeVertexSampler.cxx:83
+Sampled primary vertex in TPC #13, x = 355.458, y = -22.222, z = 725.9
+%MSG
+Begin processing the 4th record. run: 20000047 subRun: 0 event: 4 at 06-Apr-2025 14:32:30 CDT
+%MSG-w ParticleInventory:  ProcessEvent 06-Apr-2025 14:32:30 CDT  run: 20000047 subRun: 0 event: 4
+Rebuild failed to get the MCParticles. This is expected when running on a generation or simulation step.
+%MSG
+%MSG-w ParticleInventory:  ProcessEvent 06-Apr-2025 14:32:30 CDT  run: 20000047 subRun: 0 event: 4
+Rebuild failed to get the MCParticles. This is expected when running on a generation or simulation step.
+%MSG
+%MSG-w ParticleInventory:  ProcessEvent 06-Apr-2025 14:32:30 CDT  run: 20000047 subRun: 0 event: 4
+Rebuild failed to get the MCParticles. This is expected when running on a generation or simulation step.
+%MSG
+%MSG-w BackTrackerService:  ProcessEvent 06-Apr-2025 14:32:30 CDT  run: 20000047 subRun: 0 event: 4
+Rebuild failed to get the SimChannels. This is expected when running on a generation or simulation step.
+%MSG
+%MSG-w PhotonBackTrackerService:  ProcessEvent 06-Apr-2025 14:32:30 CDT  run: 20000047 subRun: 0 event: 4
+Rebuild failed to get the OpDetBTRs. This is expected when running on a generation or simulation step.
+%MSG
+Seeded random number generator with 103295299
+%MSG-i NuRandomService:  MARLEYGen:marley@BeginModule 06-Apr-2025 14:32:30 CDT  run: 20000047 subRun: 0 event: 4
+Random seed for this event, engine 'marley.MARLEY': 103295299
+%MSG
+%MSG-i NuRandomService:  MARLEYGen:marley@BeginModule 06-Apr-2025 14:32:30 CDT  run: 20000047 subRun: 0 event: 4
+Random seed for this event, engine 'marley.MARLEY_Vertex_Sampler': 625964729
+%MSG
+%MSG-i ActiveVolumeVertexSampler MARLEY_Vertex_Sampler:   MARLEYGen:marley@BeginModule 06-Apr-2025 14:32:30 CDT  run: 20000047 subRun: 0 event: 4 ActiveVolumeVertexSampler.cxx:83
+Sampled primary vertex in TPC #18, x = -183.741, y = 290.907, z = 1060.74
+%MSG
+Begin processing the 5th record. run: 20000047 subRun: 0 event: 5 at 06-Apr-2025 14:32:30 CDT
+%MSG-w ParticleInventory:  ProcessEvent 06-Apr-2025 14:32:30 CDT  run: 20000047 subRun: 0 event: 5
+Rebuild failed to get the MCParticles. This is expected when running on a generation or simulation step.
+%MSG
+%MSG-w ParticleInventory:  ProcessEvent 06-Apr-2025 14:32:30 CDT  run: 20000047 subRun: 0 event: 5
+Rebuild failed to get the MCParticles. This is expected when running on a generation or simulation step.
+%MSG
+%MSG-w ParticleInventory:  ProcessEvent 06-Apr-2025 14:32:30 CDT  run: 20000047 subRun: 0 event: 5
+Rebuild failed to get the MCParticles. This is expected when running on a generation or simulation step.
+%MSG
+%MSG-w BackTrackerService:  ProcessEvent 06-Apr-2025 14:32:30 CDT  run: 20000047 subRun: 0 event: 5
+Rebuild failed to get the SimChannels. This is expected when running on a generation or simulation step.
+%MSG
+%MSG-w PhotonBackTrackerService:  ProcessEvent 06-Apr-2025 14:32:30 CDT  run: 20000047 subRun: 0 event: 5
+Rebuild failed to get the OpDetBTRs. This is expected when running on a generation or simulation step.
+%MSG
+Seeded random number generator with 555088238
+%MSG-i NuRandomService:  MARLEYGen:marley@BeginModule 06-Apr-2025 14:32:30 CDT  run: 20000047 subRun: 0 event: 5
+Random seed for this event, engine 'marley.MARLEY': 555088238
+%MSG
+%MSG-i NuRandomService:  MARLEYGen:marley@BeginModule 06-Apr-2025 14:32:30 CDT  run: 20000047 subRun: 0 event: 5
+Random seed for this event, engine 'marley.MARLEY_Vertex_Sampler': 223177197
+%MSG
+%MSG-i ActiveVolumeVertexSampler MARLEY_Vertex_Sampler:   MARLEYGen:marley@BeginModule 06-Apr-2025 14:32:30 CDT  run: 20000047 subRun: 0 event: 5 ActiveVolumeVertexSampler.cxx:83
+Sampled primary vertex in TPC #19, x = 314.083, y = 96.9216, z = 981.732
+%MSG
+Loaded structure data for 21 nuclides from the file /cvmfs/larsoft.opensciencegrid.org/products/marley/v1_2_1d/Linux64bit+3.10-2.17-e26-prof/share/marley/data/structure/S.dat
+Loaded structure data for 22 nuclides from the file /cvmfs/larsoft.opensciencegrid.org/products/marley/v1_2_1d/Linux64bit+3.10-2.17-e26-prof/share/marley/data/structure/P.dat
+06-Apr-2025 14:32:31 CDT  Closed output file "/exp/dune/app/users/emvilla/v10_04_07d00/output/standard/prodmarley_nue_flat_CC_dune10kt_1x2x6_dump_standard-triggerana_tree_1x2x6_simpleThr_simpleWin_simpleWin-5events_supernovaCC_triggerValidationTest/prodmarley_nue_flat_CC_dune10kt_1x2x6_dump.root"
+
+================================================================================================================================
+TimeTracker printout (sec)                        Min           Avg           Max         Median          RMS         nEvts   
+================================================================================================================================
+Full event                                    0.000341853    0.0493306     0.141139     0.000595286    0.0609435        5     
+--------------------------------------------------------------------------------------------------------------------------------
+source:EmptyEvent(read)                       3.5378e-05    7.09854e-05   0.000170145   3.9655e-05    5.16702e-05       5     
+simulate:rns:RandomNumberSaver                 8.656e-06    3.86178e-05   0.000143384    9.458e-06    5.2633e-05        5     
+simulate:marley:MARLEYGen                     9.8619e-05     0.0484309     0.140929     0.000248985    0.0604638        5     
+[art]:TriggerResults:TriggerResultInserter     5.361e-06    1.74514e-05   6.0255e-05     7.384e-06    2.14409e-05       5     
+end_path:out1:RootOutput                       8.41e-07     4.6486e-06    1.7544e-05     1.924e-06    6.46613e-06       5     
+end_path:out1:RootOutput(write)               4.6108e-05    0.000580419   0.00237579     8.911e-05    0.000904117       5     
+================================================================================================================================
+%MSG-i NuRandomService:  RootOutput:out1@EndJob 06-Apr-2025 14:32:31 CDT  ModuleEndJob
+
+Summary of seeds computed by the NuRandomService
+Random policy: 'perEvent'
+  algorithm version: EventTimestamp_v1
+   Configured value          Last value   ModuleLabel.InstanceName
+        (per event)           555088238   marley.MARLEY
+        (per event)           223177197   marley.MARLEY_Vertex_Sampler
+
+%MSG
+
+====================================================================================================
+MemoryTracker summary (base-10 MB units used)
+
+  Peak virtual memory usage (VmPeak)  : 1077.57 MB
+  Peak resident set size usage (VmHWM): 529.834 MB
+====================================================================================================
+
+TrigReport ---------- Event summary -------------
+TrigReport Events total = 5 passed = 5 failed = 0
+
+TrigReport ---------- Modules in End-path ----------
+TrigReport        Run    Success      Error Name
+TrigReport          5          5          0 out1
+
+TimeReport ---------- Time summary [sec] -------
+TimeReport CPU = 0.775242 Real = 1.233455
+
+MemReport  ---------- Memory summary [base-10 MB] ------
+MemReport  VmPeak = 1077.57 VmHWM = 529.834
+
+Art has completed and will exit with status 0.
+ Generation done!
+
+ In the folder now we have
+ total 1224412
+-rw-r--r-- 1 emvilla dune         0 Apr  6 14:28 debugprod.log
+-rw-r--r-- 1 emvilla dune     40030 Apr  6 14:32 detsim_dune10kt_1x2x6_notpcsigproc_dump.fcl
+-rw-r--r-- 1 emvilla dune         4 Apr  6 14:29 execTime.txt
+-rw-r--r-- 1 emvilla dune       519 Apr  6 14:27 g4_hist.root
+-rw-r--r-- 1 emvilla dune     61440 Apr  6 14:29 mem.db
+-rw-r--r-- 1 emvilla dune     12426 Apr  6 14:32 prodmarley_nue_flat_CC_dune10kt_1x2x6_dump_dump.fcl
+-rw-r--r-- 1 emvilla dune       519 Apr  6 14:28 prodmarley_nue_flat_CC_dune10kt_1x2x6_dump_g4_detsim_hist.root
+-rw-r--r-- 1 emvilla dune 626155053 Apr  6 14:29 prodmarley_nue_flat_CC_dune10kt_1x2x6_dump_g4_detsim_reco1.root
+-rw-r--r-- 1 emvilla dune 626100558 Apr  6 14:28 prodmarley_nue_flat_CC_dune10kt_1x2x6_dump_g4_detsim.root
+-rw-r--r-- 1 emvilla dune    545651 Apr  6 14:27 prodmarley_nue_flat_CC_dune10kt_1x2x6_dump_g4.root
+-rw-r--r-- 1 emvilla dune     89231 Apr  6 14:32 prodmarley_nue_flat_CC_dune10kt_1x2x6_dump.root
+-rw-r--r-- 1 emvilla dune        86 Apr  6 14:32 prodmarley_nue_flat_CC_dune10kt_1x2x6_dump_standard.fcl
+-rw-r--r-- 1 emvilla dune     10198 Apr  6 14:32 prodmarley_nue_hist.root
+-rw-r--r-- 1 emvilla dune     29092 Apr  6 14:32 supernova_g4_dune10kt_1x2x6_dump.fcl
+-rw-r--r-- 1 emvilla dune     16384 Apr  6 14:29 time.db
+-rw-r--r-- 1 emvilla dune     37070 Apr  6 14:32 triggerana_tree_1x2x6_simpleThr_simpleWin_simpleWin_dump.fcl
+-rw-r--r-- 1 emvilla dune    224512 Apr  6 14:29 triggersim_hist.root
+-rw-r--r-- 1 emvilla dune    469636 Apr  6 14:28 wcls-sim-drift-simchannel.log 
+
+Ending generation at 1743967951
+Generation took 4 seconds
+Starting Geant4 simulation...
+Starting detector simulation at 1743967951
+Executing command: lar -c supernova_g4_dune10kt_1x2x6.fcl -n 5 -s /exp/dune/app/users/emvilla/v10_04_07d00/output/standard/prodmarley_nue_flat_CC_dune10kt_1x2x6_dump_standard-triggerana_tree_1x2x6_simpleThr_simpleWin_simpleWin-5events_supernovaCC_triggerValidationTest/prodmarley_nue_flat_CC_dune10kt_1x2x6_dump.root -o /exp/dune/app/users/emvilla/v10_04_07d00/output/standard/prodmarley_nue_flat_CC_dune10kt_1x2x6_dump_standard-triggerana_tree_1x2x6_simpleThr_simpleWin_simpleWin-5events_supernovaCC_triggerValidationTest/prodmarley_nue_flat_CC_dune10kt_1x2x6_dump_g4.root
+%MSG-i MF_INIT_OK:  Early 06-Apr-2025 14:32:34 CDT JobSetup
+Messagelogger initialization complete.
+%MSG
+Info in <TGeoManager::Import>: Reading geometry from file: /cvmfs/dune.opensciencegrid.org/products/dune/dunecore/v10_04_07d00/gdml/dune10kt_v6_refactored_1x2x6.gdml
+Info in <TGeoManager::TGeoManager>: Geometry GDMLImport, Geometry imported from GDML created
+Error: Unsupported GDML Tag Used :gdml_simple_extension. Please Check Geometry/Schema.
+Error: Unsupported GDML Tag Used :extension. Please Check Geometry/Schema.
+Info in <TGeoManager::SetTopVolume>: Top volume is volWorld. Master volume is volWorld
+Info in <TGeoNavigator::BuildCache>: --- Maximum geometry depth set to 100
+Info in <TGeoManager::CheckGeometry>: Fixing runtime shapes...
+Info in <TGeoManager::CheckGeometry>: ...Nothing to fix
+Info in <TGeoManager::CloseGeometry>: Counting nodes...
+Info in <TGeoManager::Voxelize>: Voxelizing...
+Info in <TGeoManager::CloseGeometry>: Building cache...
+Info in <TGeoManager::CountLevels>: max level = 5, max placements = 1149
+Info in <TGeoManager::CloseGeometry>: 67545 nodes/ 5439 volume UID's in Geometry imported from GDML
+Info in <TGeoManager::CloseGeometry>: ----------------modeler ready----------------
+%MSG-i AuxDetGeometryCore:  Early 06-Apr-2025 14:32:36 CDT JobSetup
+New detector geometry loaded from
+	/cvmfs/dune.opensciencegrid.org/products/dune/dunecore/v10_04_07d00/gdml/dune10kt_v6_refactored_1x2x6.gdml
+%MSG
+%MSG-i GeometryCore:  Early 06-Apr-2025 14:32:36 CDT JobSetup
+Sorting volumes...
+%MSG
+%MSG-i GeometryCore:  Early 06-Apr-2025 14:32:36 CDT JobSetup
+New detector geometry loaded from
+	/cvmfs/dune.opensciencegrid.org/products/dune/dunecore/v10_04_07d00/gdml/dune10kt_v6_refactored_1x2x6.gdml
+%MSG
+%MSG-i DuneApaWireReadoutGeom:  Early 06-Apr-2025 14:32:36 CDT JobSetup
+Initializing wire readout...
+%MSG
+Cryostat 0:
+  30720 total channels
+  12 APAs
+  For all identical APA:
+    Number of channels per APA = 2560
+    U channels per APA = 800
+    V channels per APA = 800
+    Z channels per APA = 960
+    Pitch in U Plane = 0.4667
+    Pitch in V Plane = 0.4667
+    Pitch in Z Plane = 0.479
+%MSG-i SimpleChannelStatusService:  Early 06-Apr-2025 14:32:36 CDT JobSetup
+Loaded from configuration:
+  - 0 bad channels
+  - 0 noisy channels
+  - largest channel ID: 30719, largest present: 30719
+%MSG
+%MSG-i setupProvider<DetectorPropertiesStandard>:  Early  06-Apr-2025 14:32:36 CDT JobSetup
+Asked to ignore 1 keys: 'InheritNumberTimeSamples'
+%MSG
+%MSG-i LArG4DetectorService::Ctr:  Early 06-Apr-2025 14:32:36 CDT JobSetup
+Reading stepLimit(s) from the configuration file, for volume(s):
+%MSG
+%MSG-i LArG4DetectorService::Ctr:  Early 06-Apr-2025 14:32:36 CDT JobSetup
+Volume: volTPCActiveInner0, stepLimit: 0.4
+%MSG
+%MSG-i LArG4DetectorService::Ctr:  Early 06-Apr-2025 14:32:36 CDT JobSetup
+Volume: volTPCActiveInner1, stepLimit: 0.4
+%MSG
+%MSG-i LArG4DetectorService::Ctr:  Early 06-Apr-2025 14:32:36 CDT JobSetup
+Volume: volTPCActiveOuter, stepLimit: 0.4
+%MSG
+registering to  primaryGeneratorActionsMap_
+registering to   eventActionsMap_
+registering to   trackingActionsMap_
+registering to  steppingActionsMap_
+%MSG-i ParticleListActionService:  Early 06-Apr-2025 14:32:36 CDT JobSetup
+The full tracking information will not be stored for particles resulting from the following processes: 
+{ "conv" "LowEnConversion" "Pair" "compt" "Compt" "Brem" "phot" "Photo" "Ion" "annihil" }
+
+%MSG
+%MSG-i ParticleListActionService:  Early 06-Apr-2025 14:32:36 CDT JobSetup
+Trajectory sparsification enabled with SparsifyMargin : 0.015
+
+%MSG
+%MSG-i SignalShapingServiceDUNE:  Early 06-Apr-2025 14:32:36 CDT JobSetup
+Getting Filter from .fcl file
+%MSG
+%MSG-i SignalShapingServiceDUNE:  Early 06-Apr-2025 14:32:36 CDT JobSetup
+ using the field response provided from a .root file 
+%MSG
+Warning in <TFile::Append>: Replacing existing TH1: FieldResponse_U (Potential memory leak).
+Warning in <TFile::Append>: Replacing existing TH1: FieldResponse_V (Potential memory leak).
+Warning in <TFile::Append>: Replacing existing TH1: FieldResponse_Y (Potential memory leak).
+%MSG-i RANDOM:  IonAndScint:IonAndScint@Construction 06-Apr-2025 14:32:37 CDT  ModuleConstruction
+Instantiated HepJamesRandom engine "IonAndScint:0:ISCalcAlg" with seed 0.
+%MSG
+%MSG-i NuRandomService:  IonAndScint:IonAndScint@Construction  06-Apr-2025 14:32:37 CDT ModuleConstruction
+Seeding HepJamesRandom engine "IonAndScint:ISCalcAlg" with seed 0.
+%MSG
+IonAndScint Module Construct
+Produce SimEnergyDeposit in volumes: 
+ - LArG4DetectorServicevolTPCInner
+ - LArG4DetectorServicevolTPCPlaneVInner
+ - LArG4DetectorServicevolTPCActiveOuter
+ - LArG4DetectorServicevolTPCPlaneUInner
+ - LArG4DetectorServicevolTPCPlaneZInner
+ - LArG4DetectorServicevolTPCActiveInner
+ - LArG4DetectorServicevolTPCActive,LArG4DetectorServicevolTPCInner0
+ - LArG4DetectorServicevolTPCPlaneVInner0
+ - LArG4DetectorServicevolTPCPlaneUInner0
+ - LArG4DetectorServicevolTPCPlaneZInner0
+ - LArG4DetectorServicevolTPCActiveInner0
+ - LArG4DetectorServicevolTPCActive0
+ - LArG4DetectorServicevolTPCInner1
+ - LArG4DetectorServicevolTPCPlaneVInner1
+ - LArG4DetectorServicevolTPCPlaneUInner1
+ - LArG4DetectorServicevolTPCPlaneZInner1
+ - LArG4DetectorServicevolTPCActiveInner1
+ - LArG4DetectorServicevolTPCActive1
+%MSG-i RANDOM:  PDFastSimPAR:PDFastSim@Construction 06-Apr-2025 14:32:37 CDT  ModuleConstruction
+Instantiated HepJamesRandom engine "PDFastSim:0:photon" with seed 0.
+%MSG
+%MSG-i NuRandomService:  PDFastSimPAR:PDFastSim@Construction  06-Apr-2025 14:32:37 CDT ModuleConstruction
+Seeding HepJamesRandom engine "PDFastSim:photon" with seed 0.
+%MSG
+%MSG-i RANDOM:  PDFastSimPAR:PDFastSim@Construction 06-Apr-2025 14:32:37 CDT  ModuleConstruction
+Instantiated HepJamesRandom engine "PDFastSim:0:scinttime" with seed 0.
+%MSG
+%MSG-i NuRandomService:  PDFastSimPAR:PDFastSim@Construction  06-Apr-2025 14:32:37 CDT ModuleConstruction
+Seeding HepJamesRandom engine "PDFastSim:scinttime" with seed 0.
+%MSG
+ScintTimeLAr Tool configure:
+Fast rising time: 0, Fast decay time: 6, Slow rising time: 0, Slow decay time: 1600
+%MSG-i PDFastSimPAR:  PDFastSimPAR:PDFastSim@Construction  06-Apr-2025 14:32:37 CDT ModuleConstruction
+Initializing PDFastSimPAR.
+%MSG
+%MSG-i SemiAnalyticalModel:  PDFastSimPAR:PDFastSim@Construction  06-Apr-2025 14:32:37 CDT ModuleConstruction
+Initializing Semi-analytical model.
+%MSG
+%MSG-i SemiAnalyticalModel:  PDFastSimPAR:PDFastSim@Construction  06-Apr-2025 14:32:37 CDT ModuleConstruction
+Using VUV visibility parameterization
+%MSG
+%MSG-i SemiAnalyticalModel:  PDFastSimPAR:PDFastSim@Construction  06-Apr-2025 14:32:37 CDT ModuleConstruction
+Setting absorption length to: 2000
+%MSG
+%MSG-i SemiAnalyticalModel:  PDFastSimPAR:PDFastSim@Construction  06-Apr-2025 14:32:37 CDT ModuleConstruction
+Semi-analytical model initialized.
+%MSG
+%MSG-i PropagationTimeModel:  PDFastSimPAR:PDFastSim@Construction  06-Apr-2025 14:32:37 CDT ModuleConstruction
+Initializing Photon propagation time model.
+%MSG
+%MSG-i PropagationTimeModel:  PDFastSimPAR:PDFastSim@Construction  06-Apr-2025 14:32:37 CDT ModuleConstruction
+Using VUV timing parameterization
+%MSG
+%MSG-i PropagationTimeModel:  PDFastSimPAR:PDFastSim@Construction  06-Apr-2025 14:32:37 CDT ModuleConstruction
+Generating VUV parameters
+%MSG
+%MSG-i PropagationTimeModel:  PDFastSimPAR:PDFastSim@Construction  06-Apr-2025 14:34:42 CDT ModuleConstruction
+Photon propagation time model initalized.
+%MSG
+%MSG-i PDFastSimPAR:  PDFastSimPAR:PDFastSim@Construction  06-Apr-2025 14:34:42 CDT ModuleConstruction
+Using Lite Photons
+%MSG
+%MSG-i PDFastSimPAR:  PDFastSimPAR:PDFastSim@Construction  06-Apr-2025 14:34:42 CDT ModuleConstruction
+PDFastSimPAR Initialization finish.
+Simulate using semi-analytic model for number of hits.
+%MSG
+G4GDML: Reading '/cvmfs/dune.opensciencegrid.org/products/dune/dunecore/v10_04_07d00/gdml/dune10kt_v6_refactored_1x2x6.gdml'...
+ ColorReaderReading GDML extension...
+ColorReader: Reading new GDML extension...
+G4GDML: Reading definitions...
+G4GDML: Reading materials...
+G4GDML: Reading solids...
+G4GDML: Reading structure...
+G4GDML: Reading setup...
+G4GDML: Reading '/cvmfs/dune.opensciencegrid.org/products/dune/dunecore/v10_04_07d00/gdml/dune10kt_v6_refactored_1x2x6.gdml' done!
+Stripping off GDML names of materials, solids and volumes ...
+%MSG-i LArG4DetectorService::doBuildLVs:  larg4Main:largeant@Construction  06-Apr-2025 14:34:43 CDT ModuleConstruction
+(0,0,0)
+
+Found World:  volWorld_PV
+World LV:  volWorld
+Found 5439 logical volumes.
+
+Found 9144 physical volumes.
+
+Found 15 volume(s) with auxiliary information.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%MSG
+Attaching sensitive Detector: SimEnergyDeposit to Volume:  volTPCActiveInner0
+%MSG-i AuxUnit:  larg4Main:largeant@Construction 06-Apr-2025 14:34:43 CDT  ModuleConstruction
+ Unit parsed = mm from unit category: Length
+%MSG
+%MSG-i AuxUnit:  larg4Main:largeant@Construction 06-Apr-2025 14:34:43 CDT  ModuleConstruction
+Valid StepLimit unit category obtained: Length
+%MSG
+%MSG-i fStepLimit:  larg4Main:largeant@Construction 06-Apr-2025 14:34:43 CDT  ModuleConstruction
+fStepLimit:  0.4  0.04 cm
+
+%MSG
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Attaching sensitive Detector: SimEnergyDeposit to Volume:  volTPCPlaneUInner0
+%MSG-i AuxUnit:  larg4Main:largeant@Construction 06-Apr-2025 14:34:43 CDT  ModuleConstruction
+ Unit parsed = mm from unit category: Length
+%MSG
+%MSG-i AuxUnit:  larg4Main:largeant@Construction 06-Apr-2025 14:34:43 CDT  ModuleConstruction
+Valid StepLimit unit category obtained: Length
+%MSG
+%MSG-i fStepLimit:  larg4Main:largeant@Construction 06-Apr-2025 14:34:43 CDT  ModuleConstruction
+fStepLimit:  0.4  0.04 cm
+
+%MSG
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Attaching sensitive Detector: SimEnergyDeposit to Volume:  volTPCPlaneUInner1
+%MSG-i AuxUnit:  larg4Main:largeant@Construction 06-Apr-2025 14:34:43 CDT  ModuleConstruction
+ Unit parsed = mm from unit category: Length
+%MSG
+%MSG-i AuxUnit:  larg4Main:largeant@Construction 06-Apr-2025 14:34:43 CDT  ModuleConstruction
+Valid StepLimit unit category obtained: Length
+%MSG
+%MSG-i fStepLimit:  larg4Main:largeant@Construction 06-Apr-2025 14:34:43 CDT  ModuleConstruction
+fStepLimit:  0.4  0.04 cm
+
+%MSG
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Attaching sensitive Detector: SimEnergyDeposit to Volume:  volTPCPlaneVInner0
+%MSG-i AuxUnit:  larg4Main:largeant@Construction 06-Apr-2025 14:34:43 CDT  ModuleConstruction
+ Unit parsed = mm from unit category: Length
+%MSG
+%MSG-i AuxUnit:  larg4Main:largeant@Construction 06-Apr-2025 14:34:43 CDT  ModuleConstruction
+Valid StepLimit unit category obtained: Length
+%MSG
+%MSG-i fStepLimit:  larg4Main:largeant@Construction 06-Apr-2025 14:34:43 CDT  ModuleConstruction
+fStepLimit:  0.4  0.04 cm
+
+%MSG
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Attaching sensitive Detector: SimEnergyDeposit to Volume:  volTPCInner0
+%MSG-i AuxUnit:  larg4Main:largeant@Construction 06-Apr-2025 14:34:43 CDT  ModuleConstruction
+ Unit parsed = mm from unit category: Length
+%MSG
+%MSG-i AuxUnit:  larg4Main:largeant@Construction 06-Apr-2025 14:34:43 CDT  ModuleConstruction
+Valid StepLimit unit category obtained: Length
+%MSG
+%MSG-i fStepLimit:  larg4Main:largeant@Construction 06-Apr-2025 14:34:43 CDT  ModuleConstruction
+fStepLimit:  0.4  0.04 cm
+
+%MSG
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Attaching sensitive Detector: SimEnergyDeposit to Volume:  volTPCActiveInner1
+%MSG-i AuxUnit:  larg4Main:largeant@Construction 06-Apr-2025 14:34:43 CDT  ModuleConstruction
+ Unit parsed = mm from unit category: Length
+%MSG
+%MSG-i AuxUnit:  larg4Main:largeant@Construction 06-Apr-2025 14:34:43 CDT  ModuleConstruction
+Valid StepLimit unit category obtained: Length
+%MSG
+%MSG-i fStepLimit:  larg4Main:largeant@Construction 06-Apr-2025 14:34:43 CDT  ModuleConstruction
+fStepLimit:  0.4  0.04 cm
+
+%MSG
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Attaching sensitive Detector: SimEnergyDeposit to Volume:  volTPCPlaneZInner0
+%MSG-i AuxUnit:  larg4Main:largeant@Construction 06-Apr-2025 14:34:43 CDT  ModuleConstruction
+ Unit parsed = mm from unit category: Length
+%MSG
+%MSG-i AuxUnit:  larg4Main:largeant@Construction 06-Apr-2025 14:34:43 CDT  ModuleConstruction
+Valid StepLimit unit category obtained: Length
+%MSG
+%MSG-i fStepLimit:  larg4Main:largeant@Construction 06-Apr-2025 14:34:43 CDT  ModuleConstruction
+fStepLimit:  0.4  0.04 cm
+
+%MSG
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Attaching sensitive Detector: SimEnergyDeposit to Volume:  volTPCActiveOuter
+%MSG-i AuxUnit:  larg4Main:largeant@Construction 06-Apr-2025 14:34:43 CDT  ModuleConstruction
+ Unit parsed = mm from unit category: Length
+%MSG
+%MSG-i AuxUnit:  larg4Main:largeant@Construction 06-Apr-2025 14:34:43 CDT  ModuleConstruction
+Valid StepLimit unit category obtained: Length
+%MSG
+%MSG-i fStepLimit:  larg4Main:largeant@Construction 06-Apr-2025 14:34:43 CDT  ModuleConstruction
+fStepLimit:  0.4  0.04 cm
+
+%MSG
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Attaching sensitive Detector: SimEnergyDeposit to Volume:  volTPCPlaneVInner1
+%MSG-i AuxUnit:  larg4Main:largeant@Construction 06-Apr-2025 14:34:43 CDT  ModuleConstruction
+ Unit parsed = mm from unit category: Length
+%MSG
+%MSG-i AuxUnit:  larg4Main:largeant@Construction 06-Apr-2025 14:34:43 CDT  ModuleConstruction
+Valid StepLimit unit category obtained: Length
+%MSG
+%MSG-i fStepLimit:  larg4Main:largeant@Construction 06-Apr-2025 14:34:43 CDT  ModuleConstruction
+fStepLimit:  0.4  0.04 cm
+
+%MSG
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Attaching sensitive Detector: SimEnergyDeposit to Volume:  volTPCPlaneZInner1
+%MSG-i AuxUnit:  larg4Main:largeant@Construction 06-Apr-2025 14:34:43 CDT  ModuleConstruction
+ Unit parsed = mm from unit category: Length
+%MSG
+%MSG-i AuxUnit:  larg4Main:largeant@Construction 06-Apr-2025 14:34:43 CDT  ModuleConstruction
+Valid StepLimit unit category obtained: Length
+%MSG
+%MSG-i fStepLimit:  larg4Main:largeant@Construction 06-Apr-2025 14:34:43 CDT  ModuleConstruction
+fStepLimit:  0.4  0.04 cm
+
+%MSG
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Attaching sensitive Detector: SimEnergyDeposit to Volume:  volTPCPlaneVOuter
+%MSG-i AuxUnit:  larg4Main:largeant@Construction 06-Apr-2025 14:34:43 CDT  ModuleConstruction
+ Unit parsed = mm from unit category: Length
+%MSG
+%MSG-i AuxUnit:  larg4Main:largeant@Construction 06-Apr-2025 14:34:43 CDT  ModuleConstruction
+Valid StepLimit unit category obtained: Length
+%MSG
+%MSG-i fStepLimit:  larg4Main:largeant@Construction 06-Apr-2025 14:34:43 CDT  ModuleConstruction
+fStepLimit:  0.4  0.04 cm
+
+%MSG
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Attaching sensitive Detector: SimEnergyDeposit to Volume:  volTPCInner1
+%MSG-i AuxUnit:  larg4Main:largeant@Construction 06-Apr-2025 14:34:43 CDT  ModuleConstruction
+ Unit parsed = mm from unit category: Length
+%MSG
+%MSG-i AuxUnit:  larg4Main:largeant@Construction 06-Apr-2025 14:34:43 CDT  ModuleConstruction
+Valid StepLimit unit category obtained: Length
+%MSG
+%MSG-i fStepLimit:  larg4Main:largeant@Construction 06-Apr-2025 14:34:43 CDT  ModuleConstruction
+fStepLimit:  0.4  0.04 cm
+
+%MSG
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Attaching sensitive Detector: SimEnergyDeposit to Volume:  volTPCPlaneUOuter
+%MSG-i AuxUnit:  larg4Main:largeant@Construction 06-Apr-2025 14:34:43 CDT  ModuleConstruction
+ Unit parsed = mm from unit category: Length
+%MSG
+%MSG-i AuxUnit:  larg4Main:largeant@Construction 06-Apr-2025 14:34:43 CDT  ModuleConstruction
+Valid StepLimit unit category obtained: Length
+%MSG
+%MSG-i fStepLimit:  larg4Main:largeant@Construction 06-Apr-2025 14:34:43 CDT  ModuleConstruction
+fStepLimit:  0.4  0.04 cm
+
+%MSG
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Attaching sensitive Detector: SimEnergyDeposit to Volume:  volTPCOuter
+%MSG-i AuxUnit:  larg4Main:largeant@Construction 06-Apr-2025 14:34:43 CDT  ModuleConstruction
+ Unit parsed = mm from unit category: Length
+%MSG
+%MSG-i AuxUnit:  larg4Main:largeant@Construction 06-Apr-2025 14:34:43 CDT  ModuleConstruction
+Valid StepLimit unit category obtained: Length
+%MSG
+%MSG-i fStepLimit:  larg4Main:largeant@Construction 06-Apr-2025 14:34:43 CDT  ModuleConstruction
+fStepLimit:  0.4  0.04 cm
+
+%MSG
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Attaching sensitive Detector: SimEnergyDeposit to Volume:  volTPCPlaneZOuter
+%MSG-i AuxUnit:  larg4Main:largeant@Construction 06-Apr-2025 14:34:43 CDT  ModuleConstruction
+ Unit parsed = mm from unit category: Length
+%MSG
+%MSG-i AuxUnit:  larg4Main:largeant@Construction 06-Apr-2025 14:34:43 CDT  ModuleConstruction
+Valid StepLimit unit category obtained: Length
+%MSG
+%MSG-i fStepLimit:  larg4Main:largeant@Construction 06-Apr-2025 14:34:43 CDT  ModuleConstruction
+fStepLimit:  0.4  0.04 cm
+
+%MSG
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%MSG-w LArG4DetectorService::setStepLimits:  larg4Main:largeant@Construction  06-Apr-2025 14:34:43 CDT ModuleConstruction LArG4Detector.cc:336
+Setting step limits from configuration file. This will OVERRIDE redundant stepLimit(s) set in the GDML file. Note that stepLimits are only active if enabled in the physicsListService via the appropriate parameter.
+%MSG
+%MSG-w LArG4DetectorService::setStepLimits:  larg4Main:largeant@Construction  06-Apr-2025 14:34:43 CDT ModuleConstruction LArG4Detector.cc:372
+New stepLimit matches previously set stepLimit from the GDML file for volume : volTPCActiveInner0 stepLimit : 0.4 mm. Nothing will be changed.
+%MSG
+%MSG-w LArG4DetectorService::setStepLimits:  larg4Main:largeant@Construction  06-Apr-2025 14:34:43 CDT ModuleConstruction LArG4Detector.cc:372
+New stepLimit matches previously set stepLimit from the GDML file for volume : volTPCActiveInner1 stepLimit : 0.4 mm. Nothing will be changed.
+%MSG
+%MSG-w LArG4DetectorService::setStepLimits:  larg4Main:largeant@Construction  06-Apr-2025 14:34:43 CDT ModuleConstruction LArG4Detector.cc:372
+New stepLimit matches previously set stepLimit from the GDML file for volume : volTPCActiveOuter stepLimit : 0.4 mm. Nothing will be changed.
+%MSG
+List SD Tree: 
+Volume volTPCActiveInner0 has the following list of auxiliary information: 
+--> Type: SensDet Value: SimEnergyDeposit
+--> Type: StepLimit Value: 0.4
+Volume volTPCPlaneUInner0 has the following list of auxiliary information: 
+--> Type: SensDet Value: SimEnergyDeposit
+--> Type: StepLimit Value: 0.4
+Volume volTPCPlaneUInner1 has the following list of auxiliary information: 
+--> Type: SensDet Value: SimEnergyDeposit
+--> Type: StepLimit Value: 0.4
+Volume volTPCPlaneVInner0 has the following list of auxiliary information: 
+--> Type: SensDet Value: SimEnergyDeposit
+--> Type: StepLimit Value: 0.4
+Volume volTPCInner0 has the following list of auxiliary information: 
+--> Type: SensDet Value: SimEnergyDeposit
+--> Type: StepLimit Value: 0.4
+Volume volTPCActiveInner1 has the following list of auxiliary information: 
+--> Type: SensDet Value: SimEnergyDeposit
+--> Type: StepLimit Value: 0.4
+Volume volTPCPlaneZInner0 has the following list of auxiliary information: 
+--> Type: SensDet Value: SimEnergyDeposit
+--> Type: StepLimit Value: 0.4
+Volume volTPCActiveOuter has the following list of auxiliary information: 
+--> Type: SensDet Value: SimEnergyDeposit
+--> Type: StepLimit Value: 0.4
+Volume volTPCPlaneVInner1 has the following list of auxiliary information: 
+--> Type: SensDet Value: SimEnergyDeposit
+--> Type: StepLimit Value: 0.4
+Volume volTPCPlaneZInner1 has the following list of auxiliary information: 
+--> Type: SensDet Value: SimEnergyDeposit
+--> Type: StepLimit Value: 0.4
+Volume volTPCPlaneVOuter has the following list of auxiliary information: 
+--> Type: SensDet Value: SimEnergyDeposit
+--> Type: StepLimit Value: 0.4
+Volume volTPCInner1 has the following list of auxiliary information: 
+--> Type: SensDet Value: SimEnergyDeposit
+--> Type: StepLimit Value: 0.4
+Volume volTPCPlaneUOuter has the following list of auxiliary information: 
+--> Type: SensDet Value: SimEnergyDeposit
+--> Type: StepLimit Value: 0.4
+Volume volTPCOuter has the following list of auxiliary information: 
+--> Type: SensDet Value: SimEnergyDeposit
+--> Type: StepLimit Value: 0.4
+Volume volTPCPlaneZOuter has the following list of auxiliary information: 
+--> Type: SensDet Value: SimEnergyDeposit
+--> Type: StepLimit Value: 0.4
+/
+/volTPCActiveInner0_SimEnergyDeposit   *** Active 
+/volTPCPlaneUInner0_SimEnergyDeposit   *** Active 
+/volTPCPlaneUInner1_SimEnergyDeposit   *** Active 
+/volTPCPlaneVInner0_SimEnergyDeposit   *** Active 
+/volTPCInner0_SimEnergyDeposit   *** Active 
+/volTPCActiveInner1_SimEnergyDeposit   *** Active 
+/volTPCPlaneZInner0_SimEnergyDeposit   *** Active 
+/volTPCActiveOuter_SimEnergyDeposit   *** Active 
+/volTPCPlaneVInner1_SimEnergyDeposit   *** Active 
+/volTPCPlaneZInner1_SimEnergyDeposit   *** Active 
+/volTPCPlaneVOuter_SimEnergyDeposit   *** Active 
+/volTPCInner1_SimEnergyDeposit   *** Active 
+/volTPCPlaneUOuter_SimEnergyDeposit   *** Active 
+/volTPCOuter_SimEnergyDeposit   *** Active 
+/volTPCPlaneZOuter_SimEnergyDeposit   *** Active 
+ Collection Capacity:  0
+==================================================
+nr of LV ======================:  1
+%MSG-i RANDOM:  larg4Main:largeant@Construction 06-Apr-2025 14:34:43 CDT  ModuleConstruction
+Instantiated G4Engine engine "largeant:0:" with seed 0.
+%MSG
+%MSG-i NuRandomService:  larg4Main:largeant@Construction  06-Apr-2025 14:34:43 CDT ModuleConstruction
+Seeding G4Engine engine "largeant:" with seed 0.
+%MSG
+06-Apr-2025 14:34:43 CDT  Initiating request to open input file "/exp/dune/app/users/emvilla/v10_04_07d00/output/standard/prodmarley_nue_flat_CC_dune10kt_1x2x6_dump_standard-triggerana_tree_1x2x6_simpleThr_simpleWin_simpleWin-5events_supernovaCC_triggerValidationTest/prodmarley_nue_flat_CC_dune10kt_1x2x6_dump.root"
+06-Apr-2025 14:34:43 CDT  Opened input file "/exp/dune/app/users/emvilla/v10_04_07d00/output/standard/prodmarley_nue_flat_CC_dune10kt_1x2x6_dump_standard-triggerana_tree_1x2x6_simpleThr_simpleWin_simpleWin-5events_supernovaCC_triggerValidationTest/prodmarley_nue_flat_CC_dune10kt_1x2x6_dump.root"
+IonAndScint beginJob.
+Using Correlated algorithm to calculate IS.
+%MSG-i ISCalcCorrelated:  IonAndScint:IonAndScint@BeginJob  06-Apr-2025 14:34:43 CDT ModuleBeginJob ISCalcCorrelated.cxx:40
+IonizationAndScintillation/ISCalcCorrelated Initialize.
+%MSG
+
+**************************************************************
+ Geant4 version Name: geant4-10-06-patch-01    (14-February-2020)
+                       Copyright : Geant4 Collaboration
+                      References : NIM A 506 (2003), 250-303
+                                 : IEEE-TNS 53 (2006), 270-278
+                                 : NIM A 835 (2016), 186-225
+                             WWW : http://geant4.org/
+**************************************************************
+
+G4VPhysicsConstructors in G4PhysicsConstructorRegistry are:
+ [  0]  "G4ChargeExchangePhysics"
+ [  1]  "G4DecayPhysics"
+ [  2]  "G4EmDNAChemistry"
+ [  3]  "G4EmDNAChemistry_option1"
+ [  4]  "G4EmDNAChemistry_option2"
+ [  5]  "G4EmDNAPhysics"
+ [  6]  "G4EmDNAPhysics_option1"
+ [  7]  "G4EmDNAPhysics_option2"
+ [  8]  "G4EmDNAPhysics_option3"
+ [  9]  "G4EmDNAPhysics_option4"
+ [ 10]  "G4EmDNAPhysics_option5"
+ [ 11]  "G4EmDNAPhysics_option6"
+ [ 12]  "G4EmDNAPhysics_option7"
+ [ 13]  "G4EmDNAPhysics_option8"
+ [ 14]  "G4EmDNAPhysics_stationary"
+ [ 15]  "G4EmDNAPhysics_stationary_option2"
+ [ 16]  "G4EmDNAPhysics_stationary_option4"
+ [ 17]  "G4EmDNAPhysics_stationary_option6"
+ [ 18]  "G4EmExtraPhysics"
+ [ 19]  "G4EmLivermorePhysics"
+ [ 20]  "G4EmLivermorePolarizedPhysics"
+ [ 21]  "G4EmLowEPPhysics"
+ [ 22]  "G4EmPenelopePhysics"
+ [ 23]  "G4EmStandardPhysics"
+ [ 24]  "G4EmStandardPhysicsGS"
+ [ 25]  "G4EmStandardPhysicsSS"
+ [ 26]  "G4EmStandardPhysicsWVI"
+ [ 27]  "G4EmStandardPhysics_option1"
+ [ 28]  "G4EmStandardPhysics_option2"
+ [ 29]  "G4EmStandardPhysics_option3"
+ [ 30]  "G4EmStandardPhysics_option4"
+ [ 31]  "G4EmStandardPhysics_pseudoLaser"
+ [ 32]  "G4FastSimulationPhysics"
+ [ 33]  "G4GenericBiasingPhysics"
+ [ 34]  "G4HadronDElasticPhysics"
+ [ 35]  "G4HadronElasticPhysics"
+ [ 36]  "G4HadronElasticPhysicsHP"
+ [ 37]  "G4HadronElasticPhysicsLEND"
+ [ 38]  "G4HadronElasticPhysicsPHP"
+ [ 39]  "G4HadronElasticPhysicsXS"
+ [ 40]  "G4HadronHElasticPhysics"
+ [ 41]  "G4HadronInelasticQBBC"
+ [ 42]  "G4HadronPhysicsFTFP_BERT"
+ [ 43]  "G4HadronPhysicsFTFP_BERT_ATL"
+ [ 44]  "G4HadronPhysicsFTFP_BERT_HP"
+ [ 45]  "G4HadronPhysicsFTFP_BERT_TRV"
+ [ 46]  "G4HadronPhysicsFTFQGSP_BERT"
+ [ 47]  "G4HadronPhysicsFTF_BIC"
+ [ 48]  "G4HadronPhysicsINCLXX"
+ [ 49]  "G4HadronPhysicsNuBeam"
+ [ 50]  "G4HadronPhysicsQGSP_BERT"
+ [ 51]  "G4HadronPhysicsQGSP_BERT_HP"
+ [ 52]  "G4HadronPhysicsQGSP_BIC"
+ [ 53]  "G4HadronPhysicsQGSP_BIC_AllHP"
+ [ 54]  "G4HadronPhysicsQGSP_BIC_HP"
+ [ 55]  "G4HadronPhysicsQGSP_FTFP_BERT"
+ [ 56]  "G4HadronPhysicsQGS_BIC"
+ [ 57]  "G4HadronPhysicsShielding"
+ [ 58]  "G4HadronPhysicsShieldingLEND"
+ [ 59]  "G4ImportanceBiasing"
+ [ 60]  "G4IonBinaryCascadePhysics"
+ [ 61]  "G4IonElasticPhysics"
+ [ 62]  "G4IonINCLXXPhysics"
+ [ 63]  "G4IonPhysics"
+ [ 64]  "G4IonPhysicsPHP"
+ [ 65]  "G4IonPhysicsXS"
+ [ 66]  "G4IonQMDPhysics"
+ [ 67]  "G4MuonicAtomDecayPhysics"
+ [ 68]  "G4NeutronCrossSectionXS"
+ [ 69]  "G4NeutronTrackingCut"
+ [ 70]  "G4OpticalPhysics"
+ [ 71]  "G4ParallelWorldPhysics"
+ [ 72]  "G4RadioactiveDecayPhysics"
+ [ 73]  "G4SpinDecayPhysics"
+ [ 74]  "G4StepLimiterPhysics"
+ [ 75]  "G4StoppingPhysics"
+ [ 76]  "G4StoppingPhysicsFritiofWithBinaryCascade"
+ [ 77]  "G4UnknownDecayPhysics"
+ [ 78]  "G4WeightWindowBiasing"
+ [ 79]  "MyG4DecayPhysics"
+ [ 80]  "MyG4HadronPhysicsQGSP_BERT_ArHP"
+ [ 81]  "MyG4HadronPhysicsQGSP_BERT_HP_NeutronXSBias"
+Base G4VModularPhysicsLists in G4PhysListRegistry are:
+ [  0]  "FTFP_BERT"
+ [  1]  "FTFP_BERT_ATL"
+ [  2]  "FTFP_BERT_HP"
+ [  3]  "FTFP_BERT_TRV"
+ [  4]  "FTFP_INCLXX"
+ [  5]  "FTFP_INCLXX_HP"
+ [  6]  "FTFQGSP_BERT"
+ [  7]  "FTF_BIC"
+ [  8]  "G4GenericPhysicsList"
+ [  9]  "LBE"
+ [ 10]  "MyQGSP_BERT_ArHP"
+ [ 11]  "MyQGSP_BERT_HP_NeutronXSBias"
+ [ 12]  "MyQGSP_BERT_LASER"
+ [ 13]  "NuBeam"
+ [ 14]  "QBBC"
+ [ 15]  "QGSP_BERT"
+ [ 16]  "QGSP_BERT_HP"
+ [ 17]  "QGSP_BIC"
+ [ 18]  "QGSP_BIC_AllHP"
+ [ 19]  "QGSP_BIC_HP"
+ [ 20]  "QGSP_FTFP_BERT"
+ [ 21]  "QGSP_INCLXX"
+ [ 22]  "QGSP_INCLXX_HP"
+ [ 23]  "QGS_BIC"
+ [ 24]  "Shielding"
+ [ 25]  "ShieldingLEND"
+ [ 26]  "ShieldingM"
+Replacement mappings in G4PhysListRegistry are:
+           EM0 =>            G4EmStandardPhysics 
+           EMV =>    G4EmStandardPhysics_option1 
+           EMX =>    G4EmStandardPhysics_option2 
+           EMY =>    G4EmStandardPhysics_option3 
+           EMZ =>    G4EmStandardPhysics_option4 
+            GS =>          G4EmStandardPhysicsGS 
+           LIV =>           G4EmLivermorePhysics 
+    NEUTRONLIMIT =>           G4NeutronTrackingCut 
+       OPTICAL =>               G4OpticalPhysics 
+           PEN =>            G4EmPenelopePhysics 
+            SS =>          G4EmStandardPhysicsSS 
+     STEPLIMIT =>           G4StepLimiterPhysics 
+           _GS =>          G4EmStandardPhysicsGS 
+           _SS =>          G4EmStandardPhysicsSS 
+Use these mapping to extend physics list; append with _EXT or +EXT
+   to use ReplacePhysics() ("_") or RegisterPhysics() ("+").
+ Name of Physics list: QGSP_BERT_HP_EMZ+STEPLIMIT
+G4PhysListRegistry::GetModularPhysicsList <QGSP_BERT_HP_EMZ+STEPLIMIT>, as "QGSP_BERT_HP" with extensions "_EMZ+STEPLIMIT"
+<<< Geant4 Physics List simulation engine: QGSP_BERT_HP
+
+
+<<< ReplacePhysics  with G4EmStandardPhysics_option4 "EMZ"
+<<< RegisterPhysics with G4StepLimiterPhysics "STEPLIMIT"
+<<< Reference Physics List QGSP_BERT_HP_EMZ+STEPLIMIT is built
+
+.
+
+/cvmfs/larsoft.opensciencegrid.org/products/g4neutron/v4_6/G4NDL4.6
+@@@ G4ParticleHPInelastic instantiated for particle neutron data directory variable is G4NEUTRONHPDATA pointing to /cvmfs/larsoft.opensciencegrid.org/products/g4neutron/v4_6/G4NDL4.6/Inelastic
+@@@ G4ParticleHPInelasticData instantiated for particle neutron data directory variable is G4NEUTRONHPDATA pointing to /cvmfs/larsoft.opensciencegrid.org/products/g4neutron/v4_6/G4NDL4.6
+NeutronHP: /Capture file for Z = 6, A = 12 is not found and NeutronHP will use /cvmfs/larsoft.opensciencegrid.org/products/g4neutron/v4_6/G4NDL4.6/Capture/CrossSection/6_nat_Carbon
+NeutronHP: /Elastic file for Z = 6, A = 12 is not found and NeutronHP will use /cvmfs/larsoft.opensciencegrid.org/products/g4neutron/v4_6/G4NDL4.6/Elastic/CrossSection/6_nat_Carbon
+NeutronHP: /Inelastic file for Z = 6, A = 12 is not found and NeutronHP will use /cvmfs/larsoft.opensciencegrid.org/products/g4neutron/v4_6/G4NDL4.6/Inelastic/CrossSection/6_nat_Carbon
+%MSG-i larg4Main:  larg4Main:largeant@BeginRun 06-Apr-2025 14:34:45 CDT  run: 20000047
+Finding path for vis.mac...
+Search unsuccessful and path is: 
+
+%MSG
+%MSG-i larg4Main:  larg4Main:largeant@BeginRun 06-Apr-2025 14:34:45 CDT  run: 20000047
+Unable to find vis.mac in the path(s) .:./macros
+%MSG
+
+### ===  Deexcitation model UAtomDeexcitation is activated for 1 region:
+          DefaultRegionForTheWorld  1  1  0
+### ===  Auger cascade flag: 1
+### ===  Ignore cuts flag:   1
+
+phot:  for gamma SubType=12 BuildTable=0
+      LambdaPrime table from 200 keV to 100 TeV in 174 bins 
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+ LivermorePhElectric : Emin=    0 eV  Emax=  100 TeV  SauterGavrila Fluo
+
+compt:  for gamma SubType=13 BuildTable=1
+      Lambda table from 100 eV  to 1 MeV, 20 bins/decade, spline: 1
+      LambdaPrime table from 1 MeV to 100 TeV in 160 bins 
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+   LowEPComptonModel : Emin=    0 eV  Emax=   20 MeV Fluo
+        KleinNishina : Emin=   20 MeV Emax=  100 TeV Fluo
+
+conv:  for gamma SubType=14 BuildTable=1
+      Lambda table from 1.022 MeV to 100 TeV, 20 bins/decade, spline: 1
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+      BetheHeitler5D : Emin=    0 eV  Emax=  100 TeV  ModifiedTsai
+
+Rayl:  for gamma SubType=11 BuildTable=1
+      Lambda table from 100 eV  to 100 keV, 20 bins/decade, spline: 0
+      LambdaPrime table from 100 keV to 100 TeV in 180 bins 
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+   LivermoreRayleigh : Emin=    0 eV  Emax=  100 TeV  CullenGenerator
+
+msc:  for e-  SubType= 10
+      RangeFactor= 0.08, stepLimType: 2, latDisp: 1
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+  GoudsmitSaunderson : Emin=    0 eV  Emax=  100 MeV Nbins=120 100 eV  - 100 MeV
+        WentzelVIUni : Emin=  100 MeV Emax=  100 TeV Nbins=120 100 MeV - 100 TeV
+
+eIoni:  for e-  SubType=2
+      dE/dx and range tables from 100 eV  to 100 TeV in 240 bins
+      Lambda tables from threshold to 100 TeV, 20 bins/decade, spline: 1
+      StepFunction=(0.2, 0.01 mm), integ: 1, fluct: 1, linLossLim= 0.01
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+       LowEnergyIoni : Emin=    0 eV  Emax=  100 keV  deltaVI
+        MollerBhabha : Emin=  100 keV Emax=  100 TeV  deltaVI
+
+eBrem:  for e-  SubType=3
+      dE/dx and range tables from 100 eV  to 100 TeV in 240 bins
+      Lambda tables from threshold to 100 TeV, 20 bins/decade, spline: 1
+      LPM flag: 1 for E > 1 GeV,  VertexHighEnergyTh(GeV)= 100000
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+             eBremSB : Emin=    0 eV  Emax=    1 GeV  AngularGen2BS
+            eBremLPM : Emin=    1 GeV Emax=  100 TeV  AngularGen2BS
+
+ePairProd:  for e-  SubType=4
+      dE/dx and range tables from 100 eV  to 100 TeV in 240 bins
+      Lambda tables from threshold to 100 TeV, 20 bins/decade, spline: 1
+      Sampling table 25x1001; from 0.1 GeV to 100 TeV 
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+           ePairProd : Emin=    0 eV  Emax=  100 TeV
+
+CoulombScat:  for e-, integral:1  SubType=1 BuildTable=1
+      Lambda table from 100 MeV to 100 TeV, 20 bins/decade, spline: 1
+      ThetaMin(p) < Theta(degree) < 180; pLimit(GeV^1)= 0.139531
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+  eCoulombScattering : Emin=  100 MeV Emax=  100 TeV
+
+msc:  for e+  SubType= 10
+      RangeFactor= 0.08, stepLimType: 2, latDisp: 1
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+  GoudsmitSaunderson : Emin=    0 eV  Emax=  100 MeV Nbins=120 100 eV  - 100 MeV
+        WentzelVIUni : Emin=  100 MeV Emax=  100 TeV Nbins=120 100 MeV - 100 TeV
+
+eIoni:  for e+  SubType=2
+      dE/dx and range tables from 100 eV  to 100 TeV in 240 bins
+      Lambda tables from threshold to 100 TeV, 20 bins/decade, spline: 1
+      StepFunction=(0.2, 0.01 mm), integ: 1, fluct: 1, linLossLim= 0.01
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+             PenIoni : Emin=    0 eV  Emax=  100 keV
+        MollerBhabha : Emin=  100 keV Emax=  100 TeV  deltaVI
+
+eBrem:  for e+  SubType=3
+      dE/dx and range tables from 100 eV  to 100 TeV in 240 bins
+      Lambda tables from threshold to 100 TeV, 20 bins/decade, spline: 1
+      LPM flag: 1 for E > 1 GeV,  VertexHighEnergyTh(GeV)= 100000
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+             eBremSB : Emin=    0 eV  Emax=    1 GeV  AngularGen2BS
+            eBremLPM : Emin=    1 GeV Emax=  100 TeV  AngularGen2BS
+
+ePairProd:  for e+  SubType=4
+      dE/dx and range tables from 100 eV  to 100 TeV in 240 bins
+      Lambda tables from threshold to 100 TeV, 20 bins/decade, spline: 1
+      Sampling table 25x1001; from 0.1 GeV to 100 TeV 
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+           ePairProd : Emin=    0 eV  Emax=  100 TeV
+
+annihil:  for e+, integral:1  SubType=5 BuildTable=0
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+            eplus2gg : Emin=    0 eV  Emax=  100 TeV
+
+CoulombScat:  for e+, integral:1  SubType=1 BuildTable=1
+      Lambda table from 100 MeV to 100 TeV, 20 bins/decade, spline: 1
+      ThetaMin(p) < Theta(degree) < 180; pLimit(GeV^1)= 0.139531
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+  eCoulombScattering : Emin=  100 MeV Emax=  100 TeV
+
+msc:  for proton  SubType= 10
+      RangeFactor= 0.2, stepLimType: 0, latDisp: 1
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+        WentzelVIUni : Emin=    0 eV  Emax=  100 TeV Nbins=240 100 eV  - 100 TeV
+
+hIoni:  for proton  SubType=2
+      dE/dx and range tables from 100 eV  to 100 TeV in 240 bins
+      Lambda tables from threshold to 100 TeV, 20 bins/decade, spline: 1
+      StepFunction=(0.1, 0.02 mm), integ: 1, fluct: 1, linLossLim= 0.01
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+               Bragg : Emin=    0 eV  Emax=    2 MeV  deltaVI
+          BetheBloch : Emin=    2 MeV Emax=  100 TeV  deltaVI
+
+hBrems:  for proton  SubType=3
+      dE/dx and range tables from 100 eV  to 100 TeV in 240 bins
+      Lambda tables from threshold to 100 TeV, 20 bins/decade, spline: 1
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+               hBrem : Emin=    0 eV  Emax=  100 TeV
+
+hPairProd:  for proton  SubType=4
+      dE/dx and range tables from 100 eV  to 100 TeV in 240 bins
+      Lambda tables from threshold to 100 TeV, 20 bins/decade, spline: 1
+      Sampling table 17x1001; from 7.50618 GeV to 100 TeV 
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+           hPairProd : Emin=    0 eV  Emax=  100 TeV
+
+CoulombScat:  for proton, integral:1  SubType=1 BuildTable=1
+      Lambda table from threshold  to 100 TeV, 20 bins/decade, spline: 1
+      ThetaMin(p) < Theta(degree) < 180; pLimit(GeV^1)= 0.139531
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+  eCoulombScattering : Emin=    0 eV  Emax=  100 TeV
+
+msc:  for GenericIon  SubType= 10
+      RangeFactor= 0.2, stepLimType: 0, latDisp: 0
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+            UrbanMsc : Emin=    0 eV  Emax=  100 TeV
+
+ionIoni:  for GenericIon  SubType=2
+      dE/dx and range tables from 100 eV  to 100 TeV in 240 bins
+      Lambda tables from threshold to 100 TeV, 20 bins/decade, spline: 1
+      StepFunction=(0.1, 0.001 mm), integ: 1, fluct: 1, linLossLim= 0.02
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+         ParamICRU73 : Emin=    0 eV  Emax=  100 TeV  deltaVI
+
+nuclearStopping:  for GenericIon SubType=8 BuildTable=0
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+   ICRU49NucStopping : Emin=    0 eV  Emax=    1 MeV
+======================================================================
+======          Radioactive Decay Physics Parameters           =======
+======================================================================
+Max life time                                     1.4427e+06 ps
+Internal e- conversion flag                       1
+Stored internal conversion coefficients           1
+Enable correlated gamma emission                  0
+Max 2J for sampling of angular correlations       10
+Atomic de-excitation enabled                      1
+Auger electron emission enabled                   1
+Auger cascade enabled                             1
+Check EM cuts disabled for atomic de-excitation   1
+Use Bearden atomic level energies                 0
+======================================================================
+
+msc:  for alpha  SubType= 10
+      RangeFactor= 0.2, stepLimType: 0, latDisp: 1
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+            UrbanMsc : Emin=    0 eV  Emax=  100 TeV Nbins=240 100 eV  - 100 TeV
+
+ionIoni:  for alpha  SubType=2
+      dE/dx and range tables from 100 eV  to 100 TeV in 240 bins
+      Lambda tables from threshold to 100 TeV, 20 bins/decade, spline: 1
+      StepFunction=(0.1, 0.02 mm), integ: 1, fluct: 1, linLossLim= 0.02
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+            BraggIon : Emin=    0 eV  Emax=7.9452 MeV  deltaVI
+          BetheBloch : Emin=7.9452 MeV Emax=  100 TeV  deltaVI
+
+nuclearStopping:  for alpha SubType=8 BuildTable=0
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+   ICRU49NucStopping : Emin=    0 eV  Emax=    1 MeV
+
+msc:  for anti_proton  SubType= 10
+      RangeFactor= 0.2, stepLimType: 0, latDisp: 1
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+        WentzelVIUni : Emin=    0 eV  Emax=  100 TeV Nbins=240 100 eV  - 100 TeV
+
+hIoni:  for anti_proton  SubType=2
+      dE/dx and range tables from 100 eV  to 100 TeV in 240 bins
+      Lambda tables from threshold to 100 TeV, 20 bins/decade, spline: 1
+      StepFunction=(0.1, 0.02 mm), integ: 1, fluct: 1, linLossLim= 0.01
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+            ICRU73QO : Emin=    0 eV  Emax=    2 MeV  deltaVI
+          BetheBloch : Emin=    2 MeV Emax=  100 TeV  deltaVI
+
+hBrems:  for anti_proton  SubType=3
+      dE/dx and range tables from 100 eV  to 100 TeV in 240 bins
+      Lambda tables from threshold to 100 TeV, 20 bins/decade, spline: 1
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+               hBrem : Emin=    0 eV  Emax=  100 TeV
+
+hPairProd:  for anti_proton  SubType=4
+      dE/dx and range tables from 100 eV  to 100 TeV in 240 bins
+      Lambda tables from threshold to 100 TeV, 20 bins/decade, spline: 1
+      Sampling table 17x1001; from 7.50618 GeV to 100 TeV 
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+           hPairProd : Emin=    0 eV  Emax=  100 TeV
+
+CoulombScat:  for anti_proton, integral:1  SubType=1 BuildTable=1
+      Lambda table from threshold  to 100 TeV, 20 bins/decade, spline: 1
+      ThetaMin(p) < Theta(degree) < 180; pLimit(GeV^1)= 0.139531
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+  eCoulombScattering : Emin=    0 eV  Emax=  100 TeV
+
+msc:  for kaon+  SubType= 10
+      RangeFactor= 0.2, stepLimType: 0, latDisp: 1
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+        WentzelVIUni : Emin=    0 eV  Emax=  100 TeV Nbins=240 100 eV  - 100 TeV
+
+hIoni:  for kaon+  SubType=2
+      dE/dx and range tables from 100 eV  to 100 TeV in 240 bins
+      Lambda tables from threshold to 100 TeV, 20 bins/decade, spline: 1
+      StepFunction=(0.1, 0.02 mm), integ: 1, fluct: 1, linLossLim= 0.01
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+               Bragg : Emin=    0 eV  Emax=1.05231 MeV  deltaVI
+          BetheBloch : Emin=1.05231 MeV Emax=  100 TeV  deltaVI
+
+hBrems:  for kaon+  SubType=3
+      dE/dx and range tables from 100 eV  to 100 TeV in 240 bins
+      Lambda tables from threshold to 100 TeV, 20 bins/decade, spline: 1
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+               hBrem : Emin=    0 eV  Emax=  100 TeV
+
+hPairProd:  for kaon+  SubType=4
+      dE/dx and range tables from 100 eV  to 100 TeV in 240 bins
+      Lambda tables from threshold to 100 TeV, 20 bins/decade, spline: 1
+      Sampling table 18x1001; from 3.94942 GeV to 100 TeV 
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+           hPairProd : Emin=    0 eV  Emax=  100 TeV
+
+CoulombScat:  for kaon+, integral:1  SubType=1 BuildTable=1
+      Lambda table from threshold  to 100 TeV, 20 bins/decade, spline: 1
+      ThetaMin(p) < Theta(degree) < 180; pLimit(GeV^1)= 0.139531
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+  eCoulombScattering : Emin=    0 eV  Emax=  100 TeV
+
+msc:  for kaon-  SubType= 10
+      RangeFactor= 0.2, stepLimType: 0, latDisp: 1
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+        WentzelVIUni : Emin=    0 eV  Emax=  100 TeV Nbins=240 100 eV  - 100 TeV
+
+hIoni:  for kaon-  SubType=2
+      dE/dx and range tables from 100 eV  to 100 TeV in 240 bins
+      Lambda tables from threshold to 100 TeV, 20 bins/decade, spline: 1
+      StepFunction=(0.1, 0.02 mm), integ: 1, fluct: 1, linLossLim= 0.01
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+            ICRU73QO : Emin=    0 eV  Emax=1.05231 MeV  deltaVI
+          BetheBloch : Emin=1.05231 MeV Emax=  100 TeV  deltaVI
+
+hBrems:  for kaon-  SubType=3
+      dE/dx and range tables from 100 eV  to 100 TeV in 240 bins
+      Lambda tables from threshold to 100 TeV, 20 bins/decade, spline: 1
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+               hBrem : Emin=    0 eV  Emax=  100 TeV
+
+hPairProd:  for kaon-  SubType=4
+      dE/dx and range tables from 100 eV  to 100 TeV in 240 bins
+      Lambda tables from threshold to 100 TeV, 20 bins/decade, spline: 1
+      Sampling table 18x1001; from 3.94942 GeV to 100 TeV 
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+           hPairProd : Emin=    0 eV  Emax=  100 TeV
+
+CoulombScat:  for kaon-, integral:1  SubType=1 BuildTable=1
+      Used Lambda table of kaon+
+      ThetaMin(p) < Theta(degree) < 180; pLimit(GeV^1)= 0.139531
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+  eCoulombScattering : Emin=    0 eV  Emax=  100 TeV
+
+msc:  for mu+  SubType= 10
+      RangeFactor= 0.2, stepLimType: 0, latDisp: 1, polarAngLim(deg)= 180
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+        WentzelVIUni : Emin=    0 eV  Emax=  100 TeV Nbins=240 100 eV  - 100 TeV
+
+muIoni:  for mu+  SubType=2
+      dE/dx and range tables from 100 eV  to 100 TeV in 240 bins
+      Lambda tables from threshold to 100 TeV, 20 bins/decade, spline: 1
+      StepFunction=(0.1, 0.02 mm), integ: 1, fluct: 1, linLossLim= 0.01
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+               Bragg : Emin=    0 eV  Emax=  200 keV  deltaVI
+          BetheBloch : Emin=  200 keV Emax=    1 GeV  deltaVI
+        MuBetheBloch : Emin=    1 GeV Emax=  100 TeV
+
+muBrems:  for mu+  SubType=3
+      dE/dx and range tables from 100 eV  to 100 TeV in 240 bins
+      Lambda tables from threshold to 100 TeV, 20 bins/decade, spline: 1
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+              MuBrem : Emin=    0 eV  Emax=  100 TeV
+
+muPairProd:  for mu+  SubType=4
+      dE/dx and range tables from 100 eV  to 100 TeV in 240 bins
+      Lambda tables from threshold to 100 TeV, 20 bins/decade, spline: 1
+      Sampling table 21x1001; from 1 GeV to 100 TeV 
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+          muPairProd : Emin=    0 eV  Emax=  100 TeV
+
+CoulombScat:  for mu+, integral:1  SubType=1 BuildTable=1
+      Lambda table from threshold  to 100 TeV, 20 bins/decade, spline: 1
+      ThetaMin(p) < Theta(degree) < 180; pLimit(GeV^1)= 0.139531
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+  eCoulombScattering : Emin=    0 eV  Emax=  100 TeV
+
+msc:  for mu-  SubType= 10
+      RangeFactor= 0.2, stepLimType: 0, latDisp: 1, polarAngLim(deg)= 180
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+        WentzelVIUni : Emin=    0 eV  Emax=  100 TeV Nbins=240 100 eV  - 100 TeV
+
+muIoni:  for mu-  SubType=2
+      dE/dx and range tables from 100 eV  to 100 TeV in 240 bins
+      Lambda tables from threshold to 100 TeV, 20 bins/decade, spline: 1
+      StepFunction=(0.1, 0.02 mm), integ: 1, fluct: 1, linLossLim= 0.01
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+            ICRU73QO : Emin=    0 eV  Emax=  200 keV  deltaVI
+          BetheBloch : Emin=  200 keV Emax=    1 GeV  deltaVI
+        MuBetheBloch : Emin=    1 GeV Emax=  100 TeV
+
+muBrems:  for mu-  SubType=3
+      dE/dx and range tables from 100 eV  to 100 TeV in 240 bins
+      Lambda tables from threshold to 100 TeV, 20 bins/decade, spline: 1
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+              MuBrem : Emin=    0 eV  Emax=  100 TeV
+
+muPairProd:  for mu-  SubType=4
+      dE/dx and range tables from 100 eV  to 100 TeV in 240 bins
+      Lambda tables from threshold to 100 TeV, 20 bins/decade, spline: 1
+      Sampling table 21x1001; from 1 GeV to 100 TeV 
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+          muPairProd : Emin=    0 eV  Emax=  100 TeV
+
+CoulombScat:  for mu-, integral:1  SubType=1 BuildTable=1
+      Used Lambda table of mu+
+      ThetaMin(p) < Theta(degree) < 180; pLimit(GeV^1)= 0.139531
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+  eCoulombScattering : Emin=    0 eV  Emax=  100 TeV
+NeutronHP: /Capture file for Z = 6, A = 12 is not found and NeutronHP will use /cvmfs/larsoft.opensciencegrid.org/products/g4neutron/v4_6/G4NDL4.6/Capture/CrossSection/6_nat_Carbon
+NeutronHP: /Elastic file for Z = 6, A = 12 is not found and NeutronHP will use /cvmfs/larsoft.opensciencegrid.org/products/g4neutron/v4_6/G4NDL4.6/Elastic/CrossSection/6_nat_Carbon
+NeutronHP: /Inelastic file for Z = 6, A = 12 is not found and NeutronHP will use /cvmfs/larsoft.opensciencegrid.org/products/g4neutron/v4_6/G4NDL4.6/Inelastic/CrossSection/6_nat_Carbon
+NeutronHP: /Elastic file for Z = 6, A = 12 is not found and NeutronHP will use /cvmfs/larsoft.opensciencegrid.org/products/g4neutron/v4_6/G4NDL4.6/Elastic/CrossSection/6_nat_Carbon
+@@@ G4ParticleHPInelastic instantiated for particle neutron data directory variable is G4NEUTRONHPDATA pointing to /cvmfs/larsoft.opensciencegrid.org/products/g4neutron/v4_6/G4NDL4.6/Inelastic
+NeutronHP: /Capture file for Z = 6, A = 12 is not found and NeutronHP will use /cvmfs/larsoft.opensciencegrid.org/products/g4neutron/v4_6/G4NDL4.6/Capture/CrossSection/6_nat_Carbon
+
+msc:  for pi+  SubType= 10
+      RangeFactor= 0.2, stepLimType: 0, latDisp: 1
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+        WentzelVIUni : Emin=    0 eV  Emax=  100 TeV Nbins=240 100 eV  - 100 TeV
+
+hIoni:  for pi+  SubType=2
+      dE/dx and range tables from 100 eV  to 100 TeV in 240 bins
+      Lambda tables from threshold to 100 TeV, 20 bins/decade, spline: 1
+      StepFunction=(0.1, 0.02 mm), integ: 1, fluct: 1, linLossLim= 0.01
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+               Bragg : Emin=    0 eV  Emax=297.505 keV  deltaVI
+          BetheBloch : Emin=297.505 keV Emax=  100 TeV  deltaVI
+
+hBrems:  for pi+  SubType=3
+      dE/dx and range tables from 100 eV  to 100 TeV in 240 bins
+      Lambda tables from threshold to 100 TeV, 20 bins/decade, spline: 1
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+               hBrem : Emin=    0 eV  Emax=  100 TeV
+
+hPairProd:  for pi+  SubType=4
+      dE/dx and range tables from 100 eV  to 100 TeV in 240 bins
+      Lambda tables from threshold to 100 TeV, 20 bins/decade, spline: 1
+      Sampling table 20x1001; from 1.11656 GeV to 100 TeV 
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+           hPairProd : Emin=    0 eV  Emax=  100 TeV
+
+CoulombScat:  for pi+, integral:1  SubType=1 BuildTable=1
+      Lambda table from threshold  to 100 TeV, 20 bins/decade, spline: 1
+      ThetaMin(p) < Theta(degree) < 180; pLimit(GeV^1)= 0.139531
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+  eCoulombScattering : Emin=    0 eV  Emax=  100 TeV
+
+msc:  for pi-  SubType= 10
+      RangeFactor= 0.2, stepLimType: 0, latDisp: 1
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+        WentzelVIUni : Emin=    0 eV  Emax=  100 TeV Nbins=240 100 eV  - 100 TeV
+
+hIoni:  for pi-  SubType=2
+      dE/dx and range tables from 100 eV  to 100 TeV in 240 bins
+      Lambda tables from threshold to 100 TeV, 20 bins/decade, spline: 1
+      StepFunction=(0.1, 0.02 mm), integ: 1, fluct: 1, linLossLim= 0.01
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+            ICRU73QO : Emin=    0 eV  Emax=297.505 keV  deltaVI
+          BetheBloch : Emin=297.505 keV Emax=  100 TeV  deltaVI
+
+hBrems:  for pi-  SubType=3
+      dE/dx and range tables from 100 eV  to 100 TeV in 240 bins
+      Lambda tables from threshold to 100 TeV, 20 bins/decade, spline: 1
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+               hBrem : Emin=    0 eV  Emax=  100 TeV
+
+hPairProd:  for pi-  SubType=4
+      dE/dx and range tables from 100 eV  to 100 TeV in 240 bins
+      Lambda tables from threshold to 100 TeV, 20 bins/decade, spline: 1
+      Sampling table 20x1001; from 1.11656 GeV to 100 TeV 
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+           hPairProd : Emin=    0 eV  Emax=  100 TeV
+
+CoulombScat:  for pi-, integral:1  SubType=1 BuildTable=1
+      Used Lambda table of pi+
+      ThetaMin(p) < Theta(degree) < 180; pLimit(GeV^1)= 0.139531
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+  eCoulombScattering : Emin=    0 eV  Emax=  100 TeV
+
+====================================================================
+                  HADRONIC PROCESSES SUMMARY (verbose level 1)
+
+---------------------------------------------------
+                           Hadronic Processes for GenericIon
+
+  Process: ionInelastic
+        Model:  Binary Light Ion Cascade: 0 eV /n ---> 6 GeV/n
+        Model:                      FTFP: 3 GeV/n ---> 100 TeV/n
+     Cr_sctns:  Glauber-Gribov Nucl-nucl: 0 eV  ---> 100 TeV
+
+  Process: RadioactiveDecayBase
+
+---------------------------------------------------
+                           Hadronic Processes for He3
+
+  Process: hadElastic
+        Model:              hElasticLHEP: 0 eV /n ---> 100 TeV/n
+     Cr_sctns:  Glauber-Gribov Nucl-nucl: 0 eV  ---> 100 TeV
+
+  Process: He3Inelastic
+        Model:  Binary Light Ion Cascade: 0 eV /n ---> 6 GeV/n
+        Model:                      FTFP: 3 GeV/n ---> 100 TeV/n
+     Cr_sctns:  Glauber-Gribov Nucl-nucl: 0 eV  ---> 100 TeV
+
+---------------------------------------------------
+                           Hadronic Processes for alpha
+
+  Process: hadElastic
+        Model:              hElasticLHEP: 0 eV /n ---> 100 TeV/n
+     Cr_sctns:  Glauber-Gribov Nucl-nucl: 0 eV  ---> 100 TeV
+
+  Process: alphaInelastic
+        Model:  Binary Light Ion Cascade: 0 eV /n ---> 6 GeV/n
+        Model:                      FTFP: 3 GeV/n ---> 100 TeV/n
+     Cr_sctns:  Glauber-Gribov Nucl-nucl: 0 eV  ---> 100 TeV
+
+---------------------------------------------------
+                           Hadronic Processes for anti_He3
+
+  Process: hadElastic
+        Model:              hElasticLHEP: 0 eV /n ---> 100.1 MeV/n
+        Model:              AntiAElastic: 100 MeV/n ---> 100 TeV/n
+     Cr_sctns:              AntiAGlauber: 0 eV  ---> 100 TeV
+
+  Process: anti_He3Inelastic
+        Model:                      FTFP: 0 eV /n ---> 100 TeV/n
+     Cr_sctns:              AntiAGlauber: 0 eV  ---> 100 TeV
+
+  Process: hFritiofCaptureAtRest
+
+---------------------------------------------------
+                           Hadronic Processes for anti_alpha
+
+  Process: hadElastic
+        Model:              hElasticLHEP: 0 eV /n ---> 100.1 MeV/n
+        Model:              AntiAElastic: 100 MeV/n ---> 100 TeV/n
+     Cr_sctns:              AntiAGlauber: 0 eV  ---> 100 TeV
+
+  Process: anti_alphaInelastic
+        Model:                      FTFP: 0 eV /n ---> 100 TeV/n
+     Cr_sctns:              AntiAGlauber: 0 eV  ---> 100 TeV
+
+  Process: hFritiofCaptureAtRest
+
+---------------------------------------------------
+                           Hadronic Processes for anti_deuteron
+
+  Process: hadElastic
+        Model:              hElasticLHEP: 0 eV /n ---> 100.1 MeV/n
+        Model:              AntiAElastic: 100 MeV/n ---> 100 TeV/n
+     Cr_sctns:              AntiAGlauber: 0 eV  ---> 100 TeV
+
+  Process: anti_deuteronInelastic
+        Model:                      FTFP: 0 eV /n ---> 100 TeV/n
+     Cr_sctns:              AntiAGlauber: 0 eV  ---> 100 TeV
+
+  Process: hFritiofCaptureAtRest
+
+---------------------------------------------------
+                           Hadronic Processes for anti_neutron
+
+  Process: hadElastic
+        Model:              hElasticLHEP: 0 eV  ---> 100.1 MeV
+        Model:              AntiAElastic: 100 MeV ---> 100 TeV
+     Cr_sctns:              AntiAGlauber: 0 eV  ---> 100 TeV
+
+  Process: anti_neutronInelastic
+        Model:                      FTFP: 0 eV  ---> 100 TeV
+     Cr_sctns:              AntiAGlauber: 0 eV  ---> 100 TeV
+
+  Process: hFritiofCaptureAtRest
+
+---------------------------------------------------
+                           Hadronic Processes for anti_proton
+
+  Process: hadElastic
+        Model:              hElasticLHEP: 0 eV  ---> 100.1 MeV
+        Model:              AntiAElastic: 100 MeV ---> 100 TeV
+     Cr_sctns:              AntiAGlauber: 0 eV  ---> 100 TeV
+
+  Process: anti_protonInelastic
+        Model:                      FTFP: 0 eV  ---> 100 TeV
+     Cr_sctns:              AntiAGlauber: 0 eV  ---> 100 TeV
+
+  Process: hFritiofCaptureAtRest
+
+---------------------------------------------------
+                           Hadronic Processes for anti_triton
+
+  Process: hadElastic
+        Model:              hElasticLHEP: 0 eV /n ---> 100.1 MeV/n
+        Model:              AntiAElastic: 100 MeV/n ---> 100 TeV/n
+     Cr_sctns:              AntiAGlauber: 0 eV  ---> 100 TeV
+
+  Process: anti_tritonInelastic
+        Model:                      FTFP: 0 eV /n ---> 100 TeV/n
+     Cr_sctns:              AntiAGlauber: 0 eV  ---> 100 TeV
+
+  Process: hFritiofCaptureAtRest
+
+---------------------------------------------------
+                           Hadronic Processes for deuteron
+
+  Process: hadElastic
+        Model:              hElasticLHEP: 0 eV /n ---> 100 TeV/n
+     Cr_sctns:  Glauber-Gribov Nucl-nucl: 0 eV  ---> 100 TeV
+
+  Process: dInelastic
+        Model:  Binary Light Ion Cascade: 0 eV /n ---> 6 GeV/n
+        Model:                      FTFP: 3 GeV/n ---> 100 TeV/n
+     Cr_sctns:  Glauber-Gribov Nucl-nucl: 0 eV  ---> 100 TeV
+
+---------------------------------------------------
+                           Hadronic Processes for e+
+
+  Process: electronNuclear
+        Model:   G4ElectroVDNuclearModel: 0 eV  ---> 1 PeV
+     Cr_sctns:          ElectroNuclearXS: 0 eV  ---> 100 TeV
+
+---------------------------------------------------
+                           Hadronic Processes for e-
+
+  Process: electronNuclear
+        Model:   G4ElectroVDNuclearModel: 0 eV  ---> 1 PeV
+     Cr_sctns:          ElectroNuclearXS: 0 eV  ---> 100 TeV
+
+---------------------------------------------------
+                           Hadronic Processes for gamma
+
+  Process: photonNuclear
+        Model:            BertiniCascade: 0 eV  ---> 6 GeV
+        Model:           TheoFSGenerator: 3 GeV ---> 100 TeV
+     Cr_sctns:            PhotoNuclearXS: 0 eV  ---> 100 TeV
+
+---------------------------------------------------
+                           Hadronic Processes for kaon+
+
+  Process: hadElastic
+        Model:              hElasticLHEP: 0 eV  ---> 100 TeV
+     Cr_sctns:            Glauber-Gribov: 0 eV  ---> 100 TeV
+
+  Process: kaon+Inelastic
+        Model:                      QGSP: 12 GeV ---> 100 TeV
+        Model:                      FTFP: 3 GeV ---> 25 GeV
+        Model:            BertiniCascade: 0 eV  ---> 6 GeV
+     Cr_sctns:            Glauber-Gribov: 0 eV  ---> 100 TeV
+
+---------------------------------------------------
+                           Hadronic Processes for kaon-
+
+  Process: hadElastic
+        Model:              hElasticLHEP: 0 eV  ---> 100 TeV
+     Cr_sctns:            Glauber-Gribov: 0 eV  ---> 100 TeV
+
+  Process: kaon-Inelastic
+        Model:                      QGSP: 12 GeV ---> 100 TeV
+        Model:                      FTFP: 3 GeV ---> 25 GeV
+        Model:            BertiniCascade: 0 eV  ---> 6 GeV
+     Cr_sctns:            Glauber-Gribov: 0 eV  ---> 100 TeV
+
+  Process: hBertiniCaptureAtRest
+
+---------------------------------------------------
+                           Hadronic Processes for lambda
+
+  Process: hadElastic
+        Model:              hElasticLHEP: 0 eV  ---> 100 TeV
+     Cr_sctns:            Glauber-Gribov: 0 eV  ---> 100 TeV
+
+  Process: lambdaInelastic
+        Model:            BertiniCascade: 0 eV  ---> 6 GeV
+        Model:                      FTFP: 3 GeV ---> 100 TeV
+     Cr_sctns:            Glauber-Gribov: 0 eV  ---> 100 TeV
+
+---------------------------------------------------
+                           Hadronic Processes for mu+
+
+  Process: muonNuclear
+        Model:      G4MuonVDNuclearModel: 0 eV  ---> 1 PeV
+     Cr_sctns:     KokoulinMuonNuclearXS: 0 eV  ---> 100 TeV
+
+---------------------------------------------------
+                           Hadronic Processes for mu-
+
+  Process: muonNuclear
+        Model:      G4MuonVDNuclearModel: 0 eV  ---> 1 PeV
+     Cr_sctns:     KokoulinMuonNuclearXS: 0 eV  ---> 100 TeV
+
+  Process: muMinusCaptureAtRest
+
+---------------------------------------------------
+                           Hadronic Processes for neutron
+
+  Process: hadElastic
+        Model:             hElasticCHIPS: 19.5 MeV ---> 100 TeV
+        Model:          NeutronHPElastic: 0 eV  ---> 20 MeV
+     Cr_sctns:        NeutronHPElasticXS: 0 eV  ---> 20 MeV
+     Cr_sctns:        G4NeutronElasticXS: 0 eV  ---> 100 TeV
+
+  Process: neutronInelastic
+        Model:                      QGSP: 12 GeV ---> 100 TeV
+        Model:                      FTFP: 3 GeV ---> 25 GeV
+        Model:            BertiniCascade: 19.9 MeV ---> 6 GeV
+        Model:        NeutronHPInelastic: 0 eV  ---> 20 MeV
+     Cr_sctns:      NeutronHPInelasticXS: 0 eV  ---> 20 MeV
+     Cr_sctns:  BarashenkovGlauberGribov: 0 eV  ---> 100 TeV
+
+  Process: nCapture
+        Model:          NeutronHPCapture: 0 eV  ---> 20 MeV
+        Model:               nRadCapture: 19.9 MeV ---> 100 TeV
+     Cr_sctns:        NeutronHPCaptureXS: 0 eV  ---> 20 MeV
+     Cr_sctns:        G4NeutronCaptureXS: 0 eV  ---> 100 TeV
+
+  Process: nFission
+        Model:          NeutronHPFission: 0 eV  ---> 20 MeV
+        Model:                G4LFission: 19.9 MeV ---> 100 TeV
+     Cr_sctns:        NeutronHPFissionXS: 0 eV  ---> 20 MeV
+     Cr_sctns:          GheishaFissionXS: 0 eV  ---> 100 TeV
+
+---------------------------------------------------
+                           Hadronic Processes for pi+
+
+  Process: hadElastic
+        Model:           hElasticGlauber: 0 eV  ---> 100 TeV
+     Cr_sctns:  BarashenkovGlauberGribov: 0 eV  ---> 100 TeV
+
+  Process: pi+Inelastic
+        Model:                      QGSP: 12 GeV ---> 100 TeV
+        Model:                      FTFP: 3 GeV ---> 25 GeV
+        Model:            BertiniCascade: 0 eV  ---> 6 GeV
+     Cr_sctns:  BarashenkovGlauberGribov: 0 eV  ---> 100 TeV
+
+---------------------------------------------------
+                           Hadronic Processes for pi-
+
+  Process: hadElastic
+        Model:           hElasticGlauber: 0 eV  ---> 100 TeV
+     Cr_sctns:  BarashenkovGlauberGribov: 0 eV  ---> 100 TeV
+
+  Process: pi-Inelastic
+        Model:                      QGSP: 12 GeV ---> 100 TeV
+        Model:                      FTFP: 3 GeV ---> 25 GeV
+        Model:            BertiniCascade: 0 eV  ---> 6 GeV
+     Cr_sctns:  BarashenkovGlauberGribov: 0 eV  ---> 100 TeV
+
+  Process: hBertiniCaptureAtRest
+
+---------------------------------------------------
+                           Hadronic Processes for proton
+
+  Process: hadElastic
+        Model:             hElasticCHIPS: 0 eV  ---> 100 TeV
+     Cr_sctns:  BarashenkovGlauberGribov: 0 eV  ---> 100 TeV
+
+  Process: protonInelastic
+        Model:                      QGSP: 12 GeV ---> 100 TeV
+        Model:                      FTFP: 3 GeV ---> 25 GeV
+        Model:            BertiniCascade: 0 eV  ---> 6 GeV
+     Cr_sctns:  BarashenkovGlauberGribov: 0 eV  ---> 100 TeV
+
+---------------------------------------------------
+                           Hadronic Processes for triton
+
+  Process: hadElastic
+        Model:              hElasticLHEP: 0 eV /n ---> 100 TeV/n
+     Cr_sctns:  Glauber-Gribov Nucl-nucl: 0 eV  ---> 100 TeV
+
+  Process: tInelastic
+        Model:  Binary Light Ion Cascade: 0 eV /n ---> 6 GeV/n
+        Model:                      FTFP: 3 GeV/n ---> 100 TeV/n
+     Cr_sctns:  Glauber-Gribov Nucl-nucl: 0 eV  ---> 100 TeV
+
+================================================================
+=======================================================================
+======       Pre-compound/De-excitation Physics Parameters     ========
+=======================================================================
+Type of pre-compound inverse x-section              3
+Pre-compound model active                           1
+Pre-compound excitation low energy (MeV)            0.1
+Pre-compound excitation high energy (MeV)           30
+Type of de-excitation inverse x-section             3
+Type of de-excitation factory                       Evaporation+GEM
+Number of de-excitation channels                    68
+Min excitation energy (keV)                         0.01
+Min energy per nucleon for multifragmentation (MeV) 2e+05
+Limit excitation energy for Fermi BreakUp (MeV)     20
+Level density (1/MeV)                               0.075
+Use simple level density model                      1
+Use discrete excitation energy of the residual      0
+Time limit for long lived isomeres (ns)             1442.7
+Internal e- conversion flag                         1
+Store e- internal conversion data                   1
+Electron internal conversion ID                     0
+Correlated gamma emission flag                      0
+Max 2J for sampling of angular correlations         10
+Upload data before 1st event for                Z < 9
+=======================================================================
+
+========= Table of registered couples ==============================
+
+Index : 0     used in the geometry : Yes
+ Material : DUSEL_Rock
+ Range cuts        :  gamma  700 um     e-  700 um     e+  700 um  proton 0 fm 
+ Energy thresholds :  gamma  5.91497 keV    e-  492.397 keV    e+  472.939 keV proton 0 eV 
+ Region(s) which use this couple : 
+    DefaultRegionForTheWorld
+
+Index : 1     used in the geometry : Yes
+ Material : Air
+ Range cuts        :  gamma  700 um     e-  700 um     e+  700 um  proton 0 fm 
+ Energy thresholds :  gamma  990 eV     e-  990 eV     e+  990 eV  proton 0 eV 
+ Region(s) which use this couple : 
+    DefaultRegionForTheWorld
+
+Index : 2     used in the geometry : Yes
+ Material : foam_protoDUNE_RPUF_assayedSample
+ Range cuts        :  gamma  700 um     e-  700 um     e+  700 um  proton 0 fm 
+ Energy thresholds :  gamma  990 eV     e-  63.4129 keV    e+  62.9882 keV proton 0 eV 
+ Region(s) which use this couple : 
+    DefaultRegionForTheWorld
+
+Index : 3     used in the geometry : Yes
+ Material : AirSteelMixture
+ Range cuts        :  gamma  700 um     e-  700 um     e+  700 um  proton 0 fm 
+ Energy thresholds :  gamma  1.93858 keV    e-  59.6913 keV    e+  59.2915 keV proton 0 eV 
+ Region(s) which use this couple : 
+    DefaultRegionForTheWorld
+
+Index : 4     used in the geometry : Yes
+ Material : LAr
+ Range cuts        :  gamma  700 um     e-  700 um     e+  700 um  proton 0 fm 
+ Energy thresholds :  gamma  5.20596 keV    e-  274.415 keV    e+  267.137 keV proton 0 eV 
+ Region(s) which use this couple : 
+    DefaultRegionForTheWorld
+
+Index : 5     used in the geometry : Yes
+ Material : ArGas
+ Range cuts        :  gamma  700 um     e-  700 um     e+  700 um  proton 0 fm 
+ Energy thresholds :  gamma  990 eV     e-  990 eV     e+  990 eV  proton 0 eV 
+ Region(s) which use this couple : 
+    DefaultRegionForTheWorld
+
+Index : 6     used in the geometry : Yes
+ Material : Delrin
+ Range cuts        :  gamma  700 um     e-  700 um     e+  700 um  proton 0 fm 
+ Energy thresholds :  gamma  2.73103 keV    e-  337.972 keV    e+  326.805 keV proton 0 eV 
+ Region(s) which use this couple : 
+    DefaultRegionForTheWorld
+
+Index : 7     used in the geometry : Yes
+ Material : ALUMINUM_Al
+ Range cuts        :  gamma  700 um     e-  700 um     e+  700 um  proton 0 fm 
+ Energy thresholds :  gamma  5.85564 keV    e-  460.395 keV    e+  442.201 keV proton 0 eV 
+ Region(s) which use this couple : 
+    DefaultRegionForTheWorld
+
+Index : 8     used in the geometry : Yes
+ Material : STEEL_STAINLESS_Fe7Cr2Ni
+ Range cuts        :  gamma  700 um     e-  700 um     e+  700 um  proton 0 fm 
+ Energy thresholds :  gamma  17.2183 keV    e-  957.736 keV    e+  907.607 keV proton 0 eV 
+ Region(s) which use this couple : 
+    DefaultRegionForTheWorld
+
+Index : 9     used in the geometry : Yes
+ Material : FR4SussexAPA
+ Range cuts        :  gamma  700 um     e-  700 um     e+  700 um  proton 0 fm 
+ Energy thresholds :  gamma  5.31198 keV    e-  356.639 keV    e+  344.855 keV proton 0 eV 
+ Region(s) which use this couple : 
+    DefaultRegionForTheWorld
+
+Index : 10     used in the geometry : Yes
+ Material : Copper_Beryllium_alloy25
+ Range cuts        :  gamma  700 um     e-  700 um     e+  700 um  proton 0 fm 
+ Energy thresholds :  gamma  19.5633 keV    e-  977.24 keV    e+  926.09 keV proton 0 eV 
+ Region(s) which use this couple : 
+    DefaultRegionForTheWorld
+
+====================================================================
+
+Begin processing the 1st record. run: 20000047 subRun: 0 event: 1 at 06-Apr-2025 14:35:04 CDT
+%MSG-w ParticleInventory:  ProcessEvent 06-Apr-2025 14:35:04 CDT  run: 20000047 subRun: 0 event: 1
+Rebuild failed to get the MCParticles. This is expected when running on a generation or simulation step.
+%MSG
+%MSG-w ParticleInventory:  ProcessEvent 06-Apr-2025 14:35:04 CDT  run: 20000047 subRun: 0 event: 1
+Rebuild failed to get the MCParticles. This is expected when running on a generation or simulation step.
+%MSG
+%MSG-w ParticleInventory:  ProcessEvent 06-Apr-2025 14:35:04 CDT  run: 20000047 subRun: 0 event: 1
+Rebuild failed to get the MCParticles. This is expected when running on a generation or simulation step.
+%MSG
+%MSG-w BackTrackerService:  ProcessEvent 06-Apr-2025 14:35:04 CDT  run: 20000047 subRun: 0 event: 1
+Rebuild failed to get the SimChannels. This is expected when running on a generation or simulation step.
+%MSG
+%MSG-w PhotonBackTrackerService:  ProcessEvent 06-Apr-2025 14:35:04 CDT  run: 20000047 subRun: 0 event: 1
+Rebuild failed to get the OpDetBTRs. This is expected when running on a generation or simulation step.
+%MSG
+%MSG-i NuRandomService:  larg4Main:largeant@BeginModule  06-Apr-2025 14:35:04 CDT run: 20000047 subRun: 0 event: 1
+Random seed for this event, engine 'largeant': 297945752
+%MSG
+%MSG-i generatePrimaries:  larg4Main:largeant@BeginModule  06-Apr-2025 14:35:04 CDT run: 20000047 subRun: 0 event: 1 MCTruthEventAction.cc:112
+Generating 7 particles
+%MSG
+%MSG-w beginOfEventAction::keepableGenerators:  larg4Main:largeant@BeginModule  06-Apr-2025 14:35:04 CDT run: 20000047 subRun: 0 event: 1
+storeTrajectories set to true and a non-empty keepGenTrajectories list provided in configuration file, but none of the generators in this list are present in the event! Double check list or don't provide keepGenTrajectories in the configuration to keep all trajectories from all generator labels. This may be expected for generators that have a nonzero probability of producing no particles (e.g. some radiologicals)
+%MSG
+%MSG-w PrimaryParticle:  larg4Main:largeant@BeginModule  06-Apr-2025 14:35:04 CDT run: 20000047 subRun: 0 event: 1
+MCTruth primary process does not beging with string literal "primary" : primary
+OVERRIDING it to "primary"
+%MSG
+%MSG-w PrimaryParticle:  larg4Main:largeant@BeginModule  06-Apr-2025 14:35:04 CDT run: 20000047 subRun: 0 event: 1
+MCTruth primary process does not beging with string literal "primary" : primary
+OVERRIDING it to "primary"
+%MSG
+%MSG-w PrimaryParticle:  larg4Main:largeant@BeginModule  06-Apr-2025 14:35:04 CDT run: 20000047 subRun: 0 event: 1
+MCTruth primary process does not beging with string literal "primary" : primary
+OVERRIDING it to "primary"
+%MSG
+%MSG-w PrimaryParticle:  larg4Main:largeant@BeginModule  06-Apr-2025 14:35:04 CDT run: 20000047 subRun: 0 event: 1
+MCTruth primary process does not beging with string literal "primary" : primary
+OVERRIDING it to "primary"
+%MSG
+%MSG-w PrimaryParticle:  larg4Main:largeant@BeginModule  06-Apr-2025 14:35:04 CDT run: 20000047 subRun: 0 event: 1
+MCTruth primary process does not beging with string literal "primary" : primary
+OVERRIDING it to "primary"
+%MSG
+%MSG-i ParticleListActionService:  larg4Main:largeant@BeginModule  06-Apr-2025 14:35:04 CDT run: 20000047 subRun: 0 event: 1
+Not Stored Process summary:
+	Ion : 8
+	Brem : 9
+	compt : 49
+	phot : 47
+%MSG
+%MSG-i endOfEventAction:  larg4Main:largeant@BeginModule  06-Apr-2025 14:35:04 CDT run: 20000047 subRun: 0 event: 1 ParticleListAction.cc:817
+MCTruth Handles Size: 1
+%MSG
+%MSG-i endOfEventAction:  larg4Main:largeant@BeginModule  06-Apr-2025 14:35:04 CDT run: 20000047 subRun: 0 event: 1 ParticleListAction.cc:827
+mclistHandle Size: 1
+%MSG
+%MSG-i endOfEventAction:  larg4Main:largeant@BeginModule  06-Apr-2025 14:35:04 CDT run: 20000047 subRun: 0 event: 1 ParticleListAction.cc:830
+Found 7 particles
+%MSG
+%MSG-i NuRandomService:  IonAndScint:IonAndScint@BeginModule  06-Apr-2025 14:35:04 CDT run: 20000047 subRun: 0 event: 1
+Random seed for this event, engine 'IonAndScint.ISCalcAlg': 554371544
+%MSG
+IonAndScint Module Producer
+SimEnergyDeposit input module: largeant, instance name: LArG4DetectorServicevolTPCActiveInner1
+SimEnergyDeposit input module: largeant, instance name: LArG4DetectorServicevolTPCPlaneVInner0
+SimEnergyDeposit input module: largeant, instance name: LArG4DetectorServicevolTPCPlaneUInner1
+Skip SimEnergyDeposit in: LArG4DetectorServicevolTPCPlaneUOuter
+SimEnergyDeposit input module: largeant, instance name: LArG4DetectorServicevolTPCInner1
+SimEnergyDeposit input module: largeant, instance name: LArG4DetectorServicevolTPCActiveOuter
+SimEnergyDeposit input module: largeant, instance name: LArG4DetectorServicevolTPCPlaneZInner1
+Skip SimEnergyDeposit in: LArG4DetectorServicevolTPCPlaneZOuter
+SimEnergyDeposit input module: largeant, instance name: LArG4DetectorServicevolTPCPlaneVInner1
+Skip SimEnergyDeposit in: LArG4DetectorServicevolTPCPlaneVOuter
+SimEnergyDeposit input module: largeant, instance name: LArG4DetectorServicevolTPCActiveInner0
+Skip SimEnergyDeposit in: LArG4DetectorServicevolTPCInner0
+Skip SimEnergyDeposit in: LArG4DetectorServicevolTPCOuter
+SimEnergyDeposit input module: largeant, instance name: LArG4DetectorServicevolTPCPlaneUInner0
+SimEnergyDeposit input module: largeant, instance name: LArG4DetectorServicevolTPCPlaneZInner0
+%MSG-i NuRandomService:  PDFastSimPAR:PDFastSim@BeginModule  06-Apr-2025 14:35:04 CDT run: 20000047 subRun: 0 event: 1
+Random seed for this event, engine 'PDFastSim.photon': 106198685
+%MSG
+%MSG-i NuRandomService:  PDFastSimPAR:PDFastSim@BeginModule  06-Apr-2025 14:35:04 CDT run: 20000047 subRun: 0 event: 1
+Random seed for this event, engine 'PDFastSim.scinttime': 22202637
+%MSG
+06-Apr-2025 14:35:04 CDT  Opened output file with pattern "/exp/dune/app/users/emvilla/v10_04_07d00/output/standard/prodmarley_nue_flat_CC_dune10kt_1x2x6_dump_standard-triggerana_tree_1x2x6_simpleThr_simpleWin_simpleWin-5events_supernovaCC_triggerValidationTest/prodmarley_nue_flat_CC_dune10kt_1x2x6_dump_g4.root"
+%MSG-i Root_Information:  PostProcessEvent TClass::Init()  06-Apr-2025 14:35:04 CDT run: 20000047 subRun: 0 event: 1
+no dictionary for class sim::IDE is available
+ROOT severity: 2000
+%MSG
+%MSG-i FastCloning:  PostProcessEvent 06-Apr-2025 14:35:04 CDT  run: 20000047 subRun: 0 event: 1
+Fast cloning event data products from input file.
+%MSG
+Begin processing the 2nd record. run: 20000047 subRun: 0 event: 2 at 06-Apr-2025 14:35:04 CDT
+%MSG-w ParticleInventory:  ProcessEvent 06-Apr-2025 14:35:04 CDT  run: 20000047 subRun: 0 event: 2
+Rebuild failed to get the MCParticles. This is expected when running on a generation or simulation step.
+%MSG
+%MSG-w ParticleInventory:  ProcessEvent 06-Apr-2025 14:35:04 CDT  run: 20000047 subRun: 0 event: 2
+Rebuild failed to get the MCParticles. This is expected when running on a generation or simulation step.
+%MSG
+%MSG-w ParticleInventory:  ProcessEvent 06-Apr-2025 14:35:04 CDT  run: 20000047 subRun: 0 event: 2
+Rebuild failed to get the MCParticles. This is expected when running on a generation or simulation step.
+%MSG
+%MSG-w BackTrackerService:  ProcessEvent 06-Apr-2025 14:35:04 CDT  run: 20000047 subRun: 0 event: 2
+Rebuild failed to get the SimChannels. This is expected when running on a generation or simulation step.
+%MSG
+%MSG-w PhotonBackTrackerService:  ProcessEvent 06-Apr-2025 14:35:04 CDT  run: 20000047 subRun: 0 event: 2
+Rebuild failed to get the OpDetBTRs. This is expected when running on a generation or simulation step.
+%MSG
+%MSG-i NuRandomService:  larg4Main:largeant@BeginModule  06-Apr-2025 14:35:04 CDT run: 20000047 subRun: 0 event: 2
+Random seed for this event, engine 'largeant': 774629465
+%MSG
+%MSG-i generatePrimaries:  larg4Main:largeant@BeginModule  06-Apr-2025 14:35:04 CDT run: 20000047 subRun: 0 event: 2 MCTruthEventAction.cc:112
+Generating 9 particles
+%MSG
+%MSG-w beginOfEventAction::keepableGenerators:  larg4Main:largeant@BeginModule  06-Apr-2025 14:35:04 CDT run: 20000047 subRun: 0 event: 2
+storeTrajectories set to true and a non-empty keepGenTrajectories list provided in configuration file, but none of the generators in this list are present in the event! Double check list or don't provide keepGenTrajectories in the configuration to keep all trajectories from all generator labels. This may be expected for generators that have a nonzero probability of producing no particles (e.g. some radiologicals)
+%MSG
+%MSG-w PrimaryParticle:  larg4Main:largeant@BeginModule  06-Apr-2025 14:35:04 CDT run: 20000047 subRun: 0 event: 2
+MCTruth primary process does not beging with string literal "primary" : primary
+OVERRIDING it to "primary"
+%MSG
+%MSG-w PrimaryParticle:  larg4Main:largeant@BeginModule  06-Apr-2025 14:35:04 CDT run: 20000047 subRun: 0 event: 2
+MCTruth primary process does not beging with string literal "primary" : primary
+OVERRIDING it to "primary"
+%MSG
+%MSG-w PrimaryParticle:  larg4Main:largeant@BeginModule  06-Apr-2025 14:35:04 CDT run: 20000047 subRun: 0 event: 2
+MCTruth primary process does not beging with string literal "primary" : primary
+OVERRIDING it to "primary"
+%MSG
+%MSG-w PrimaryParticle:  larg4Main:largeant@BeginModule  06-Apr-2025 14:35:04 CDT run: 20000047 subRun: 0 event: 2
+MCTruth primary process does not beging with string literal "primary" : primary
+OVERRIDING it to "primary"
+%MSG
+%MSG-w PrimaryParticle:  larg4Main:largeant@BeginModule  06-Apr-2025 14:35:04 CDT run: 20000047 subRun: 0 event: 2
+MCTruth primary process does not beging with string literal "primary" : primary
+OVERRIDING it to "primary"
+%MSG
+%MSG-w PrimaryParticle:  larg4Main:largeant@BeginModule  06-Apr-2025 14:35:04 CDT run: 20000047 subRun: 0 event: 2
+MCTruth primary process does not beging with string literal "primary" : primary
+OVERRIDING it to "primary"
+%MSG
+%MSG-w PrimaryParticle:  larg4Main:largeant@BeginModule  06-Apr-2025 14:35:04 CDT run: 20000047 subRun: 0 event: 2
+MCTruth primary process does not beging with string literal "primary" : primary
+OVERRIDING it to "primary"
+%MSG
+%MSG-i ParticleListActionService:  larg4Main:largeant@BeginModule  06-Apr-2025 14:35:04 CDT run: 20000047 subRun: 0 event: 2
+Not Stored Process summary:
+	Ion : 3
+	Brem : 8
+	compt : 90
+	phot : 58
+%MSG
+%MSG-i endOfEventAction:  larg4Main:largeant@BeginModule  06-Apr-2025 14:35:04 CDT run: 20000047 subRun: 0 event: 2 ParticleListAction.cc:817
+MCTruth Handles Size: 1
+%MSG
+%MSG-i endOfEventAction:  larg4Main:largeant@BeginModule  06-Apr-2025 14:35:04 CDT run: 20000047 subRun: 0 event: 2 ParticleListAction.cc:827
+mclistHandle Size: 1
+%MSG
+%MSG-i endOfEventAction:  larg4Main:largeant@BeginModule  06-Apr-2025 14:35:04 CDT run: 20000047 subRun: 0 event: 2 ParticleListAction.cc:830
+Found 9 particles
+%MSG
+%MSG-i NuRandomService:  IonAndScint:IonAndScint@BeginModule  06-Apr-2025 14:35:04 CDT run: 20000047 subRun: 0 event: 2
+Random seed for this event, engine 'IonAndScint.ISCalcAlg': 872298254
+%MSG
+IonAndScint Module Producer
+SimEnergyDeposit input module: largeant, instance name: LArG4DetectorServicevolTPCActiveInner1
+SimEnergyDeposit input module: largeant, instance name: LArG4DetectorServicevolTPCPlaneVInner0
+SimEnergyDeposit input module: largeant, instance name: LArG4DetectorServicevolTPCPlaneUInner1
+Skip SimEnergyDeposit in: LArG4DetectorServicevolTPCPlaneUOuter
+SimEnergyDeposit input module: largeant, instance name: LArG4DetectorServicevolTPCInner1
+SimEnergyDeposit input module: largeant, instance name: LArG4DetectorServicevolTPCActiveOuter
+SimEnergyDeposit input module: largeant, instance name: LArG4DetectorServicevolTPCPlaneZInner1
+Skip SimEnergyDeposit in: LArG4DetectorServicevolTPCPlaneZOuter
+SimEnergyDeposit input module: largeant, instance name: LArG4DetectorServicevolTPCPlaneVInner1
+Skip SimEnergyDeposit in: LArG4DetectorServicevolTPCPlaneVOuter
+SimEnergyDeposit input module: largeant, instance name: LArG4DetectorServicevolTPCActiveInner0
+Skip SimEnergyDeposit in: LArG4DetectorServicevolTPCInner0
+Skip SimEnergyDeposit in: LArG4DetectorServicevolTPCOuter
+SimEnergyDeposit input module: largeant, instance name: LArG4DetectorServicevolTPCPlaneUInner0
+SimEnergyDeposit input module: largeant, instance name: LArG4DetectorServicevolTPCPlaneZInner0
+%MSG-i NuRandomService:  PDFastSimPAR:PDFastSim@BeginModule  06-Apr-2025 14:35:04 CDT run: 20000047 subRun: 0 event: 2
+Random seed for this event, engine 'PDFastSim.photon': 140601957
+%MSG
+%MSG-i NuRandomService:  PDFastSimPAR:PDFastSim@BeginModule  06-Apr-2025 14:35:04 CDT run: 20000047 subRun: 0 event: 2
+Random seed for this event, engine 'PDFastSim.scinttime': 111136406
+%MSG
+Begin processing the 3rd record. run: 20000047 subRun: 0 event: 3 at 06-Apr-2025 14:35:05 CDT
+%MSG-w ParticleInventory:  ProcessEvent 06-Apr-2025 14:35:05 CDT  run: 20000047 subRun: 0 event: 3
+Rebuild failed to get the MCParticles. This is expected when running on a generation or simulation step.
+%MSG
+%MSG-w ParticleInventory:  ProcessEvent 06-Apr-2025 14:35:05 CDT  run: 20000047 subRun: 0 event: 3
+Rebuild failed to get the MCParticles. This is expected when running on a generation or simulation step.
+%MSG
+%MSG-w ParticleInventory:  ProcessEvent 06-Apr-2025 14:35:05 CDT  run: 20000047 subRun: 0 event: 3
+Rebuild failed to get the MCParticles. This is expected when running on a generation or simulation step.
+%MSG
+%MSG-w BackTrackerService:  ProcessEvent 06-Apr-2025 14:35:05 CDT  run: 20000047 subRun: 0 event: 3
+Rebuild failed to get the SimChannels. This is expected when running on a generation or simulation step.
+%MSG
+%MSG-w PhotonBackTrackerService:  ProcessEvent 06-Apr-2025 14:35:05 CDT  run: 20000047 subRun: 0 event: 3
+Rebuild failed to get the OpDetBTRs. This is expected when running on a generation or simulation step.
+%MSG
+%MSG-i NuRandomService:  larg4Main:largeant@BeginModule  06-Apr-2025 14:35:05 CDT run: 20000047 subRun: 0 event: 3
+Random seed for this event, engine 'largeant': 558491181
+%MSG
+%MSG-i generatePrimaries:  larg4Main:largeant@BeginModule  06-Apr-2025 14:35:05 CDT run: 20000047 subRun: 0 event: 3 MCTruthEventAction.cc:112
+Generating 9 particles
+%MSG
+%MSG-w beginOfEventAction::keepableGenerators:  larg4Main:largeant@BeginModule  06-Apr-2025 14:35:05 CDT run: 20000047 subRun: 0 event: 3
+storeTrajectories set to true and a non-empty keepGenTrajectories list provided in configuration file, but none of the generators in this list are present in the event! Double check list or don't provide keepGenTrajectories in the configuration to keep all trajectories from all generator labels. This may be expected for generators that have a nonzero probability of producing no particles (e.g. some radiologicals)
+%MSG
+%MSG-w PrimaryParticle:  larg4Main:largeant@BeginModule  06-Apr-2025 14:35:05 CDT run: 20000047 subRun: 0 event: 3
+MCTruth primary process does not beging with string literal "primary" : primary
+OVERRIDING it to "primary"
+%MSG
+%MSG-w PrimaryParticle:  larg4Main:largeant@BeginModule  06-Apr-2025 14:35:05 CDT run: 20000047 subRun: 0 event: 3
+MCTruth primary process does not beging with string literal "primary" : primary
+OVERRIDING it to "primary"
+%MSG
+%MSG-w PrimaryParticle:  larg4Main:largeant@BeginModule  06-Apr-2025 14:35:05 CDT run: 20000047 subRun: 0 event: 3
+MCTruth primary process does not beging with string literal "primary" : primary
+OVERRIDING it to "primary"
+%MSG
+%MSG-w PrimaryParticle:  larg4Main:largeant@BeginModule  06-Apr-2025 14:35:05 CDT run: 20000047 subRun: 0 event: 3
+MCTruth primary process does not beging with string literal "primary" : primary
+OVERRIDING it to "primary"
+%MSG
+%MSG-w PrimaryParticle:  larg4Main:largeant@BeginModule  06-Apr-2025 14:35:05 CDT run: 20000047 subRun: 0 event: 3
+MCTruth primary process does not beging with string literal "primary" : primary
+OVERRIDING it to "primary"
+%MSG
+%MSG-w PrimaryParticle:  larg4Main:largeant@BeginModule  06-Apr-2025 14:35:05 CDT run: 20000047 subRun: 0 event: 3
+MCTruth primary process does not beging with string literal "primary" : primary
+OVERRIDING it to "primary"
+%MSG
+%MSG-w PrimaryParticle:  larg4Main:largeant@BeginModule  06-Apr-2025 14:35:05 CDT run: 20000047 subRun: 0 event: 3
+MCTruth primary process does not beging with string literal "primary" : primary
+OVERRIDING it to "primary"
+%MSG
+%MSG-i ParticleListActionService:  larg4Main:largeant@BeginModule  06-Apr-2025 14:35:05 CDT run: 20000047 subRun: 0 event: 3
+Not Stored Process summary:
+	conv : 3
+	Ion : 2
+	annihil : 2
+	Brem : 9
+	compt : 113
+	phot : 72
+%MSG
+%MSG-i endOfEventAction:  larg4Main:largeant@BeginModule  06-Apr-2025 14:35:05 CDT run: 20000047 subRun: 0 event: 3 ParticleListAction.cc:817
+MCTruth Handles Size: 1
+%MSG
+%MSG-i endOfEventAction:  larg4Main:largeant@BeginModule  06-Apr-2025 14:35:05 CDT run: 20000047 subRun: 0 event: 3 ParticleListAction.cc:827
+mclistHandle Size: 1
+%MSG
+%MSG-i endOfEventAction:  larg4Main:largeant@BeginModule  06-Apr-2025 14:35:05 CDT run: 20000047 subRun: 0 event: 3 ParticleListAction.cc:830
+Found 9 particles
+%MSG
+%MSG-i NuRandomService:  IonAndScint:IonAndScint@BeginModule  06-Apr-2025 14:35:05 CDT run: 20000047 subRun: 0 event: 3
+Random seed for this event, engine 'IonAndScint.ISCalcAlg': 878559238
+%MSG
+IonAndScint Module Producer
+SimEnergyDeposit input module: largeant, instance name: LArG4DetectorServicevolTPCActiveInner1
+SimEnergyDeposit input module: largeant, instance name: LArG4DetectorServicevolTPCPlaneVInner0
+SimEnergyDeposit input module: largeant, instance name: LArG4DetectorServicevolTPCPlaneUInner1
+Skip SimEnergyDeposit in: LArG4DetectorServicevolTPCPlaneUOuter
+SimEnergyDeposit input module: largeant, instance name: LArG4DetectorServicevolTPCInner1
+SimEnergyDeposit input module: largeant, instance name: LArG4DetectorServicevolTPCActiveOuter
+SimEnergyDeposit input module: largeant, instance name: LArG4DetectorServicevolTPCPlaneZInner1
+Skip SimEnergyDeposit in: LArG4DetectorServicevolTPCPlaneZOuter
+SimEnergyDeposit input module: largeant, instance name: LArG4DetectorServicevolTPCPlaneVInner1
+Skip SimEnergyDeposit in: LArG4DetectorServicevolTPCPlaneVOuter
+SimEnergyDeposit input module: largeant, instance name: LArG4DetectorServicevolTPCActiveInner0
+Skip SimEnergyDeposit in: LArG4DetectorServicevolTPCInner0
+Skip SimEnergyDeposit in: LArG4DetectorServicevolTPCOuter
+SimEnergyDeposit input module: largeant, instance name: LArG4DetectorServicevolTPCPlaneUInner0
+SimEnergyDeposit input module: largeant, instance name: LArG4DetectorServicevolTPCPlaneZInner0
+%MSG-i NuRandomService:  PDFastSimPAR:PDFastSim@BeginModule  06-Apr-2025 14:35:05 CDT run: 20000047 subRun: 0 event: 3
+Random seed for this event, engine 'PDFastSim.photon': 281699020
+%MSG
+%MSG-i NuRandomService:  PDFastSimPAR:PDFastSim@BeginModule  06-Apr-2025 14:35:05 CDT run: 20000047 subRun: 0 event: 3
+Random seed for this event, engine 'PDFastSim.scinttime': 330438318
+%MSG
+Begin processing the 4th record. run: 20000047 subRun: 0 event: 4 at 06-Apr-2025 14:35:05 CDT
+%MSG-w ParticleInventory:  ProcessEvent 06-Apr-2025 14:35:05 CDT  run: 20000047 subRun: 0 event: 4
+Rebuild failed to get the MCParticles. This is expected when running on a generation or simulation step.
+%MSG
+%MSG-w ParticleInventory:  ProcessEvent 06-Apr-2025 14:35:05 CDT  run: 20000047 subRun: 0 event: 4
+Rebuild failed to get the MCParticles. This is expected when running on a generation or simulation step.
+%MSG
+%MSG-w ParticleInventory:  ProcessEvent 06-Apr-2025 14:35:05 CDT  run: 20000047 subRun: 0 event: 4
+Rebuild failed to get the MCParticles. This is expected when running on a generation or simulation step.
+%MSG
+%MSG-w BackTrackerService:  ProcessEvent 06-Apr-2025 14:35:05 CDT  run: 20000047 subRun: 0 event: 4
+Rebuild failed to get the SimChannels. This is expected when running on a generation or simulation step.
+%MSG
+%MSG-w PhotonBackTrackerService:  ProcessEvent 06-Apr-2025 14:35:05 CDT  run: 20000047 subRun: 0 event: 4
+Rebuild failed to get the OpDetBTRs. This is expected when running on a generation or simulation step.
+%MSG
+%MSG-i NuRandomService:  larg4Main:largeant@BeginModule  06-Apr-2025 14:35:05 CDT run: 20000047 subRun: 0 event: 4
+Random seed for this event, engine 'largeant': 104484236
+%MSG
+%MSG-i generatePrimaries:  larg4Main:largeant@BeginModule  06-Apr-2025 14:35:05 CDT run: 20000047 subRun: 0 event: 4 MCTruthEventAction.cc:112
+Generating 7 particles
+%MSG
+%MSG-w beginOfEventAction::keepableGenerators:  larg4Main:largeant@BeginModule  06-Apr-2025 14:35:05 CDT run: 20000047 subRun: 0 event: 4
+storeTrajectories set to true and a non-empty keepGenTrajectories list provided in configuration file, but none of the generators in this list are present in the event! Double check list or don't provide keepGenTrajectories in the configuration to keep all trajectories from all generator labels. This may be expected for generators that have a nonzero probability of producing no particles (e.g. some radiologicals)
+%MSG
+%MSG-w PrimaryParticle:  larg4Main:largeant@BeginModule  06-Apr-2025 14:35:05 CDT run: 20000047 subRun: 0 event: 4
+MCTruth primary process does not beging with string literal "primary" : primary
+OVERRIDING it to "primary"
+%MSG
+%MSG-w PrimaryParticle:  larg4Main:largeant@BeginModule  06-Apr-2025 14:35:05 CDT run: 20000047 subRun: 0 event: 4
+MCTruth primary process does not beging with string literal "primary" : primary
+OVERRIDING it to "primary"
+%MSG
+%MSG-w PrimaryParticle:  larg4Main:largeant@BeginModule  06-Apr-2025 14:35:05 CDT run: 20000047 subRun: 0 event: 4
+MCTruth primary process does not beging with string literal "primary" : primary
+OVERRIDING it to "primary"
+%MSG
+%MSG-w PrimaryParticle:  larg4Main:largeant@BeginModule  06-Apr-2025 14:35:05 CDT run: 20000047 subRun: 0 event: 4
+MCTruth primary process does not beging with string literal "primary" : primary
+OVERRIDING it to "primary"
+%MSG
+%MSG-w PrimaryParticle:  larg4Main:largeant@BeginModule  06-Apr-2025 14:35:05 CDT run: 20000047 subRun: 0 event: 4
+MCTruth primary process does not beging with string literal "primary" : primary
+OVERRIDING it to "primary"
+%MSG
+%MSG-i ParticleListActionService:  larg4Main:largeant@BeginModule  06-Apr-2025 14:35:05 CDT run: 20000047 subRun: 0 event: 4
+Not Stored Process summary:
+	conv : 3
+	Ion : 3
+	annihil : 2
+	Brem : 4
+	compt : 43
+	phot : 33
+%MSG
+%MSG-i endOfEventAction:  larg4Main:largeant@BeginModule  06-Apr-2025 14:35:05 CDT run: 20000047 subRun: 0 event: 4 ParticleListAction.cc:817
+MCTruth Handles Size: 1
+%MSG
+%MSG-i endOfEventAction:  larg4Main:largeant@BeginModule  06-Apr-2025 14:35:05 CDT run: 20000047 subRun: 0 event: 4 ParticleListAction.cc:827
+mclistHandle Size: 1
+%MSG
+%MSG-i endOfEventAction:  larg4Main:largeant@BeginModule  06-Apr-2025 14:35:05 CDT run: 20000047 subRun: 0 event: 4 ParticleListAction.cc:830
+Found 7 particles
+%MSG
+%MSG-i NuRandomService:  IonAndScint:IonAndScint@BeginModule  06-Apr-2025 14:35:05 CDT run: 20000047 subRun: 0 event: 4
+Random seed for this event, engine 'IonAndScint.ISCalcAlg': 325215640
+%MSG
+IonAndScint Module Producer
+SimEnergyDeposit input module: largeant, instance name: LArG4DetectorServicevolTPCActiveInner1
+SimEnergyDeposit input module: largeant, instance name: LArG4DetectorServicevolTPCPlaneVInner0
+SimEnergyDeposit input module: largeant, instance name: LArG4DetectorServicevolTPCPlaneUInner1
+Skip SimEnergyDeposit in: LArG4DetectorServicevolTPCPlaneUOuter
+SimEnergyDeposit input module: largeant, instance name: LArG4DetectorServicevolTPCInner1
+SimEnergyDeposit input module: largeant, instance name: LArG4DetectorServicevolTPCActiveOuter
+SimEnergyDeposit input module: largeant, instance name: LArG4DetectorServicevolTPCPlaneZInner1
+Skip SimEnergyDeposit in: LArG4DetectorServicevolTPCPlaneZOuter
+SimEnergyDeposit input module: largeant, instance name: LArG4DetectorServicevolTPCPlaneVInner1
+Skip SimEnergyDeposit in: LArG4DetectorServicevolTPCPlaneVOuter
+SimEnergyDeposit input module: largeant, instance name: LArG4DetectorServicevolTPCActiveInner0
+Skip SimEnergyDeposit in: LArG4DetectorServicevolTPCInner0
+Skip SimEnergyDeposit in: LArG4DetectorServicevolTPCOuter
+SimEnergyDeposit input module: largeant, instance name: LArG4DetectorServicevolTPCPlaneUInner0
+SimEnergyDeposit input module: largeant, instance name: LArG4DetectorServicevolTPCPlaneZInner0
+%MSG-i NuRandomService:  PDFastSimPAR:PDFastSim@BeginModule  06-Apr-2025 14:35:05 CDT run: 20000047 subRun: 0 event: 4
+Random seed for this event, engine 'PDFastSim.photon': 435307675
+%MSG
+%MSG-i NuRandomService:  PDFastSimPAR:PDFastSim@BeginModule  06-Apr-2025 14:35:05 CDT run: 20000047 subRun: 0 event: 4
+Random seed for this event, engine 'PDFastSim.scinttime': 794993708
+%MSG
+Begin processing the 5th record. run: 20000047 subRun: 0 event: 5 at 06-Apr-2025 14:35:05 CDT
+%MSG-w ParticleInventory:  ProcessEvent 06-Apr-2025 14:35:05 CDT  run: 20000047 subRun: 0 event: 5
+Rebuild failed to get the MCParticles. This is expected when running on a generation or simulation step.
+%MSG
+%MSG-w ParticleInventory:  ProcessEvent 06-Apr-2025 14:35:05 CDT  run: 20000047 subRun: 0 event: 5
+Rebuild failed to get the MCParticles. This is expected when running on a generation or simulation step.
+%MSG
+%MSG-w ParticleInventory:  ProcessEvent 06-Apr-2025 14:35:05 CDT  run: 20000047 subRun: 0 event: 5
+Rebuild failed to get the MCParticles. This is expected when running on a generation or simulation step.
+%MSG
+%MSG-w BackTrackerService:  ProcessEvent 06-Apr-2025 14:35:05 CDT  run: 20000047 subRun: 0 event: 5
+Rebuild failed to get the SimChannels. This is expected when running on a generation or simulation step.
+%MSG
+%MSG-w PhotonBackTrackerService:  ProcessEvent 06-Apr-2025 14:35:05 CDT  run: 20000047 subRun: 0 event: 5
+Rebuild failed to get the OpDetBTRs. This is expected when running on a generation or simulation step.
+%MSG
+%MSG-i NuRandomService:  larg4Main:largeant@BeginModule  06-Apr-2025 14:35:05 CDT run: 20000047 subRun: 0 event: 5
+Random seed for this event, engine 'largeant': 297287643
+%MSG
+%MSG-i generatePrimaries:  larg4Main:largeant@BeginModule  06-Apr-2025 14:35:05 CDT run: 20000047 subRun: 0 event: 5 MCTruthEventAction.cc:112
+Generating 7 particles
+%MSG
+%MSG-w beginOfEventAction::keepableGenerators:  larg4Main:largeant@BeginModule  06-Apr-2025 14:35:05 CDT run: 20000047 subRun: 0 event: 5
+storeTrajectories set to true and a non-empty keepGenTrajectories list provided in configuration file, but none of the generators in this list are present in the event! Double check list or don't provide keepGenTrajectories in the configuration to keep all trajectories from all generator labels. This may be expected for generators that have a nonzero probability of producing no particles (e.g. some radiologicals)
+%MSG
+%MSG-w PrimaryParticle:  larg4Main:largeant@BeginModule  06-Apr-2025 14:35:05 CDT run: 20000047 subRun: 0 event: 5
+MCTruth primary process does not beging with string literal "primary" : primary
+OVERRIDING it to "primary"
+%MSG
+%MSG-w PrimaryParticle:  larg4Main:largeant@BeginModule  06-Apr-2025 14:35:05 CDT run: 20000047 subRun: 0 event: 5
+MCTruth primary process does not beging with string literal "primary" : primary
+OVERRIDING it to "primary"
+%MSG
+%MSG-w PrimaryParticle:  larg4Main:largeant@BeginModule  06-Apr-2025 14:35:05 CDT run: 20000047 subRun: 0 event: 5
+MCTruth primary process does not beging with string literal "primary" : primary
+OVERRIDING it to "primary"
+%MSG
+%MSG-w PrimaryParticle:  larg4Main:largeant@BeginModule  06-Apr-2025 14:35:05 CDT run: 20000047 subRun: 0 event: 5
+MCTruth primary process does not beging with string literal "primary" : primary
+OVERRIDING it to "primary"
+%MSG
+%MSG-w PrimaryParticle:  larg4Main:largeant@BeginModule  06-Apr-2025 14:35:05 CDT run: 20000047 subRun: 0 event: 5
+MCTruth primary process does not beging with string literal "primary" : primary
+OVERRIDING it to "primary"
+%MSG
+%MSG-i ParticleListActionService:  larg4Main:largeant@BeginModule  06-Apr-2025 14:35:05 CDT run: 20000047 subRun: 0 event: 5
+Not Stored Process summary:
+	Ion : 7
+	Brem : 22
+	compt : 77
+	phot : 95
+%MSG
+%MSG-i endOfEventAction:  larg4Main:largeant@BeginModule  06-Apr-2025 14:35:05 CDT run: 20000047 subRun: 0 event: 5 ParticleListAction.cc:817
+MCTruth Handles Size: 1
+%MSG
+%MSG-i endOfEventAction:  larg4Main:largeant@BeginModule  06-Apr-2025 14:35:05 CDT run: 20000047 subRun: 0 event: 5 ParticleListAction.cc:827
+mclistHandle Size: 1
+%MSG
+%MSG-i endOfEventAction:  larg4Main:largeant@BeginModule  06-Apr-2025 14:35:05 CDT run: 20000047 subRun: 0 event: 5 ParticleListAction.cc:830
+Found 7 particles
+%MSG
+%MSG-i NuRandomService:  IonAndScint:IonAndScint@BeginModule  06-Apr-2025 14:35:05 CDT run: 20000047 subRun: 0 event: 5
+Random seed for this event, engine 'IonAndScint.ISCalcAlg': 665164265
+%MSG
+IonAndScint Module Producer
+SimEnergyDeposit input module: largeant, instance name: LArG4DetectorServicevolTPCActiveInner1
+SimEnergyDeposit input module: largeant, instance name: LArG4DetectorServicevolTPCPlaneVInner0
+SimEnergyDeposit input module: largeant, instance name: LArG4DetectorServicevolTPCPlaneUInner1
+Skip SimEnergyDeposit in: LArG4DetectorServicevolTPCPlaneUOuter
+SimEnergyDeposit input module: largeant, instance name: LArG4DetectorServicevolTPCInner1
+SimEnergyDeposit input module: largeant, instance name: LArG4DetectorServicevolTPCActiveOuter
+SimEnergyDeposit input module: largeant, instance name: LArG4DetectorServicevolTPCPlaneZInner1
+Skip SimEnergyDeposit in: LArG4DetectorServicevolTPCPlaneZOuter
+SimEnergyDeposit input module: largeant, instance name: LArG4DetectorServicevolTPCPlaneVInner1
+Skip SimEnergyDeposit in: LArG4DetectorServicevolTPCPlaneVOuter
+SimEnergyDeposit input module: largeant, instance name: LArG4DetectorServicevolTPCActiveInner0
+Skip SimEnergyDeposit in: LArG4DetectorServicevolTPCInner0
+Skip SimEnergyDeposit in: LArG4DetectorServicevolTPCOuter
+SimEnergyDeposit input module: largeant, instance name: LArG4DetectorServicevolTPCPlaneUInner0
+SimEnergyDeposit input module: largeant, instance name: LArG4DetectorServicevolTPCPlaneZInner0
+%MSG-i NuRandomService:  PDFastSimPAR:PDFastSim@BeginModule  06-Apr-2025 14:35:05 CDT run: 20000047 subRun: 0 event: 5
+Random seed for this event, engine 'PDFastSim.photon': 745063868
+%MSG
+%MSG-i NuRandomService:  PDFastSimPAR:PDFastSim@BeginModule  06-Apr-2025 14:35:05 CDT run: 20000047 subRun: 0 event: 5
+Random seed for this event, engine 'PDFastSim.scinttime': 443893016
+%MSG
+06-Apr-2025 14:35:06 CDT  Closed output file "/exp/dune/app/users/emvilla/v10_04_07d00/output/standard/prodmarley_nue_flat_CC_dune10kt_1x2x6_dump_standard-triggerana_tree_1x2x6_simpleThr_simpleWin_simpleWin-5events_supernovaCC_triggerValidationTest/prodmarley_nue_flat_CC_dune10kt_1x2x6_dump_g4.root"
+06-Apr-2025 14:35:06 CDT  Closed input file "/exp/dune/app/users/emvilla/v10_04_07d00/output/standard/prodmarley_nue_flat_CC_dune10kt_1x2x6_dump_standard-triggerana_tree_1x2x6_simpleThr_simpleWin_simpleWin-5events_supernovaCC_triggerValidationTest/prodmarley_nue_flat_CC_dune10kt_1x2x6_dump.root"
+IonAndScint endJob.
+
+================================================================================================================================
+TimeTracker printout (sec)                        Min           Avg           Max         Median          RMS         nEvts   
+================================================================================================================================
+Full event                                     0.0607199     0.112399      0.179431      0.110239      0.0417311        5     
+--------------------------------------------------------------------------------------------------------------------------------
+source:RootInput(read)                        6.1599e-05    0.000248382   0.000886393   0.000111392   0.000319722       5     
+simulate:rns:RandomNumberSaver                1.8094e-05    6.80916e-05   0.000249016    2.124e-05    9.06281e-05       5     
+simulate:largeant:larg4Main                   0.00478559     0.0102938     0.019394     0.00792269     0.0050192        5     
+simulate:IonAndScint:IonAndScint              0.000370959   0.000611885   0.00106139    0.000535003   0.000243506       5     
+simulate:PDFastSim:PDFastSimPAR                0.0533024     0.0971062     0.162722      0.0982112     0.0375965        5     
+[art]:TriggerResults:TriggerResultInserter     5.811e-06    1.24314e-05   3.0098e-05     9.988e-06    9.02837e-06       5     
+end_path:out1:RootOutput                       9.42e-07     4.4266e-06    1.3105e-05     3.096e-06    4.45238e-06       5     
+end_path:out1:RootOutput(write)                0.0014418    0.00359008    0.00757391    0.00309281    0.00218064        5     
+================================================================================================================================
+%MSG-i NuRandomService:  RootOutput:out1@EndJob 06-Apr-2025 14:35:06 CDT  ModuleEndJob
+
+Summary of seeds computed by the NuRandomService
+Random policy: 'perEvent'
+  algorithm version: EventTimestamp_v1
+   Configured value          Last value   ModuleLabel.InstanceName
+        (per event)           665164265   IonAndScint.ISCalcAlg
+        (per event)           745063868   PDFastSim.photon
+        (per event)           443893016   PDFastSim.scinttime
+        (per event)           297287643   largeant
+
+%MSG
+
+====================================================================================================
+MemoryTracker summary (base-10 MB units used)
+
+  Peak virtual memory usage (VmPeak)  : 2329.26 MB
+  Peak resident set size usage (VmHWM): 1588.94 MB
+====================================================================================================
+
+TrigReport ---------- Event summary -------------
+TrigReport Events total = 5 passed = 5 failed = 0
+
+TrigReport ---------- Modules in End-path ----------
+TrigReport        Run    Success      Error Name
+TrigReport          5          5          0 out1
+
+TimeReport ---------- Time summary [sec] -------
+TimeReport CPU = 20.748806 Real = 22.543228
+
+MemReport  ---------- Memory summary [base-10 MB] ------
+MemReport  VmPeak = 2329.26 VmHWM = 1588.94
+
+Art has completed and will exit with status 0.
+ Geant4 simulation done!
+
+Ending detector simulation at 1743968106
+G4 simulation took 155 seconds
+Starting detector simulation at 1743968106
+Executing command: lar -c detsim_dune10kt_1x2x6_notpcsigproc.fcl -n 5 -s /exp/dune/app/users/emvilla/v10_04_07d00/output/standard/prodmarley_nue_flat_CC_dune10kt_1x2x6_dump_standard-triggerana_tree_1x2x6_simpleThr_simpleWin_simpleWin-5events_supernovaCC_triggerValidationTest/prodmarley_nue_flat_CC_dune10kt_1x2x6_dump_g4.root -o /exp/dune/app/users/emvilla/v10_04_07d00/output/standard/prodmarley_nue_flat_CC_dune10kt_1x2x6_dump_standard-triggerana_tree_1x2x6_simpleThr_simpleWin_simpleWin-5events_supernovaCC_triggerValidationTest/prodmarley_nue_flat_CC_dune10kt_1x2x6_dump_g4_detsim.root
+Info in <TGeoManager::Import>: Reading geometry from file: /cvmfs/dune.opensciencegrid.org/products/dune/dunecore/v10_04_07d00/gdml/dune10kt_v6_refactored_1x2x6.gdml
+Info in <TGeoManager::TGeoManager>: Geometry GDMLImport, Geometry imported from GDML created
+Error: Unsupported GDML Tag Used :gdml_simple_extension. Please Check Geometry/Schema.
+Error: Unsupported GDML Tag Used :extension. Please Check Geometry/Schema.
+Info in <TGeoManager::SetTopVolume>: Top volume is volWorld. Master volume is volWorld
+Info in <TGeoNavigator::BuildCache>: --- Maximum geometry depth set to 100
+Info in <TGeoManager::CheckGeometry>: Fixing runtime shapes...
+Info in <TGeoManager::CheckGeometry>: ...Nothing to fix
+Info in <TGeoManager::CloseGeometry>: Counting nodes...
+Info in <TGeoManager::Voxelize>: Voxelizing...
+Info in <TGeoManager::CloseGeometry>: Building cache...
+Info in <TGeoManager::CountLevels>: max level = 5, max placements = 1149
+Info in <TGeoManager::CloseGeometry>: 67545 nodes/ 5439 volume UID's in Geometry imported from GDML
+Info in <TGeoManager::CloseGeometry>: ----------------modeler ready----------------
+registering to  primaryGeneratorActionsMap_
+registering to   eventActionsMap_
+registering to   trackingActionsMap_
+registering to  steppingActionsMap_
+Warning in <TFile::Append>: Replacing existing TH1: FieldResponse_U (Potential memory leak).
+Warning in <TFile::Append>: Replacing existing TH1: FieldResponse_V (Potential memory leak).
+Warning in <TFile::Append>: Replacing existing TH1: FieldResponse_Y (Potential memory leak).
+Using TESTbench spe!!! 
+With: SPE_DAPHNE2_FBK_2022.dat
+[14:35:20.609] I [  wct   ] loading compressed json file: /cvmfs/dune.opensciencegrid.org/products/dune/dunereco/v10_04_07d00/wire-cell-cfg/dune10kt-1x2x6-wires-larsoft-v1.json.bz2
+[14:35:29.322] I [  wct   ] loading compressed json file: /cvmfs/dune.opensciencegrid.org/products/dune/dunereco/v10_04_07d00/wire-cell-cfg/dune-garfield-1d60563.json.bz2
+[14:35:31.270] I [  wct   ] loading compressed json file: /cvmfs/dune.opensciencegrid.org/products/dune/dune_pardata/v01_84_00/WireCellData/protodune-noise-spectra-v1.json.bz2
+Inputer: "wclsSimDepoSource:"
+Outputer: "wclsSimChannelSink:postdrift"
+Outputer: "wclsFrameSaver:simdigits"
+wclsFrameSaver: promising to produce raw::RawDigits named "daq"
+06-Apr-2025 14:35:31 CDT  Initiating request to open input file "/exp/dune/app/users/emvilla/v10_04_07d00/output/standard/prodmarley_nue_flat_CC_dune10kt_1x2x6_dump_standard-triggerana_tree_1x2x6_simpleThr_simpleWin_simpleWin-5events_supernovaCC_triggerValidationTest/prodmarley_nue_flat_CC_dune10kt_1x2x6_dump_g4.root"
+06-Apr-2025 14:35:31 CDT  Opened input file "/exp/dune/app/users/emvilla/v10_04_07d00/output/standard/prodmarley_nue_flat_CC_dune10kt_1x2x6_dump_standard-triggerana_tree_1x2x6_simpleThr_simpleWin_simpleWin-5events_supernovaCC_triggerValidationTest/prodmarley_nue_flat_CC_dune10kt_1x2x6_dump_g4.root"
+Begin processing the 1st record. run: 20000047 subRun: 0 event: 1 at 06-Apr-2025 14:35:31 CDT
+SimDepoSource got 1017 depos from art tag "InputTag: label = 'IonAndScint', instance = ''" returns: okay
+SimDepoSource: ready with 1017 depos spanning: [3.30892e-07, 2.79068e+16]us
+[14:35:32.027] W [  gen   ] <IncoherentAddNoise:addnoiseapa11> model EmpiricalNoiseModel:empericalnoisemeganodes produced 6174 samples instead of expected 6000, future warnings muted 
+Retagger: tagging trace set: daq with 30720 traces, 0 summary
+[14:35:38.869] I [ timer  ] Timer: WireCell::Gen::Digitizer : 0.27 sec
+[14:35:38.869] I [ timer  ] Timer: WireCell::Gen::Digitizer : 0.26 sec
+[14:35:38.869] I [ timer  ] Timer: WireCell::Gen::Digitizer : 0.26 sec
+[14:35:38.869] I [ timer  ] Timer: WireCell::Gen::Digitizer : 0.25 sec
+[14:35:38.869] I [ timer  ] Timer: WireCell::Gen::Digitizer : 0.25 sec
+[14:35:38.869] I [ timer  ] Timer: WireCell::Gen::Digitizer : 0.24 sec
+[14:35:38.869] I [ timer  ] Timer: WireCell::Gen::DepoTransform : 0.24 sec
+[14:35:38.869] I [ timer  ] Timer: WireCell::Gen::Digitizer : 0.24 sec
+[14:35:38.870] I [ timer  ] Timer: WireCell::Gen::Digitizer : 0.24 sec
+[14:35:38.870] I [ timer  ] Timer: WireCell::Gen::Digitizer : 0.24 sec
+[14:35:38.870] I [ timer  ] Timer: WireCell::Gen::IncoherentAddNoise : 0.23 sec
+[14:35:38.870] I [ timer  ] Timer: WireCell::Gen::IncoherentAddNoise : 0.23 sec
+[14:35:38.870] I [ timer  ] Timer: WireCell::Gen::IncoherentAddNoise : 0.22 sec
+[14:35:38.870] I [ timer  ] Timer: WireCell::Gen::IncoherentAddNoise : 0.22 sec
+[14:35:38.870] I [ timer  ] Timer: WireCell::Gen::IncoherentAddNoise : 0.22 sec
+[14:35:38.870] I [ timer  ] Timer: WireCell::Gen::IncoherentAddNoise : 0.22 sec
+[14:35:38.870] I [ timer  ] Timer: WireCell::Gen::IncoherentAddNoise : 0.22 sec
+[14:35:38.870] I [ timer  ] Timer: WireCell::Gen::IncoherentAddNoise : 0.22 sec
+[14:35:38.870] I [ timer  ] Timer: WireCell::Gen::IncoherentAddNoise : 0.22 sec
+[14:35:38.870] I [ timer  ] Timer: WireCell::Gen::IncoherentAddNoise : 0.22 sec
+[14:35:38.870] I [ timer  ] Timer: WireCell::Gen::IncoherentAddNoise : 0.21 sec
+[14:35:38.870] I [ timer  ] Timer: WireCell::Gen::IncoherentAddNoise : 0.21 sec
+[14:35:38.870] I [ timer  ] Timer: WireCell::Gen::Digitizer : 0.21 sec
+[14:35:38.870] I [ timer  ] Timer: WireCell::Gen::Digitizer : 0.21 sec
+[14:35:38.870] I [ timer  ] Timer: WireCell::Gen::Digitizer : 0.2 sec
+[14:35:38.870] I [ timer  ] Timer: WireCell::Gen::DepoTransform : 0.09 sec
+[14:35:38.870] I [ timer  ] Timer: WireCell::Gen::DepoTransform : 0.08 sec
+[14:35:38.870] I [ timer  ] Timer: WireCell::Gen::DepoTransform : 0.08 sec
+[14:35:38.870] I [ timer  ] Timer: WireCell::Gen::DepoTransform : 0.08 sec
+[14:35:38.870] I [ timer  ] Timer: WireCell::Gen::DepoTransform : 0.08 sec
+[14:35:38.870] I [ timer  ] Timer: WireCell::Gen::DepoTransform : 0.08 sec
+[14:35:38.870] I [ timer  ] Timer: WireCell::Gen::DepoTransform : 0.08 sec
+[14:35:38.870] I [ timer  ] Timer: WireCell::Gen::DepoTransform : 0.08 sec
+[14:35:38.870] I [ timer  ] Timer: WireCell::Gen::DepoTransform : 0.07 sec
+[14:35:38.870] I [ timer  ] Timer: WireCell::Gen::DepoTransform : 0.07 sec
+[14:35:38.870] I [ timer  ] Timer: WireCell::Gen::DepoTransform : 0.07 sec
+[14:35:38.870] I [ timer  ] Timer: WireCell::Gen::Reframer : 0.05 sec
+[14:35:38.870] I [ timer  ] Timer: WireCell::Gen::Reframer : 0.05 sec
+[14:35:38.870] I [ timer  ] Timer: WireCell::Gen::Reframer : 0.05 sec
+[14:35:38.870] I [ timer  ] Timer: WireCell::Gen::Reframer : 0.04 sec
+[14:35:38.870] I [ timer  ] Timer: WireCell::Gen::Reframer : 0.04 sec
+[14:35:38.870] I [ timer  ] Timer: WireCell::Gen::Reframer : 0.04 sec
+[14:35:38.870] I [ timer  ] Timer: WireCell::Gen::Reframer : 0.04 sec
+[14:35:38.870] I [ timer  ] Timer: WireCell::Gen::Reframer : 0.02 sec
+[14:35:38.870] I [ timer  ] Timer: WireCell::Gen::Reframer : 0.02 sec
+[14:35:38.870] I [ timer  ] Timer: WireCell::Gen::Reframer : 0.02 sec
+[14:35:38.870] I [ timer  ] Timer: WireCell::Gen::Reframer : 0.01 sec
+[14:35:38.870] I [ timer  ] Timer: WireCell::Gen::Reframer : 0.01 sec
+[14:35:38.870] I [ timer  ] Timer: WireCell::Gen::DepoBagger : 0.01 sec
+[14:35:38.870] I [ timer  ] Timer: WireCell::Gen::FrameFanin : 0.01 sec
+[14:35:38.870] I [ timer  ] Timer: WireCell::Gen::DumpFrames : 0 sec
+[14:35:38.870] I [ timer  ] Timer: wcls::SimDepoSource : 0 sec
+[14:35:38.870] I [ timer  ] Timer: WireCell::Gen::Retagger : 0 sec
+[14:35:38.870] I [ timer  ] Timer: wcls::FrameSaver : 0 sec
+[14:35:38.870] I [ timer  ] Timer: wcls::SimChannelSink : 0 sec
+[14:35:38.870] I [ timer  ] Timer: WireCell::Gen::Drifter : 0 sec
+[14:35:38.870] I [ timer  ] Timer: WireCell::Gen::DepoSetFanout : 0 sec
+[14:35:38.870] I [ timer  ] Timer: Total node execution : 7.0199999287724495 sec
+wclsFrameSaver: saving raw::RawDigits tagged "daq"
+06-Apr-2025 14:35:40 CDT  Opened output file with pattern "/exp/dune/app/users/emvilla/v10_04_07d00/output/standard/prodmarley_nue_flat_CC_dune10kt_1x2x6_dump_standard-triggerana_tree_1x2x6_simpleThr_simpleWin_simpleWin-5events_supernovaCC_triggerValidationTest/prodmarley_nue_flat_CC_dune10kt_1x2x6_dump_g4_detsim.root"
+Begin processing the 2nd record. run: 20000047 subRun: 0 event: 2 at 06-Apr-2025 14:35:45 CDT
+SimDepoSource got 820 depos from art tag "InputTag: label = 'IonAndScint', instance = ''" returns: okay
+SimDepoSource: ready with 820 depos spanning: [2.20893e-08, 6.702e+22]us
+Retagger: tagging trace set: daq with 30720 traces, 0 summary
+[14:35:50.885] I [ timer  ] Timer: WireCell::Gen::Digitizer : 0.25 sec
+[14:35:50.885] I [ timer  ] Timer: WireCell::Gen::DepoTransform : 0.23 sec
+[14:35:50.885] I [ timer  ] Timer: WireCell::Gen::Digitizer : 0.21 sec
+[14:35:50.885] I [ timer  ] Timer: WireCell::Gen::Digitizer : 0.21 sec
+[14:35:50.885] I [ timer  ] Timer: WireCell::Gen::Digitizer : 0.2 sec
+[14:35:50.885] I [ timer  ] Timer: WireCell::Gen::Digitizer : 0.2 sec
+[14:35:50.885] I [ timer  ] Timer: WireCell::Gen::Digitizer : 0.2 sec
+[14:35:50.885] I [ timer  ] Timer: WireCell::Gen::Digitizer : 0.2 sec
+[14:35:50.885] I [ timer  ] Timer: WireCell::Gen::Digitizer : 0.2 sec
+[14:35:50.885] I [ timer  ] Timer: WireCell::Gen::Digitizer : 0.2 sec
+[14:35:50.885] I [ timer  ] Timer: WireCell::Gen::Digitizer : 0.19 sec
+[14:35:50.885] I [ timer  ] Timer: WireCell::Gen::Digitizer : 0.19 sec
+[14:35:50.885] I [ timer  ] Timer: WireCell::Gen::Digitizer : 0.18 sec
+[14:35:50.885] I [ timer  ] Timer: WireCell::Gen::IncoherentAddNoise : 0.18 sec
+[14:35:50.885] I [ timer  ] Timer: WireCell::Gen::IncoherentAddNoise : 0.17 sec
+[14:35:50.885] I [ timer  ] Timer: WireCell::Gen::IncoherentAddNoise : 0.17 sec
+[14:35:50.885] I [ timer  ] Timer: WireCell::Gen::IncoherentAddNoise : 0.17 sec
+[14:35:50.885] I [ timer  ] Timer: WireCell::Gen::IncoherentAddNoise : 0.17 sec
+[14:35:50.885] I [ timer  ] Timer: WireCell::Gen::IncoherentAddNoise : 0.17 sec
+[14:35:50.885] I [ timer  ] Timer: WireCell::Gen::IncoherentAddNoise : 0.17 sec
+[14:35:50.885] I [ timer  ] Timer: WireCell::Gen::IncoherentAddNoise : 0.17 sec
+[14:35:50.885] I [ timer  ] Timer: WireCell::Gen::IncoherentAddNoise : 0.17 sec
+[14:35:50.885] I [ timer  ] Timer: WireCell::Gen::IncoherentAddNoise : 0.16 sec
+[14:35:50.885] I [ timer  ] Timer: WireCell::Gen::IncoherentAddNoise : 0.16 sec
+[14:35:50.885] I [ timer  ] Timer: WireCell::Gen::IncoherentAddNoise : 0.16 sec
+[14:35:50.885] I [ timer  ] Timer: WireCell::Gen::DepoTransform : 0.1 sec
+[14:35:50.885] I [ timer  ] Timer: WireCell::Gen::DepoTransform : 0.08 sec
+[14:35:50.885] I [ timer  ] Timer: WireCell::Gen::DepoTransform : 0.08 sec
+[14:35:50.885] I [ timer  ] Timer: WireCell::Gen::DepoTransform : 0.08 sec
+[14:35:50.885] I [ timer  ] Timer: WireCell::Gen::DepoTransform : 0.08 sec
+[14:35:50.885] I [ timer  ] Timer: WireCell::Gen::DepoTransform : 0.08 sec
+[14:35:50.885] I [ timer  ] Timer: WireCell::Gen::DepoTransform : 0.08 sec
+[14:35:50.885] I [ timer  ] Timer: WireCell::Gen::DepoTransform : 0.08 sec
+[14:35:50.885] I [ timer  ] Timer: WireCell::Gen::DepoTransform : 0.07 sec
+[14:35:50.885] I [ timer  ] Timer: WireCell::Gen::DepoTransform : 0.07 sec
+[14:35:50.885] I [ timer  ] Timer: WireCell::Gen::DepoTransform : 0.07 sec
+[14:35:50.885] I [ timer  ] Timer: WireCell::Gen::Reframer : 0.02 sec
+[14:35:50.885] I [ timer  ] Timer: WireCell::Gen::Reframer : 0.02 sec
+[14:35:50.885] I [ timer  ] Timer: WireCell::Gen::Reframer : 0.02 sec
+[14:35:50.885] I [ timer  ] Timer: WireCell::Gen::Reframer : 0.02 sec
+[14:35:50.885] I [ timer  ] Timer: WireCell::Gen::Reframer : 0.02 sec
+[14:35:50.885] I [ timer  ] Timer: WireCell::Gen::Reframer : 0.02 sec
+[14:35:50.886] I [ timer  ] Timer: WireCell::Gen::Reframer : 0.02 sec
+[14:35:50.886] I [ timer  ] Timer: WireCell::Gen::Reframer : 0.02 sec
+[14:35:50.886] I [ timer  ] Timer: WireCell::Gen::Reframer : 0.01 sec
+[14:35:50.886] I [ timer  ] Timer: WireCell::Gen::Reframer : 0.01 sec
+[14:35:50.886] I [ timer  ] Timer: wcls::SimChannelSink : 0.01 sec
+[14:35:50.886] I [ timer  ] Timer: WireCell::Gen::DepoBagger : 0.01 sec
+[14:35:50.886] I [ timer  ] Timer: WireCell::Gen::Reframer : 0.01 sec
+[14:35:50.886] I [ timer  ] Timer: WireCell::Gen::DepoSetFanout : 0.01 sec
+[14:35:50.886] I [ timer  ] Timer: WireCell::Gen::Reframer : 0.01 sec
+[14:35:50.886] I [ timer  ] Timer: WireCell::Gen::DumpFrames : 0 sec
+[14:35:50.886] I [ timer  ] Timer: wcls::SimDepoSource : 0 sec
+[14:35:50.886] I [ timer  ] Timer: WireCell::Gen::Retagger : 0 sec
+[14:35:50.886] I [ timer  ] Timer: wcls::FrameSaver : 0 sec
+[14:35:50.886] I [ timer  ] Timer: WireCell::Gen::Drifter : 0 sec
+[14:35:50.886] I [ timer  ] Timer: WireCell::Gen::FrameFanin : 0 sec
+[14:35:50.886] I [ timer  ] Timer: Total node execution : 5.780000006780028 sec
+wclsFrameSaver: saving raw::RawDigits tagged "daq"
+Begin processing the 3rd record. run: 20000047 subRun: 0 event: 3 at 06-Apr-2025 14:35:56 CDT
+SimDepoSource got 606 depos from art tag "InputTag: label = 'IonAndScint', instance = ''" returns: okay
+SimDepoSource: ready with 606 depos spanning: [2.21683e-08, 4.71753e+22]us
+Retagger: tagging trace set: daq with 30720 traces, 0 summary
+[14:36:02.631] I [ timer  ] Timer: WireCell::Gen::Digitizer : 0.23 sec
+[14:36:02.631] I [ timer  ] Timer: WireCell::Gen::Digitizer : 0.22 sec
+[14:36:02.631] I [ timer  ] Timer: WireCell::Gen::Digitizer : 0.21 sec
+[14:36:02.631] I [ timer  ] Timer: WireCell::Gen::Digitizer : 0.21 sec
+[14:36:02.631] I [ timer  ] Timer: WireCell::Gen::Digitizer : 0.21 sec
+[14:36:02.631] I [ timer  ] Timer: WireCell::Gen::Digitizer : 0.2 sec
+[14:36:02.631] I [ timer  ] Timer: WireCell::Gen::Digitizer : 0.2 sec
+[14:36:02.631] I [ timer  ] Timer: WireCell::Gen::DepoTransform : 0.2 sec
+[14:36:02.631] I [ timer  ] Timer: WireCell::Gen::Digitizer : 0.2 sec
+[14:36:02.631] I [ timer  ] Timer: WireCell::Gen::Digitizer : 0.2 sec
+[14:36:02.631] I [ timer  ] Timer: WireCell::Gen::Digitizer : 0.2 sec
+[14:36:02.631] I [ timer  ] Timer: WireCell::Gen::Digitizer : 0.19 sec
+[14:36:02.631] I [ timer  ] Timer: WireCell::Gen::IncoherentAddNoise : 0.19 sec
+[14:36:02.631] I [ timer  ] Timer: WireCell::Gen::Digitizer : 0.19 sec
+[14:36:02.631] I [ timer  ] Timer: WireCell::Gen::IncoherentAddNoise : 0.19 sec
+[14:36:02.631] I [ timer  ] Timer: WireCell::Gen::IncoherentAddNoise : 0.18 sec
+[14:36:02.631] I [ timer  ] Timer: WireCell::Gen::IncoherentAddNoise : 0.17 sec
+[14:36:02.631] I [ timer  ] Timer: WireCell::Gen::IncoherentAddNoise : 0.17 sec
+[14:36:02.631] I [ timer  ] Timer: WireCell::Gen::IncoherentAddNoise : 0.17 sec
+[14:36:02.631] I [ timer  ] Timer: WireCell::Gen::IncoherentAddNoise : 0.17 sec
+[14:36:02.631] I [ timer  ] Timer: WireCell::Gen::IncoherentAddNoise : 0.17 sec
+[14:36:02.631] I [ timer  ] Timer: WireCell::Gen::IncoherentAddNoise : 0.17 sec
+[14:36:02.631] I [ timer  ] Timer: WireCell::Gen::IncoherentAddNoise : 0.17 sec
+[14:36:02.632] I [ timer  ] Timer: WireCell::Gen::IncoherentAddNoise : 0.16 sec
+[14:36:02.632] I [ timer  ] Timer: WireCell::Gen::IncoherentAddNoise : 0.16 sec
+[14:36:02.632] I [ timer  ] Timer: WireCell::Gen::DepoTransform : 0.09 sec
+[14:36:02.632] I [ timer  ] Timer: WireCell::Gen::DepoTransform : 0.08 sec
+[14:36:02.632] I [ timer  ] Timer: WireCell::Gen::DepoTransform : 0.08 sec
+[14:36:02.632] I [ timer  ] Timer: WireCell::Gen::DepoTransform : 0.08 sec
+[14:36:02.632] I [ timer  ] Timer: WireCell::Gen::DepoTransform : 0.08 sec
+[14:36:02.632] I [ timer  ] Timer: WireCell::Gen::DepoTransform : 0.08 sec
+[14:36:02.632] I [ timer  ] Timer: WireCell::Gen::DepoTransform : 0.08 sec
+[14:36:02.632] I [ timer  ] Timer: WireCell::Gen::DepoTransform : 0.07 sec
+[14:36:02.632] I [ timer  ] Timer: WireCell::Gen::DepoTransform : 0.07 sec
+[14:36:02.632] I [ timer  ] Timer: WireCell::Gen::DepoTransform : 0.07 sec
+[14:36:02.632] I [ timer  ] Timer: WireCell::Gen::DepoTransform : 0.07 sec
+[14:36:02.632] I [ timer  ] Timer: WireCell::Gen::Reframer : 0.03 sec
+[14:36:02.632] I [ timer  ] Timer: WireCell::Gen::Reframer : 0.02 sec
+[14:36:02.632] I [ timer  ] Timer: WireCell::Gen::Reframer : 0.02 sec
+[14:36:02.632] I [ timer  ] Timer: WireCell::Gen::Reframer : 0.02 sec
+[14:36:02.632] I [ timer  ] Timer: WireCell::Gen::Reframer : 0.02 sec
+[14:36:02.632] I [ timer  ] Timer: WireCell::Gen::Reframer : 0.02 sec
+[14:36:02.632] I [ timer  ] Timer: WireCell::Gen::Reframer : 0.01 sec
+[14:36:02.632] I [ timer  ] Timer: WireCell::Gen::Reframer : 0.01 sec
+[14:36:02.632] I [ timer  ] Timer: WireCell::Gen::Reframer : 0.01 sec
+[14:36:02.632] I [ timer  ] Timer: WireCell::Gen::Reframer : 0.01 sec
+[14:36:02.632] I [ timer  ] Timer: wcls::FrameSaver : 0.01 sec
+[14:36:02.632] I [ timer  ] Timer: WireCell::Gen::Reframer : 0.01 sec
+[14:36:02.632] I [ timer  ] Timer: WireCell::Gen::Reframer : 0.01 sec
+[14:36:02.632] I [ timer  ] Timer: WireCell::Gen::DumpFrames : 0 sec
+[14:36:02.632] I [ timer  ] Timer: wcls::SimDepoSource : 0 sec
+[14:36:02.632] I [ timer  ] Timer: WireCell::Gen::Retagger : 0 sec
+[14:36:02.632] I [ timer  ] Timer: wcls::SimChannelSink : 0 sec
+[14:36:02.632] I [ timer  ] Timer: WireCell::Gen::DepoBagger : 0 sec
+[14:36:02.632] I [ timer  ] Timer: WireCell::Gen::Drifter : 0 sec
+[14:36:02.632] I [ timer  ] Timer: WireCell::Gen::DepoSetFanout : 0 sec
+[14:36:02.632] I [ timer  ] Timer: WireCell::Gen::FrameFanin : 0 sec
+[14:36:02.632] I [ timer  ] Timer: Total node execution : 5.779999993741512 sec
+wclsFrameSaver: saving raw::RawDigits tagged "daq"
+Begin processing the 4th record. run: 20000047 subRun: 0 event: 4 at 06-Apr-2025 14:36:08 CDT
+SimDepoSource got 513 depos from art tag "InputTag: label = 'IonAndScint', instance = ''" returns: okay
+SimDepoSource: ready with 513 depos spanning: [7.86438e-09, 1.92497e+22]us
+Retagger: tagging trace set: daq with 30720 traces, 0 summary
+[14:36:14.367] I [ timer  ] Timer: WireCell::Gen::DepoTransform : 0.4 sec
+[14:36:14.367] I [ timer  ] Timer: WireCell::Gen::Digitizer : 0.24 sec
+[14:36:14.367] I [ timer  ] Timer: WireCell::Gen::Digitizer : 0.21 sec
+[14:36:14.367] I [ timer  ] Timer: WireCell::Gen::Digitizer : 0.21 sec
+[14:36:14.367] I [ timer  ] Timer: WireCell::Gen::Digitizer : 0.21 sec
+[14:36:14.367] I [ timer  ] Timer: WireCell::Gen::Digitizer : 0.21 sec
+[14:36:14.367] I [ timer  ] Timer: WireCell::Gen::Digitizer : 0.21 sec
+[14:36:14.367] I [ timer  ] Timer: WireCell::Gen::Digitizer : 0.21 sec
+[14:36:14.367] I [ timer  ] Timer: WireCell::Gen::Digitizer : 0.2 sec
+[14:36:14.367] I [ timer  ] Timer: WireCell::Gen::Digitizer : 0.2 sec
+[14:36:14.367] I [ timer  ] Timer: WireCell::Gen::Digitizer : 0.2 sec
+[14:36:14.367] I [ timer  ] Timer: WireCell::Gen::Digitizer : 0.2 sec
+[14:36:14.367] I [ timer  ] Timer: WireCell::Gen::Digitizer : 0.19 sec
+[14:36:14.367] I [ timer  ] Timer: WireCell::Gen::IncoherentAddNoise : 0.19 sec
+[14:36:14.367] I [ timer  ] Timer: WireCell::Gen::IncoherentAddNoise : 0.18 sec
+[14:36:14.367] I [ timer  ] Timer: WireCell::Gen::IncoherentAddNoise : 0.17 sec
+[14:36:14.367] I [ timer  ] Timer: WireCell::Gen::IncoherentAddNoise : 0.17 sec
+[14:36:14.367] I [ timer  ] Timer: WireCell::Gen::IncoherentAddNoise : 0.17 sec
+[14:36:14.367] I [ timer  ] Timer: WireCell::Gen::IncoherentAddNoise : 0.17 sec
+[14:36:14.367] I [ timer  ] Timer: WireCell::Gen::IncoherentAddNoise : 0.17 sec
+[14:36:14.367] I [ timer  ] Timer: WireCell::Gen::IncoherentAddNoise : 0.17 sec
+[14:36:14.367] I [ timer  ] Timer: WireCell::Gen::IncoherentAddNoise : 0.16 sec
+[14:36:14.367] I [ timer  ] Timer: WireCell::Gen::IncoherentAddNoise : 0.16 sec
+[14:36:14.367] I [ timer  ] Timer: WireCell::Gen::IncoherentAddNoise : 0.16 sec
+[14:36:14.367] I [ timer  ] Timer: WireCell::Gen::IncoherentAddNoise : 0.16 sec
+[14:36:14.367] I [ timer  ] Timer: WireCell::Gen::DepoTransform : 0.09 sec
+[14:36:14.367] I [ timer  ] Timer: WireCell::Gen::DepoTransform : 0.08 sec
+[14:36:14.367] I [ timer  ] Timer: WireCell::Gen::DepoTransform : 0.08 sec
+[14:36:14.367] I [ timer  ] Timer: WireCell::Gen::DepoTransform : 0.08 sec
+[14:36:14.368] I [ timer  ] Timer: WireCell::Gen::DepoTransform : 0.08 sec
+[14:36:14.368] I [ timer  ] Timer: WireCell::Gen::DepoTransform : 0.07 sec
+[14:36:14.368] I [ timer  ] Timer: WireCell::Gen::DepoTransform : 0.07 sec
+[14:36:14.368] I [ timer  ] Timer: WireCell::Gen::DepoTransform : 0.07 sec
+[14:36:14.368] I [ timer  ] Timer: WireCell::Gen::DepoTransform : 0.07 sec
+[14:36:14.368] I [ timer  ] Timer: WireCell::Gen::DepoTransform : 0.07 sec
+[14:36:14.368] I [ timer  ] Timer: WireCell::Gen::DepoTransform : 0.07 sec
+[14:36:14.368] I [ timer  ] Timer: WireCell::Gen::Reframer : 0.03 sec
+[14:36:14.368] I [ timer  ] Timer: WireCell::Gen::Reframer : 0.02 sec
+[14:36:14.368] I [ timer  ] Timer: WireCell::Gen::Reframer : 0.02 sec
+[14:36:14.368] I [ timer  ] Timer: WireCell::Gen::Reframer : 0.02 sec
+[14:36:14.368] I [ timer  ] Timer: WireCell::Gen::Reframer : 0.02 sec
+[14:36:14.368] I [ timer  ] Timer: WireCell::Gen::Reframer : 0.02 sec
+[14:36:14.368] I [ timer  ] Timer: WireCell::Gen::Reframer : 0.02 sec
+[14:36:14.368] I [ timer  ] Timer: WireCell::Gen::Reframer : 0.02 sec
+[14:36:14.368] I [ timer  ] Timer: WireCell::Gen::Reframer : 0.01 sec
+[14:36:14.368] I [ timer  ] Timer: WireCell::Gen::Reframer : 0.01 sec
+[14:36:14.368] I [ timer  ] Timer: wcls::SimChannelSink : 0.01 sec
+[14:36:14.368] I [ timer  ] Timer: WireCell::Gen::DepoBagger : 0.01 sec
+[14:36:14.368] I [ timer  ] Timer: WireCell::Gen::Reframer : 0.01 sec
+[14:36:14.368] I [ timer  ] Timer: WireCell::Gen::Reframer : 0.01 sec
+[14:36:14.368] I [ timer  ] Timer: WireCell::Gen::DumpFrames : 0 sec
+[14:36:14.368] I [ timer  ] Timer: wcls::SimDepoSource : 0 sec
+[14:36:14.368] I [ timer  ] Timer: WireCell::Gen::Retagger : 0 sec
+[14:36:14.368] I [ timer  ] Timer: wcls::FrameSaver : 0 sec
+[14:36:14.368] I [ timer  ] Timer: WireCell::Gen::Drifter : 0 sec
+[14:36:14.368] I [ timer  ] Timer: WireCell::Gen::DepoSetFanout : 0 sec
+[14:36:14.368] I [ timer  ] Timer: WireCell::Gen::FrameFanin : 0 sec
+[14:36:14.368] I [ timer  ] Timer: Total node execution : 5.979999965056777 sec
+wclsFrameSaver: saving raw::RawDigits tagged "daq"
+Begin processing the 5th record. run: 20000047 subRun: 0 event: 5 at 06-Apr-2025 14:36:19 CDT
+SimDepoSource got 1230 depos from art tag "InputTag: label = 'IonAndScint', instance = ''" returns: okay
+SimDepoSource: ready with 1230 depos spanning: [3.52785e-07, 2.44803e+19]us
+Retagger: tagging trace set: daq with 30720 traces, 0 summary
+[14:36:26.144] I [ timer  ] Timer: WireCell::Gen::DepoTransform : 0.29 sec
+[14:36:26.144] I [ timer  ] Timer: WireCell::Gen::Digitizer : 0.22 sec
+[14:36:26.144] I [ timer  ] Timer: WireCell::Gen::Digitizer : 0.21 sec
+[14:36:26.144] I [ timer  ] Timer: WireCell::Gen::Digitizer : 0.21 sec
+[14:36:26.144] I [ timer  ] Timer: WireCell::Gen::Digitizer : 0.21 sec
+[14:36:26.144] I [ timer  ] Timer: WireCell::Gen::Digitizer : 0.21 sec
+[14:36:26.144] I [ timer  ] Timer: WireCell::Gen::Digitizer : 0.2 sec
+[14:36:26.144] I [ timer  ] Timer: WireCell::Gen::Digitizer : 0.2 sec
+[14:36:26.144] I [ timer  ] Timer: WireCell::Gen::Digitizer : 0.2 sec
+[14:36:26.144] I [ timer  ] Timer: WireCell::Gen::Digitizer : 0.2 sec
+[14:36:26.144] I [ timer  ] Timer: WireCell::Gen::Digitizer : 0.2 sec
+[14:36:26.144] I [ timer  ] Timer: WireCell::Gen::Digitizer : 0.2 sec
+[14:36:26.144] I [ timer  ] Timer: WireCell::Gen::Digitizer : 0.2 sec
+[14:36:26.144] I [ timer  ] Timer: WireCell::Gen::IncoherentAddNoise : 0.18 sec
+[14:36:26.144] I [ timer  ] Timer: WireCell::Gen::IncoherentAddNoise : 0.18 sec
+[14:36:26.144] I [ timer  ] Timer: WireCell::Gen::IncoherentAddNoise : 0.18 sec
+[14:36:26.144] I [ timer  ] Timer: WireCell::Gen::IncoherentAddNoise : 0.18 sec
+[14:36:26.144] I [ timer  ] Timer: WireCell::Gen::IncoherentAddNoise : 0.17 sec
+[14:36:26.144] I [ timer  ] Timer: WireCell::Gen::IncoherentAddNoise : 0.17 sec
+[14:36:26.144] I [ timer  ] Timer: WireCell::Gen::IncoherentAddNoise : 0.17 sec
+[14:36:26.144] I [ timer  ] Timer: WireCell::Gen::IncoherentAddNoise : 0.17 sec
+[14:36:26.144] I [ timer  ] Timer: WireCell::Gen::IncoherentAddNoise : 0.17 sec
+[14:36:26.144] I [ timer  ] Timer: WireCell::Gen::IncoherentAddNoise : 0.17 sec
+[14:36:26.144] I [ timer  ] Timer: WireCell::Gen::IncoherentAddNoise : 0.16 sec
+[14:36:26.144] I [ timer  ] Timer: WireCell::Gen::IncoherentAddNoise : 0.16 sec
+[14:36:26.144] I [ timer  ] Timer: WireCell::Gen::DepoTransform : 0.16 sec
+[14:36:26.144] I [ timer  ] Timer: WireCell::Gen::DepoTransform : 0.09 sec
+[14:36:26.144] I [ timer  ] Timer: WireCell::Gen::DepoTransform : 0.08 sec
+[14:36:26.144] I [ timer  ] Timer: WireCell::Gen::DepoTransform : 0.08 sec
+[14:36:26.144] I [ timer  ] Timer: WireCell::Gen::DepoTransform : 0.08 sec
+[14:36:26.144] I [ timer  ] Timer: WireCell::Gen::DepoTransform : 0.08 sec
+[14:36:26.144] I [ timer  ] Timer: WireCell::Gen::DepoTransform : 0.07 sec
+[14:36:26.144] I [ timer  ] Timer: WireCell::Gen::DepoTransform : 0.07 sec
+[14:36:26.144] I [ timer  ] Timer: WireCell::Gen::DepoTransform : 0.07 sec
+[14:36:26.144] I [ timer  ] Timer: WireCell::Gen::DepoTransform : 0.07 sec
+[14:36:26.144] I [ timer  ] Timer: WireCell::Gen::DepoTransform : 0.07 sec
+[14:36:26.144] I [ timer  ] Timer: wcls::SimChannelSink : 0.03 sec
+[14:36:26.144] I [ timer  ] Timer: WireCell::Gen::Reframer : 0.02 sec
+[14:36:26.144] I [ timer  ] Timer: WireCell::Gen::Reframer : 0.02 sec
+[14:36:26.144] I [ timer  ] Timer: WireCell::Gen::Reframer : 0.02 sec
+[14:36:26.144] I [ timer  ] Timer: WireCell::Gen::Reframer : 0.02 sec
+[14:36:26.144] I [ timer  ] Timer: WireCell::Gen::Reframer : 0.02 sec
+[14:36:26.144] I [ timer  ] Timer: WireCell::Gen::Reframer : 0.02 sec
+[14:36:26.144] I [ timer  ] Timer: WireCell::Gen::Reframer : 0.02 sec
+[14:36:26.144] I [ timer  ] Timer: WireCell::Gen::Reframer : 0.02 sec
+[14:36:26.144] I [ timer  ] Timer: wcls::SimDepoSource : 0.01 sec
+[14:36:26.144] I [ timer  ] Timer: WireCell::Gen::Reframer : 0.01 sec
+[14:36:26.144] I [ timer  ] Timer: WireCell::Gen::Reframer : 0.01 sec
+[14:36:26.144] I [ timer  ] Timer: WireCell::Gen::Retagger : 0.01 sec
+[14:36:26.144] I [ timer  ] Timer: WireCell::Gen::Reframer : 0.01 sec
+[14:36:26.144] I [ timer  ] Timer: WireCell::Gen::Reframer : 0.01 sec
+[14:36:26.144] I [ timer  ] Timer: WireCell::Gen::DepoSetFanout : 0.01 sec
+[14:36:26.144] I [ timer  ] Timer: WireCell::Gen::DumpFrames : 0 sec
+[14:36:26.144] I [ timer  ] Timer: wcls::FrameSaver : 0 sec
+[14:36:26.144] I [ timer  ] Timer: WireCell::Gen::DepoBagger : 0 sec
+[14:36:26.144] I [ timer  ] Timer: WireCell::Gen::Drifter : 0 sec
+[14:36:26.144] I [ timer  ] Timer: WireCell::Gen::FrameFanin : 0 sec
+[14:36:26.144] I [ timer  ] Timer: Total node execution : 5.990000005811453 sec
+wclsFrameSaver: saving raw::RawDigits tagged "daq"
+06-Apr-2025 14:36:32 CDT  Closed output file "/exp/dune/app/users/emvilla/v10_04_07d00/output/standard/prodmarley_nue_flat_CC_dune10kt_1x2x6_dump_standard-triggerana_tree_1x2x6_simpleThr_simpleWin_simpleWin-5events_supernovaCC_triggerValidationTest/prodmarley_nue_flat_CC_dune10kt_1x2x6_dump_g4_detsim.root"
+06-Apr-2025 14:36:32 CDT  Closed input file "/exp/dune/app/users/emvilla/v10_04_07d00/output/standard/prodmarley_nue_flat_CC_dune10kt_1x2x6_dump_standard-triggerana_tree_1x2x6_simpleThr_simpleWin_simpleWin-5events_supernovaCC_triggerValidationTest/prodmarley_nue_flat_CC_dune10kt_1x2x6_dump_g4.root"
+
+================================================================================================================================
+TimeTracker printout (sec)                        Min           Avg           Max         Median          RMS         nEvts   
+================================================================================================================================
+Full event                                      11.5214       11.9443       13.2277       11.6126      0.650734         5     
+--------------------------------------------------------------------------------------------------------------------------------
+source:RootInput(read)                        0.000187207   0.000337818   0.000521136   0.000337395   0.000108052       5     
+simulate:tpcrawdecoder:WireCellToolkit          7.62347       8.07916       8.91627       7.91852      0.445174         5     
+simulate:opdigi:OpDetDigitizerDUNE             0.0264703     0.0338327     0.0436785     0.0353344    0.00625859        5     
+simulate:rns:RandomNumberSaver                1.7302e-05    4.75088e-05   0.000165436   1.7935e-05    5.89674e-05       5     
+[art]:TriggerResults:TriggerResultInserter     9.057e-06    1.36138e-05   2.9296e-05     9.929e-06    7.84839e-06       5     
+end_path:out1:RootOutput                       3.787e-06    5.9956e-06    1.4077e-05     4.048e-06    4.04291e-06       5     
+end_path:out1:RootOutput(write)                 3.64989       3.8307        4.27453       3.69954      0.234303         5     
+================================================================================================================================
+
+====================================================================================================
+MemoryTracker summary (base-10 MB units used)
+
+  Peak virtual memory usage (VmPeak)  : 4724.16 MB
+  Peak resident set size usage (VmHWM): 3049.45 MB
+====================================================================================================
+Art has completed and will exit with status 0.
+ Detector simulation done!
+
+ In the folder now we have
+ total 1224623
+-rw-r--r-- 1 emvilla dune         0 Apr  6 14:35 debugprod.log
+-rw-r--r-- 1 emvilla dune     40030 Apr  6 14:32 detsim_dune10kt_1x2x6_notpcsigproc_dump.fcl
+-rw-r--r-- 1 emvilla dune         4 Apr  6 14:35 execTime.txt
+-rw-r--r-- 1 emvilla dune       519 Apr  6 14:35 g4_hist.root
+-rw-r--r-- 1 emvilla dune     61440 Apr  6 14:29 mem.db
+-rw-r--r-- 1 emvilla dune     12426 Apr  6 14:32 prodmarley_nue_flat_CC_dune10kt_1x2x6_dump_dump.fcl
+-rw-r--r-- 1 emvilla dune       519 Apr  6 14:36 prodmarley_nue_flat_CC_dune10kt_1x2x6_dump_g4_detsim_hist.root
+-rw-r--r-- 1 emvilla dune 626155053 Apr  6 14:29 prodmarley_nue_flat_CC_dune10kt_1x2x6_dump_g4_detsim_reco1.root
+-rw-r--r-- 1 emvilla dune 626136696 Apr  6 14:36 prodmarley_nue_flat_CC_dune10kt_1x2x6_dump_g4_detsim.root
+-rw-r--r-- 1 emvilla dune    491348 Apr  6 14:35 prodmarley_nue_flat_CC_dune10kt_1x2x6_dump_g4.root
+-rw-r--r-- 1 emvilla dune     89231 Apr  6 14:32 prodmarley_nue_flat_CC_dune10kt_1x2x6_dump.root
+-rw-r--r-- 1 emvilla dune        86 Apr  6 14:32 prodmarley_nue_flat_CC_dune10kt_1x2x6_dump_standard.fcl
+-rw-r--r-- 1 emvilla dune     10198 Apr  6 14:32 prodmarley_nue_hist.root
+-rw-r--r-- 1 emvilla dune     29092 Apr  6 14:32 supernova_g4_dune10kt_1x2x6_dump.fcl
+-rw-r--r-- 1 emvilla dune     16384 Apr  6 14:29 time.db
+-rw-r--r-- 1 emvilla dune     37070 Apr  6 14:32 triggerana_tree_1x2x6_simpleThr_simpleWin_simpleWin_dump.fcl
+-rw-r--r-- 1 emvilla dune    224512 Apr  6 14:29 triggersim_hist.root
+-rw-r--r-- 1 emvilla dune    704475 Apr  6 14:36 wcls-sim-drift-simchannel.log 
+
+Ending detector simulation at 1743968193
+Detsim took 87 seconds
+Starting reconstruction at 1743968193
+Executing command: lar -c triggerana_tree_1x2x6_simpleThr_simpleWin_simpleWin.fcl -n 5 -s /exp/dune/app/users/emvilla/v10_04_07d00/output/standard/prodmarley_nue_flat_CC_dune10kt_1x2x6_dump_standard-triggerana_tree_1x2x6_simpleThr_simpleWin_simpleWin-5events_supernovaCC_triggerValidationTest/prodmarley_nue_flat_CC_dune10kt_1x2x6_dump_g4_detsim.root -o /exp/dune/app/users/emvilla/v10_04_07d00/output/standard/prodmarley_nue_flat_CC_dune10kt_1x2x6_dump_standard-triggerana_tree_1x2x6_simpleThr_simpleWin_simpleWin-5events_supernovaCC_triggerValidationTest/prodmarley_nue_flat_CC_dune10kt_1x2x6_dump_g4_detsim_reco1.root
+DuneDeconvolutionService::ctor: DuneDeconvolutionService:
+DuneDeconvolutionService::ctor:                LogLevel: 1
+DuneRoiBuildingService::ctor: DuneRoiBuildingService:
+DuneRoiBuildingService::ctor:     LogLevel: 1
+DuneRoiBuildingService::ctor:  NSigmaStart: 3
+DuneRoiBuildingService::ctor:    NSigmaEnd: 1
+DuneRoiBuildingService::ctor:       PadLow: 50
+DuneRoiBuildingService::ctor:      PadHigh: 50
+StandardAdcWireBuildingService::ctor: StandardAdcWireBuildingService:
+StandardAdcWireBuildingService::ctor:     LogLevel: 1
+Info in <TGeoManager::Import>: Reading geometry from file: /cvmfs/dune.opensciencegrid.org/products/dune/dunecore/v10_04_07d00/gdml/dune10kt_v6_refactored_1x2x6.gdml
+Info in <TGeoManager::TGeoManager>: Geometry GDMLImport, Geometry imported from GDML created
+Error: Unsupported GDML Tag Used :gdml_simple_extension. Please Check Geometry/Schema.
+Error: Unsupported GDML Tag Used :extension. Please Check Geometry/Schema.
+Info in <TGeoManager::SetTopVolume>: Top volume is volWorld. Master volume is volWorld
+Info in <TGeoNavigator::BuildCache>: --- Maximum geometry depth set to 100
+Info in <TGeoManager::CheckGeometry>: Fixing runtime shapes...
+Info in <TGeoManager::CheckGeometry>: ...Nothing to fix
+Info in <TGeoManager::CloseGeometry>: Counting nodes...
+Info in <TGeoManager::Voxelize>: Voxelizing...
+Info in <TGeoManager::CloseGeometry>: Building cache...
+Info in <TGeoManager::CountLevels>: max level = 5, max placements = 1149
+Info in <TGeoManager::CloseGeometry>: 67545 nodes/ 5439 volume UID's in Geometry imported from GDML
+Info in <TGeoManager::CloseGeometry>: ----------------modeler ready----------------
+GeoApaChannelGroupService::ctor: Group 0 (apa00) has 2560 channels from 4/4 readout planes.
+GeoApaChannelGroupService::ctor: Group 1 (apa01) has 2560 channels from 4/4 readout planes.
+GeoApaChannelGroupService::ctor: Group 2 (apa02) has 2560 channels from 4/4 readout planes.
+GeoApaChannelGroupService::ctor: Group 3 (apa03) has 2560 channels from 4/4 readout planes.
+GeoApaChannelGroupService::ctor: Group 4 (apa04) has 2560 channels from 4/4 readout planes.
+GeoApaChannelGroupService::ctor: Group 5 (apa05) has 2560 channels from 4/4 readout planes.
+GeoApaChannelGroupService::ctor: Group 6 (apa06) has 2560 channels from 4/4 readout planes.
+GeoApaChannelGroupService::ctor: Group 7 (apa07) has 2560 channels from 4/4 readout planes.
+GeoApaChannelGroupService::ctor: Group 8 (apa08) has 2560 channels from 4/4 readout planes.
+GeoApaChannelGroupService::ctor: Group 9 (apa09) has 2560 channels from 4/4 readout planes.
+GeoApaChannelGroupService::ctor: Group 10 (apa10) has 2560 channels from 4/4 readout planes.
+GeoApaChannelGroupService::ctor: Group 11 (apa11) has 2560 channels from 4/4 readout planes.
+DuneToolManager::fclFilename: Taking fcl name from command line: lar -c triggerana_tree_1x2x6_simpleThr_simpleWin_simpleWin.fcl -n 5 -s /exp/dune/app/users/emvilla/v10_04_07d00/output/standard/prodmarley_nue_flat_CC_dune10kt_1x2x6_dump_standard-triggerana_tree_1x2x6_simpleThr_simpleWin_simpleWin-5events_supernovaCC_triggerValidationTest/prodmarley_nue_flat_CC_dune10kt_1x2x6_dump_g4_detsim.root -o /exp/dune/app/users/emvilla/v10_04_07d00/output/standard/prodmarley_nue_flat_CC_dune10kt_1x2x6_dump_standard-triggerana_tree_1x2x6_simpleThr_simpleWin_simpleWin-5events_supernovaCC_triggerValidationTest/prodmarley_nue_flat_CC_dune10kt_1x2x6_dump_g4_detsim_reco1.root
+AcdDigitReader::ctor:     LogLevel: 1
+DuneToolManager::getPrivate: ERROR: Tool name is blank
+StandardRawDigitExtractService::ctor: Retrieved digit read tool digitReader
+StandardRawDigitExtractService::ctor: StandardRawDigitExtractService:
+StandardRawDigitExtractService::ctor:         LogLevel: 1
+StandardRawDigitExtractService::ctor:    DigitReadTool: digitReader
+StandardRawDigitExtractService::ctor:   PedestalOption: 1
+StandardRawDigitExtractService::ctor:     FlagStuckOff: 0
+StandardRawDigitExtractService::ctor:      FlagStuckOn: 0
+StandardRawDigitPrepService::ctor: Fetching extract service.
+StandardRawDigitPrepService::ctor: Fetching channel status provider.
+StandardRawDigitPrepService::ctor:   Channel status provider: @0x719a510
+StandardRawDigitPrepService::ctor:   Extract service: @0x8ab5c80
+StandardRawDigitPrepService::ctor: Fetching deconvolution service.
+StandardRawDigitPrepService::ctor:   Deconvolution service: @0x5924520
+StandardRawDigitPrepService::ctor: Fetching ROI building service.
+StandardRawDigitPrepService::ctor:   ROI building service: @0x5924720
+StandardRawDigitPrepService::ctor: Fetching wire building service.
+StandardRawDigitPrepService::ctor:   Wire building service: @0x58fa5a0
+StandardRawDigitPrepService::ctor: StandardRawDigitPrepService:
+StandardRawDigitPrepService::ctor:              LogLevel: 1
+StandardRawDigitPrepService::ctor:               SkipBad: 1
+StandardRawDigitPrepService::ctor:             SkipNoisy: 0
+StandardRawDigitPrepService::ctor:   ChannelStatusOnline: 0
+StandardRawDigitPrepService::ctor:          DoMitigation: 0
+StandardRawDigitPrepService::ctor:  DoEarlySignalFinding: 0
+StandardRawDigitPrepService::ctor:        DoNoiseRemoval: 0
+StandardRawDigitPrepService::ctor:       DoDeconvolution: 1
+StandardRawDigitPrepService::ctor:  DoPedestalAdjustment: 0
+StandardRawDigitPrepService::ctor:                 DoROI: 1
+StandardRawDigitPrepService::ctor:               DoWires: 1
+StandardRawDigitPrepService::ctor:                DoDump: 0
+StandardRawDigitPrepService::ctor:  DoIntermediateStates: 0
+StandardRawDigitPrepService::ctor: No display tools.
+Warning in <TFile::Append>: Replacing existing TH1: FieldResponse_U (Potential memory leak).
+Warning in <TFile::Append>: Replacing existing TH1: FieldResponse_V (Potential memory leak).
+Warning in <TFile::Append>: Replacing existing TH1: FieldResponse_Y (Potential memory leak).
+06-Apr-2025 14:36:44 CDT  Initiating request to open input file "/exp/dune/app/users/emvilla/v10_04_07d00/output/standard/prodmarley_nue_flat_CC_dune10kt_1x2x6_dump_standard-triggerana_tree_1x2x6_simpleThr_simpleWin_simpleWin-5events_supernovaCC_triggerValidationTest/prodmarley_nue_flat_CC_dune10kt_1x2x6_dump_g4_detsim.root"
+06-Apr-2025 14:36:45 CDT  Opened input file "/exp/dune/app/users/emvilla/v10_04_07d00/output/standard/prodmarley_nue_flat_CC_dune10kt_1x2x6_dump_standard-triggerana_tree_1x2x6_simpleThr_simpleWin_simpleWin-5events_supernovaCC_triggerValidationTest/prodmarley_nue_flat_CC_dune10kt_1x2x6_dump_g4_detsim.root"
+Masked Channels:
+Begin processing the 1st record. run: 20000047 subRun: 0 event: 1 at 06-Apr-2025 14:36:45 CDT
+Creating Maker on Plane C:0 S:1 P:2
+Created 2 TAs on ROP C:0 S:1 P:2
+Creating Maker on Plane C:0 S:3 P:2
+Created 1 TAs on ROP C:0 S:3 P:2
+Created 3 TCs
+Creating new TTree for tpmakerTPC::TriggerAnaTree1x2x6
+Creating new TTree for tamakerTPC::TriggerAnaTree1x2x6
+Creating new TTree for tamakerTPC:inTAs:TriggerAnaTree1x2x6
+Creating new TTree for tcmakerTPC::TriggerAnaTree1x2x6
+Creating new TTree for tcmakerTPC:inTCs:TriggerAnaTree1x2x6
+06-Apr-2025 14:36:49 CDT  Opened output file with pattern "/exp/dune/app/users/emvilla/v10_04_07d00/output/standard/prodmarley_nue_flat_CC_dune10kt_1x2x6_dump_standard-triggerana_tree_1x2x6_simpleThr_simpleWin_simpleWin-5events_supernovaCC_triggerValidationTest/prodmarley_nue_flat_CC_dune10kt_1x2x6_dump_g4_detsim_reco1.root"
+Begin processing the 2nd record. run: 20000047 subRun: 0 event: 2 at 06-Apr-2025 14:36:50 CDT
+Creating Maker on Plane C:0 S:2 P:2
+Created 1 TAs on ROP C:0 S:2 P:2
+Creating Maker on Plane C:0 S:4 P:2
+Created 1 TCs
+Begin processing the 3rd record. run: 20000047 subRun: 0 event: 3 at 06-Apr-2025 14:36:55 CDT
+Creating Maker on Plane C:0 S:6 P:2
+Created 1 TAs on ROP C:0 S:6 P:2
+Created 1 TCs
+Begin processing the 4th record. run: 20000047 subRun: 0 event: 4 at 06-Apr-2025 14:36:59 CDT
+Creating Maker on Plane C:0 S:9 P:2
+Created 1 TAs on ROP C:0 S:9 P:2
+Created 1 TCs
+Begin processing the 5th record. run: 20000047 subRun: 0 event: 5 at 06-Apr-2025 14:37:03 CDT
+Creating Maker on Plane C:0 S:7 P:2
+Created 1 TAs on ROP C:0 S:7 P:2
+Creating Maker on Plane C:0 S:9 P:2
+Created 1 TAs on ROP C:0 S:9 P:2
+Created 2 TCs
+06-Apr-2025 14:37:09 CDT  Closed output file "/exp/dune/app/users/emvilla/v10_04_07d00/output/standard/prodmarley_nue_flat_CC_dune10kt_1x2x6_dump_standard-triggerana_tree_1x2x6_simpleThr_simpleWin_simpleWin-5events_supernovaCC_triggerValidationTest/prodmarley_nue_flat_CC_dune10kt_1x2x6_dump_g4_detsim_reco1.root"
+06-Apr-2025 14:37:09 CDT  Closed input file "/exp/dune/app/users/emvilla/v10_04_07d00/output/standard/prodmarley_nue_flat_CC_dune10kt_1x2x6_dump_standard-triggerana_tree_1x2x6_simpleThr_simpleWin_simpleWin-5events_supernovaCC_triggerValidationTest/prodmarley_nue_flat_CC_dune10kt_1x2x6_dump_g4_detsim.root"
+
+================================================================================================================================
+TimeTracker printout (sec)                        Min           Avg           Max         Median          RMS         nEvts   
+================================================================================================================================
+Full event                                      4.17379       4.42835       4.70029       4.34957      0.202216         5     
+--------------------------------------------------------------------------------------------------------------------------------
+source:RootInput(read)                        0.000112725   0.000193568   0.000291407   0.000219029   6.81916e-05       5     
+makers:tpmakerTPC:TriggerPrimitiveMakerTPC      4.17146       4.42327       4.68777       4.34428      0.199801         5     
+makers:tamakerTPC:TriggerActivityMakerTPC     0.000165176   0.000388002   0.00120379    0.000194803   0.000408206       5     
+makers:tcmakerTPC:TriggerCandidateMakerTPC    3.4236e-05    0.000141606   0.000560681   3.5778e-05    0.00020956        5     
+[art]:TriggerResults:TriggerResultInserter     8.547e-06    1.41454e-05   3.4044e-05     9.298e-06    9.9562e-06        5     
+end_path:out1:RootOutput                       3.206e-06    9.8628e-06    2.1431e-05     4.508e-06    7.60594e-06       5     
+end_path:triggerAnaDumpAll:TriggerAnaTree     0.000941218   0.00275711    0.00573262     0.0016294    0.00189759        5     
+end_path:out1:RootOutput(write)               0.000380677   0.00115716    0.00398685    0.000484937   0.00141545        5     
+================================================================================================================================
+
+====================================================================================================
+MemoryTracker summary (base-10 MB units used)
+
+  Peak virtual memory usage (VmPeak)  : 2018.41 MB
+  Peak resident set size usage (VmHWM): 1333.93 MB
+  Details saved in: 'mem.db'
+====================================================================================================
+Art has completed and will exit with status 0.
+ Reconstruction done! 
+
+ In the folder now we have
+total 1224671
+-rw-r--r-- 1 emvilla dune         0 Apr  6 14:36 debugprod.log
+-rw-r--r-- 1 emvilla dune     40030 Apr  6 14:32 detsim_dune10kt_1x2x6_notpcsigproc_dump.fcl
+-rw-r--r-- 1 emvilla dune         3 Apr  6 14:36 execTime.txt
+-rw-r--r-- 1 emvilla dune       519 Apr  6 14:35 g4_hist.root
+-rw-r--r-- 1 emvilla dune     65536 Apr  6 14:37 mem.db
+-rw-r--r-- 1 emvilla dune     12426 Apr  6 14:32 prodmarley_nue_flat_CC_dune10kt_1x2x6_dump_dump.fcl
+-rw-r--r-- 1 emvilla dune       519 Apr  6 14:36 prodmarley_nue_flat_CC_dune10kt_1x2x6_dump_g4_detsim_hist.root
+-rw-r--r-- 1 emvilla dune 626192372 Apr  6 14:37 prodmarley_nue_flat_CC_dune10kt_1x2x6_dump_g4_detsim_reco1.root
+-rw-r--r-- 1 emvilla dune 626136696 Apr  6 14:36 prodmarley_nue_flat_CC_dune10kt_1x2x6_dump_g4_detsim.root
+-rw-r--r-- 1 emvilla dune    491348 Apr  6 14:35 prodmarley_nue_flat_CC_dune10kt_1x2x6_dump_g4.root
+-rw-r--r-- 1 emvilla dune     89231 Apr  6 14:32 prodmarley_nue_flat_CC_dune10kt_1x2x6_dump.root
+-rw-r--r-- 1 emvilla dune        86 Apr  6 14:32 prodmarley_nue_flat_CC_dune10kt_1x2x6_dump_standard.fcl
+-rw-r--r-- 1 emvilla dune     10198 Apr  6 14:32 prodmarley_nue_hist.root
+-rw-r--r-- 1 emvilla dune     29092 Apr  6 14:32 supernova_g4_dune10kt_1x2x6_dump.fcl
+-rw-r--r-- 1 emvilla dune     16384 Apr  6 14:37 time.db
+-rw-r--r-- 1 emvilla dune     37070 Apr  6 14:32 triggerana_tree_1x2x6_simpleThr_simpleWin_simpleWin_dump.fcl
+-rw-r--r-- 1 emvilla dune    232803 Apr  6 14:37 triggersim_hist.root
+-rw-r--r-- 1 emvilla dune    704475 Apr  6 14:36 wcls-sim-drift-simchannel.log \n
+Ending reconstruction at 1743968231
+Reconstruction took 38 seconds
+Ending simulation at 1743968231
+Simulation took 284 seconds
+Currently in /exp/dune/app/users/emvilla/v10_04_07d00/output/standard/prodmarley_nue_flat_CC_dune10kt_1x2x6_dump_standard-triggerana_tree_1x2x6_simpleThr_simpleWin_simpleWin-5events_supernovaCC_triggerValidationTest
+Items here are total 1224671
+-rw-r--r-- 1 emvilla dune         0 Apr  6 14:36 debugprod.log
+-rw-r--r-- 1 emvilla dune     40030 Apr  6 14:32 detsim_dune10kt_1x2x6_notpcsigproc_dump.fcl
+-rw-r--r-- 1 emvilla dune         4 Apr  6 14:37 execTime.txt
+-rw-r--r-- 1 emvilla dune       519 Apr  6 14:35 g4_hist.root
+-rw-r--r-- 1 emvilla dune     65536 Apr  6 14:37 mem.db
+-rw-r--r-- 1 emvilla dune     12426 Apr  6 14:32 prodmarley_nue_flat_CC_dune10kt_1x2x6_dump_dump.fcl
+-rw-r--r-- 1 emvilla dune       519 Apr  6 14:36 prodmarley_nue_flat_CC_dune10kt_1x2x6_dump_g4_detsim_hist.root
+-rw-r--r-- 1 emvilla dune 626192372 Apr  6 14:37 prodmarley_nue_flat_CC_dune10kt_1x2x6_dump_g4_detsim_reco1.root
+-rw-r--r-- 1 emvilla dune 626136696 Apr  6 14:36 prodmarley_nue_flat_CC_dune10kt_1x2x6_dump_g4_detsim.root
+-rw-r--r-- 1 emvilla dune    491348 Apr  6 14:35 prodmarley_nue_flat_CC_dune10kt_1x2x6_dump_g4.root
+-rw-r--r-- 1 emvilla dune     89231 Apr  6 14:32 prodmarley_nue_flat_CC_dune10kt_1x2x6_dump.root
+-rw-r--r-- 1 emvilla dune        86 Apr  6 14:32 prodmarley_nue_flat_CC_dune10kt_1x2x6_dump_standard.fcl
+-rw-r--r-- 1 emvilla dune     10198 Apr  6 14:32 prodmarley_nue_hist.root
+-rw-r--r-- 1 emvilla dune     29092 Apr  6 14:32 supernova_g4_dune10kt_1x2x6_dump.fcl
+-rw-r--r-- 1 emvilla dune     16384 Apr  6 14:37 time.db
+-rw-r--r-- 1 emvilla dune     37070 Apr  6 14:32 triggerana_tree_1x2x6_simpleThr_simpleWin_simpleWin_dump.fcl
+-rw-r--r-- 1 emvilla dune    232803 Apr  6 14:37 triggersim_hist.root
+-rw-r--r-- 1 emvilla dune    704475 Apr  6 14:36 wcls-sim-drift-simchannel.log
+Creating final folder /eos/user/e/evilla/dune/sn-tps/standard/aggregated_prodmarley_nue_flat_CC_dune10kt_1x2x6_dump_standard-triggerana_tree_1x2x6_simpleThr_simpleWin_simpleWin-5events/
+mkdir: cannot create directory ‘/eos’: Read-only file system
+Moving custom direction and TPs to /eos/user/e/evilla/dune/sn-tps/standard/aggregated_prodmarley_nue_flat_CC_dune10kt_1x2x6_dump_standard-triggerana_tree_1x2x6_simpleThr_simpleWin_simpleWin-5events/
+cp triggersim_hist.root /eos/user/e/evilla/dune/sn-tps/standard/aggregated_prodmarley_nue_flat_CC_dune10kt_1x2x6_dump_standard-triggerana_tree_1x2x6_simpleThr_simpleWin_simpleWin-5events/tpstream_supernovaCC_triggerValidationTest.root
+cp: cannot create regular file ‘/eos/user/e/evilla/dune/sn-tps/standard/aggregated_prodmarley_nue_flat_CC_dune10kt_1x2x6_dump_standard-triggerana_tree_1x2x6_simpleThr_simpleWin_simpleWin-5events/tpstream_supernovaCC_triggerValidationTest.root’: No such file or directory
+Moving back to /exp/dune/app/users/emvilla/dunesw-config/scripts
+If it has not been cleaned, all products are in /exp/dune/app/users/emvilla/v10_04_07d00/output/standard/prodmarley_nue_flat_CC_dune10kt_1x2x6_dump_standard-triggerana_tree_1x2x6_simpleThr_simpleWin_simpleWin-5events_supernovaCC_triggerValidationTest/
+TPs are in /eos/user/e/evilla/dune/sn-tps/standard/aggregated_prodmarley_nue_flat_CC_dune10kt_1x2x6_dump_standard-triggerana_tree_1x2x6_simpleThr_simpleWin_simpleWin-5events/

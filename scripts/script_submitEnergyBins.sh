@@ -1,10 +1,10 @@
 #!/bin/bash
 
-REPO_HOME="$(git rev-parse --show-toplevel)"
-echo "REPO_HOME for script run-sn-simulation.sh: $REPO_HOME"
+HOME_DIR="$(git rev-parse --show-toplevel)"
+echo "HOME_DIR for script run-sn-simulation.sh: $HOME_DIR"
 
 # read email from json settings file
-user_email=$(awk -F'"' '/userEmail/ {print $4}' $REPO_HOME/settings.json)
+user_email=$(awk -F'"' '/userEmail/ {print $4}' $HOME_DIR/settings.json)
 
 # define an array containing the values 2,5,10,15,20,30,40,50,60,70
 bins=(2 5 10 15 20 30 40 50 60 70)
@@ -27,11 +27,11 @@ do
     notification        = Error
 
     JOBNAME             = sn-custom-energy-ranges-${bins[i]}_to_${bins[i+1]}-ES-clean
-    executable          = ${REPO_HOME}/scripts/run-sn-simulation.sh
+    executable          = ${HOME_DIR}/scripts/run-sn-simulation.sh
     arguments           = -m prodmarley_nue_flat_clean_dune10kt_1x2x6_ES --custom-energy ${bins[i]} ${bins[i+1]} -g -d -r -n 50 -f ${bins[i]}-to-${bins[i+1]}-MeV_\$(ProcId)
-    output              = ${REPO_HOME}/job_output/job.\$(JOBNAME).\$(ClusterId).\$(ProcId).out
-    error               = ${REPO_HOME}/job_output/job.\$(JOBNAME).\$(ClusterId).\$(ProcId).err
-    log                 = ${REPO_HOME}/job_output/job.\$(JOBNAME).\$(ClusterId).log
+    output              = ${HOME_DIR}/job_output/job.\$(JOBNAME).\$(ClusterId).\$(ProcId).out
+    error               = ${HOME_DIR}/job_output/job.\$(JOBNAME).\$(ClusterId).\$(ProcId).err
+    log                 = ${HOME_DIR}/job_output/job.\$(JOBNAME).\$(ClusterId).log
     # request_cpus        = 1
     # request_memory      = 2000
 
@@ -69,11 +69,11 @@ do
     notification        = Error
 
     JOBNAME             = sn-custom-energy-ranges-${bins[i]}_to_${bins[i+1]}-CC-clean
-    executable          = ${REPO_HOME}/scripts/run-sn-simulation.sh
+    executable          = ${HOME_DIR}/scripts/run-sn-simulation.sh
     arguments           = -m prodmarley_nue_flat_clean_dune10kt_1x2x6_CC --custom-energy ${bins[i]} ${bins[i+1]} -g -d -r -n 50 -f ${bins[i]}-to-${bins[i+1]}-MeV_\$(ProcId)
-    output              = ${REPO_HOME}/job_output/job.\$(JOBNAME).\$(ClusterId).\$(ProcId).out
-    error               = ${REPO_HOME}/job_output/job.\$(JOBNAME).\$(ClusterId).\$(ProcId).err
-    log                 = ${REPO_HOME}/job_output/job.\$(JOBNAME).\$(ClusterId).log
+    output              = ${HOME_DIR}/job_output/job.\$(JOBNAME).\$(ClusterId).\$(ProcId).out
+    error               = ${HOME_DIR}/job_output/job.\$(JOBNAME).\$(ClusterId).\$(ProcId).err
+    log                 = ${HOME_DIR}/job_output/job.\$(JOBNAME).\$(ClusterId).log
     # request_cpus        = 1
     # request_memory      = 2000
 

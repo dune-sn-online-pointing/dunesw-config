@@ -2,8 +2,8 @@
 
 TRIGGER_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 export TRIGGER_DIR
-export REPO_HOME="$(dirname "$TRIGGER_DIR")"
-source $REPO_HOME/scripts/init.sh
+export HOME_DIR="$(dirname "$TRIGGER_DIR")"
+source $HOME_DIR/scripts/init.sh
 
 # parser
 print_help() {
@@ -23,8 +23,8 @@ JSON_SETTINGS="settings_template.json"
 first=""
 last=""
 n_events=10
-list_of_jobs=$REPO_HOME"/dat/triggerValidation_fcls.dat"
-output_folder="${REPO_HOME}/trigger_production/"
+list_of_jobs=$HOME_DIR"/dat/triggerValidation_fcls.dat"
+output_folder="${HOME_DIR}/trigger_production/"
 print_only=false
 
 # parse
@@ -83,7 +83,7 @@ for i in $(seq 3 $n_lines); do
     # script to submit jobs to the grid for sn simulation
 
     executable="${SCRIPT_DIR}/triggersim.sh"
-    arguments="-m ${gen_fcl} -g ${g4_fcl} -d ${detsim_fcl} -r ${reco_fcl} -j ${JSON_SETTINGS} -f ${sim_name}_triggerValidationTest -n ${n_events} --home-config ${REPO_HOME}"
+    arguments="-m ${gen_fcl} -g ${g4_fcl} -d ${detsim_fcl} -r ${reco_fcl} -j ${JSON_SETTINGS} -f ${sim_name}_triggerValidationTest -n ${n_events} --home-config ${HOME_DIR}"
     # adding path
     output_file="${output_folder}${output_file}"
 

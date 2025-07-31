@@ -2,11 +2,11 @@
 
 TRIGGER_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 export TRIGGER_DIR
-export REPO_HOME="$(dirname "$TRIGGER_DIR")"
-source $REPO_HOME/scripts/init.sh
+export HOME_DIR="$(dirname "$TRIGGER_DIR")"
+source $HOME_DIR/scripts/init.sh
 
-list_of_jobs=$REPO_HOME"/dat/triggerValidation_fcls.dat"
-output_file="${REPO_HOME}/trigger_production/footprintSummary.txt"
+list_of_jobs=$HOME_DIR"/dat/triggerValidation_fcls.dat"
+output_file="${HOME_DIR}/trigger_production/footprintSummary.txt"
 
 n_events=10
 user_name=$(whoami)
@@ -33,7 +33,7 @@ for i in $(seq 3 $n_lines); do
     line=$(sed -n "${i}p" $list_of_jobs | tr -d '|')
     # split the line
     sim_name=$(echo $line | awk '{print $1}')
-    job_printout="${REPO_HOME}/trigger_production/${user_name}_validationTest_${sim_name}_${n_events}events.txt"
+    job_printout="${HOME_DIR}/trigger_production/${user_name}_validationTest_${sim_name}_${n_events}events.txt"
 
     echo ""
     echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"

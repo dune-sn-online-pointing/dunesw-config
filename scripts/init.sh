@@ -3,7 +3,7 @@
 # don't rerun if variables are already defined. TODO decide about this...?
 # the problem is that when sourcing scripts inside others, the env variables are not accessible to 
 # the lower level one. Verbose output does not seem like to bad at the moment
-# if [ -n "$REPO_HOME" ]; then
+# if [ -n "$HOME_DIR" ]; then
 #     exit 0
 # fi
 
@@ -17,14 +17,14 @@ echo "init.sh script started"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 export SCRIPT_DIR
 
-export REPO_HOME=$(dirname $SCRIPT_DIR)
-echo " Repository home is $REPO_HOME"
+export HOME_DIR=$(dirname $SCRIPT_DIR)
+echo " Repository home is $HOME_DIR"
 
-export DAT_DIR="$REPO_HOME/dat/"
-export FCL_DIR="$REPO_HOME/fcl/"
-export JSON_DIR="$REPO_HOME/json/"
-export DOCS_DIR="$REPO_HOME/docs/"
-export PYTHON_DIR="$REPO_HOME/python/"
+export DAT_DIR="$HOME_DIR/dat/"
+export FCL_DIR="$HOME_DIR/fcl/"
+export JSON_DIR="$HOME_DIR/json/"
+export DOCS_DIR="$HOME_DIR/docs/"
+export PYTHON_DIR="$HOME_DIR/python/"
 echo "Set up local directories"
 
 # export REPO_VERSION=""
@@ -34,8 +34,8 @@ echo "Set up local directories"
 # export GIT_DESCRIBE=$(git describe --tags --always)
 
 # read version from docs/tof-reco-version.dat
-# if [ -f $REPO_HOME/docs/version.txt ]; then
-#     export REPO_VERSION=$(cat $REPO_HOME/docs/tof-reco-version.txt)
+# if [ -f $HOME_DIR/docs/version.txt ]; then
+#     export REPO_VERSION=$(cat $HOME_DIR/docs/tof-reco-version.txt)
 #     echo " Found version file, tof-reco version is $REPO_VERSION"
 #     if [ "$REPO_VERSION" != "$GIT_DESCRIBE" ] && [ "$PRINTED_VERSION_WARNING" == false ]; then
 #         echo " WARNING: The version file does not match the git tag: $GIT_DESCRIBE. This indicates that you have local changes."
