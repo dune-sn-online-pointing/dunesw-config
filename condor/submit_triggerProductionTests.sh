@@ -2,8 +2,8 @@
 
 CONDOR_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 export CONDOR_DIR
-export REPO_HOME=$(dirname $CONDOR_DIR)
-source $REPO_HOME/scripts/init.sh
+export HOME_DIR=$(dirname $CONDOR_DIR)
+source $HOME_DIR/scripts/init.sh
 
 # parser
 print_help() {
@@ -23,7 +23,7 @@ json_settings=""
 first=""
 last=""
 n_events=10
-list_of_jobs=$REPO_HOME"/dat/triggerValidation_fcls.dat"
+list_of_jobs=$HOME_DIR"/dat/triggerValidation_fcls.dat"
 
 
 # parse
@@ -49,7 +49,7 @@ user_name=$(whoami)
 user_email=$user_name"@cern.ch"
 
 # for output of condor jobs
-output_folder="${REPO_HOME}/condor/job_output/"
+output_folder="${HOME_DIR}/condor/job_output/"
 
 # count lines in triggerValidation_fcls.txt
 n_lines=$(wc -l < $list_of_jobs)
@@ -94,11 +94,11 @@ for i in $(seq 3 $n_lines); do
     notification        = Always
 
     JOBNAME             = ${job_name}
-    executable          = ${REPO_HOME}/scripts/triggersim.sh
-    arguments           = -m ${gen_fcl} -g ${g4_fcl} -d ${detsim_fcl} -r ${reco_fcl} -j ${json_settings} -f ${sim_name}_triggerValidationTest -n ${n_events} --home-config ${REPO_HOME}
-    output              = ${REPO_HOME}/condor/job_output/${now}_job.\$(JOBNAME).\$(ClusterId).\$(ProcId).out
-    error               = ${REPO_HOME}/condor/job_output/${now}_job.\$(JOBNAME).\$(ClusterId).\$(ProcId).out
-    log                 = ${REPO_HOME}/condor/job_output/${now}_job.\$(JOBNAME).\$(ClusterId).log
+    executable          = ${HOME_DIR}/scripts/triggersim.sh
+    arguments           = -m ${gen_fcl} -g ${g4_fcl} -d ${detsim_fcl} -r ${reco_fcl} -j ${json_settings} -f ${sim_name}_triggerValidationTest -n ${n_events} --home-config ${HOME_DIR}
+    output              = ${HOME_DIR}/condor/job_output/${now}_job.\$(JOBNAME).\$(ClusterId).\$(ProcId).out
+    error               = ${HOME_DIR}/condor/job_output/${now}_job.\$(JOBNAME).\$(ClusterId).\$(ProcId).out
+    log                 = ${HOME_DIR}/condor/job_output/${now}_job.\$(JOBNAME).\$(ClusterId).log
     # request_cpus        = 1
     # request_memory      = 2000
 

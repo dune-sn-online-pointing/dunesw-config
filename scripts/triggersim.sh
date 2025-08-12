@@ -19,11 +19,13 @@ delete_root_files=false
 clean_folder=false
 
 # fcls, just some casual defaults
-GEN_FCL='prodmarley_nue_flat_CC_dune10kt_1x2x2'
-# GEN_FCL='prodmarley_nue_cc_spectrum_radiological_decay0_dune10kt_1x2x2' 
+GEN_FCL='prodmarley_nue_es_flat_dune10kt_1x2x2'
+# GEN_FCL='prodmarley_nue_cc_flat_dune10kt_1x2x2'
+# GEN_FCL='prodmarley_nue_es_gkvm_radiological_decay0_dune10kt_1x2x2' 
+# GEN_FCL='prodmarley_nue_cc_gkvm_radiological_decay0_dune10kt_1x2x2' 
 G4_FCL='supernova_g4_dune10kt_1x2x2'
 DETSIM_FCL='detsim_dune10kt_1x2x2_notpcsigproc'   # check noise
-RECO_FCL='triggerana_tree_1x2x2_simpleThr_simpleWin_simpleWin'       
+RECO_FCL='triggerana_tree_1x2x2_simpleThr909080.fcl' # current default, might change       
 
 # other params that is better to initialize
 JSON_SETTINGS="settings_template.json"
@@ -63,7 +65,7 @@ print_help() {
 # Parse command-line arguments
 while [[ $# -gt 0 ]]; do
     case "$1" in
-        --home-config)       REPO_HOME="${2%/}"; shift 2 ;;
+        --home-config)       HOME_DIR="${2%/}"; shift 2 ;;
         -j|--json-settings)  JSON_SETTINGS="$2"; shift 2 ;;
         -m|--marley)         run_marley=true; [[ "$2" != -* ]] && GEN_FCL="${2%.fcl}" && shift; shift ;;
         -M|--Marley)         GEN_FCL="${2%.fcl}"; shift 2 ;;
@@ -95,8 +97,8 @@ findSettings_command="$SCRIPT_DIR/findSettings.sh -s $JSON_SETTINGS"
 JSON_SETTINGS=$( $findSettings_command | tail -n 1)
 echo -e "Settings file found, full path is: $JSON_SETTINGS \n"
 
-# If REPO_HOME is not set, stop the script
-if [ -z "$REPO_HOME" ]; then
+# If HOME_DIR is not set, stop the script
+if [ -z "$HOME_DIR" ]; then
     echo "Path to the dunesw-config folder is required, give it through the flag --home-folder. Exiting..."
     exit 1
 fi
@@ -114,18 +116,19 @@ else
     echo "Folder $DUNESW_FOLDER_NAME does not exist, no local products being sourced."
     echo "A folder with the dunesw version will be created for the outputs"
     export DUNESW_FOLDER_NAME="" # empty it
-    GLOBAL_OUTPUT_FOLDER="$(cd "$REPO_HOME/.." && pwd)/${DUNESW_VERSION}/output/"
+    GLOBAL_OUTPUT_FOLDER="$(cd "$HOME_DIR/.." && pwd)/${DUNESW_VERSION}/output/"
 fi
 
 echo "Output folder is $GLOBAL_OUTPUT_FOLDER, creating it in case it does not exist"
 mkdir -p "$GLOBAL_OUTPUT_FOLDER"
 
-setup_dunesw="${REPO_HOME}/scripts/setup_dunesw.sh" 
+setup_dunesw="${HOME_DIR}/scripts/setup_dunesw.sh" 
 
 # Source the required scripts for execution
 if [ "$source_flag" = true ]; then
     # extract dunesw version from filename, it assumes there is a local install
     # and the location is the one in the json file
+    echo "Running command: source $setup_dunesw $DUNESW_VERSION"
     source $setup_dunesw $DUNESW_VERSION
 fi
 
@@ -156,7 +159,7 @@ fi
 
 SIMULATION_NAME="${GEN_FCL_CHANGED}-${RECO_FCL}-${number_events}events"
 DATA_PATH="${GLOBAL_OUTPUT_FOLDER}${SIMULATION_CATEGORY}/${SIMULATION_NAME}_${OUTFOLDER_ENDING}/"
-FCL_FOLDER="$REPO_HOME/fcl/" 
+FCL_FOLDER="$HOME_DIR/fcl/" 
 
 export FHICL_FILE_PATH="$FCL_FOLDER":$FHICL_FILE_PATH # in this way lar will find the fcls under ../fcl/
 export FHICL_FILE_PATH="$DATA_PATH":$FHICL_FILE_PATH # some fcls are going to be here
@@ -168,7 +171,7 @@ if [ "$clean_folder" = true ]; then
 fi
 
 # going here to generate the fcl files for custom E and/or direction
-cd "$REPO_HOME"
+cd "$HOME_DIR"
 echo "We are in $(pwd)"
 
 # create output folder
@@ -184,27 +187,27 @@ fhicl-dump ${RECO_FCL}.fcl > $DATA_PATH/${RECO_FCL}_dump.fcl
 # If standard, generate new fcl using standard-fcl.sh
 if [ "$SIMULATION_CATEGORY" = "standard" ]; then
     echo "Generating fcl file with standard values..."
-    . $REPO_HOME/scripts/standard-fcl.sh -f "$GEN_FCL" -v -o "$DATA_PATH"
+    . $HOME_DIR/scripts/standard-fcl.sh -f "$GEN_FCL" -v -o "$DATA_PATH"
     echo " "
 fi
 
 # If custom direction is selected, generate a random direction and create a new fcl file
 if [ "$SIMULATION_CATEGORY" = "directions" ]; then
     # generate the direction and print it in the fcl and in a txt file
-    . $REPO_HOME/scripts/custom-direction.sh -f "$GEN_FCL" -v -o "$DATA_PATH"
+    . $HOME_DIR/scripts/custom-direction.sh -f "$GEN_FCL" -v -o "$DATA_PATH"
     echo " "
 fi
 
 # If custom energy is selected, generate energy bins and create a new fcl file
 if [ "$SIMULATION_CATEGORY" = "energies" ]; then
     echo "Generating fcl file with custom energy range, $energy_min to $energy_max..."
-    . $REPO_HOME/scripts/custom-energy.sh -f "$GEN_FCL" -m "$energy_min" -M "$energy_max" -v -o "$DATA_PATH"
+    . $HOME_DIR/scripts/custom-energy.sh -f "$GEN_FCL" -m "$energy_min" -M "$energy_max" -v -o "$DATA_PATH"
     echo " "
 fi
 
 if [ "$SIMULATION_CATEGORY" = "customEandD" ]; then
     echo "Generating fcl file with custom energy range and direction..."
-    . $REPO_HOME/scripts/custom-enAndDir.sh -f "$GEN_FCL" -m "$energy_min" -M "$energy_max" -v -o "$DATA_PATH"
+    . $HOME_DIR/scripts/custom-enAndDir.sh -f "$GEN_FCL" -m "$energy_min" -M "$energy_max" -v -o "$DATA_PATH"
     echo " "
 fi
 
@@ -242,13 +245,13 @@ if [ "$run_marley" = true ]; then
     gen_exec_time=$(($gen_end_time - $gen_start_time))
     echo "Generation took $gen_exec_time seconds"
     echo "$gen_exec_time" > "${DATA_PATH}execTime.txt"
-
+    echo "Size of the gen file is $(du -h ${DATA_PATH}${GEN_FCL}.root | awk '{print $1}')"
 fi
 
 if [ "$run_g4" = true ]; then
     
     echo "Starting Geant4 simulation..."
-    detsim_start_time=$(date +%s)
+    g4_start_time=$(date +%s)
     echo "Starting detector simulation at $detsim_start_time"
 
     command_g4="lar -c ${G4_FCL}.fcl -n $number_events -s ${DATA_PATH}${GEN_FCL}.root -o ${DATA_PATH}${GEN_FCL}_g4.root"
@@ -268,12 +271,12 @@ if [ "$run_g4" = true ]; then
     fi
     echo ""
 
-    detsim_end_time=$(date +%s)
-    echo "Ending detector simulation at $detsim_end_time"
-    detsim_exec_time=$(($detsim_end_time - $detsim_start_time))
-    echo "G4 simulation took $detsim_exec_time seconds"
-    echo "$detsim_exec_time" > "${DATA_PATH}execTime.txt"
-
+    g4_end_time=$(date +%s)
+    echo "Ending G4 at $g4_end_time"
+    g4_exec_time=$(($g4_end_time - $g4_start_time))
+    echo "G4 simulation took $g4_exec_time seconds"
+    echo "$g4_exec_time" > "${DATA_PATH}execTime.txt"
+    echo "Size of the g4 file is $(du -h ${DATA_PATH}${GEN_FCL}_g4.root | awk '{print $1}')"
 fi
 
 if [ "$run_detsim" = true ]; then
@@ -303,7 +306,7 @@ if [ "$run_detsim" = true ]; then
     detsim_exec_time=$(($detsim_end_time - $detsim_start_time))
     echo "Detsim took $detsim_exec_time seconds"
     echo "$detsim_exec_time" > "${DATA_PATH}execTime.txt"
-
+    echo "Size of the detsim file is $(du -h ${DATA_PATH}${GEN_FCL}_g4_detsim.root | awk '{print $1}')"
 fi
 
 if [ "$run_reconstruction" = true ]; then
@@ -352,28 +355,30 @@ echo "Items here are $(ls -l)"
 # Delete root files
 if [ "$delete_root_files" = true ]; then
     echo "Deleting root files to save memory..."    
-    rm -f "${DATA_PATH}*.root"
+    # rm -f "${DATA_PATH}*.root"
+    rm -f "${DATA_PATH}${GEN_FCL}_*.root"
     rm -f ./-_detsim_hist.root # Sometimes there is this product, remove it
 fi
 
+# if in lxplus, storage is in eos. If on gpvms, storage is in /exp/dune/data/users/emvilla/sn-tps/
+if [[ $(hostname) == *"lxplus"* ]]; then
+    STORAGE_FOLDER="/eos/user/e/evilla/dune/sn-tps/"       # standard, for now. Subfolders are selected automatically
+elif [[ $(hostname) == *"fnal"* ]]; then
+    STORAGE_FOLDER="/exp/dune/data/users/emvilla/sn-tps/"  # standard, for now. Subfolders are selected automatically
+fi 
+
+
 if [ "$run_reconstruction" = true ] && [[ "$RECO_FCL" == *"trigger"* ]] && [[ $(whoami) == "*villa" ]]; then
-    EOS_FOLDER="/eos/user/e/evilla/dune/sn-tps/"       # standard, for now. Subfolders are selected automatically
+    
     # Move all products to the folder
-    FINAL_FOLDER="${EOS_FOLDER}${SIMULATION_CATEGORY}/aggregated_${SIMULATION_NAME}/" # TODO grep threshold from somewhere
+    FINAL_FOLDER="${STORAGE_FOLDER}${SIMULATION_CATEGORY}/aggregated_${SIMULATION_NAME}/" # TODO grep threshold from somewhere
     echo "Creating final folder $FINAL_FOLDER"
     mkdir -p "$FINAL_FOLDER"
-    echo "Moving custom direction and TPs to $FINAL_FOLDER"
+    echo "Moving TPs to $FINAL_FOLDER"
     TP_FILE="triggersim_hist.root" # TODO make this absolute or grep it
     moving_tps="cp ${TP_FILE} ${FINAL_FOLDER}tpstream_${OUTFOLDER_ENDING}.root"
     echo "$moving_tps"
     $moving_tps
-
-    if [ "$custom_direction" = true ]; then
-        # move the custom direction file
-        moving_custom_direction="cp ${DATA_PATH}customDirection.txt ${FINAL_FOLDER}customDirection_${OUTFOLDER_ENDING}.txt"
-        echo "$moving_custom_direction"
-        $moving_custom_direction
-    fi
 fi
 
 if [ "$clean_folder" = true ]; then
@@ -382,8 +387,8 @@ if [ "$clean_folder" = true ]; then
 fi
 
 # Print the data path
-echo "Moving back to $REPO_HOME/scripts"
-cd "$REPO_HOME/scripts"
+echo "Moving back to $HOME_DIR/scripts"
+cd "$HOME_DIR/scripts"
 echo "If it has not been cleaned, all products are in $DATA_PATH"
 
 if [ "$run_reconstruction" = true ] && [[ "$RECO_FCL" == *"trigger"* ]] && [[ $(whoami) == "*villa" ]]; then

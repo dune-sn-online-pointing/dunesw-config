@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # it contains the fcls and the scripts that are called here
-REPO_HOME="$(git rev-parse --show-toplevel)"
-echo "REPO_HOME for script run-sn-simulation.sh: $REPO_HOME"
+HOME_DIR="$(git rev-parse --show-toplevel)"
+echo "HOME_DIR for script run-sn-simulation.sh: $HOME_DIR"
 echo "When running in condor, this won't work. Use the --home-config flag to set the path to the dunesw-config folder"
 # this script has to be run from the dunesw-config area 
 
@@ -60,7 +60,7 @@ print_help() {
 # Parse command-line arguments
 while [[ $# -gt 0 ]]; do
     case "$1" in
-        --home-config)       REPO_HOME="${2%/}"; shift 2 ;;
+        --home-config)       HOME_DIR="${2%/}"; shift 2 ;;
         -j|--json-settings)  JSON_SETTINGS="$2"; shift 2 ;;
         -m|--marley)         run_marley=true; [[ "$2" != -* ]] && GEN_FCL="${2%.fcl}" && shift; shift ;;
         --custom-direction)  custom_direction=true; shift ;;
@@ -87,17 +87,17 @@ fi
 
 # in case this is a relative path, add path
 if [[ "$JSON_SETTINGS" != /* ]]; then
-    JSON_SETTINGS="${REPO_HOME}/json/${JSON_SETTINGS}"
+    JSON_SETTINGS="${HOME_DIR}/json/${JSON_SETTINGS}"
     echo "JSON settings file is $JSON_SETTINGS"
 fi
 
-# If REPO_HOME is not set, stop the script
-if [ -z "$REPO_HOME" ]; then
+# If HOME_DIR is not set, stop the script
+if [ -z "$HOME_DIR" ]; then
     echo "Path to the dunesw-config folder is required, give it through the flag --home-folder. Exiting..."
     exit 1
 fi
 
-FCL_FOLDER="$REPO_HOME/fcl/v9/" # this sim became legacy using dunesw v9, moved fcls here
+FCL_FOLDER="$HOME_DIR/fcl/v9/" # this sim became legacy using dunesw v9, moved fcls here
 
 # Where the dunesw is installed
 # DUNESW_FOLDER_NAME="$(awk -F'""' '/duneswInstallPath/{print $4}' "$JSON_SETTINGS")"
@@ -146,7 +146,7 @@ if [ "$clean_folder" = true ]; then
 fi
 
 # going here to generate the fcl files for custom E and/or direction
-cd "$REPO_HOME"
+cd "$HOME_DIR"
 echo "We are in $(pwd)"
 
 # create output folder
@@ -156,20 +156,20 @@ echo "Data will be saved in $DATA_PATH"
 # If custom direction is selected, generate a random direction and create a new fcl file
 if [ "$custom_direction" = true ] && [ "$custom_energy" = false ]; then
     # generate the direction and print it in the fcl and in a txt file
-    . $REPO_HOME/scripts/custom-direction.sh -f "$GEN_FCL" -v -o "$DATA_PATH"
+    . $HOME_DIR/scripts/custom-direction.sh -f "$GEN_FCL" -v -o "$DATA_PATH"
     echo " "
 fi
 
 # If custom energy is selected, generate energy bins and create a new fcl file
 if [ "$custom_energy" = true ] && [ "$custom_direction" = false ]; then
     echo "Generating fcl file with custom energy range, $energy_min to $energy_max..."
-    . $REPO_HOME/scripts/custom-energy.sh -f "$GEN_FCL" -m "$energy_min" -M "$energy_max" -v -o "$DATA_PATH"
+    . $HOME_DIR/scripts/custom-energy.sh -f "$GEN_FCL" -m "$energy_min" -M "$energy_max" -v -o "$DATA_PATH"
     echo " "
 fi
 
 if [ "$custom_energy" = true ] && [ "$custom_direction" = true ]; then
     echo "Generating fcl file with custom energy range and direction..."
-    . $REPO_HOME/scripts/custom-enAndDir.sh -f "$GEN_FCL" -m "$energy_min" -M "$energy_max" -v -o "$DATA_PATH"
+    . $HOME_DIR/scripts/custom-enAndDir.sh -f "$GEN_FCL" -m "$energy_min" -M "$energy_max" -v -o "$DATA_PATH"
     echo " "
 fi
 
@@ -179,7 +179,7 @@ echo "We are now in $(pwd)"
 echo "Items here are $(ls)"
 
 # copying the original gen fcl to the folder, it is used by the GEN_FCL_CHANGED
-cp $REPO_HOME/fcl/${GEN_FCL}.fcl $DATA_PATH
+cp $HOME_DIR/fcl/${GEN_FCL}.fcl $DATA_PATH
 
 start_time=$(date +%s)
 echo "Starting simulation at $start_time"

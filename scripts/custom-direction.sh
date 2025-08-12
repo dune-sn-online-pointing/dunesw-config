@@ -4,7 +4,7 @@
 
 # this script is meant to be run from inside the dunesw-config repository
 # or git might have problems
-REPO_HOME="$(git rev-parse --show-toplevel)"
+HOME_DIR="$(git rev-parse --show-toplevel)"
 # catch errors and say that the script must be run from its location
 echo "If you see a git error, it is because the script must be run from inside the dunesw-config repository."
 
@@ -35,7 +35,7 @@ while [[ $# -gt 0 ]]; do
 done
 
 if [[ "$verbose" == "true" ]]; then
-    echo "REPO_HOME for script custom-enAndDir.sh: $REPO_HOME"
+    echo "HOME_DIR for script custom-enAndDir.sh: $HOME_DIR"
 fi
 
 # if no fcl file is provided, stop execution
@@ -66,7 +66,7 @@ if [[ "$verbose" == true ]]; then
     echo "Generating random theta and phi..."
 fi
 
-direction=$(python3 $REPO_HOME/scripts/generate_direction.py)
+direction=$(python3 $HOME_DIR/scripts/generate_direction.py)
 x=$(echo $direction | awk '{print $1}')
 y=$(echo $direction | awk '{print $2}')
 z=$(echo $direction | awk '{print $3}')

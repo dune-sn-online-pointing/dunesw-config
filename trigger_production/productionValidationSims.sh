@@ -2,8 +2,8 @@
 
 TRIGGER_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 export TRIGGER_DIR
-export REPO_HOME="$(dirname "$TRIGGER_DIR")"
-source $REPO_HOME/scripts/init.sh
+export HOME_DIR="$(dirname "$TRIGGER_DIR")"
+source $HOME_DIR/scripts/init.sh
 
 # parser
 print_help() {
@@ -19,18 +19,18 @@ print_help() {
 
 # init
 delete_submit_files=false
-json_settings="settings_template.json"
+JSON_SETTINGS="settings_template.json"
 first=""
 last=""
 n_events=10
-list_of_jobs=$REPO_HOME"/dat/triggerValidation_fcls.dat"
-output_folder="${REPO_HOME}/trigger_production/"
+list_of_jobs=$HOME_DIR"/dat/triggerValidation_fcls.dat"
+output_folder="${HOME_DIR}/trigger_production/"
 print_only=false
 
 # parse
 while [[ "$#" -gt 0 ]]; do
     case $1 in
-        -j|--json-settings) json_settings="$2"; shift 2;;
+        -j|--json-settings) JSON_SETTINGS="$2"; shift 2;;
         -n|--n-events)      n_events="$2"; shift 2;;
         -p|--print-only)    print_only=true; shift ;;
         -h|--help)          print_help ;;
@@ -39,12 +39,11 @@ while [[ "$#" -gt 0 ]]; do
     shift
 done
 
-
-echo "Looking for settings file $json_settings. If execution stops, it means that the file was not found."
-findSettings_command="$SCRIPT_DIR/findSettings.sh -s $json_settings"
+echo "Looking for settings file $JSON_SETTINGS. If execution stops, it means that the file was not found."
+findSettings_command="$SCRIPT_DIR/findSettings.sh -s $JSON_SETTINGS"
 # last line of the output of findSettings.sh is the full path of the settings file
-json_settings=$( $findSettings_command | tail -n 1)
-echo -e "Settings file found, full path is: $json_settings \n"
+JSON_SETTINGS=$( $findSettings_command | tail -n 1)
+echo -e "Settings file found, full path is: $JSON_SETTINGS \n"
 
 user_name=$(whoami)
 
@@ -84,7 +83,7 @@ for i in $(seq 3 $n_lines); do
     # script to submit jobs to the grid for sn simulation
 
     executable="${SCRIPT_DIR}/triggersim.sh"
-    arguments="-m ${gen_fcl} -g ${g4_fcl} -d ${detsim_fcl} -r ${reco_fcl} -j ${json_settings} -f ${sim_name}_triggerValidationTest -n ${n_events} --home-config ${REPO_HOME}"
+    arguments="-m ${gen_fcl} -g ${g4_fcl} -d ${detsim_fcl} -r ${reco_fcl} -j ${JSON_SETTINGS} -f ${sim_name}_triggerValidationTest -n ${n_events} --home-config ${HOME_DIR}"
     # adding path
     output_file="${output_folder}${output_file}"
 

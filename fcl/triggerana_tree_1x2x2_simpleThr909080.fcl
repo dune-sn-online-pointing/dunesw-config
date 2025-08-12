@@ -1,0 +1,33 @@
+# custom
+
+#include "triggerana_tree_1x2x2_simpleThr_simpleWin_simpleWin.fcl"
+
+# run only TP generation
+physics.ana: [
+   "triggerAnaDumpTPs"
+]
+physics.analyzers: {
+   triggerAnaDumpTPs: {
+      dump_mctruths: true
+      dump_simides: true
+      dump_ta: false
+      dump_tc: false
+      dump_tp: true
+      module_type: "TriggerAnaTree"
+      simchannel_tag: "tpcrawdecoder:simpleSC"
+   }
+}
+physics.producers: {
+    tpmakerTPC: {
+        module_type: "TriggerPrimitiveMakerTPC"
+        rawdigit_tag: "tpcrawdecoder:daq"
+        tpalg: {
+            threshold_tpg_plane0: 90
+            threshold_tpg_plane1: 90
+            threshold_tpg_plane2: 80
+            tool_type: "TPAlgTPCSimpleThreshold"
+            verbosity: 0
+        }
+    }
+}
+physics.makers: [ "tpmakerTPC" ]

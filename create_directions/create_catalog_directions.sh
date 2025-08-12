@@ -15,7 +15,7 @@ function print_help() {
     exit 0
 }
 
-REPO_HOME="$(git rev-parse --show-toplevel)"
+HOME_DIR="$(git rev-parse --show-toplevel)"
 verbose=false
 output_folder="${HOME_PATH}/create_directions/output" # by default, can be overwritten
 
@@ -77,7 +77,7 @@ fi
 # generate the catalog of random directions
 for i in $(seq 1 $number_of_directions); do
 
-    command_to_run="sh ${REPO_HOME}/scripts/custom-direction.sh -f ${original_fcl}.fcl -o ${output_folder}"
+    command_to_run="sh ${HOME_DIR}/scripts/custom-direction.sh -f ${original_fcl}.fcl -o ${output_folder}"
 
     if [ "$verbose" = true ]; then
         echo "Generating direction $i..."

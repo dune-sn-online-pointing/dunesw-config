@@ -16,8 +16,9 @@ clean_folder=false
 CONVERT_FCL='run_pdhd_tpc_decoder'   
 # RECO_FCL='triggerana_tpc_infodisplay_protodunehd_simpleThr_simpleWin_simpleWin'           
 RECO_FCL='triggerana_tpc_infocomparator_protodunehd_simpleThr_simpleWin_simpleWin'     
-HDF5_TESTER="/exp/dune/app/users/emvilla/np04hd_raw_run029424_0003_dataflow0_datawriter_0_20241004T174144.hdf5"      
-# HDF5_TESTER="/exp/dune/app/users/dpullia/trigger_dev_test/np04hd_raw_run029424_0011_dataflow0_datawriter_0_20241004T175209.hdf5"
+TESTER_FILE="/exp/dune/app/users/emvilla/np04hd_raw_run029424_0003_dataflow0_datawriter_0_20241004T174144.hdf5"      
+# TESTER_FILE="/exp/dune/app/users/dpullia/trigger_dev_test/np04hd_raw_run029424_0011_dataflow0_datawriter_0_20241004T175209.hdf5"
+INPUT_FILE="$TESTER_FILE" # Default input file, change it if needed
 
 # other params that is better to initialize
 JSON_SETTINGS="settings_template.json"
@@ -31,6 +32,7 @@ print_help() {
     echo "Options:"
     echo "  -j, --json-settings    JSON file with paths and settings. It has to be in the dunesw-config/json folder"
     echo "  --home-config          Path to the dunesw-config folder. Default is the current folder, but it won't work  in Condor"
+    echo "  -i, --input-file       Input hdf5 file"
     echo "  -c, --convert          Convert raw data to root"
     echo "  -C, --convert          Without running"
     echo "  -r, --reconstruction   Run event reconstruction"
@@ -51,8 +53,9 @@ print_help() {
 # Parse command-line arguments
 while [[ $# -gt 0 ]]; do
     case "$1" in
-        --home-config)       REPO_HOME="${2%/}"; shift 2 ;;
+        --home-config)       HOME_DIR="${2%/}"; shift 2 ;;
         -j|--json-settings)  JSON_SETTINGS="$2"; shift 2 ;;
+        -i|--input-file)     INPUT_FILE="$2"; shift 2 ;;
         -c|--convert)        run_convert=true; [[ "$2" != -* ]] && CONVERT_FCL="${2%.fcl}" && shift; shift ;;
         -C|--convert)        CONVERT_FCL="${2%.fcl}"; shift 2 ;;
         -r|--reconstruction) run_reconstruction=true; [[ "$2" != -* ]] && RECO_FCL="${2%.fcl}" && shift; shift ;;
@@ -74,8 +77,8 @@ findSettings_command="$SCRIPT_DIR/findSettings.sh -s $JSON_SETTINGS"
 JSON_SETTINGS=$( $findSettings_command | tail -n 1)
 echo -e "Settings file found, full path is: $JSON_SETTINGS \n"
 
-# If REPO_HOME is not set, stop the script
-if [ -z "$REPO_HOME" ]; then
+# If HOME_DIR is not set, stop the script
+if [ -z "$HOME_DIR" ]; then
     echo "Path to the dunesw-config folder is required, give it through the flag --home-folder. Exiting..."
     exit 1
 fi
@@ -93,13 +96,13 @@ else
     echo "Folder $DUNESW_FOLDER_NAME does not exist, no local products being sourced."
     echo "A folder with the dunesw version will be created for the outputs"
     export DUNESW_FOLDER_NAME="" # empty it
-    GLOBAL_OUTPUT_FOLDER="$(cd "$REPO_HOME/.." && pwd)/${DUNESW_VERSION}/output/"
+    GLOBAL_OUTPUT_FOLDER="$(cd "$HOME_DIR/.." && pwd)/${DUNESW_VERSION}/output/"
 fi
 
 echo "Output folder is $GLOBAL_OUTPUT_FOLDER, creating it in case it does not exist"
 mkdir -p "$GLOBAL_OUTPUT_FOLDER"
 
-setup_dunesw="${REPO_HOME}/scripts/setup_dunesw.sh" 
+setup_dunesw="${HOME_DIR}/scripts/setup_dunesw.sh" 
 
 # Source the required scripts for execution
 if [ "$source_flag" = true ]; then
@@ -113,7 +116,7 @@ EOS_FOLDER="/eos/user/e/evilla/dune/sn-tps/"       # standard, for now. Subfolde
 
 
 # Add flux files to the path
-export FW_SEARCH_PATH=$FW_SEARCH_PATH:"$REPO_HOME/dat/"
+export FW_SEARCH_PATH=$FW_SEARCH_PATH:"$HOME_DIR/dat/"
 
 # if none of the run commands are true, stop script
 if [ "$run_convert" = false ] && [ "$run_reconstruction" = false ]; then
@@ -125,7 +128,7 @@ fi
 
 SIMULATION_NAME="${CONVERT_FCL}-${RECO_FCL}-${number_events}events"
 DATA_PATH="${GLOBAL_OUTPUT_FOLDER}/${SIMULATION_NAME}_${OUTFOLDER_ENDING}/"
-FCL_FOLDER="$REPO_HOME/fcl/" 
+FCL_FOLDER="$HOME_DIR/fcl/" 
 
 export FHICL_FILE_PATH="$FCL_FOLDER":$FHICL_FILE_PATH # in this way lar will find the fcl without needing the path
 export FHICL_FILE_PATH="$DATA_PATH":$FHICL_FILE_PATH # some fcls are going to be here
@@ -137,7 +140,7 @@ if [ "$clean_folder" = true ]; then
 fi
 
 # going here to generate the fcl files for custom E and/or direction
-cd "$REPO_HOME"
+cd "$HOME_DIR"
 echo "We are in $(pwd)"
 
 # create output folder
@@ -158,7 +161,7 @@ echo "Starting simulation at $start_time"
 
 if [ "$run_convert" = true ]; then
     converted_file="${DATA_PATH}TESTFILE_converted"
-    command_convert="lar -c ${CONVERT_FCL}.fcl -n ${number_events} -s ${HDF5_TESTER} -o  ${converted_file}.root"
+    command_convert="lar -c ${CONVERT_FCL}.fcl -n ${number_events} -s ${INPUT_FILE} -o  ${converted_file}.root"
     echo "Executing command: $command_convert"
     $command_convert
     
@@ -217,7 +220,7 @@ if [ "$clean_folder" = true ]; then
 fi
 
 # go back here
-cd $REPO_HOME
+cd $HOME_DIR
 
 # Print the data path
 echo "If it has not been cleaned, all products are in $DATA_PATH"

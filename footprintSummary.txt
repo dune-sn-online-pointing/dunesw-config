@@ -1,0 +1,40 @@
+Output file: 20250328_082605_job.evilla_validationTest_radBkgCentralAPA_5events.5041860.0.out
+Gen init	Exec time Gen (s/evt)	Init G4	Exec time G4 (s/evt)	Init detsim	Exec time Detsim (s/evt)	Init reco1	Exec time reco1 (s/evt)	Max Memory (MB)
+366.823	5.435	524.269	59.746	160.985	453.803	113.506	14.899	3521.170
+ 
+Output file: 20250328_082609_job.evilla_validationTest_radBkgLateralAPA_5events.5041861.0.out
+Gen init	Exec time Gen (s/evt)	Init G4	Exec time G4 (s/evt)	Init detsim	Exec time Detsim (s/evt)	Init reco1	Exec time reco1 (s/evt)	Max Memory (MB)
+437.605	5.679	605.048	35.390	146.530	277.294	121.986	16.803	3316.080
+ 
+Output file: radBkgCentralAPALowRate.txt
+ 
+Output file: radBkgLateralAPALowRate.txt
+ 
+Output file: singleElectrons.txt
+Gen init	Exec time Gen (s/evt)	Init G4	Exec time G4 (s/evt)	Init detsim	Exec time Detsim (s/evt)	Init reco1	Exec time reco1 (s/evt)	Max Memory (MB)
+4.991	0.002	141.294	0.341	27.061	13.388	17.940	4.412	3052.400
+ 
+Output file: singleMuons.txt
+Gen init	Exec time Gen (s/evt)	Init G4	Exec time G4 (s/evt)	Init detsim	Exec time Detsim (s/evt)	Init reco1	Exec time reco1 (s/evt)	Max Memory (MB)
+3.993	0.001	139.846	0.231	25.755	12.449	13.809	4.238	3052.310
+ 
+Output file: singleProtons.txt
+Gen init	Exec time Gen (s/evt)	Init G4	Exec time G4 (s/evt)	Init detsim	Exec time Detsim (s/evt)	Init reco1	Exec time reco1 (s/evt)	Max Memory (MB)
+2.989	0.002	144.562	0.088	24.470	11.706	14.149	4.370	3053.870
+ 
+Output file: 20250328_082603_job.evilla_validationTest_supernovaCC_5events.5041858.0.out
+Gen init	Exec time Gen (s/evt)	Init G4	Exec time G4 (s/evt)	Init detsim	Exec time Detsim (s/evt)	Init reco1	Exec time reco1 (s/evt)	Max Memory (MB)
+29.530	0.094	631.919	0.216	159.767	40.647	96.676	13.265	3055.050
+ 
+Output file: 20250328_082604_job.evilla_validationTest_supernovaES_5events.5041859.0.out
+Gen init	Exec time Gen (s/evt)	Init G4	Exec time G4 (s/evt)	Init detsim	Exec time Detsim (s/evt)	Init reco1	Exec time reco1 (s/evt)	Max Memory (MB)
+83.989	0.002	631.374	0.125	169.231	41.754	103.618	14.076	3048.850
+ 
+Output file: genienue.txt
+Gen init	Exec time Gen (s/evt)	Init G4	Exec time G4 (s/evt)	Init detsim	Exec time Detsim (s/evt)	Init reco1	Exec time reco1 (s/evt)	Max Memory (MB)
+152.632	5.874	144.562	6.488	25.881	32.224	16.223	4.355	3217.370
+ 
+Output file: 
+ 
+Output file: 
+ 

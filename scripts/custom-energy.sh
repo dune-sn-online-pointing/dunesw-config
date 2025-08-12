@@ -4,7 +4,7 @@
 
 # this script is meant to be run from inside the dunesw-config repository
 # or git might have problems
-REPO_HOME="$(git rev-parse --show-toplevel)"
+HOME_DIR="$(git rev-parse --show-toplevel)"
 # catch errors and say that the script must be run from its location
 echo "If you see a git error, it is because the script must be run from inside the dunesw-config repository."
 
