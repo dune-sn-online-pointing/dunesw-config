@@ -25,6 +25,7 @@ export FCL_DIR="$HOME_DIR/fcl/"
 export JSON_DIR="$HOME_DIR/json/"
 export DOCS_DIR="$HOME_DIR/docs/"
 export PYTHON_DIR="$HOME_DIR/python/"
+export CONDOR_DIR="$HOME_DIR/condor/"
 echo "Set up local directories"
 
 # export REPO_VERSION=""

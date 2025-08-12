@@ -92,7 +92,8 @@ while [[ $# -gt 0 ]]; do
 done
 
 echo "Looking for settings file $JSON_SETTINGS. If execution stops, it means that the file was not found."
-findSettings_command="$SCRIPT_DIR/findSettings.sh -s $JSON_SETTINGS"
+findSettings_command="$SCRIPT_DIR/findSettings.sh -j $JSON_SETTINGS --home-config $HOME_DIR"
+echo "Using command: $findSettings_command"
 # last line of the output of findSettings.sh is the full path of the settings file
 JSON_SETTINGS=$( $findSettings_command | tail -n 1)
 echo -e "Settings file found, full path is: $JSON_SETTINGS \n"
