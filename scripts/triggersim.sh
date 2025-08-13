@@ -21,7 +21,7 @@ clean_folder=false
 # fcls, just some casual defaults
 GEN_FCL='prodmarley_nue_es_flat_dune10kt_1x2x2'
 # GEN_FCL='prodmarley_nue_cc_flat_dune10kt_1x2x2'
-# GEN_FCL='prodmarley_nue_es_gkvm_radiological_decay0_dune10kt_1x2x2' 
+# GEN_FCL='prodmarley_nue_cc_gkvm_radiological_decay0_dune10kt_1x2x2_centralAPA.fcl' 
 # GEN_FCL='prodmarley_nue_cc_gkvm_radiological_decay0_dune10kt_1x2x2' 
 G4_FCL='supernova_g4_dune10kt_1x2x2'
 DETSIM_FCL='detsim_dune10kt_1x2x2_notpcsigproc'   # check noise
@@ -109,16 +109,20 @@ export DUNESW_VERSION=$(awk -F'[:,]' '/duneswVersion/ {gsub(/"| /, "", $2); prin
 export DUNESW_FOLDER_NAME=$(awk -F'[:,]' '/duneswInstallPath/ {gsub(/"| /, "", $2); print $2}' "$JSON_SETTINGS")
 echo "Setting up dunesw version $DUNESW_VERSION"
 echo "Expecting the software to be in: $DUNESW_FOLDER_NAME. (If empty or not valid, no local products are sourced)"
-# check if the folder exists
-if [ -d "$DUNESW_FOLDER_NAME" ]; then
-    echo "Folder $DUNESW_FOLDER_NAME exists"
-    GLOBAL_OUTPUT_FOLDER="${DUNESW_FOLDER_NAME}output/"
-else
-    echo "Folder $DUNESW_FOLDER_NAME does not exist, no local products being sourced."
-    echo "A folder with the dunesw version will be created for the outputs"
-    export DUNESW_FOLDER_NAME="" # empty it
-    GLOBAL_OUTPUT_FOLDER="$(cd "$HOME_DIR/.." && pwd)/${DUNESW_VERSION}/output/"
+
+# If the folder doesn't exist, create a new output folder
+GLOBAL_OUTPUT_FOLDER=$(awk -F'[:,]' '/outputPath/ {gsub(/"| /, "", $2); print $2}' "$JSON_SETTINGS")
+if [ -z "$GLOBAL_OUTPUT_FOLDER" ] || [ ! -d "$GLOBAL_OUTPUT_FOLDER" ]; then
+    if [[ $(hostname) == *"lxplus"* ]]; then
+        GLOBAL_OUTPUT_FOLDER="/eos/user/$(whoami | cut -c1)/$(whoami)/"
+    elif [[ $(hostname) == *"fnal"* ]]; then
+        GLOBAL_OUTPUT_FOLDER="/exp/dune/app/users/$(whoami)/"
+    else
+        GLOBAL_OUTPUT_FOLDER="./output/"
+    fi
 fi
+
+GLOBAL_OUTPUT_FOLDER="$GLOBAL_OUTPUT_FOLDER/$DUNESW_VERSION/"
 
 echo "Output folder is $GLOBAL_OUTPUT_FOLDER, creating it in case it does not exist"
 mkdir -p "$GLOBAL_OUTPUT_FOLDER"
@@ -166,10 +170,8 @@ export FHICL_FILE_PATH="$FCL_FOLDER":$FHICL_FILE_PATH # in this way lar will fin
 export FHICL_FILE_PATH="$DATA_PATH":$FHICL_FILE_PATH # some fcls are going to be here
 
 # in case there is a previous one, clean it
-if [ "$clean_folder" = true ]; then
-    echo "Cleaning folder..."
-    rm -rf "$DATA_PATH"
-fi
+echo "Cleaning output folder if existing..."
+rm "$DATA_PATH"/* 2>/dev/null || true
 
 # going here to generate the fcl files for custom E and/or direction
 cd "$HOME_DIR"
@@ -229,7 +231,7 @@ if [ "$run_marley" = true ]; then
     gen_start_time=$(date +%s)
     echo "Starting generation at $gen_start_time"
 
-    command_marley="lar -c ${DATA_PATH}${GEN_FCL_CHANGED}.fcl -n $number_events -o ${DATA_PATH}${GEN_FCL}.root"
+    command_marley="lar -c ${DATA_PATH}${GEN_FCL_CHANGED}.fcl -n $number_events -o ${DATA_PATH}gen.root"
     echo "Executing command: $command_marley"
     $command_marley
 
@@ -248,7 +250,7 @@ if [ "$run_marley" = true ]; then
     gen_exec_time=$(($gen_end_time - $gen_start_time))
     echo "Generation took $gen_exec_time seconds"
     echo "$gen_exec_time" > "${DATA_PATH}execTime.txt"
-    echo "Size of the gen file is $(du -h ${DATA_PATH}${GEN_FCL}.root | awk '{print $1}')"
+    echo "Size of the gen file is $(du -h ${DATA_PATH}gen.root | awk '{print $1}')"
 fi
 
 if [ "$run_g4" = true ]; then
@@ -257,7 +259,7 @@ if [ "$run_g4" = true ]; then
     g4_start_time=$(date +%s)
     echo "Starting g4 at $detsim_start_time"
 
-    command_g4="lar -c ${G4_FCL}.fcl -n $number_events -s ${DATA_PATH}${GEN_FCL}.root -o ${DATA_PATH}${GEN_FCL}_g4.root"
+    command_g4="lar -c ${G4_FCL}.fcl -n $number_events -s ${DATA_PATH}gen.root -o ${DATA_PATH}gen_g4.root"
     echo "Executing command: $command_g4"
     $command_g4
     
@@ -266,7 +268,7 @@ if [ "$run_g4" = true ]; then
         echo -e " Geant4 simulation done!"
         # remove the root file to save memory
         if [ "$delete_root_files" = true ]; then
-            rm "${DATA_PATH}${GEN_FCL}.root"
+            rm "${DATA_PATH}gen.root"
         fi
     else
         echo " Geant4 simulation failed. Exiting..."
@@ -279,7 +281,7 @@ if [ "$run_g4" = true ]; then
     g4_exec_time=$(($g4_end_time - $g4_start_time))
     echo "G4 simulation took $g4_exec_time seconds"
     echo "$g4_exec_time" > "${DATA_PATH}execTime.txt"
-    echo "Size of the g4 file is $(du -h ${DATA_PATH}${GEN_FCL}_g4.root | awk '{print $1}')"
+    echo "Size of the g4 file is $(du -h ${DATA_PATH}gen_g4.root | awk '{print $1}')"
 fi
 
 if [ "$run_detsim" = true ]; then
@@ -287,7 +289,7 @@ if [ "$run_detsim" = true ]; then
     detsim_start_time=$(date +%s)
     echo "Starting detector simulation at $detsim_start_time"
 
-    command_detsim="lar -c ${DETSIM_FCL}.fcl -n $number_events -s ${DATA_PATH}${GEN_FCL}_g4.root -o ${DATA_PATH}${GEN_FCL}_g4_detsim.root"
+    command_detsim="lar -c ${DETSIM_FCL}.fcl -n $number_events -s ${DATA_PATH}gen_g4.root -o ${DATA_PATH}gen_g4_detsim.root"
     echo "Executing command: $command_detsim"
     $command_detsim
     
@@ -297,7 +299,7 @@ if [ "$run_detsim" = true ]; then
         echo -e " $(ls -l) \n"
         # remove the root file to save memory
         if [ "$delete_root_files" = true ]; then
-            rm "${DATA_PATH}${GEN_FCL}_g4.root"
+            rm "${DATA_PATH}gen_g4.root"
         fi
     else
         echo " Detector simulation failed. Exiting..."
@@ -309,7 +311,7 @@ if [ "$run_detsim" = true ]; then
     detsim_exec_time=$(($detsim_end_time - $detsim_start_time))
     echo "Detsim took $detsim_exec_time seconds"
     echo "$detsim_exec_time" > "${DATA_PATH}execTime.txt"
-    echo "Size of the detsim file is $(du -h ${DATA_PATH}${GEN_FCL}_g4_detsim.root | awk '{print $1}')"
+    echo "Size of the detsim file is $(du -h ${DATA_PATH}gen_g4_detsim.root | awk '{print $1}')"
 fi
 
 if [ "$run_reconstruction" = true ]; then
@@ -317,8 +319,8 @@ if [ "$run_reconstruction" = true ]; then
     start_recotime=$(date +%s)
     echo "Starting reconstruction at $start_recotime"
 
-    RECO_OUTPUT="${DATA_PATH}${GEN_FCL}_g4_detsim_reco1.root"
-    command_reco="lar -c ${RECO_FCL}.fcl -n $number_events -s ${DATA_PATH}${GEN_FCL}_g4_detsim.root -o "$RECO_OUTPUT""
+    RECO_OUTPUT="${DATA_PATH}gen_g4_detsim_reco1.root"
+    command_reco="lar -c ${RECO_FCL}.fcl -n $number_events -s ${DATA_PATH}gen_g4_detsim.root -o "$RECO_OUTPUT""
     echo "Executing command: $command_reco"
     $command_reco
     
@@ -328,7 +330,7 @@ if [ "$run_reconstruction" = true ]; then
         echo "$(ls -l) \n"
         # remove the root file to save memory
         if [ "$delete_root_files" = true ]; then
-            rm "${DATA_PATH}${GEN_FCL}_g4_detsim.root"
+            rm "${DATA_PATH}gen_g4_detsim.root"
         fi
     else
         echo " Reconstruction failed. Exiting..."
@@ -359,8 +361,8 @@ echo "Items here are $(ls -l)"
 if [ "$delete_root_files" = true ]; then
     echo "Deleting root files to save memory..."    
     # rm -f "${DATA_PATH}*.root"
-    rm -f "${DATA_PATH}${GEN_FCL}_*.root"
-    rm -f ./-_detsim_hist.root # Sometimes there is this product, remove it
+    rm $RECO_OUTPUT
+    rm ./-_detsim_hist.root # Sometimes there is this product, remove it
 fi
 
 # if in lxplus, storage is in eos. If on gpvms, storage is in /exp/dune/data/users/emvilla/sn-tps/
@@ -371,7 +373,7 @@ elif [[ $(hostname) == *"fnal"* ]]; then
 fi 
 
 
-if [ "$run_reconstruction" = true ] && [[ "$RECO_FCL" == *"trigger"* ]] && [[ $(whoami) == "*villa" ]]; then
+if [ "$run_reconstruction" = true ] && [[ "$RECO_FCL" == *"trigger"* ]] && [[ $(whoami) == *"villa" ]]; then
     
     # Move all products to the folder
     FINAL_FOLDER="${STORAGE_FOLDER}${SIMULATION_CATEGORY}/aggregated_${SIMULATION_NAME}/" # TODO grep threshold from somewhere
