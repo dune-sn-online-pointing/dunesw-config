@@ -14,17 +14,19 @@ print_help() {
     echo "  -n, --n-events               Number of jobs to submit for each job"
     echo "  -f, --first                 First job number"
     echo "  -l, --last                  Last job number" 
-    echo "  -d, --delete-submit-files   Delete submit files after submission. Default is true"
+    echo "  -d, --delete-submit-files   Delete submit files after submission. Default is false"
+    echo "  --delete-root               Delete root files after submission. Default is true"
     echo "  -h                          Display this help message"
     exit 1
 }
 
 # init
 delete_submit_files=false
+delete_root_files=true
 JSON_SETTINGS=""
 first=""
 last=""
-n_events=100 # as agreed, no need to pass from command line
+n_events=100 
 
 
 # parse
@@ -35,6 +37,7 @@ while [[ "$#" -gt 0 ]]; do
         -f|--first) first="$2"; shift ;;
         -l|--last) last="$2"; shift ;;
         -d|--delete-submit-files) delete_submit_files="$2"; shift ;;
+        --delete-root) delete_root_files="$2"; shift ;;
         -h|--help) print_help ;;
         *) echo "Unknown parameter passed: $1"; exit 1 ;;
     esac
@@ -42,7 +45,7 @@ while [[ "$#" -gt 0 ]]; do
 done
 
 echo "Looking for settings file $JSON_SETTINGS. If execution stops, it means that the file was not found."
-findSettings_command="$SCRIPT_DIR/findSettings.sh -j $JSON_SETTINGS"
+findSettings_command="$SCRIPTS_DIR/findSettings.sh -j $JSON_SETTINGS"
 echo "Using command: $findSettings_command"
 # last line of the output of findSettings.sh is the full path of the settings file
 JSON_SETTINGS=$( $findSettings_command | tail -n 1)
@@ -73,7 +76,7 @@ gen_fcl="prodmarley_nue_es_flat_dune10kt_1x2x2"
 rm -f $list_of_jobs
 touch $list_of_jobs
 for i in $(seq $first $last); do
-    echo "-j ${JSON_SETTINGS} --home-config ${HOME_DIR} --delete-root -m ${gen_fcl} --custom-energy 69 70 -g -d -r -n $n_events -f $i" >> ${list_of_jobs}
+    echo "-j ${JSON_SETTINGS} --home-config ${HOME_DIR} --delete-root $delete_root_files -m ${gen_fcl} --custom-energy 69 70 -g -d -r -n $n_events -f $i" >> ${list_of_jobs}
 done
 
 echo "List of jobs:"

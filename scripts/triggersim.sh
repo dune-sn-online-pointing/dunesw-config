@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # Initialize env variables
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-export SCRIPT_DIR
-source $SCRIPT_DIR/init.sh
+SCRIPTS_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+export SCRIPTS_DIR
+source $SCRIPTS_DIR/init.sh
 
 # Default values for simulation stages
 run_marley=false
@@ -25,7 +25,7 @@ GEN_FCL='prodmarley_nue_es_flat_dune10kt_1x2x2'
 # GEN_FCL='prodmarley_nue_cc_gkvm_radiological_decay0_dune10kt_1x2x2' 
 G4_FCL='supernova_g4_dune10kt_1x2x2'
 DETSIM_FCL='detsim_dune10kt_1x2x2_notpcsigproc'   # check noise
-RECO_FCL='triggerana_tree_1x2x2_simpleThr909080.fcl' # current default, might change       
+RECO_FCL='triggerana_tree_1x2x2_simpleThr909080' # current default, might change       
 
 # other params that is better to initialize
 JSON_SETTINGS="settings_template.json"
@@ -65,7 +65,7 @@ print_help() {
 # Parse command-line arguments
 while [[ $# -gt 0 ]]; do
     case "$1" in
-        --home-config)       HOME_DIR="${2%/}"; shift 2 ;;
+        --home-config)       HOME_DIR="${2%/}"; source $HOME_DIR/scripts/init.sh; shift 2 ;;
         -j|--json-settings)  JSON_SETTINGS="$2"; shift 2 ;;
         -m|--marley)         run_marley=true; [[ "$2" != -* ]] && GEN_FCL="${2%.fcl}" && shift; shift ;;
         -M|--Marley)         GEN_FCL="${2%.fcl}"; shift 2 ;;
@@ -92,7 +92,7 @@ while [[ $# -gt 0 ]]; do
 done
 
 echo "Looking for settings file $JSON_SETTINGS. If execution stops, it means that the file was not found."
-findSettings_command="$SCRIPT_DIR/findSettings.sh -j $JSON_SETTINGS --home-config $HOME_DIR"
+findSettings_command="$SCRIPTS_DIR/findSettings.sh -j $JSON_SETTINGS --home-config $HOME_DIR"
 echo "Using command: $findSettings_command"
 # last line of the output of findSettings.sh is the full path of the settings file
 JSON_SETTINGS=$( $findSettings_command | tail -n 1)
@@ -188,27 +188,29 @@ fhicl-dump ${RECO_FCL}.fcl > $DATA_PATH/${RECO_FCL}_dump.fcl
 # If standard, generate new fcl using standard-fcl.sh
 if [ "$SIMULATION_CATEGORY" = "standard" ]; then
     echo "Generating fcl file with standard values..."
-    . $HOME_DIR/scripts/standard-fcl.sh -f "$GEN_FCL" -v -o "$DATA_PATH"
+    . $SCRIPTS_DIR/standard-fcl.sh -f "$GEN_FCL" -v -o "$DATA_PATH"
     echo " "
 fi
 
 # If custom direction is selected, generate a random direction and create a new fcl file
 if [ "$SIMULATION_CATEGORY" = "directions" ]; then
     # generate the direction and print it in the fcl and in a txt file
-    . $HOME_DIR/scripts/custom-direction.sh -f "$GEN_FCL" -v -o "$DATA_PATH"
+    . $SCRIPTS_DIR/custom-direction.sh -f "$GEN_FCL" -v -o "$DATA_PATH"
     echo " "
 fi
 
 # If custom energy is selected, generate energy bins and create a new fcl file
 if [ "$SIMULATION_CATEGORY" = "energies" ]; then
     echo "Generating fcl file with custom energy range, $energy_min to $energy_max..."
-    . $HOME_DIR/scripts/custom-energy.sh -f "$GEN_FCL" -m "$energy_min" -M "$energy_max" -v -o "$DATA_PATH"
+    command_changed_fcl=". $SCRIPTS_DIR/custom-energy.sh -f "$GEN_FCL" -m "$energy_min" -M "$energy_max" -v -o "$DATA_PATH""
+    echo "Using command: $command_changed_fcl"
+    $command_changed_fcl
     echo " "
 fi
 
 if [ "$SIMULATION_CATEGORY" = "customEandD" ]; then
     echo "Generating fcl file with custom energy range and direction..."
-    . $HOME_DIR/scripts/custom-enAndDir.sh -f "$GEN_FCL" -m "$energy_min" -M "$energy_max" -v -o "$DATA_PATH"
+    . $SCRIPTS_DIR/custom-enAndDir.sh -f "$GEN_FCL" -m "$energy_min" -M "$energy_max" -v -o "$DATA_PATH"
     echo " "
 fi
 
@@ -253,7 +255,7 @@ if [ "$run_g4" = true ]; then
     
     echo "Starting Geant4 simulation..."
     g4_start_time=$(date +%s)
-    echo "Starting detector simulation at $detsim_start_time"
+    echo "Starting g4 at $detsim_start_time"
 
     command_g4="lar -c ${G4_FCL}.fcl -n $number_events -s ${DATA_PATH}${GEN_FCL}.root -o ${DATA_PATH}${GEN_FCL}_g4.root"
     echo "Executing command: $command_g4"
@@ -388,8 +390,8 @@ if [ "$clean_folder" = true ]; then
 fi
 
 # Print the data path
-echo "Moving back to $HOME_DIR/scripts"
-cd "$HOME_DIR/scripts"
+echo "Moving back to $SCRIPTS_DIR"
+cd "$SCRIPTS_DIR"
 echo "If it has not been cleaned, all products are in $DATA_PATH"
 
 if [ "$run_reconstruction" = true ] && [[ "$RECO_FCL" == *"trigger"* ]] && [[ $(whoami) == "*villa" ]]; then

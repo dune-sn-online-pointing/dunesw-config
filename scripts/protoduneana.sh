@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # Initialize env variables
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-export SCRIPT_DIR
-source $SCRIPT_DIR/init.sh
+SCRIPTS_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+export SCRIPTS_DIR
+source $SCRIPTS_DIR/init.sh
 
 # Default values for simulation stages
 run_convert=false
@@ -72,7 +72,7 @@ done
 
 
 echo "Looking for settings file $JSON_SETTINGS. If execution stops, it means that the file was not found."
-findSettings_command="$SCRIPT_DIR/findSettings.sh -s $JSON_SETTINGS --home-config $HOME_DIR"
+findSettings_command="$SCRIPTS_DIR/findSettings.sh -s $JSON_SETTINGS --home-config $HOME_DIR"
 # last line of the output of findSettings.sh is the full path of the settings file
 JSON_SETTINGS=$( $findSettings_command | tail -n 1)
 echo -e "Settings file found, full path is: $JSON_SETTINGS \n"
