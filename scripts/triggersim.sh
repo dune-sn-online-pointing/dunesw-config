@@ -108,7 +108,12 @@ fi
 export DUNESW_VERSION=$(awk -F'[:,]' '/duneswVersion/ {gsub(/"| /, "", $2); print $2}' "$JSON_SETTINGS")
 export DUNESW_FOLDER_NAME=$(awk -F'[:,]' '/duneswInstallPath/ {gsub(/"| /, "", $2); print $2}' "$JSON_SETTINGS")
 echo "Setting up dunesw version $DUNESW_VERSION"
-echo "Expecting the software to be in: $DUNESW_FOLDER_NAME. (If empty or not valid, no local products are sourced)"
+echo "Expecting the software to be in: $DUNESW_FOLDER_NAME..."
+# if not existing, don't source products
+if [ ! -d "$DUNESW_FOLDER_NAME" ]; then
+    echo "Dunesw folder not found, skipping product sourcing."
+    DUNESW_FOLDER_NAME=""
+fi
 
 # If the folder doesn't exist, create a new output folder
 GLOBAL_OUTPUT_FOLDER=$(awk -F'[:,]' '/outputPath/ {gsub(/"| /, "", $2); print $2}' "$JSON_SETTINGS")
@@ -116,7 +121,7 @@ if [ -z "$GLOBAL_OUTPUT_FOLDER" ] || [ ! -d "$GLOBAL_OUTPUT_FOLDER" ]; then
     if [[ $(hostname) == *"lxplus"* ]]; then
         GLOBAL_OUTPUT_FOLDER="/eos/user/$(whoami | cut -c1)/$(whoami)/"
     elif [[ $(hostname) == *"fnal"* ]]; then
-        GLOBAL_OUTPUT_FOLDER="/exp/dune/app/users/$(whoami)/"
+        GLOBAL_OUTPUT_FOLDER="/exp/dune/data/users/$(whoami)/"
     else
         GLOBAL_OUTPUT_FOLDER="./output/"
     fi
@@ -365,7 +370,7 @@ if [ "$delete_root_files" = true ]; then
     rm ./-_detsim_hist.root # Sometimes there is this product, remove it
 fi
 
-# if in lxplus, storage is in eos. If on gpvms, storage is in /exp/dune/data/users/emvilla/sn-tps/
+# if in lxplus, storage is in eos. If on gpvms, storage is in /exp/dune/data. This is Emanuele-specific, won't run for other users
 if [[ $(hostname) == *"lxplus"* ]]; then
     STORAGE_FOLDER="/eos/user/e/evilla/dune/sn-tps/"       # standard, for now. Subfolders are selected automatically
 elif [[ $(hostname) == *"fnal"* ]]; then
