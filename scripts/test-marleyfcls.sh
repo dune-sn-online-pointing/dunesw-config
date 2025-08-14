@@ -5,9 +5,9 @@
 # There need to be simulation running for the different geometries, using trigger-sim.sh
 
 # Initialize env variables
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-export SCRIPT_DIR
-source $SCRIPT_DIR/init.sh
+SCRIPTS_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+export SCRIPTS_DIR
+source $SCRIPTS_DIR/init.sh
 
 echo "________________________________________________________"
 echo "Starting $0"

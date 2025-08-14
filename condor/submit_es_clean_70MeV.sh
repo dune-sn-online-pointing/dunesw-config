@@ -3,7 +3,8 @@
 # Initialize env variables
 CONDOR_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 export CONDOR_DIR
-source $CONDOR_DIR/../scripts/init.sh
+export HOME_DIR=$(dirname $CONDOR_DIR)
+source $HOME_DIR/scripts/init.sh
 
 
 # parser
@@ -13,40 +14,49 @@ print_help() {
     echo "  -n, --n-events               Number of jobs to submit for each job"
     echo "  -f, --first                 First job number"
     echo "  -l, --last                  Last job number" 
-    echo "  -d, --delete-submit-files   Delete submit files after submission. Default is true"
+    echo "  -d, --delete-submit-files   Delete submit files after submission. Default is false"
+    echo "  --delete-root               Delete root files after submission. Default is true"
     echo "  -h                          Display this help message"
     exit 1
 }
 
 # init
-delete_submit_files=true
-json_settings=""
+delete_submit_files=false
+delete_root_files=true
+JSON_SETTINGS=""
 first=""
 last=""
-n_events=100 # as agreed, no need to pass from command line
+n_events=100 
 
 
 # parse
 while [[ "$#" -gt 0 ]]; do
     case $1 in
-        -j|--json-settings) json_settings="$2"; shift ;;
+        -j|--json-settings) JSON_SETTINGS="$2"; shift ;;
         -n|--n-events) n_events="$2"; shift ;;
         -f|--first) first="$2"; shift ;;
         -l|--last) last="$2"; shift ;;
         -d|--delete-submit-files) delete_submit_files="$2"; shift ;;
+        --delete-root) delete_root_files="$2"; shift ;;
         -h|--help) print_help ;;
         *) echo "Unknown parameter passed: $1"; exit 1 ;;
     esac
     shift
 done
 
+echo "Looking for settings file $JSON_SETTINGS. If execution stops, it means that the file was not found."
+findSettings_command="$SCRIPTS_DIR/findSettings.sh -j $JSON_SETTINGS"
+echo "Using command: $findSettings_command"
+# last line of the output of findSettings.sh is the full path of the settings file
+JSON_SETTINGS=$( $findSettings_command | tail -n 1)
+echo -e "Settings file found, full path is: $JSON_SETTINGS \n"
+
 # if options are null, print help and stop execution
-if [ -z "$json_settings" ] || [ -z "$first" ] || [ -z "$last" ]; then
+if [ -z "$first" ] || [ -z "$last" ]; then
     echo "Error: Missing required parameters"
     print_help
 fi
 
-# read email from json settings file
 username=$(whoami | cut -d' ' -f1)
 user_email="$username@cern.ch"
 
@@ -64,8 +74,9 @@ gen_fcl="prodmarley_nue_es_flat_dune10kt_1x2x2"
 
 # generate list of arguments and put them in a file, but delete the file first to avoid issues
 rm -f $list_of_jobs
+touch $list_of_jobs
 for i in $(seq $first $last); do
-    echo "-j ${json_settings} --home-config ${HOME_DIR} --delete-root -m ${gen_fcl} --custom-energy 69 70 -g -d -r -n $n_events -f $i" > ${list_of_jobs}
+    echo "-j ${JSON_SETTINGS} --home-config ${HOME_DIR} --delete-root $delete_root_files -m ${gen_fcl} --custom-energy 69 70 -g -d -r -n $n_events -f $i" >> ${list_of_jobs}
 done
 
 echo "List of jobs:"
@@ -88,9 +99,9 @@ JOBNAME             = pointing_training_ES_70MeV_noiseless-from${first}to${last}
 executable          = ${HOME_DIR}/scripts/triggersim.sh
 # using the arguments from below, not this line
 # arguments           = -m ${gen_fcl} --custom-energy 70 70 -g -d -r -n 100 -f \$(ProcId)
-output              = ${HOME_DIR}/condor/job_output/job.\$(JOBNAME).\$(ClusterId).\$(ProcId).out
-error               = ${HOME_DIR}/condor/job_output/job.\$(JOBNAME).\$(ClusterId).\$(ProcId).err
-log                 = ${HOME_DIR}/condor/job_output/job.\$(JOBNAME).\$(ClusterId).log
+output              = ${HOME_DIR}/condor/job_output/job.\$(ClusterId).\$(ProcId).\$(JOBNAME).out
+error               = ${HOME_DIR}/condor/job_output/job.\$(ClusterId).\$(ProcId).\$(JOBNAME).err
+log                 = ${HOME_DIR}/condor/job_output/job.\$(ClusterId).\$(JOBNAME).log
 # request_cpus        = 1
 # request_memory      = 2000
 

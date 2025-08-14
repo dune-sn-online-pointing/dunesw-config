@@ -40,7 +40,7 @@ while [[ "$#" -gt 0 ]]; do
 done
 
 echo "Looking for settings file $JSON_SETTINGS. If execution stops, it means that the file was not found."
-findSettings_command="$SCRIPT_DIR/findSettings.sh -s $JSON_SETTINGS"
+findSettings_command="$SCRIPTS_DIR/findSettings.sh -s $JSON_SETTINGS"
 # last line of the output of findSettings.sh is the full path of the settings file
 JSON_SETTINGS=$( $findSettings_command | tail -n 1)
 echo -e "Settings file found, full path is: $JSON_SETTINGS \n"
@@ -82,7 +82,7 @@ for i in $(seq 3 $n_lines); do
     
     # script to submit jobs to the grid for sn simulation
 
-    executable="${SCRIPT_DIR}/triggersim.sh"
+    executable="${SCRIPTS_DIR}/triggersim.sh"
     arguments="-m ${gen_fcl} -g ${g4_fcl} -d ${detsim_fcl} -r ${reco_fcl} -j ${JSON_SETTINGS} -f ${sim_name}_triggerValidationTest -n ${n_events} --home-config ${HOME_DIR}"
     # adding path
     output_file="${output_folder}${output_file}"

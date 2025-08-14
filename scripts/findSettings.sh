@@ -1,15 +1,16 @@
 #!/bin/bash
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-export SCRIPT_DIR
-source $SCRIPT_DIR/init.sh
+SCRIPTS_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+export SCRIPTS_DIR
+source $SCRIPTS_DIR/init.sh
 
 settingsFile=""
 
 print_help() {
     echo "*****************************************************************************"
-    echo "Usage: ./findSettings.sh -s <settings_file> [-h]"
-    echo "  -s | --settings-file   json settings file in any format (global path, local path, only the name, with or without .json)"
+    echo "Usage: $0 -j <settings_file> [-h]"
+    echo "  --home-config          Path to the dunesw-config folder. Default is the current folder, but it won't work  in Condor"
+    echo "  -j | --json-settings    json settings file in any format (global path, local path, only the name, with or without .json)"
     echo "  -h | --help            print this help message"
     echo "*****************************************************************************"
     exit 0
@@ -18,7 +19,8 @@ print_help() {
 # Parse command-line arguments
 while [[ $# -gt 0 ]]; do
     case "$1" in
-        -s|--settings-file) settingsFile="$2"; shift 2;;
+        --home-config) HOME_DIR="$2"; source $HOME_DIR/scripts/init.sh; shift 2;; # for condor
+        -j|--json-settings) settingsFile="$2"; shift 2;;
         -h|--help) print_help;;
         *) shift;;
     esac
@@ -26,7 +28,7 @@ done
 
 if [ -z "$settingsFile" ]
 then
-    echo "Please specify the settings file, using flag -s <settings_file>. Stopping execution."
+    echo "Please specify the settings file, using flag -j <settings_file>. Stopping execution."
     echo "" # need this so that the scripts using this one will fail if the settings file is not provided
     exit 1
 fi

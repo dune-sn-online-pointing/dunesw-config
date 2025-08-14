@@ -14,10 +14,10 @@ echo "init.sh script started"
 # set -euo pipefail
 
 # Some variables to export at the beginning of scripts and execution
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-export SCRIPT_DIR
+SCRIPTS_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+export SCRIPTS_DIR
 
-export HOME_DIR=$(dirname $SCRIPT_DIR)
+export HOME_DIR=$(dirname $SCRIPTS_DIR)
 echo " Repository home is $HOME_DIR"
 
 export DAT_DIR="$HOME_DIR/dat/"
@@ -25,6 +25,7 @@ export FCL_DIR="$HOME_DIR/fcl/"
 export JSON_DIR="$HOME_DIR/json/"
 export DOCS_DIR="$HOME_DIR/docs/"
 export PYTHON_DIR="$HOME_DIR/python/"
+export CONDOR_DIR="$HOME_DIR/condor/"
 echo "Set up local directories"
 
 # export REPO_VERSION=""

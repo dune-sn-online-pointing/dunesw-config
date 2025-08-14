@@ -2,11 +2,10 @@
 
 # This script overwrites the energy range in the gen fcl file to a custom one
 
-# this script is meant to be run from inside the dunesw-config repository
-# or git might have problems
-HOME_DIR="$(git rev-parse --show-toplevel)"
-# catch errors and say that the script must be run from its location
-echo "If you see a git error, it is because the script must be run from inside the dunesw-config repository."
+# Initialize env variables
+SCRIPTS_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+export SCRIPTS_DIR
+source $SCRIPTS_DIR/init.sh
 
 # default values
 min_energy=2
@@ -32,7 +31,7 @@ function print_help() {
 # Parse command-line arguments
 while [[ $# -gt 0 ]]; do
     case "$1" in
-        -f|--fcl-file)   original_fcl="$2" shift; shift;;
+        -f|--fcl-file)   original_fcl="$2"; shift; shift;;
         -m|--min-energy) min_energy="$2"; shift; shift;;
         -M|--max-energy) max_energy="$2"; shift; shift;;
         -o|--output)     output_folder="$2"; shift; shift;;
@@ -44,7 +43,7 @@ done
 
 # if no fcl file is provided, stop execution
 if [[ -z "$original_fcl" ]]; then
-    echo "No fcl file provided. Exiting..."
+    echo "No fcl file provided: $original_fcls. Exiting..."
     exit 1
 fi
 
@@ -62,11 +61,6 @@ fi
 if [[ "$original_fcl" != *"flat"* ]]; then
     echo "The fcl file provided does not contain 'flat', for the moment this works only on flat distributions. Exiting..."
     exit 1
-fi
-
-# if no custom energy is provided, continue with warning
-if [[ "$min_energy" -eq 2 || "$max_energy" -eq 70 ]]; then
-    echo "No custom energy provided. Using default energy range: $min_energy - $max_energy MeV"
 fi
 
 # if the custom energy is not within the range, stop execution

@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # Initialize env variables
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-export SCRIPT_DIR
-source $SCRIPT_DIR/init.sh
+SCRIPTS_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+export SCRIPTS_DIR
+source $SCRIPTS_DIR/init.sh
 
 # Default values for simulation stages
 run_marley=false
@@ -21,11 +21,11 @@ clean_folder=false
 # fcls, just some casual defaults
 GEN_FCL='prodmarley_nue_es_flat_dune10kt_1x2x2'
 # GEN_FCL='prodmarley_nue_cc_flat_dune10kt_1x2x2'
-# GEN_FCL='prodmarley_nue_es_gkvm_radiological_decay0_dune10kt_1x2x2' 
+# GEN_FCL='prodmarley_nue_cc_gkvm_radiological_decay0_dune10kt_1x2x2_centralAPA.fcl' 
 # GEN_FCL='prodmarley_nue_cc_gkvm_radiological_decay0_dune10kt_1x2x2' 
 G4_FCL='supernova_g4_dune10kt_1x2x2'
 DETSIM_FCL='detsim_dune10kt_1x2x2_notpcsigproc'   # check noise
-RECO_FCL='triggerana_tree_1x2x2_simpleThr909080.fcl' # current default, might change       
+RECO_FCL='triggerana_tree_1x2x2_simpleThr909080' # current default, might change       
 
 # other params that is better to initialize
 JSON_SETTINGS="settings_template.json"
@@ -65,7 +65,7 @@ print_help() {
 # Parse command-line arguments
 while [[ $# -gt 0 ]]; do
     case "$1" in
-        --home-config)       HOME_DIR="${2%/}"; shift 2 ;;
+        --home-config)       HOME_DIR="${2%/}"; source $HOME_DIR/scripts/init.sh; shift 2 ;;
         -j|--json-settings)  JSON_SETTINGS="$2"; shift 2 ;;
         -m|--marley)         run_marley=true; [[ "$2" != -* ]] && GEN_FCL="${2%.fcl}" && shift; shift ;;
         -M|--Marley)         GEN_FCL="${2%.fcl}"; shift 2 ;;
@@ -92,7 +92,8 @@ while [[ $# -gt 0 ]]; do
 done
 
 echo "Looking for settings file $JSON_SETTINGS. If execution stops, it means that the file was not found."
-findSettings_command="$SCRIPT_DIR/findSettings.sh -s $JSON_SETTINGS"
+findSettings_command="$SCRIPTS_DIR/findSettings.sh -j $JSON_SETTINGS --home-config $HOME_DIR"
+echo "Using command: $findSettings_command"
 # last line of the output of findSettings.sh is the full path of the settings file
 JSON_SETTINGS=$( $findSettings_command | tail -n 1)
 echo -e "Settings file found, full path is: $JSON_SETTINGS \n"
@@ -107,17 +108,26 @@ fi
 export DUNESW_VERSION=$(awk -F'[:,]' '/duneswVersion/ {gsub(/"| /, "", $2); print $2}' "$JSON_SETTINGS")
 export DUNESW_FOLDER_NAME=$(awk -F'[:,]' '/duneswInstallPath/ {gsub(/"| /, "", $2); print $2}' "$JSON_SETTINGS")
 echo "Setting up dunesw version $DUNESW_VERSION"
-echo "Expecting the software to be in: $DUNESW_FOLDER_NAME. (If empty or not valid, no local products are sourced)"
-# check if the folder exists
-if [ -d "$DUNESW_FOLDER_NAME" ]; then
-    echo "Folder $DUNESW_FOLDER_NAME exists"
-    GLOBAL_OUTPUT_FOLDER="${DUNESW_FOLDER_NAME}output/"
-else
-    echo "Folder $DUNESW_FOLDER_NAME does not exist, no local products being sourced."
-    echo "A folder with the dunesw version will be created for the outputs"
-    export DUNESW_FOLDER_NAME="" # empty it
-    GLOBAL_OUTPUT_FOLDER="$(cd "$HOME_DIR/.." && pwd)/${DUNESW_VERSION}/output/"
+echo "Expecting the software to be in: $DUNESW_FOLDER_NAME..."
+# if not existing, don't source products
+if [ ! -d "$DUNESW_FOLDER_NAME" ]; then
+    echo "Dunesw folder not found, skipping product sourcing."
+    DUNESW_FOLDER_NAME=""
 fi
+
+# If the folder doesn't exist, create a new output folder
+GLOBAL_OUTPUT_FOLDER=$(awk -F'[:,]' '/outputPath/ {gsub(/"| /, "", $2); print $2}' "$JSON_SETTINGS")
+if [ -z "$GLOBAL_OUTPUT_FOLDER" ] || [ ! -d "$GLOBAL_OUTPUT_FOLDER" ]; then
+    if [[ $(hostname) == *"lxplus"* ]]; then
+        GLOBAL_OUTPUT_FOLDER="/eos/user/$(whoami | cut -c1)/$(whoami)/"
+    elif [[ $(hostname) == *"fnal"* ]]; then
+        GLOBAL_OUTPUT_FOLDER="/exp/dune/data/users/$(whoami)/"
+    else
+        GLOBAL_OUTPUT_FOLDER="./output/"
+    fi
+fi
+
+GLOBAL_OUTPUT_FOLDER="$GLOBAL_OUTPUT_FOLDER/$DUNESW_VERSION/"
 
 echo "Output folder is $GLOBAL_OUTPUT_FOLDER, creating it in case it does not exist"
 mkdir -p "$GLOBAL_OUTPUT_FOLDER"
@@ -165,10 +175,8 @@ export FHICL_FILE_PATH="$FCL_FOLDER":$FHICL_FILE_PATH # in this way lar will fin
 export FHICL_FILE_PATH="$DATA_PATH":$FHICL_FILE_PATH # some fcls are going to be here
 
 # in case there is a previous one, clean it
-if [ "$clean_folder" = true ]; then
-    echo "Cleaning folder..."
-    rm -rf "$DATA_PATH"
-fi
+echo "Cleaning output folder if existing..."
+rm "$DATA_PATH"/* 2>/dev/null || true
 
 # going here to generate the fcl files for custom E and/or direction
 cd "$HOME_DIR"
@@ -187,27 +195,29 @@ fhicl-dump ${RECO_FCL}.fcl > $DATA_PATH/${RECO_FCL}_dump.fcl
 # If standard, generate new fcl using standard-fcl.sh
 if [ "$SIMULATION_CATEGORY" = "standard" ]; then
     echo "Generating fcl file with standard values..."
-    . $HOME_DIR/scripts/standard-fcl.sh -f "$GEN_FCL" -v -o "$DATA_PATH"
+    . $SCRIPTS_DIR/standard-fcl.sh -f "$GEN_FCL" -v -o "$DATA_PATH"
     echo " "
 fi
 
 # If custom direction is selected, generate a random direction and create a new fcl file
 if [ "$SIMULATION_CATEGORY" = "directions" ]; then
     # generate the direction and print it in the fcl and in a txt file
-    . $HOME_DIR/scripts/custom-direction.sh -f "$GEN_FCL" -v -o "$DATA_PATH"
+    . $SCRIPTS_DIR/custom-direction.sh -f "$GEN_FCL" -v -o "$DATA_PATH"
     echo " "
 fi
 
 # If custom energy is selected, generate energy bins and create a new fcl file
 if [ "$SIMULATION_CATEGORY" = "energies" ]; then
     echo "Generating fcl file with custom energy range, $energy_min to $energy_max..."
-    . $HOME_DIR/scripts/custom-energy.sh -f "$GEN_FCL" -m "$energy_min" -M "$energy_max" -v -o "$DATA_PATH"
+    command_changed_fcl=". $SCRIPTS_DIR/custom-energy.sh -f "$GEN_FCL" -m "$energy_min" -M "$energy_max" -v -o "$DATA_PATH""
+    echo "Using command: $command_changed_fcl"
+    $command_changed_fcl
     echo " "
 fi
 
 if [ "$SIMULATION_CATEGORY" = "customEandD" ]; then
     echo "Generating fcl file with custom energy range and direction..."
-    . $HOME_DIR/scripts/custom-enAndDir.sh -f "$GEN_FCL" -m "$energy_min" -M "$energy_max" -v -o "$DATA_PATH"
+    . $SCRIPTS_DIR/custom-enAndDir.sh -f "$GEN_FCL" -m "$energy_min" -M "$energy_max" -v -o "$DATA_PATH"
     echo " "
 fi
 
@@ -226,7 +236,7 @@ if [ "$run_marley" = true ]; then
     gen_start_time=$(date +%s)
     echo "Starting generation at $gen_start_time"
 
-    command_marley="lar -c ${DATA_PATH}${GEN_FCL_CHANGED}.fcl -n $number_events -o ${DATA_PATH}${GEN_FCL}.root"
+    command_marley="lar -c ${DATA_PATH}${GEN_FCL_CHANGED}.fcl -n $number_events -o ${DATA_PATH}gen.root"
     echo "Executing command: $command_marley"
     $command_marley
 
@@ -245,16 +255,16 @@ if [ "$run_marley" = true ]; then
     gen_exec_time=$(($gen_end_time - $gen_start_time))
     echo "Generation took $gen_exec_time seconds"
     echo "$gen_exec_time" > "${DATA_PATH}execTime.txt"
-    echo "Size of the gen file is $(du -h ${DATA_PATH}${GEN_FCL}.root | awk '{print $1}')"
+    echo "Size of the gen file is $(du -h ${DATA_PATH}gen.root | awk '{print $1}')"
 fi
 
 if [ "$run_g4" = true ]; then
     
     echo "Starting Geant4 simulation..."
     g4_start_time=$(date +%s)
-    echo "Starting detector simulation at $detsim_start_time"
+    echo "Starting g4 at $detsim_start_time"
 
-    command_g4="lar -c ${G4_FCL}.fcl -n $number_events -s ${DATA_PATH}${GEN_FCL}.root -o ${DATA_PATH}${GEN_FCL}_g4.root"
+    command_g4="lar -c ${G4_FCL}.fcl -n $number_events -s ${DATA_PATH}gen.root -o ${DATA_PATH}gen_g4.root"
     echo "Executing command: $command_g4"
     $command_g4
     
@@ -263,7 +273,7 @@ if [ "$run_g4" = true ]; then
         echo -e " Geant4 simulation done!"
         # remove the root file to save memory
         if [ "$delete_root_files" = true ]; then
-            rm "${DATA_PATH}${GEN_FCL}.root"
+            rm "${DATA_PATH}gen.root"
         fi
     else
         echo " Geant4 simulation failed. Exiting..."
@@ -276,7 +286,7 @@ if [ "$run_g4" = true ]; then
     g4_exec_time=$(($g4_end_time - $g4_start_time))
     echo "G4 simulation took $g4_exec_time seconds"
     echo "$g4_exec_time" > "${DATA_PATH}execTime.txt"
-    echo "Size of the g4 file is $(du -h ${DATA_PATH}${GEN_FCL}_g4.root | awk '{print $1}')"
+    echo "Size of the g4 file is $(du -h ${DATA_PATH}gen_g4.root | awk '{print $1}')"
 fi
 
 if [ "$run_detsim" = true ]; then
@@ -284,7 +294,7 @@ if [ "$run_detsim" = true ]; then
     detsim_start_time=$(date +%s)
     echo "Starting detector simulation at $detsim_start_time"
 
-    command_detsim="lar -c ${DETSIM_FCL}.fcl -n $number_events -s ${DATA_PATH}${GEN_FCL}_g4.root -o ${DATA_PATH}${GEN_FCL}_g4_detsim.root"
+    command_detsim="lar -c ${DETSIM_FCL}.fcl -n $number_events -s ${DATA_PATH}gen_g4.root -o ${DATA_PATH}gen_g4_detsim.root"
     echo "Executing command: $command_detsim"
     $command_detsim
     
@@ -294,7 +304,7 @@ if [ "$run_detsim" = true ]; then
         echo -e " $(ls -l) \n"
         # remove the root file to save memory
         if [ "$delete_root_files" = true ]; then
-            rm "${DATA_PATH}${GEN_FCL}_g4.root"
+            rm "${DATA_PATH}gen_g4.root"
         fi
     else
         echo " Detector simulation failed. Exiting..."
@@ -306,7 +316,7 @@ if [ "$run_detsim" = true ]; then
     detsim_exec_time=$(($detsim_end_time - $detsim_start_time))
     echo "Detsim took $detsim_exec_time seconds"
     echo "$detsim_exec_time" > "${DATA_PATH}execTime.txt"
-    echo "Size of the detsim file is $(du -h ${DATA_PATH}${GEN_FCL}_g4_detsim.root | awk '{print $1}')"
+    echo "Size of the detsim file is $(du -h ${DATA_PATH}gen_g4_detsim.root | awk '{print $1}')"
 fi
 
 if [ "$run_reconstruction" = true ]; then
@@ -314,8 +324,8 @@ if [ "$run_reconstruction" = true ]; then
     start_recotime=$(date +%s)
     echo "Starting reconstruction at $start_recotime"
 
-    RECO_OUTPUT="${DATA_PATH}${GEN_FCL}_g4_detsim_reco1.root"
-    command_reco="lar -c ${RECO_FCL}.fcl -n $number_events -s ${DATA_PATH}${GEN_FCL}_g4_detsim.root -o "$RECO_OUTPUT""
+    RECO_OUTPUT="${DATA_PATH}gen_g4_detsim_reco1.root"
+    command_reco="lar -c ${RECO_FCL}.fcl -n $number_events -s ${DATA_PATH}gen_g4_detsim.root -o "$RECO_OUTPUT""
     echo "Executing command: $command_reco"
     $command_reco
     
@@ -325,7 +335,7 @@ if [ "$run_reconstruction" = true ]; then
         echo "$(ls -l) \n"
         # remove the root file to save memory
         if [ "$delete_root_files" = true ]; then
-            rm "${DATA_PATH}${GEN_FCL}_g4_detsim.root"
+            rm "${DATA_PATH}gen_g4_detsim.root"
         fi
     else
         echo " Reconstruction failed. Exiting..."
@@ -356,11 +366,11 @@ echo "Items here are $(ls -l)"
 if [ "$delete_root_files" = true ]; then
     echo "Deleting root files to save memory..."    
     # rm -f "${DATA_PATH}*.root"
-    rm -f "${DATA_PATH}${GEN_FCL}_*.root"
-    rm -f ./-_detsim_hist.root # Sometimes there is this product, remove it
+    rm $RECO_OUTPUT
+    rm ./-_detsim_hist.root # Sometimes there is this product, remove it
 fi
 
-# if in lxplus, storage is in eos. If on gpvms, storage is in /exp/dune/data/users/emvilla/sn-tps/
+# if in lxplus, storage is in eos. If on gpvms, storage is in /exp/dune/data. This is Emanuele-specific, won't run for other users
 if [[ $(hostname) == *"lxplus"* ]]; then
     STORAGE_FOLDER="/eos/user/e/evilla/dune/sn-tps/"       # standard, for now. Subfolders are selected automatically
 elif [[ $(hostname) == *"fnal"* ]]; then
@@ -368,7 +378,7 @@ elif [[ $(hostname) == *"fnal"* ]]; then
 fi 
 
 
-if [ "$run_reconstruction" = true ] && [[ "$RECO_FCL" == *"trigger"* ]] && [[ $(whoami) == "*villa" ]]; then
+if [ "$run_reconstruction" = true ] && [[ "$RECO_FCL" == *"trigger"* ]] && [[ $(whoami) == *"villa" ]]; then
     
     # Move all products to the folder
     FINAL_FOLDER="${STORAGE_FOLDER}${SIMULATION_CATEGORY}/aggregated_${SIMULATION_NAME}/" # TODO grep threshold from somewhere
@@ -387,8 +397,8 @@ if [ "$clean_folder" = true ]; then
 fi
 
 # Print the data path
-echo "Moving back to $HOME_DIR/scripts"
-cd "$HOME_DIR/scripts"
+echo "Moving back to $SCRIPTS_DIR"
+cd "$SCRIPTS_DIR"
 echo "If it has not been cleaned, all products are in $DATA_PATH"
 
 if [ "$run_reconstruction" = true ] && [[ "$RECO_FCL" == *"trigger"* ]] && [[ $(whoami) == "*villa" ]]; then

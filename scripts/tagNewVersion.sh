@@ -3,8 +3,8 @@
 # This script is used to tag a new version of the software.
 echo "Script tagNewVersion.sh started"
 
-export SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
-source ${SCRIPT_DIR}/init.sh
+export SCRIPTS_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+source ${SCRIPTS_DIR}/init.sh
 
 print_help() {
     echo "*****************************************************************************"
