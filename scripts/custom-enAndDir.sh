@@ -107,7 +107,7 @@ physics.producers.marley.marley_parameters.direction.x: $x
 physics.producers.marley.marley_parameters.direction.y: $y
 physics.producers.marley.marley_parameters.direction.z: $z
 
-physics.producers.marley.marley_parameters.source.Emin: $min_energy
+physics.producers.marley.marley_parameters.source.E_bin_lefts: [$min_energy]
 physics.producers.marley.marley_parameters.source.Emax: $max_energy
 
 source.maxEvents: -1
