@@ -21,10 +21,11 @@ delete_root_files=false
 clean_folder=false
 
 # fcls, just some casual defaults
-GEN_FCL='prodmarley_nue_es_flat_dune10kt_1x2x2'
-# GEN_FCL='prodmarley_nue_cc_flat_dune10kt_1x2x2'
-# GEN_FCL='prodmarley_nue_cc_gkvm_radiological_decay0_dune10kt_1x2x2_centralAPA.fcl' 
-# GEN_FCL='prodmarley_nue_cc_gkvm_radiological_decay0_dune10kt_1x2x2' 
+GEN_FCL_ES='prodmarley_nue_es_flat_dune10kt_1x2x2'
+GEN_FCL_CC='prodmarley_nue_cc_flat_dune10kt_1x2x2'
+GEN_FCL_BG='prodbackground_radiological_decay0_dune10kt_1x2x2_centralAPA' # backgrounds, we use this
+
+GEN_FCL=$GEN_FCL_ES # default, but can be changed with -m or -M, or flags
 G4_FCL='supernova_g4_dune10kt_1x2x2'
 DETSIM_FCL='detsim_dune10kt_1x2x2_notpcsigproc'   # check noise
 RECO_FCL='triggerana_tree_1x2x2_simpleThr909080' # current default, might change       
@@ -37,12 +38,13 @@ number_events=1
 # Function to source scripts and print help message
 print_help() {
     echo "*****************************************************************************"
-    echo "Usage: ./$0 -j <yoursettings.json> [options]"
+    echo "Usage: $0 -j <yoursettings.json> [options]"
     echo "Options:"
     echo "  -j, --json-settings    JSON file with paths and settings. It has to be in the dunesw-config/json folder"
     echo "  --home-config          Path to the dunesw-config folder. Default is the current folder, but it won't work  in Condor"
     echo "  -m, --marley           Run Generation, historically marley  but can be anything"
     echo "  -M, --Marley           Parse gen fcl, without (re)running this step"
+    echo "  -w, --which-sample     Which sample to use for generation, options are: ES, CC, BG. Default is ES"
     echo "  --custom-direction Run Generation with custom random direction"
     echo "  --custom-energy        Run Generation with custom energy binning, requires two arguments (min and max)"
     echo "  -g, --g4               Run Geant4 simulation"
@@ -58,7 +60,7 @@ print_help() {
     echo "  --delete-root          Delete root files after simulation, to save space. Default is false"
     echo "  -h, --help             Print this help message"
     echo " "
-    echo "Example: ./$1 -j settings.json -m myconfig.fcl --custom-energy 2 70 -g -d -r -s -n 1000 -f test --clean-folder false --delete-root false"
+    echo "Example: $0 -j settings.json -m myconfig.fcl --custom-energy 2 70 -g -d -r -s -n 1000 -f test --clean-folder false --delete-root false"
     echo "*****************************************************************************"
     exit 0
 }
@@ -69,6 +71,13 @@ while [[ $# -gt 0 ]]; do
     case "$1" in
         --home-config)       HOME_DIR="${2%/}"; source $HOME_DIR/scripts/init.sh; shift 2 ;;
         -j|--json-settings)  JSON_SETTINGS="$2"; shift 2 ;;
+        -w|--which-sample)   case "$2" in
+                                ES) GEN_FCL=$GEN_FCL_ES ;;
+                                CC) GEN_FCL=$GEN_FCL_CC ;;
+                                BG) GEN_FCL=$GEN_FCL_BG ;;
+                                *) echo "Unknown sample $2. Options are: ES, CC, BG. Exiting..." ; exit 1 ;;
+                             esac
+                             shift 2 ;;
         -m|--marley)         run_marley=true; [[ "$2" != -* ]] && GEN_FCL="${2%.fcl}" && shift; shift ;;
         -M|--Marley)         GEN_FCL="${2%.fcl}"; shift 2 ;;
         --custom-direction)  custom_direction=true; shift ;;
