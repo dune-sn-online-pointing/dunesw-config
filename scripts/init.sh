@@ -47,5 +47,8 @@ echo "Set up local directories"
 #     echo " No version file found, something went wrong the last time the repo was tagged"
 # fi
 
+# this is needed for hdf5 processing
+LD_PRELOAD=$XROOTD_LIB/libXrdPosixPreload.so
+
 echo "init.sh script finished"
 echo ""

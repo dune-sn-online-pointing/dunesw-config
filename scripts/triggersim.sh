@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo "###########################################################"
+
 # Initialize env variables
 SCRIPTS_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 export SCRIPTS_DIR
@@ -381,12 +383,12 @@ fi
 if [ "$run_reconstruction" = true ] && [[ "$RECO_FCL" == *"trigger"* ]] && [[ $(whoami) == *"villa" ]]; then
     
     # Move all products to the folder
-    FINAL_FOLDER="${STORAGE_FOLDER}${SIMULATION_CATEGORY}/aggregated_${SIMULATION_NAME}/" # TODO grep threshold from somewhere
+    FINAL_FOLDER="${STORAGE_FOLDER}${SIMULATION_CATEGORY}/${SIMULATION_NAME}/" # TODO grep threshold from somewhere
     echo "Creating final folder $FINAL_FOLDER"
     mkdir -p "$FINAL_FOLDER"
     echo "Moving TPs to $FINAL_FOLDER"
     TP_FILE="triggersim_hist.root" # TODO make this absolute or grep it
-    moving_tps="cp ${TP_FILE} ${FINAL_FOLDER}tpstream_${OUTFOLDER_ENDING}.root"
+    moving_tps="cp ${TP_FILE} ${FINAL_FOLDER}${OUTFOLDER_ENDING}_tpstream.root"
     echo "$moving_tps"
     $moving_tps
 fi
@@ -404,3 +406,5 @@ echo "If it has not been cleaned, all products are in $DATA_PATH"
 if [ "$run_reconstruction" = true ] && [[ "$RECO_FCL" == *"trigger"* ]] && [[ $(whoami) == "*villa" ]]; then
     echo "TPs are in $FINAL_FOLDER"
 fi
+
+echo "###########################################################"
