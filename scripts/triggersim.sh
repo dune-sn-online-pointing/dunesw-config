@@ -79,7 +79,7 @@ while [[ $# -gt 0 ]]; do
                              esac
                              shift 2 ;;
         -m|--marley)         run_marley=true; [[ "$2" != -* ]] && GEN_FCL="${2%.fcl}" && shift; shift ;;
-        -M|--Marley)         GEN_FCL="${2%.fcl}"; shift 2 ;;
+        -M|--Marley)         run_marley=false; [[ "$2" != -* ]] && GEN_FCL="${2%.fcl}" && shift; shift ;;
         --custom-direction)  custom_direction=true; shift ;;
         --custom-energy)     custom_energy=true; 
                                 energy_min="$2"; 
@@ -186,8 +186,10 @@ export FHICL_FILE_PATH="$FCL_FOLDER":$FHICL_FILE_PATH # in this way lar will fin
 export FHICL_FILE_PATH="$DATA_PATH":$FHICL_FILE_PATH # some fcls are going to be here
 
 # in case there is a previous one, clean it
-echo "Cleaning output folder if existing..."
-rm "$DATA_PATH"/* 2>/dev/null || true
+if [ "$clean_folder" = true ]; then
+    echo "Cleaning output folder $DATA_PATH..."
+    rm -rf "$DATA_PATH"/*
+fi
 
 # going here to generate the fcl files for custom E and/or direction
 cd "$HOME_DIR"
