@@ -13,6 +13,7 @@ physics.analyzers: {
       dump_ta: false
       dump_tc: false
       dump_tp: true
+      tp_backtracking: true
       module_type: "TriggerAnaTree"
       simchannel_tag: "tpcrawdecoder:simpleSC"
    }

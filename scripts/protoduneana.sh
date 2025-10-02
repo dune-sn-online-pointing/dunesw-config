@@ -23,7 +23,7 @@ INPUT_FILE="$TESTER_FILE" # Default input file, change it if needed
 # other params that is better to initialize
 JSON_SETTINGS="settings_template.json"
 OUTFOLDER_ENDING=""
-number_events=1
+number_events=-1
 
 # Function to source scripts and print help message
 print_help() {
@@ -37,7 +37,7 @@ print_help() {
     echo "  -C, --convert          Without running"
     echo "  -r, --reconstruction   Run event reconstruction"
     echo "  -R, --Reconstruction   Parse reco fcl for the folder, without (re)running this step"
-    echo "  -n, --n-events         Number of events, default is 1"
+    echo "  -n, --n-events         Number of events, default is -1, meaning all events"
     echo "  -s, --source           Parse to NOT source dunesw and local products"
     echo "  -f, --folder-ending    Ending of the name of the output folder"
     echo "  --clean-folder         Clean the folder after simulation. Default is false"
@@ -70,9 +70,9 @@ while [[ $# -gt 0 ]]; do
     esac
 done
 
-
 echo "Looking for settings file $JSON_SETTINGS. If execution stops, it means that the file was not found."
-findSettings_command="$SCRIPTS_DIR/findSettings.sh -s $JSON_SETTINGS --home-config $HOME_DIR"
+findSettings_command="$SCRIPTS_DIR/findSettings.sh -j $JSON_SETTINGS --home-config $HOME_DIR"
+echo "Using command: $findSettings_command"
 # last line of the output of findSettings.sh is the full path of the settings file
 JSON_SETTINGS=$( $findSettings_command | tail -n 1)
 echo -e "Settings file found, full path is: $JSON_SETTINGS \n"
