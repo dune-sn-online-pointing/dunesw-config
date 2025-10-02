@@ -28,7 +28,7 @@ GEN_FCL_BG='prodbackground_radiological_decay0_dune10kt_1x2x2_centralAPA' # back
 GEN_FCL=$GEN_FCL_ES # default, but can be changed with -m or -M, or flags
 G4_FCL='supernova_g4_dune10kt_1x2x2'
 DETSIM_FCL='detsim_dune10kt_1x2x2_notpcsigproc'   # check noise
-RECO_FCL='triggerana_tree_1x2x2_simpleThr_production.fcl' # current default, might change       
+RECO_FCL='triggerana_tree_1x2x2_simpleThr_production' # current default, might change       
 
 # other params that is better to initialize
 JSON_SETTINGS="settings_template.json"
