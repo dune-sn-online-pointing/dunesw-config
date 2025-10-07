@@ -1,0 +1,2303 @@
+###########################################################
+init.sh script started
+ Repository home is /exp/dune/app/users/emvilla/dunesw-config
+Set up local directories
+init.sh script finished
+
+init.sh script started
+ Repository home is /exp/dune/app/users/emvilla/dunesw-config
+Set up local directories
+init.sh script finished
+
+Looking for settings file /exp/dune/app/users/emvilla/dunesw-config/json/101005.json. If execution stops, it means that the file was not found.
+Using command: /exp/dune/app/users/emvilla/dunesw-config/scripts/findSettings.sh -j /exp/dune/app/users/emvilla/dunesw-config/json/101005.json --home-config /exp/dune/app/users/emvilla/dunesw-config
+Settings file found, full path is: /exp/dune/app/users/emvilla/dunesw-config/json/101005.json 
+
+Setting up dunesw version v10_10_05d00
+Expecting the software to be in: ...
+Dunesw folder not found, skipping product sourcing.
+Output folder is /exp/dune/data/users/emvilla//v10_10_05d00/, creating it in case it does not exist
+Running command: source /exp/dune/app/users/emvilla/dunesw-config/scripts/setup_dunesw.sh v10_10_05d00
+Setting up larsoft UPS area... /cvmfs/larsoft.opensciencegrid.org
+Setting up DUNE UPS area... /cvmfs/dune.opensciencegrid.org/products/dune/
+Setting up dunesw v10_10_05d00
+Setting up dunesw version v10_10_05d00, qualifier e26:prof ...
+Done!
+We are in /exp/dune/app/users/emvilla/dunesw-config
+Data will be saved in /exp/dune/data/users/emvilla//v10_10_05d00/standard/prodgenie_nu_dune10kt_1x2x6_standard-triggerana_tree_1x2x6_tpg_absrs_st-1events_genieNuMu_triggerValidationTest/
+Generating fcl file with standard values...
+If you see a git error, it is because the script must be run from inside the dunesw-config repository.
+HOME_DIR for script custom-enAndDir.sh: /exp/dune/app/users/emvilla/dunesw-config
+Generated file: /exp/dune/data/users/emvilla//v10_10_05d00/standard/prodgenie_nu_dune10kt_1x2x6_standard-triggerana_tree_1x2x6_tpg_absrs_st-1events_genieNuMu_triggerValidationTest/prodgenie_nu_dune10kt_1x2x6_standard.fcl
+ 
+We are now in /exp/dune/data/users/emvilla/v10_10_05d00/standard/prodgenie_nu_dune10kt_1x2x6_standard-triggerana_tree_1x2x6_tpg_absrs_st-1events_genieNuMu_triggerValidationTest
+Items here are total 118
+-rw-r--r-- 1 emvilla dune 40082 Oct  6 10:41 detsim_dune10kt_1x2x6_notpcsigproc_dump.fcl
+-rw-r--r-- 1 emvilla dune 13339 Oct  6 10:41 prodgenie_nu_dune10kt_1x2x6_dump.fcl
+-rw-r--r-- 1 emvilla dune    99 Oct  6 10:41 prodgenie_nu_dune10kt_1x2x6_standard.fcl
+-rw-r--r-- 1 emvilla dune 29101 Oct  6 10:41 standard_g4_dune10kt_1x2x6_dump.fcl
+-rw-r--r-- 1 emvilla dune 36382 Oct  6 10:41 triggerana_tree_1x2x6_tpg_absrs_st_dump.fcl
+Starting simulation at 1759765298
+Starting Generation...
+Starting generation at 1759765298
+Executing command: lar -c /exp/dune/data/users/emvilla//v10_10_05d00/standard/prodgenie_nu_dune10kt_1x2x6_standard-triggerana_tree_1x2x6_tpg_absrs_st-1events_genieNuMu_triggerValidationTest/prodgenie_nu_dune10kt_1x2x6_standard.fcl -n 1 -o /exp/dune/data/users/emvilla//v10_10_05d00/standard/prodgenie_nu_dune10kt_1x2x6_standard-triggerana_tree_1x2x6_tpg_absrs_st-1events_genieNuMu_triggerValidationTest/gen.root
+%MSG-i MF_INIT_OK:  Early 06-Oct-2025 10:41:39 CDT JobSetup
+Messagelogger initialization complete.
+%MSG
+Info in <TGeoManager::Import>: Reading geometry from file: /cvmfs/dune.opensciencegrid.org/products/dune/dunecore/v10_10_05d00/gdml/dune10kt_v6_refactored_1x2x6.gdml
+Info in <TGeoManager::TGeoManager>: Geometry GDMLImport, Geometry imported from GDML created
+Error: Unsupported GDML Tag Used :gdml_simple_extension. Please Check Geometry/Schema.
+Error: Unsupported GDML Tag Used :extension. Please Check Geometry/Schema.
+Info in <TGeoManager::SetTopVolume>: Top volume is volWorld. Master volume is volWorld
+Info in <TGeoNavigator::BuildCache>: --- Maximum geometry depth set to 100
+Info in <TGeoManager::CheckGeometry>: Fixing runtime shapes...
+Info in <TGeoManager::CheckGeometry>: ...Nothing to fix
+Info in <TGeoManager::CloseGeometry>: Counting nodes...
+Info in <TGeoManager::Voxelize>: Voxelizing...
+Info in <TGeoManager::CloseGeometry>: Building cache...
+Info in <TGeoManager::CountLevels>: max level = 5, max placements = 1149
+Info in <TGeoManager::CloseGeometry>: 67545 nodes/ 5439 volume UID's in Geometry imported from GDML
+Info in <TGeoManager::CloseGeometry>: ----------------modeler ready----------------
+%MSG-i AuxDetGeometryCore:  Early 06-Oct-2025 10:41:41 CDT JobSetup
+New detector geometry loaded from
+	/cvmfs/dune.opensciencegrid.org/products/dune/dunecore/v10_10_05d00/gdml/dune10kt_v6_refactored_1x2x6.gdml
+%MSG
+%MSG-i GeometryCore:  Early 06-Oct-2025 10:41:41 CDT JobSetup
+Sorting volumes...
+%MSG
+%MSG-i GeometryCore:  Early 06-Oct-2025 10:41:41 CDT JobSetup
+New detector geometry loaded from
+	/cvmfs/dune.opensciencegrid.org/products/dune/dunecore/v10_10_05d00/gdml/dune10kt_v6_refactored_1x2x6.gdml
+%MSG
+%MSG-i DuneApaWireReadoutGeom:  Early 06-Oct-2025 10:41:41 CDT JobSetup
+Initializing wire readout...
+%MSG
+Cryostat 0:
+  30720 total channels
+  12 APAs
+  For all identical APA:
+    Number of channels per APA = 2560
+    U channels per APA = 800
+    V channels per APA = 800
+    Z channels per APA = 960
+    Pitch in U Plane = 0.4667
+    Pitch in V Plane = 0.4667
+    Pitch in Z Plane = 0.479
+GeoApaChannelGroupService::ctor: Group 0 (apa00) has 2560 channels from 4/4 readout planes.
+GeoApaChannelGroupService::ctor: Group 1 (apa01) has 2560 channels from 4/4 readout planes.
+GeoApaChannelGroupService::ctor: Group 2 (apa02) has 2560 channels from 4/4 readout planes.
+GeoApaChannelGroupService::ctor: Group 3 (apa03) has 2560 channels from 4/4 readout planes.
+GeoApaChannelGroupService::ctor: Group 4 (apa04) has 2560 channels from 4/4 readout planes.
+GeoApaChannelGroupService::ctor: Group 5 (apa05) has 2560 channels from 4/4 readout planes.
+GeoApaChannelGroupService::ctor: Group 6 (apa06) has 2560 channels from 4/4 readout planes.
+GeoApaChannelGroupService::ctor: Group 7 (apa07) has 2560 channels from 4/4 readout planes.
+GeoApaChannelGroupService::ctor: Group 8 (apa08) has 2560 channels from 4/4 readout planes.
+GeoApaChannelGroupService::ctor: Group 9 (apa09) has 2560 channels from 4/4 readout planes.
+GeoApaChannelGroupService::ctor: Group 10 (apa10) has 2560 channels from 4/4 readout planes.
+GeoApaChannelGroupService::ctor: Group 11 (apa11) has 2560 channels from 4/4 readout planes.
+%MSG-i SimpleChannelStatusService:  Early 06-Oct-2025 10:41:41 CDT JobSetup
+Loaded from configuration:
+  - 0 bad channels
+  - 0 noisy channels
+  - largest channel ID: 30719, largest present: 30719
+%MSG
+%MSG-i setupProvider<DetectorPropertiesStandard>:  Early  06-Oct-2025 10:41:41 CDT JobSetup
+Asked to ignore 1 keys: 'InheritNumberTimeSamples'
+%MSG
+IFDH constructor, got keys:
+service_type, 
+IFDH: didn't find a base uri...
+
+%MSG-i SignalShapingServiceDUNE:  Early 06-Oct-2025 10:41:41 CDT JobSetup
+Getting Filter from .fcl file
+%MSG
+%MSG-i SignalShapingServiceDUNE:  Early 06-Oct-2025 10:41:41 CDT JobSetup
+ using the field response provided from a .root file 
+%MSG
+Warning in <TFile::Append>: Replacing existing TH1: FieldResponse_U (Potential memory leak).
+Warning in <TFile::Append>: Replacing existing TH1: FieldResponse_V (Potential memory leak).
+Warning in <TFile::Append>: Replacing existing TH1: FieldResponse_Y (Potential memory leak).
+%MSG-i GENIEHelper:  GENIEGen:generator@Construction 06-Oct-2025 10:41:42 CDT  ModuleConstruction
+Init HelperRandom with seed 0
+%MSG
+%MSG-i GENIEHelper:  GENIEGen:generator@Construction 06-Oct-2025 10:41:42 CDT  ModuleConstruction
+ExpandFluxPaths initially: "/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/"
+             final result: "/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/"
+                    using: "DIRECT" method
+%MSG
+%MSG-i GENIEHelper:  GENIEGen:generator@Construction 06-Oct-2025 10:41:42 CDT  ModuleConstruction
+ExpandFluxFilePatternsDirect initially found 249 files for user patterns:
+	gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_*root
+  using FluxSearchPaths of: 
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/
+list of 249 will be randomized and pared down to 2000 MB or 9999 files
+%MSG
+%MSG-i GENIEHelper:  GENIEGen:generator@Construction 06-Oct-2025 10:41:42 CDT  ModuleConstruction
+StartGENIEMessenger ProdMode=yes read from: Messenger_whisper.xml
+%MSG
+
+
+*****************************************************************************************************************
+*                                                                                                               *
+*                                                   .oooooo.    oooooooooooo ooooo      ooo ooooo oooooooooooo  *
+*                                                  d8P'  `Y8b   `888'     `8 `888b.     `8' `888' `888'     `8  *
+*                                                 888            888          8 `88b.    8   888   888          * 
+*                        Ndyooym          dN      888            888oooo8     8   `88b.  8   888   888oooo8     *
+*                     Nds//+sdmoy       d+m       888     ooooo  888    "     8     `88b.8   888   888    "     * 
+*                   Nh+//ohN  m+s      N//syyN    `88.    .88'   888       o  8       `888   888   888       o  *
+*                 Ny+//od   Nh+oN       o///+      `Y8bood8P'   o888ooooood8 o8o        `8  o888o o888ooooood8  *
+*               Nh+//om   Nh+/yN       o///s                                                                    *
+*              d+//+d   my+/smmyhN    m///h                                      NEUTRINO MONTE CARLO GENERATOR *   
+*            Ns///yN NdyoshNNs///d   h////yN                                                                    *
+*           mo//om        ms///+m   d///////oyhmN                                               Version 3.04.02 *
+*          N+//yN       ms////+N    h////////////oym                                                            *
+*          s//h       ho/+///sN     N///////////////od                                  http://www.genie-mc.org *
+*         N+/h     my++yh+//y       s/////////////////oN                                                        *
+*         Ns/m Nmy++ymNh//+d        s//////////////////+m                                                       *
+*          NhssoshN  Ny//sN         m///////////////////+                                                       *
+*                  Nmo/+ohdmN        mo//////////////////h            NmmN                                      *
+*              ms/+s//o/-----:+sdN     mhso+ooys/////////o      mhs+/------/ohN                                 *
+*    Nhd     N+-/o+/o+------------/shN     Ndy+//////////+ mhs+:---------------om                               *
+*  mo/sN    m:/oo/oo:-----------------:://////////////////-----------------------y                              *
+*  y//d    Noo++o+:----------:------------:://///////////:-------:/+osyso/:-------h                             *
+*  Nyo+syysooo+/--------------::--------------:://///////:----::////+ossyso/------:                             *
+*     NNNNNs--------------------:/::-------------:://///:-:://////////oosyo+:------                             *
+*          y---------------------:////:::-----------:////////////////+o++++/:-----/                             *
+*          m-----------------------://////////////////////////////+so/--:---------y                             *
+*           +------------------------://////////////////////////+yy:---+oh/--:y+-/N                             *
+*           N/-------------------------://////////////////////ohy/-------yy--os-/m                              *
+*            No--------------------------://///////////////+shs/---------/d++/-oN                               *
+*              mo--------------------------:////////////+shyo:------------sy/sm                                 *
+*                Ny+:------------------------::://///oyhyo:--------------/sd                                    *
+*                    mhso+/:------------------:/+oyhyo/----------:/+syhm                                        *
+*                           NmddhyyyssssyyyhdmmNNNmhhhyyyyhhddmN                                                *
+*                                                                                                               *
+*                                                             Copyright (c) 2003-2023, The GENIE Collaboration  *
+*                                                                                                               *
+*                                                                                                               *
+* Luis Alvarez-Ruso [6], Costas Andreopoulos [9], Adi Ashkenazi [13], Joshua Barrow (10,13), Steve Dytman [12], * 
+*      Hugh Gallagher [14], Alfonso Andres Garcia Soto [5,6], Steven Gardiner [4], Matan Goldenberg [13],       * 
+*  Robert Hatcher [4], Or Hen [10], Igor Kakorin [8], Konstantin Kuzmin [7,8], Weijun Li [11], Xianguo Lu [15], *
+*          Anselmo Meregaglia [2], Vadim Naumov [8], Afroditi Papadopoulou [1], Gabriel Perdue [3],             *
+*   Komninos-John Plows [11], Marco Roda [9], Alon Sportes [13], Noah Steinberg [4], Vladyslav Syrotenko [14],  *
+*                         Júlia Tena Vidal [13], Jeremy Wolcott [14], and Qiyu Yan [3,15]                       *
+*                                                                                                               *
+*                                            (The GENIE Collaboration)                                          *
+*                                                                                                               *
+*                                      [1] Argonne National Laboratory (ANL)                                    *
+*                                 [2] CENBG, Université de Bordeaux, CNRS/IN2P3                                 *
+*                             [3] University of the Chinese Academy of Sciences (UCAS)                          *
+*                                 [4] Fermi National Accelerator Laboratory (FNAL)                              *
+*                                      [5] Harvard University, Dept. of Physics                                 *   
+*                                     [6] Instituto de Física Corpuscular (IFIC)                                *
+*      [7] Alikhanov Institute for Theoretical and Experimental Physics (ITEP) of NRC "Kurchatov Institute"     *
+*                                  [8] Joint Institute for Nuclear Research (JINR)                              *
+*                                   [9] University of Liverpool, Dept. of Physics                               *
+*                         [10] Massachusetts Institute of Technology (MIT), Dept. of Physics                    *
+*                                    [11] University of Oxford, Dept. of Physics                                *
+*                            [12] University of Pittsburgh, Dept. of Physics and Astronomy                      *
+*                              [13] Tel Aviv University, School of Physics and Astronomy                        *
+*                                [14] Tufts University, Dept. of Physics and Astronomy                          *
+*                                     [15] Warwick University, Dept. of Physics                                 *
+*                                                                                                               *
+*  Corresponding Author:                                                                                        *
+*  -                                                                                                            *
+*  Professor Costas Andreopoulos                                                                                *
+*  University of Liverpool, Department of Physics                                                               *
+*  Oliver Lodge Lab 316, Liverpool L69 7ZE, UK                                                                  *
+*  E-Mail: c.andreopoulos \at cern.ch                                                                           *
+*  Tel: +44-(0)1517-943201                                                                                      *
+*****************************************************************************************************************
+
+
+1759765302 NOTICE Messenger : [s] <SetPrioritiesFromXmlFile (136)> : Reading msg stream priorities from XML file: /cvmfs/larsoft.opensciencegrid.org/products/genie/v3_04_02a/Linux64bit+3.10-2.17-e26-prof/GENIE-Generator/config/Messenger.xml
+1759765302 NOTICE Messenger : [s] <SetPrioritiesFromXmlFile (136)> : Reading msg stream priorities from XML file: /cvmfs/larsoft.opensciencegrid.org/products/genie/v3_04_02a/Linux64bit+3.10-2.17-e26-prof/GENIE-Generator/config/Messenger_whisper.xml
+%MSG-i GENIEHelper:  GENIEGen:generator@Construction 06-Oct-2025 10:41:42 CDT  ModuleConstruction
+Init genie::utils::app_init::RandGen() with seed 0
+%MSG
+%MSG-i GENIEHelper:  GENIEGen:generator@Construction 06-Oct-2025 10:41:42 CDT  ModuleConstruction
+Generating flux with the following flavors:  12 14 -12 -14
+and these file patterns: 
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00113_00112.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00146_00144.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00162_00160.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00212_00210.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00095_00094.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00046_00045.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00125_00124.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00203_00201.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00045_00044.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00073_00072.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00007_00006.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00184_00182.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00189_00187.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00178_00176.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00087_00086.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00110_00109.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00221_00219.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00071_00070.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00088_00087.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00210_00208.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00018_00017.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00072_00071.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00043_00042.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00242_00240.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00076_00075.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00181_00179.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00237_00235.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00207_00205.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00015_00014.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00172_00170.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00013_00012.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00035_00034.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00235_00233.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00127_00126.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00187_00185.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00068_00067.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00030_00029.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00064_00063.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00204_00202.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00157_00155.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00025_00024.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00167_00165.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00094_00093.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00001_00000.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00008_00007.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00075_00074.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00241_00239.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00233_00231.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00243_00241.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00054_00053.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00223_00221.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00200_00198.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00069_00068.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00176_00174.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00209_00207.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00053_00052.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00180_00178.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00182_00180.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00153_00151.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00150_00148.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00174_00172.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00005_00004.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00082_00081.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00191_00189.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00101_00100.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00213_00211.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00217_00215.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00093_00092.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00048_00047.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00011_00010.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00108_00107.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00104_00103.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00192_00190.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00232_00230.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00133_00132.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00050_00049.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00003_00002.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00099_00098.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00240_00238.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00175_00173.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00056_00055.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00134_00133.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00044_00043.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00086_00085.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00201_00199.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00156_00154.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00234_00232.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00141_00140.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00080_00079.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00016_00015.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00136_00135.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00230_00228.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00034_00033.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00225_00223.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00138_00137.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00038_00037.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00029_00028.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00205_00203.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00032_00031.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00121_00120.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00238_00236.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00058_00057.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00161_00159.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00019_00018.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00148_00146.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00246_00244.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00250_00248.root
+	/cvmfs/dune.osgstorage.org/pnfs/fnal.gov/usr/dune/persistent/stash/Flux/g4lbne/v3r5p4/QGSP_BERT/OptimizedEngineeredNov2017/neutrino/dune10kt_horizdrift_1x2x6/gsimple_dune10kt_v1_1x2x6_g4lbne_v3r5p4_QGSP_BERT_OptimizedEngineeredNov2017_neutrino_00103_00102.root
+%MSG
+%MSG-i GENIEHelper:  GENIEGen:generator@Construction 06-Oct-2025 10:41:42 CDT  ModuleConstruction
+Generating 1 events for each spill
+%MSG
+%MSG-i GeneratedEventTimestamp:   TriggerResultInserter:TriggerResults@Construction 06-Oct-2025 10:41:42 CDT  ModuleConstruction
+Timestamp plugin: timestamp from local clock time in nanoseconds
+%MSG
+1759765302 INFO GENIE : Trigger GENIE banner
+%MSG-i GENIEHelper:  GENIEGen:generator@BeginJob 06-Oct-2025 10:41:42 CDT  ModuleBeginJob
+GENIE EventGeneratorList using "Default"
+%MSG
+%MSG-i GENIE2ART:  GENIEGen:generator@BeginJob 06-Oct-2025 10:41:42 CDT  ModuleBeginJob
+TuneName started as '${GENIE_XSEC_TUNE}'  converted to AR23_20i_00_000
+%MSG
+%MSG-i GENIE2ART:  GENIEGen:generator@BeginJob 06-Oct-2025 10:41:42 CDT  ModuleBeginJob
+Configuring GENIE tune "AR23_20i_00_000"
+%MSG
+1759765302 INFO TuneId : [n] <TuneId.cxx::Build (132)> : AR23_20i_00_000 Tune configured 
+1759765302 INFO RunOpt : [n] <RunOpt.cxx::BuildTune (94)> : Building tune AR23_20i_00_000
+1759765302 INFO TuneId : [n] <TuneId.cxx::Build (132)> : AR23_20i_00_000 Tune configured 
+%MSG-i GENIEHelper:  GENIEGen:generator@BeginJob 06-Oct-2025 10:41:42 CDT  ModuleBeginJob
+Custom GENIE tune: AR23_20i_00_000
+ - Prefix ............... : AR
+ - Year ................. : 23
+ - Major model ID ....... : 20
+ - Minor model ID ....... : i
+ - Tuned param set ID ... : 00
+ - Fit dataset ID ....... : 000
+ - Tune directory ....... : /cvmfs/larsoft.opensciencegrid.org/products/genie/v3_04_02a/Linux64bit+3.10-2.17-e26-prof/GENIE-Generator/config/AR23_20i
+ - Base directory ....... : /cvmfs/larsoft.opensciencegrid.org/products/genie/v3_04_02a/Linux64bit+3.10-2.17-e26-prof/GENIE-Generator/config
+ - Custom directory ..... : /cvmfs/larsoft.opensciencegrid.org/products/genie_xsec/v3_04_00/NULL/AR2320i00000-k250-e1000/data
+
+%MSG
+%MSG-i GENIEHelper:  GENIEGen:generator@BeginJob 06-Oct-2025 10:41:42 CDT  ModuleBeginJob
+ TuneName name changed from "${GENIE_XSEC_TUNE}" to "AR23_20i_00_000" by evgb::SetEventGeneratorListAndTune
+%MSG
+%MSG-i GENIEHelper:  GENIEGen:generator@BeginJob 06-Oct-2025 10:41:42 CDT  ModuleBeginJob
+XSecTable/GSPLOAD full path "/cvmfs/larsoft.opensciencegrid.org/products/genie_xsec/v3_04_00/NULL/AR2320i00000-k250-e1000/data/gxspl-FNALsmall.xml"
+%MSG
+%MSG-i GENIEHelper:  GENIEGen:generator@BeginJob 06-Oct-2025 10:41:58 CDT  ModuleBeginJob
+Time to read GENIE XSecTable:  Real 16.6621 s, CPU 16.36 s from /cvmfs/larsoft.opensciencegrid.org/products/genie_xsec/v3_04_00/NULL/AR2320i00000-k250-e1000/data/gxspl-FNALsmall.xml
+%MSG
+%MSG-i GENIEHelper:  GENIEGen:generator@BeginJob 06-Oct-2025 10:41:59 CDT  ModuleBeginJob
+GENIEHelper::InitializeGeometry using TopVolume 'volCryostat'
+%MSG
+%MSG-i GENIEHelper:  GENIEGen:generator@BeginJob 06-Oct-2025 10:41:59 CDT  ModuleBeginJob
+fiducial cut: mbox:-380,-620,-20,380,620,1420
+%MSG
+%MSG-i GENIEHelper:  GENIEGen:generator@BeginJob 06-Oct-2025 10:41:59 CDT  ModuleBeginJob
+Convert fiducial volume from master to topvol coords
+%MSG
+1759765359 INFO TransverseEnhancementFFModel : [n] <ConfigIsotopeMapUtils.cxx::LoadAllNucARangesForKey (61)> : For 0 < A < 12 -> using MagFF_RT_A = 0
+1759765359 INFO TransverseEnhancementFFModel : [n] <ConfigIsotopeMapUtils.cxx::LoadAllNucARangesForKey (61)> : For 11 < A < 420 -> using MagFF_RT_A = 5.19
+1759765359 INFO TransverseEnhancementFFModel : [n] <ConfigIsotopeMapUtils.cxx::LoadAllNucARangesForKey (61)> : For 0 < A < 12 -> using MagFF_RT_B = 1
+1759765359 INFO TransverseEnhancementFFModel : [n] <ConfigIsotopeMapUtils.cxx::LoadAllNucARangesForKey (61)> : For 11 < A < 420 -> using MagFF_RT_B = 0.376
+Begin processing the 1st record. run: 20000001 subRun: 0 event: 1 at 06-Oct-2025 10:42:56 CDT
+%MSG-w ParticleInventory:  ProcessEvent 06-Oct-2025 10:42:56 CDT  run: 20000001 subRun: 0 event: 1
+Rebuild failed to get the MCParticles. This is expected when running on a generation or simulation step.
+%MSG
+%MSG-w ParticleInventory:  ProcessEvent 06-Oct-2025 10:42:56 CDT  run: 20000001 subRun: 0 event: 1
+Rebuild failed to get the MCParticles. This is expected when running on a generation or simulation step.
+%MSG
+%MSG-w ParticleInventory:  ProcessEvent 06-Oct-2025 10:42:56 CDT  run: 20000001 subRun: 0 event: 1
+Rebuild failed to get the MCParticles. This is expected when running on a generation or simulation step.
+%MSG
+%MSG-w BackTrackerService:  ProcessEvent 06-Oct-2025 10:42:56 CDT  run: 20000001 subRun: 0 event: 1
+Rebuild failed to get the SimChannels. This is expected when running on a generation or simulation step.
+%MSG
+%MSG-w PhotonBackTrackerService:  ProcessEvent 06-Oct-2025 10:42:56 CDT  run: 20000001 subRun: 0 event: 1
+Rebuild failed to get the OpDetBTRs. This is expected when running on a generation or simulation step.
+%MSG
+%MSG-i NuRandomService:  GENIEGen:generator@BeginModule  06-Oct-2025 10:42:56 CDT run: 20000001 subRun: 0 event: 1
+Random seed for this event, engine 'generator': 482691920
+%MSG
+1759765384 NOTICE INukeNucleonCorr : [n] <INukeNucleonCorr.cxx::read_file (224)> : Successful open file/cvmfs/larsoft.opensciencegrid.org/products/genie/v3_04_02a/Linux64bit+3.10-2.17-e26-prof/GENIE-Generator/data/evgen/nncorr/NNCorrection_2_4.txt
+
+1759765384 NOTICE INukeNucleonCorr : [n] <INukeNucleonCorr.cxx::read_file (224)> : Successful open file/cvmfs/larsoft.opensciencegrid.org/products/genie/v3_04_02a/Linux64bit+3.10-2.17-e26-prof/GENIE-Generator/data/evgen/nncorr/NNCorrection_6_12.txt
+
+1759765384 NOTICE INukeNucleonCorr : [n] <INukeNucleonCorr.cxx::read_file (224)> : Successful open file/cvmfs/larsoft.opensciencegrid.org/products/genie/v3_04_02a/Linux64bit+3.10-2.17-e26-prof/GENIE-Generator/data/evgen/nncorr/NNCorrection_20_40.txt
+
+1759765384 NOTICE INukeNucleonCorr : [n] <INukeNucleonCorr.cxx::read_file (224)> : Successful open file/cvmfs/larsoft.opensciencegrid.org/products/genie/v3_04_02a/Linux64bit+3.10-2.17-e26-prof/GENIE-Generator/data/evgen/nncorr/NNCorrection_26_56.txt
+
+1759765384 NOTICE INukeNucleonCorr : [n] <INukeNucleonCorr.cxx::read_file (224)> : Successful open file/cvmfs/larsoft.opensciencegrid.org/products/genie/v3_04_02a/Linux64bit+3.10-2.17-e26-prof/GENIE-Generator/data/evgen/nncorr/NNCorrection_50_120.txt
+
+1759765384 NOTICE INukeNucleonCorr : [n] <INukeNucleonCorr.cxx::read_file (224)> : Successful open file/cvmfs/larsoft.opensciencegrid.org/products/genie/v3_04_02a/Linux64bit+3.10-2.17-e26-prof/GENIE-Generator/data/evgen/nncorr/NNCorrection_92_238.txt
+
+1759765384 NOTICE INukeNucleonCorr : [n] <INukeNucleonCorr.cxx::getAvgCorrection (306)> : Nucleon Corr interpolation files read in successfully
+06-Oct-2025 10:43:04 CDT  Opened output file with pattern "/exp/dune/data/users/emvilla//v10_10_05d00/standard/prodgenie_nu_dune10kt_1x2x6_standard-triggerana_tree_1x2x6_tpg_absrs_st-1events_genieNuMu_triggerValidationTest/gen.root"
+%MSG-i Root_Information:  PostProcessEvent TClass::Init()  06-Oct-2025 10:43:04 CDT run: 20000001 subRun: 0 event: 1
+no dictionary for class sim::IDE is available
+ROOT severity: 2000
+%MSG
+%MSG-w FastCloning:  PostProcessEvent 06-Oct-2025 10:43:04 CDT  run: 20000001 subRun: 0 event: 1
+Fast cloning has been deactivated for the following reasons:
+ - Input source does not read art/ROOT files.
+%MSG
+06-Oct-2025 10:43:05 CDT  Closed output file "/exp/dune/data/users/emvilla//v10_10_05d00/standard/prodgenie_nu_dune10kt_1x2x6_standard-triggerana_tree_1x2x6_tpg_absrs_st-1events_genieNuMu_triggerValidationTest/gen.root"
+
+================================================================================================================================
+TimeTracker printout (sec)                        Min           Avg           Max         Median          RMS         nEvts   
+================================================================================================================================
+Full event                                      7.11764       7.11764       7.11764       7.11764          0            1     
+--------------------------------------------------------------------------------------------------------------------------------
+source:EmptyEvent(read)                       0.000329762   0.000329762   0.000329762   0.000329762        0            1     
+simulate:rns:RandomNumberSaver                0.000234518   0.000234518   0.000234518   0.000234518        0            1     
+simulate:generator:GENIEGen                     7.11478       7.11478       7.11478       7.11478          0            1     
+[art]:TriggerResults:TriggerResultInserter    3.7101e-05    3.7101e-05    3.7101e-05    3.7101e-05         0            1     
+end_path:out1:RootOutput                      1.0591e-05    1.0591e-05    1.0591e-05    1.0591e-05         0            1     
+end_path:out1:RootOutput(write)                0.0017655     0.0017655     0.0017655     0.0017655         0            1     
+================================================================================================================================
+%MSG-i NuRandomService:  RootOutput:out1@EndJob 06-Oct-2025 10:43:05 CDT  ModuleEndJob
+
+Summary of seeds computed by the NuRandomService
+Random policy: 'perEvent'
+  algorithm version: EventTimestamp_v1
+   Configured value          Last value   ModuleLabel.InstanceName
+        (per event)           482691920   generator
+
+%MSG
+
+====================================================================================================
+MemoryTracker summary (base-10 MB units used)
+
+  Peak virtual memory usage (VmPeak)  : 2469.09 MB
+  Peak resident set size usage (VmHWM): 1052.69 MB
+====================================================================================================
+
+TrigReport ---------- Event summary -------------
+TrigReport Events total = 1 passed = 1 failed = 0
+
+TrigReport ---------- Modules in End-path ----------
+TrigReport        Run    Success      Error Name
+TrigReport          1          1          0 out1
+
+TimeReport ---------- Time summary [sec] -------
+TimeReport CPU = 35.547624 Real = 83.214811
+
+MemReport  ---------- Memory summary [base-10 MB] ------
+MemReport  VmPeak = 2469.09 VmHWM = 1052.69
+
+%MSG-i GENIEHelper:  PostEndJob 06-Oct-2025 10:43:05 CDT ModuleEndJob
+ Total Exposure 7.41642e+17 GMCJDriver GlobProbScale 8.66424e-09 FluxDriver base pots 6.42577e+09 corrected POTS 7.41642e+17
+%MSG
+%MSG-i GENIEProductionTime:  PostEndJob 06-Oct-2025 10:43:05 CDT ModuleEndJob
+real time to produce file: 83.3348
+%MSG
+Art has completed and will exit with status 0.
+ Generation done!
+
+ In the folder now we have
+ total 227
+-rw-r--r-- 1 emvilla dune 40082 Oct  6 10:41 detsim_dune10kt_1x2x6_notpcsigproc_dump.fcl
+-rw-r--r-- 1 emvilla dune 15609 Oct  6 10:43 genie_hist.root
+-rw-r--r-- 1 emvilla dune 95394 Oct  6 10:43 gen.root
+-rw-r--r-- 1 emvilla dune 13339 Oct  6 10:41 prodgenie_nu_dune10kt_1x2x6_dump.fcl
+-rw-r--r-- 1 emvilla dune    99 Oct  6 10:41 prodgenie_nu_dune10kt_1x2x6_standard.fcl
+-rw-r--r-- 1 emvilla dune 29101 Oct  6 10:41 standard_g4_dune10kt_1x2x6_dump.fcl
+-rw-r--r-- 1 emvilla dune 36382 Oct  6 10:41 triggerana_tree_1x2x6_tpg_absrs_st_dump.fcl 
+
+Ending generation at 1759765386
+Generation took 88 seconds
+Size of the gen file is 94K
+Starting Geant4 simulation...
+Starting g4 at 
+Executing command: lar -c standard_g4_dune10kt_1x2x6.fcl -n 1 -s /exp/dune/data/users/emvilla//v10_10_05d00/standard/prodgenie_nu_dune10kt_1x2x6_standard-triggerana_tree_1x2x6_tpg_absrs_st-1events_genieNuMu_triggerValidationTest/gen.root -o /exp/dune/data/users/emvilla//v10_10_05d00/standard/prodgenie_nu_dune10kt_1x2x6_standard-triggerana_tree_1x2x6_tpg_absrs_st-1events_genieNuMu_triggerValidationTest/gen_g4.root
+%MSG-i MF_INIT_OK:  Early 06-Oct-2025 10:43:10 CDT JobSetup
+Messagelogger initialization complete.
+%MSG
+Info in <TGeoManager::Import>: Reading geometry from file: /cvmfs/dune.opensciencegrid.org/products/dune/dunecore/v10_10_05d00/gdml/dune10kt_v6_refactored_1x2x6.gdml
+Info in <TGeoManager::TGeoManager>: Geometry GDMLImport, Geometry imported from GDML created
+Error: Unsupported GDML Tag Used :gdml_simple_extension. Please Check Geometry/Schema.
+Error: Unsupported GDML Tag Used :extension. Please Check Geometry/Schema.
+Info in <TGeoManager::SetTopVolume>: Top volume is volWorld. Master volume is volWorld
+Info in <TGeoNavigator::BuildCache>: --- Maximum geometry depth set to 100
+Info in <TGeoManager::CheckGeometry>: Fixing runtime shapes...
+Info in <TGeoManager::CheckGeometry>: ...Nothing to fix
+Info in <TGeoManager::CloseGeometry>: Counting nodes...
+Info in <TGeoManager::Voxelize>: Voxelizing...
+Info in <TGeoManager::CloseGeometry>: Building cache...
+Info in <TGeoManager::CountLevels>: max level = 5, max placements = 1149
+Info in <TGeoManager::CloseGeometry>: 67545 nodes/ 5439 volume UID's in Geometry imported from GDML
+Info in <TGeoManager::CloseGeometry>: ----------------modeler ready----------------
+%MSG-i AuxDetGeometryCore:  Early 06-Oct-2025 10:43:13 CDT JobSetup
+New detector geometry loaded from
+	/cvmfs/dune.opensciencegrid.org/products/dune/dunecore/v10_10_05d00/gdml/dune10kt_v6_refactored_1x2x6.gdml
+%MSG
+%MSG-i GeometryCore:  Early 06-Oct-2025 10:43:13 CDT JobSetup
+Sorting volumes...
+%MSG
+%MSG-i GeometryCore:  Early 06-Oct-2025 10:43:13 CDT JobSetup
+New detector geometry loaded from
+	/cvmfs/dune.opensciencegrid.org/products/dune/dunecore/v10_10_05d00/gdml/dune10kt_v6_refactored_1x2x6.gdml
+%MSG
+%MSG-i DuneApaWireReadoutGeom:  Early 06-Oct-2025 10:43:13 CDT JobSetup
+Initializing wire readout...
+%MSG
+Cryostat 0:
+  30720 total channels
+  12 APAs
+  For all identical APA:
+    Number of channels per APA = 2560
+    U channels per APA = 800
+    V channels per APA = 800
+    Z channels per APA = 960
+    Pitch in U Plane = 0.4667
+    Pitch in V Plane = 0.4667
+    Pitch in Z Plane = 0.479
+%MSG-i SimpleChannelStatusService:  Early 06-Oct-2025 10:43:13 CDT JobSetup
+Loaded from configuration:
+  - 0 bad channels
+  - 0 noisy channels
+  - largest channel ID: 30719, largest present: 30719
+%MSG
+%MSG-i setupProvider<DetectorPropertiesStandard>:  Early  06-Oct-2025 10:43:13 CDT JobSetup
+Asked to ignore 1 keys: 'InheritNumberTimeSamples'
+%MSG
+%MSG-i LArG4DetectorService::Ctr:  Early 06-Oct-2025 10:43:13 CDT JobSetup
+Reading stepLimit(s) from the configuration file, for volume(s):
+%MSG
+%MSG-i LArG4DetectorService::Ctr:  Early 06-Oct-2025 10:43:13 CDT JobSetup
+Volume: volTPCActiveInner0, stepLimit: 0.4
+%MSG
+%MSG-i LArG4DetectorService::Ctr:  Early 06-Oct-2025 10:43:13 CDT JobSetup
+Volume: volTPCActiveInner1, stepLimit: 0.4
+%MSG
+%MSG-i LArG4DetectorService::Ctr:  Early 06-Oct-2025 10:43:13 CDT JobSetup
+Volume: volTPCActiveOuter, stepLimit: 0.4
+%MSG
+registering to  primaryGeneratorActionsMap_
+registering to   eventActionsMap_
+registering to   trackingActionsMap_
+registering to  steppingActionsMap_
+%MSG-i ParticleListActionService:  Early 06-Oct-2025 10:43:13 CDT JobSetup
+The full tracking information will not be stored for particles resulting from the following processes: 
+{ "conv" "LowEnConversion" "Pair" "compt" "Compt" "Brem" "phot" "Photo" "Ion" "annihil" }
+
+%MSG
+%MSG-i ParticleListActionService:  Early 06-Oct-2025 10:43:13 CDT JobSetup
+Trajectory sparsification enabled with SparsifyMargin : 0.015
+
+%MSG
+%MSG-i SignalShapingServiceDUNE:  Early 06-Oct-2025 10:43:13 CDT JobSetup
+Getting Filter from .fcl file
+%MSG
+%MSG-i SignalShapingServiceDUNE:  Early 06-Oct-2025 10:43:13 CDT JobSetup
+ using the field response provided from a .root file 
+%MSG
+Warning in <TFile::Append>: Replacing existing TH1: FieldResponse_U (Potential memory leak).
+Warning in <TFile::Append>: Replacing existing TH1: FieldResponse_V (Potential memory leak).
+Warning in <TFile::Append>: Replacing existing TH1: FieldResponse_Y (Potential memory leak).
+%MSG-i RANDOM:  IonAndScint:IonAndScint@Construction 06-Oct-2025 10:43:13 CDT  ModuleConstruction
+Instantiated HepJamesRandom engine "IonAndScint:0:ISCalcAlg" with seed 0.
+%MSG
+%MSG-i NuRandomService:  IonAndScint:IonAndScint@Construction  06-Oct-2025 10:43:13 CDT ModuleConstruction
+Seeding HepJamesRandom engine "IonAndScint:ISCalcAlg" with seed 0.
+%MSG
+IonAndScint Module Construct
+==== ParameterSet Keys for IonAndScint ====
+ - ISCalcAlg
+ - Instances
+ - module_label
+ - module_type
+Produce SimEnergyDeposit in volumes: 
+ - LArG4DetectorServicevolTPCInner
+ - LArG4DetectorServicevolTPCPlaneVInner
+ - LArG4DetectorServicevolTPCActiveOuter
+ - LArG4DetectorServicevolTPCPlaneUInner
+ - LArG4DetectorServicevolTPCPlaneZInner
+ - LArG4DetectorServicevolTPCActiveInner
+ - LArG4DetectorServicevolTPCActive,LArG4DetectorServicevolTPCInner0
+ - LArG4DetectorServicevolTPCPlaneVInner0
+ - LArG4DetectorServicevolTPCPlaneUInner0
+ - LArG4DetectorServicevolTPCPlaneZInner0
+ - LArG4DetectorServicevolTPCActiveInner0
+ - LArG4DetectorServicevolTPCActive0
+ - LArG4DetectorServicevolTPCInner1
+ - LArG4DetectorServicevolTPCPlaneVInner1
+ - LArG4DetectorServicevolTPCPlaneUInner1
+ - LArG4DetectorServicevolTPCPlaneZInner1
+ - LArG4DetectorServicevolTPCActiveInner1
+ - LArG4DetectorServicevolTPCActive1
+%MSG-i RANDOM:  PDFastSimPAR:PDFastSim@Construction 06-Oct-2025 10:43:13 CDT  ModuleConstruction
+Instantiated HepJamesRandom engine "PDFastSim:0:photon" with seed 0.
+%MSG
+%MSG-i NuRandomService:  PDFastSimPAR:PDFastSim@Construction  06-Oct-2025 10:43:13 CDT ModuleConstruction
+Seeding HepJamesRandom engine "PDFastSim:photon" with seed 0.
+%MSG
+%MSG-i RANDOM:  PDFastSimPAR:PDFastSim@Construction 06-Oct-2025 10:43:13 CDT  ModuleConstruction
+Instantiated HepJamesRandom engine "PDFastSim:0:scinttime" with seed 0.
+%MSG
+%MSG-i NuRandomService:  PDFastSimPAR:PDFastSim@Construction  06-Oct-2025 10:43:13 CDT ModuleConstruction
+Seeding HepJamesRandom engine "PDFastSim:scinttime" with seed 0.
+%MSG
+ScintTimeLAr Tool configure:
+Fast rising time: 0, Fast decay time: 6, Slow rising time: 0, Slow decay time: 1600
+%MSG-i PDFastSimPAR:  PDFastSimPAR:PDFastSim@Construction  06-Oct-2025 10:43:13 CDT ModuleConstruction
+Initializing PDFastSimPAR.
+%MSG
+%MSG-i SemiAnalyticalModel:  PDFastSimPAR:PDFastSim@Construction  06-Oct-2025 10:43:13 CDT ModuleConstruction
+Initializing Semi-analytical model.
+%MSG
+%MSG-i SemiAnalyticalModel:  PDFastSimPAR:PDFastSim@Construction  06-Oct-2025 10:43:13 CDT ModuleConstruction
+Using VUV visibility parameterization
+%MSG
+%MSG-i SemiAnalyticalModel:  PDFastSimPAR:PDFastSim@Construction  06-Oct-2025 10:43:13 CDT ModuleConstruction
+Setting absorption length to: 2000
+%MSG
+%MSG-i SemiAnalyticalModel:  PDFastSimPAR:PDFastSim@Construction  06-Oct-2025 10:43:13 CDT ModuleConstruction
+Semi-analytical model initialized.
+%MSG
+%MSG-i PropagationTimeModel:  PDFastSimPAR:PDFastSim@Construction  06-Oct-2025 10:43:13 CDT ModuleConstruction
+Initializing Photon propagation time model.
+%MSG
+%MSG-i PropagationTimeModel:  PDFastSimPAR:PDFastSim@Construction  06-Oct-2025 10:43:13 CDT ModuleConstruction
+Using VUV timing parameterization
+%MSG
+%MSG-i PropagationTimeModel:  PDFastSimPAR:PDFastSim@Construction  06-Oct-2025 10:43:13 CDT ModuleConstruction
+Generating VUV parameters
+%MSG
+%MSG-i PropagationTimeModel:  PDFastSimPAR:PDFastSim@Construction  06-Oct-2025 10:44:17 CDT ModuleConstruction
+Photon propagation time model initalized.
+%MSG
+%MSG-i PDFastSimPAR:  PDFastSimPAR:PDFastSim@Construction  06-Oct-2025 10:44:17 CDT ModuleConstruction
+PDFastSimPAR: active volume boundaries from 1 volumes:
+%MSG
+%MSG-i PDFastSimPAR:  PDFastSimPAR:PDFastSim@Construction  06-Oct-2025 10:44:17 CDT ModuleConstruction
+
+ - C:0: (-363.376,-600.019,-0.87625) -- (363.376,600.019,1393.46) cm
+%MSG
+%MSG-i PDFastSimPAR:  PDFastSimPAR:PDFastSim@Construction  06-Oct-2025 10:44:17 CDT ModuleConstruction
+Using Lite Photons
+%MSG
+%MSG-i PDFastSimPAR:  PDFastSimPAR:PDFastSim@Construction  06-Oct-2025 10:44:17 CDT ModuleConstruction
+PDFastSimPAR Initialization finish.
+Simulate using semi-analytic model for number of hits.
+%MSG
+G4GDML: Reading '/cvmfs/dune.opensciencegrid.org/products/dune/dunecore/v10_10_05d00/gdml/dune10kt_v6_refactored_1x2x6.gdml'...
+ ColorReaderReading GDML extension...
+ColorReader: Reading new GDML extension...
+G4GDML: Reading definitions...
+G4GDML: Reading materials...
+G4GDML: Reading solids...
+G4GDML: Reading structure...
+G4GDML: Reading setup...
+G4GDML: Reading '/cvmfs/dune.opensciencegrid.org/products/dune/dunecore/v10_10_05d00/gdml/dune10kt_v6_refactored_1x2x6.gdml' done!
+Stripping off GDML names of materials, solids and volumes ...
+%MSG-i LArG4DetectorService::doBuildLVs:  larg4Main:largeant@Construction  06-Oct-2025 10:44:17 CDT ModuleConstruction
+(0,0,0)
+
+Found World:  volWorld_PV
+World LV:  volWorld
+Found 5439 logical volumes.
+
+Found 9144 physical volumes.
+
+Found 15 volume(s) with auxiliary information.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%MSG
+Attaching sensitive Detector: SimEnergyDeposit to Volume:  volTPCActiveInner0
+%MSG-i AuxUnit:  larg4Main:largeant@Construction 06-Oct-2025 10:44:17 CDT  ModuleConstruction
+ Unit parsed = mm from unit category: Length
+%MSG
+%MSG-i AuxUnit:  larg4Main:largeant@Construction 06-Oct-2025 10:44:17 CDT  ModuleConstruction
+Valid StepLimit unit category obtained: Length
+%MSG
+%MSG-i fStepLimit:  larg4Main:largeant@Construction 06-Oct-2025 10:44:17 CDT  ModuleConstruction
+fStepLimit:  0.4  0.04 cm
+
+%MSG
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Attaching sensitive Detector: SimEnergyDeposit to Volume:  volTPCPlaneUInner0
+%MSG-i AuxUnit:  larg4Main:largeant@Construction 06-Oct-2025 10:44:17 CDT  ModuleConstruction
+ Unit parsed = mm from unit category: Length
+%MSG
+%MSG-i AuxUnit:  larg4Main:largeant@Construction 06-Oct-2025 10:44:17 CDT  ModuleConstruction
+Valid StepLimit unit category obtained: Length
+%MSG
+%MSG-i fStepLimit:  larg4Main:largeant@Construction 06-Oct-2025 10:44:17 CDT  ModuleConstruction
+fStepLimit:  0.4  0.04 cm
+
+%MSG
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Attaching sensitive Detector: SimEnergyDeposit to Volume:  volTPCPlaneUInner1
+%MSG-i AuxUnit:  larg4Main:largeant@Construction 06-Oct-2025 10:44:17 CDT  ModuleConstruction
+ Unit parsed = mm from unit category: Length
+%MSG
+%MSG-i AuxUnit:  larg4Main:largeant@Construction 06-Oct-2025 10:44:17 CDT  ModuleConstruction
+Valid StepLimit unit category obtained: Length
+%MSG
+%MSG-i fStepLimit:  larg4Main:largeant@Construction 06-Oct-2025 10:44:17 CDT  ModuleConstruction
+fStepLimit:  0.4  0.04 cm
+
+%MSG
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Attaching sensitive Detector: SimEnergyDeposit to Volume:  volTPCPlaneVInner0
+%MSG-i AuxUnit:  larg4Main:largeant@Construction 06-Oct-2025 10:44:17 CDT  ModuleConstruction
+ Unit parsed = mm from unit category: Length
+%MSG
+%MSG-i AuxUnit:  larg4Main:largeant@Construction 06-Oct-2025 10:44:17 CDT  ModuleConstruction
+Valid StepLimit unit category obtained: Length
+%MSG
+%MSG-i fStepLimit:  larg4Main:largeant@Construction 06-Oct-2025 10:44:17 CDT  ModuleConstruction
+fStepLimit:  0.4  0.04 cm
+
+%MSG
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Attaching sensitive Detector: SimEnergyDeposit to Volume:  volTPCInner0
+%MSG-i AuxUnit:  larg4Main:largeant@Construction 06-Oct-2025 10:44:17 CDT  ModuleConstruction
+ Unit parsed = mm from unit category: Length
+%MSG
+%MSG-i AuxUnit:  larg4Main:largeant@Construction 06-Oct-2025 10:44:17 CDT  ModuleConstruction
+Valid StepLimit unit category obtained: Length
+%MSG
+%MSG-i fStepLimit:  larg4Main:largeant@Construction 06-Oct-2025 10:44:17 CDT  ModuleConstruction
+fStepLimit:  0.4  0.04 cm
+
+%MSG
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Attaching sensitive Detector: SimEnergyDeposit to Volume:  volTPCActiveInner1
+%MSG-i AuxUnit:  larg4Main:largeant@Construction 06-Oct-2025 10:44:17 CDT  ModuleConstruction
+ Unit parsed = mm from unit category: Length
+%MSG
+%MSG-i AuxUnit:  larg4Main:largeant@Construction 06-Oct-2025 10:44:17 CDT  ModuleConstruction
+Valid StepLimit unit category obtained: Length
+%MSG
+%MSG-i fStepLimit:  larg4Main:largeant@Construction 06-Oct-2025 10:44:17 CDT  ModuleConstruction
+fStepLimit:  0.4  0.04 cm
+
+%MSG
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Attaching sensitive Detector: SimEnergyDeposit to Volume:  volTPCPlaneZInner0
+%MSG-i AuxUnit:  larg4Main:largeant@Construction 06-Oct-2025 10:44:17 CDT  ModuleConstruction
+ Unit parsed = mm from unit category: Length
+%MSG
+%MSG-i AuxUnit:  larg4Main:largeant@Construction 06-Oct-2025 10:44:17 CDT  ModuleConstruction
+Valid StepLimit unit category obtained: Length
+%MSG
+%MSG-i fStepLimit:  larg4Main:largeant@Construction 06-Oct-2025 10:44:17 CDT  ModuleConstruction
+fStepLimit:  0.4  0.04 cm
+
+%MSG
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Attaching sensitive Detector: SimEnergyDeposit to Volume:  volTPCPlaneVInner1
+%MSG-i AuxUnit:  larg4Main:largeant@Construction 06-Oct-2025 10:44:17 CDT  ModuleConstruction
+ Unit parsed = mm from unit category: Length
+%MSG
+%MSG-i AuxUnit:  larg4Main:largeant@Construction 06-Oct-2025 10:44:17 CDT  ModuleConstruction
+Valid StepLimit unit category obtained: Length
+%MSG
+%MSG-i fStepLimit:  larg4Main:largeant@Construction 06-Oct-2025 10:44:17 CDT  ModuleConstruction
+fStepLimit:  0.4  0.04 cm
+
+%MSG
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Attaching sensitive Detector: SimEnergyDeposit to Volume:  volTPCActiveOuter
+%MSG-i AuxUnit:  larg4Main:largeant@Construction 06-Oct-2025 10:44:17 CDT  ModuleConstruction
+ Unit parsed = mm from unit category: Length
+%MSG
+%MSG-i AuxUnit:  larg4Main:largeant@Construction 06-Oct-2025 10:44:17 CDT  ModuleConstruction
+Valid StepLimit unit category obtained: Length
+%MSG
+%MSG-i fStepLimit:  larg4Main:largeant@Construction 06-Oct-2025 10:44:17 CDT  ModuleConstruction
+fStepLimit:  0.4  0.04 cm
+
+%MSG
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Attaching sensitive Detector: SimEnergyDeposit to Volume:  volTPCPlaneZInner1
+%MSG-i AuxUnit:  larg4Main:largeant@Construction 06-Oct-2025 10:44:17 CDT  ModuleConstruction
+ Unit parsed = mm from unit category: Length
+%MSG
+%MSG-i AuxUnit:  larg4Main:largeant@Construction 06-Oct-2025 10:44:17 CDT  ModuleConstruction
+Valid StepLimit unit category obtained: Length
+%MSG
+%MSG-i fStepLimit:  larg4Main:largeant@Construction 06-Oct-2025 10:44:17 CDT  ModuleConstruction
+fStepLimit:  0.4  0.04 cm
+
+%MSG
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Attaching sensitive Detector: SimEnergyDeposit to Volume:  volTPCInner1
+%MSG-i AuxUnit:  larg4Main:largeant@Construction 06-Oct-2025 10:44:17 CDT  ModuleConstruction
+ Unit parsed = mm from unit category: Length
+%MSG
+%MSG-i AuxUnit:  larg4Main:largeant@Construction 06-Oct-2025 10:44:17 CDT  ModuleConstruction
+Valid StepLimit unit category obtained: Length
+%MSG
+%MSG-i fStepLimit:  larg4Main:largeant@Construction 06-Oct-2025 10:44:17 CDT  ModuleConstruction
+fStepLimit:  0.4  0.04 cm
+
+%MSG
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Attaching sensitive Detector: SimEnergyDeposit to Volume:  volTPCPlaneUOuter
+%MSG-i AuxUnit:  larg4Main:largeant@Construction 06-Oct-2025 10:44:17 CDT  ModuleConstruction
+ Unit parsed = mm from unit category: Length
+%MSG
+%MSG-i AuxUnit:  larg4Main:largeant@Construction 06-Oct-2025 10:44:17 CDT  ModuleConstruction
+Valid StepLimit unit category obtained: Length
+%MSG
+%MSG-i fStepLimit:  larg4Main:largeant@Construction 06-Oct-2025 10:44:17 CDT  ModuleConstruction
+fStepLimit:  0.4  0.04 cm
+
+%MSG
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Attaching sensitive Detector: SimEnergyDeposit to Volume:  volTPCPlaneVOuter
+%MSG-i AuxUnit:  larg4Main:largeant@Construction 06-Oct-2025 10:44:17 CDT  ModuleConstruction
+ Unit parsed = mm from unit category: Length
+%MSG
+%MSG-i AuxUnit:  larg4Main:largeant@Construction 06-Oct-2025 10:44:17 CDT  ModuleConstruction
+Valid StepLimit unit category obtained: Length
+%MSG
+%MSG-i fStepLimit:  larg4Main:largeant@Construction 06-Oct-2025 10:44:17 CDT  ModuleConstruction
+fStepLimit:  0.4  0.04 cm
+
+%MSG
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Attaching sensitive Detector: SimEnergyDeposit to Volume:  volTPCPlaneZOuter
+%MSG-i AuxUnit:  larg4Main:largeant@Construction 06-Oct-2025 10:44:17 CDT  ModuleConstruction
+ Unit parsed = mm from unit category: Length
+%MSG
+%MSG-i AuxUnit:  larg4Main:largeant@Construction 06-Oct-2025 10:44:17 CDT  ModuleConstruction
+Valid StepLimit unit category obtained: Length
+%MSG
+%MSG-i fStepLimit:  larg4Main:largeant@Construction 06-Oct-2025 10:44:17 CDT  ModuleConstruction
+fStepLimit:  0.4  0.04 cm
+
+%MSG
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Attaching sensitive Detector: SimEnergyDeposit to Volume:  volTPCOuter
+%MSG-i AuxUnit:  larg4Main:largeant@Construction 06-Oct-2025 10:44:17 CDT  ModuleConstruction
+ Unit parsed = mm from unit category: Length
+%MSG
+%MSG-i AuxUnit:  larg4Main:largeant@Construction 06-Oct-2025 10:44:17 CDT  ModuleConstruction
+Valid StepLimit unit category obtained: Length
+%MSG
+%MSG-i fStepLimit:  larg4Main:largeant@Construction 06-Oct-2025 10:44:17 CDT  ModuleConstruction
+fStepLimit:  0.4  0.04 cm
+
+%MSG
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%MSG-w LArG4DetectorService::setStepLimits:  larg4Main:largeant@Construction  06-Oct-2025 10:44:17 CDT ModuleConstruction LArG4Detector.cc:336
+Setting step limits from configuration file. This will OVERRIDE redundant stepLimit(s) set in the GDML file. Note that stepLimits are only active if enabled in the physicsListService via the appropriate parameter.
+%MSG
+%MSG-w LArG4DetectorService::setStepLimits:  larg4Main:largeant@Construction  06-Oct-2025 10:44:17 CDT ModuleConstruction LArG4Detector.cc:372
+New stepLimit matches previously set stepLimit from the GDML file for volume : volTPCActiveInner0 stepLimit : 0.4 mm. Nothing will be changed.
+%MSG
+%MSG-w LArG4DetectorService::setStepLimits:  larg4Main:largeant@Construction  06-Oct-2025 10:44:17 CDT ModuleConstruction LArG4Detector.cc:372
+New stepLimit matches previously set stepLimit from the GDML file for volume : volTPCActiveInner1 stepLimit : 0.4 mm. Nothing will be changed.
+%MSG
+%MSG-w LArG4DetectorService::setStepLimits:  larg4Main:largeant@Construction  06-Oct-2025 10:44:17 CDT ModuleConstruction LArG4Detector.cc:372
+New stepLimit matches previously set stepLimit from the GDML file for volume : volTPCActiveOuter stepLimit : 0.4 mm. Nothing will be changed.
+%MSG
+List SD Tree: 
+Volume volTPCActiveInner0 has the following list of auxiliary information: 
+--> Type: SensDet Value: SimEnergyDeposit
+--> Type: StepLimit Value: 0.4
+Volume volTPCPlaneUInner0 has the following list of auxiliary information: 
+--> Type: SensDet Value: SimEnergyDeposit
+--> Type: StepLimit Value: 0.4
+Volume volTPCPlaneUInner1 has the following list of auxiliary information: 
+--> Type: SensDet Value: SimEnergyDeposit
+--> Type: StepLimit Value: 0.4
+Volume volTPCPlaneVInner0 has the following list of auxiliary information: 
+--> Type: SensDet Value: SimEnergyDeposit
+--> Type: StepLimit Value: 0.4
+Volume volTPCInner0 has the following list of auxiliary information: 
+--> Type: SensDet Value: SimEnergyDeposit
+--> Type: StepLimit Value: 0.4
+Volume volTPCActiveInner1 has the following list of auxiliary information: 
+--> Type: SensDet Value: SimEnergyDeposit
+--> Type: StepLimit Value: 0.4
+Volume volTPCPlaneZInner0 has the following list of auxiliary information: 
+--> Type: SensDet Value: SimEnergyDeposit
+--> Type: StepLimit Value: 0.4
+Volume volTPCPlaneVInner1 has the following list of auxiliary information: 
+--> Type: SensDet Value: SimEnergyDeposit
+--> Type: StepLimit Value: 0.4
+Volume volTPCActiveOuter has the following list of auxiliary information: 
+--> Type: SensDet Value: SimEnergyDeposit
+--> Type: StepLimit Value: 0.4
+Volume volTPCPlaneZInner1 has the following list of auxiliary information: 
+--> Type: SensDet Value: SimEnergyDeposit
+--> Type: StepLimit Value: 0.4
+Volume volTPCInner1 has the following list of auxiliary information: 
+--> Type: SensDet Value: SimEnergyDeposit
+--> Type: StepLimit Value: 0.4
+Volume volTPCPlaneUOuter has the following list of auxiliary information: 
+--> Type: SensDet Value: SimEnergyDeposit
+--> Type: StepLimit Value: 0.4
+Volume volTPCPlaneVOuter has the following list of auxiliary information: 
+--> Type: SensDet Value: SimEnergyDeposit
+--> Type: StepLimit Value: 0.4
+Volume volTPCPlaneZOuter has the following list of auxiliary information: 
+--> Type: SensDet Value: SimEnergyDeposit
+--> Type: StepLimit Value: 0.4
+Volume volTPCOuter has the following list of auxiliary information: 
+--> Type: SensDet Value: SimEnergyDeposit
+--> Type: StepLimit Value: 0.4
+/
+/volTPCActiveInner0_SimEnergyDeposit   *** Active 
+/volTPCPlaneUInner0_SimEnergyDeposit   *** Active 
+/volTPCPlaneUInner1_SimEnergyDeposit   *** Active 
+/volTPCPlaneVInner0_SimEnergyDeposit   *** Active 
+/volTPCInner0_SimEnergyDeposit   *** Active 
+/volTPCActiveInner1_SimEnergyDeposit   *** Active 
+/volTPCPlaneZInner0_SimEnergyDeposit   *** Active 
+/volTPCPlaneVInner1_SimEnergyDeposit   *** Active 
+/volTPCActiveOuter_SimEnergyDeposit   *** Active 
+/volTPCPlaneZInner1_SimEnergyDeposit   *** Active 
+/volTPCInner1_SimEnergyDeposit   *** Active 
+/volTPCPlaneUOuter_SimEnergyDeposit   *** Active 
+/volTPCPlaneVOuter_SimEnergyDeposit   *** Active 
+/volTPCPlaneZOuter_SimEnergyDeposit   *** Active 
+/volTPCOuter_SimEnergyDeposit   *** Active 
+ Collection Capacity:  0
+==================================================
+nr of LV ======================:  1
+%MSG-i RANDOM:  larg4Main:largeant@Construction 06-Oct-2025 10:44:17 CDT  ModuleConstruction
+Instantiated G4Engine engine "largeant:0:" with seed 0.
+%MSG
+%MSG-i NuRandomService:  larg4Main:largeant@Construction  06-Oct-2025 10:44:17 CDT ModuleConstruction
+Seeding G4Engine engine "largeant:" with seed 0.
+%MSG
+06-Oct-2025 10:44:18 CDT  Initiating request to open input file "/exp/dune/data/users/emvilla//v10_10_05d00/standard/prodgenie_nu_dune10kt_1x2x6_standard-triggerana_tree_1x2x6_tpg_absrs_st-1events_genieNuMu_triggerValidationTest/gen.root"
+%MSG-i Root_Information:  TriggerResultInserter:TriggerResults@Construction  TClass::Init() 06-Oct-2025 10:44:18 CDT ModuleConstruction
+no dictionary for class sim::IDE is available
+ROOT severity: 2000
+%MSG
+06-Oct-2025 10:44:18 CDT  Opened input file "/exp/dune/data/users/emvilla//v10_10_05d00/standard/prodgenie_nu_dune10kt_1x2x6_standard-triggerana_tree_1x2x6_tpg_absrs_st-1events_genieNuMu_triggerValidationTest/gen.root"
+IonAndScint beginJob.
+Using Correlated algorithm to calculate IS.
+%MSG-i ISCalcCorrelated:  IonAndScint:IonAndScint@BeginJob  06-Oct-2025 10:44:18 CDT ModuleBeginJob ISCalcCorrelated.cxx:40
+IonizationAndScintillation/ISCalcCorrelated Initialize.
+%MSG
+
+**************************************************************
+ Geant4 version Name: geant4-10-06-patch-01    (14-February-2020)
+                       Copyright : Geant4 Collaboration
+                      References : NIM A 506 (2003), 250-303
+                                 : IEEE-TNS 53 (2006), 270-278
+                                 : NIM A 835 (2016), 186-225
+                             WWW : http://geant4.org/
+**************************************************************
+
+G4VPhysicsConstructors in G4PhysicsConstructorRegistry are:
+ [  0]  "G4ChargeExchangePhysics"
+ [  1]  "G4DecayPhysics"
+ [  2]  "G4EmDNAChemistry"
+ [  3]  "G4EmDNAChemistry_option1"
+ [  4]  "G4EmDNAChemistry_option2"
+ [  5]  "G4EmDNAPhysics"
+ [  6]  "G4EmDNAPhysics_option1"
+ [  7]  "G4EmDNAPhysics_option2"
+ [  8]  "G4EmDNAPhysics_option3"
+ [  9]  "G4EmDNAPhysics_option4"
+ [ 10]  "G4EmDNAPhysics_option5"
+ [ 11]  "G4EmDNAPhysics_option6"
+ [ 12]  "G4EmDNAPhysics_option7"
+ [ 13]  "G4EmDNAPhysics_option8"
+ [ 14]  "G4EmDNAPhysics_stationary"
+ [ 15]  "G4EmDNAPhysics_stationary_option2"
+ [ 16]  "G4EmDNAPhysics_stationary_option4"
+ [ 17]  "G4EmDNAPhysics_stationary_option6"
+ [ 18]  "G4EmExtraPhysics"
+ [ 19]  "G4EmLivermorePhysics"
+ [ 20]  "G4EmLivermorePolarizedPhysics"
+ [ 21]  "G4EmLowEPPhysics"
+ [ 22]  "G4EmPenelopePhysics"
+ [ 23]  "G4EmStandardPhysics"
+ [ 24]  "G4EmStandardPhysicsGS"
+ [ 25]  "G4EmStandardPhysicsSS"
+ [ 26]  "G4EmStandardPhysicsWVI"
+ [ 27]  "G4EmStandardPhysics_option1"
+ [ 28]  "G4EmStandardPhysics_option2"
+ [ 29]  "G4EmStandardPhysics_option3"
+ [ 30]  "G4EmStandardPhysics_option4"
+ [ 31]  "G4EmStandardPhysics_pseudoLaser"
+ [ 32]  "G4FastSimulationPhysics"
+ [ 33]  "G4GenericBiasingPhysics"
+ [ 34]  "G4HadronDElasticPhysics"
+ [ 35]  "G4HadronElasticPhysics"
+ [ 36]  "G4HadronElasticPhysicsHP"
+ [ 37]  "G4HadronElasticPhysicsLEND"
+ [ 38]  "G4HadronElasticPhysicsPHP"
+ [ 39]  "G4HadronElasticPhysicsXS"
+ [ 40]  "G4HadronHElasticPhysics"
+ [ 41]  "G4HadronInelasticQBBC"
+ [ 42]  "G4HadronPhysicsFTFP_BERT"
+ [ 43]  "G4HadronPhysicsFTFP_BERT_ATL"
+ [ 44]  "G4HadronPhysicsFTFP_BERT_HP"
+ [ 45]  "G4HadronPhysicsFTFP_BERT_TRV"
+ [ 46]  "G4HadronPhysicsFTFQGSP_BERT"
+ [ 47]  "G4HadronPhysicsFTF_BIC"
+ [ 48]  "G4HadronPhysicsINCLXX"
+ [ 49]  "G4HadronPhysicsNuBeam"
+ [ 50]  "G4HadronPhysicsQGSP_BERT"
+ [ 51]  "G4HadronPhysicsQGSP_BERT_HP"
+ [ 52]  "G4HadronPhysicsQGSP_BIC"
+ [ 53]  "G4HadronPhysicsQGSP_BIC_AllHP"
+ [ 54]  "G4HadronPhysicsQGSP_BIC_HP"
+ [ 55]  "G4HadronPhysicsQGSP_FTFP_BERT"
+ [ 56]  "G4HadronPhysicsQGS_BIC"
+ [ 57]  "G4HadronPhysicsShielding"
+ [ 58]  "G4HadronPhysicsShieldingLEND"
+ [ 59]  "G4ImportanceBiasing"
+ [ 60]  "G4IonBinaryCascadePhysics"
+ [ 61]  "G4IonElasticPhysics"
+ [ 62]  "G4IonINCLXXPhysics"
+ [ 63]  "G4IonPhysics"
+ [ 64]  "G4IonPhysicsPHP"
+ [ 65]  "G4IonPhysicsXS"
+ [ 66]  "G4IonQMDPhysics"
+ [ 67]  "G4MuonicAtomDecayPhysics"
+ [ 68]  "G4NeutronCrossSectionXS"
+ [ 69]  "G4NeutronTrackingCut"
+ [ 70]  "G4OpticalPhysics"
+ [ 71]  "G4ParallelWorldPhysics"
+ [ 72]  "G4RadioactiveDecayPhysics"
+ [ 73]  "G4SpinDecayPhysics"
+ [ 74]  "G4StepLimiterPhysics"
+ [ 75]  "G4StoppingPhysics"
+ [ 76]  "G4StoppingPhysicsFritiofWithBinaryCascade"
+ [ 77]  "G4UnknownDecayPhysics"
+ [ 78]  "G4WeightWindowBiasing"
+ [ 79]  "MyG4DecayPhysics"
+ [ 80]  "MyG4HadronPhysicsQGSP_BERT_ArHP"
+ [ 81]  "MyG4HadronPhysicsQGSP_BERT_HP_NeutronXSBias"
+Base G4VModularPhysicsLists in G4PhysListRegistry are:
+ [  0]  "FTFP_BERT"
+ [  1]  "FTFP_BERT_ATL"
+ [  2]  "FTFP_BERT_HP"
+ [  3]  "FTFP_BERT_TRV"
+ [  4]  "FTFP_INCLXX"
+ [  5]  "FTFP_INCLXX_HP"
+ [  6]  "FTFQGSP_BERT"
+ [  7]  "FTF_BIC"
+ [  8]  "G4GenericPhysicsList"
+ [  9]  "LBE"
+ [ 10]  "MyQGSP_BERT_ArHP"
+ [ 11]  "MyQGSP_BERT_HP_NeutronXSBias"
+ [ 12]  "MyQGSP_BERT_LASER"
+ [ 13]  "NuBeam"
+ [ 14]  "QBBC"
+ [ 15]  "QGSP_BERT"
+ [ 16]  "QGSP_BERT_HP"
+ [ 17]  "QGSP_BIC"
+ [ 18]  "QGSP_BIC_AllHP"
+ [ 19]  "QGSP_BIC_HP"
+ [ 20]  "QGSP_FTFP_BERT"
+ [ 21]  "QGSP_INCLXX"
+ [ 22]  "QGSP_INCLXX_HP"
+ [ 23]  "QGS_BIC"
+ [ 24]  "Shielding"
+ [ 25]  "ShieldingLEND"
+ [ 26]  "ShieldingM"
+Replacement mappings in G4PhysListRegistry are:
+           EM0 =>            G4EmStandardPhysics 
+           EMV =>    G4EmStandardPhysics_option1 
+           EMX =>    G4EmStandardPhysics_option2 
+           EMY =>    G4EmStandardPhysics_option3 
+           EMZ =>    G4EmStandardPhysics_option4 
+            GS =>          G4EmStandardPhysicsGS 
+           LIV =>           G4EmLivermorePhysics 
+    NEUTRONLIMIT =>           G4NeutronTrackingCut 
+       OPTICAL =>               G4OpticalPhysics 
+           PEN =>            G4EmPenelopePhysics 
+            SS =>          G4EmStandardPhysicsSS 
+     STEPLIMIT =>           G4StepLimiterPhysics 
+           _GS =>          G4EmStandardPhysicsGS 
+           _SS =>          G4EmStandardPhysicsSS 
+Use these mapping to extend physics list; append with _EXT or +EXT
+   to use ReplacePhysics() ("_") or RegisterPhysics() ("+").
+ Name of Physics list: QGSP_BERT+STEPLIMIT
+G4PhysListRegistry::GetModularPhysicsList <QGSP_BERT+STEPLIMIT>, as "QGSP_BERT" with extensions "+STEPLIMIT"
+<<< Geant4 Physics List simulation engine: QGSP_BERT
+
+<<< RegisterPhysics with G4StepLimiterPhysics "STEPLIMIT"
+<<< Reference Physics List QGSP_BERT+STEPLIMIT is built
+
+.
+
+### Adding tracking cuts for neutron  TimeCut(ns)= 10000  KinEnergyCut(MeV)= 0
+%MSG-i larg4Main:  larg4Main:largeant@BeginRun 06-Oct-2025 10:44:18 CDT  run: 20000001
+Finding path for vis.mac...
+Search unsuccessful and path is: 
+
+%MSG
+%MSG-i larg4Main:  larg4Main:largeant@BeginRun 06-Oct-2025 10:44:18 CDT  run: 20000001
+Unable to find vis.mac in the path(s) .:./macros
+%MSG
+
+phot:  for gamma SubType=12 BuildTable=0
+      LambdaPrime table from 200 keV to 100 TeV in 61 bins 
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+ LivermorePhElectric : Emin=    0 eV  Emax=  100 TeV  SauterGavrila Fluo
+
+compt:  for gamma SubType=13 BuildTable=1
+      Lambda table from 100 eV  to 1 MeV, 7 bins/decade, spline: 1
+      LambdaPrime table from 1 MeV to 100 TeV in 56 bins 
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+       Klein-Nishina : Emin=    0 eV  Emax=  100 TeV
+
+conv:  for gamma SubType=14 BuildTable=1
+      Lambda table from 1.022 MeV to 100 TeV, 18 bins/decade, spline: 1
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+     BetheHeitlerLPM : Emin=    0 eV  Emax=  100 TeV  ModifiedTsai
+
+Rayl:  for gamma SubType=11 BuildTable=1
+      Lambda table from 100 eV  to 100 keV, 7 bins/decade, spline: 0
+      LambdaPrime table from 100 keV to 100 TeV in 63 bins 
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+   LivermoreRayleigh : Emin=    0 eV  Emax=  100 TeV  CullenGenerator
+
+msc:  for e-  SubType= 10
+      RangeFactor= 0.04, stepLimType: 1, latDisp: 1
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+            UrbanMsc : Emin=    0 eV  Emax=  100 MeV Nbins=42 100 eV  - 100 MeV
+        WentzelVIUni : Emin=  100 MeV Emax=  100 TeV Nbins=42 100 MeV - 100 TeV
+
+eIoni:  for e-  SubType=2
+      dE/dx and range tables from 100 eV  to 100 TeV in 84 bins
+      Lambda tables from threshold to 100 TeV, 7 bins/decade, spline: 1
+      StepFunction=(0.2, 1 mm), integ: 1, fluct: 1, linLossLim= 0.01
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+        MollerBhabha : Emin=    0 eV  Emax=  100 TeV
+
+eBrem:  for e-  SubType=3
+      dE/dx and range tables from 100 eV  to 100 TeV in 84 bins
+      Lambda tables from threshold to 100 TeV, 7 bins/decade, spline: 1
+      LPM flag: 1 for E > 1 GeV,  VertexHighEnergyTh(GeV)= 100000
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+             eBremSB : Emin=    0 eV  Emax=    1 GeV  ModifiedTsai
+            eBremLPM : Emin=    1 GeV Emax=  100 TeV  ModifiedTsai
+
+CoulombScat:  for e-, integral:1  SubType=1 BuildTable=1
+      Lambda table from 100 MeV to 100 TeV, 7 bins/decade, spline: 1
+      ThetaMin(p) < Theta(degree) < 180; pLimit(GeV^1)= 0.139531
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+  eCoulombScattering : Emin=  100 MeV Emax=  100 TeV
+
+msc:  for e+  SubType= 10
+      RangeFactor= 0.04, stepLimType: 1, latDisp: 1
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+            UrbanMsc : Emin=    0 eV  Emax=  100 MeV Nbins=42 100 eV  - 100 MeV
+        WentzelVIUni : Emin=  100 MeV Emax=  100 TeV Nbins=42 100 MeV - 100 TeV
+
+eIoni:  for e+  SubType=2
+      dE/dx and range tables from 100 eV  to 100 TeV in 84 bins
+      Lambda tables from threshold to 100 TeV, 7 bins/decade, spline: 1
+      StepFunction=(0.2, 1 mm), integ: 1, fluct: 1, linLossLim= 0.01
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+        MollerBhabha : Emin=    0 eV  Emax=  100 TeV
+
+eBrem:  for e+  SubType=3
+      dE/dx and range tables from 100 eV  to 100 TeV in 84 bins
+      Lambda tables from threshold to 100 TeV, 7 bins/decade, spline: 1
+      LPM flag: 1 for E > 1 GeV,  VertexHighEnergyTh(GeV)= 100000
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+             eBremSB : Emin=    0 eV  Emax=    1 GeV  ModifiedTsai
+            eBremLPM : Emin=    1 GeV Emax=  100 TeV  ModifiedTsai
+
+annihil:  for e+, integral:1  SubType=5 BuildTable=0
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+            eplus2gg : Emin=    0 eV  Emax=  100 TeV
+
+CoulombScat:  for e+, integral:1  SubType=1 BuildTable=1
+      Lambda table from 100 MeV to 100 TeV, 7 bins/decade, spline: 1
+      ThetaMin(p) < Theta(degree) < 180; pLimit(GeV^1)= 0.139531
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+  eCoulombScattering : Emin=  100 MeV Emax=  100 TeV
+
+msc:  for proton  SubType= 10
+      RangeFactor= 0.2, stepLimType: 0, latDisp: 0
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+        WentzelVIUni : Emin=    0 eV  Emax=  100 TeV Nbins=84 100 eV  - 100 TeV
+
+hIoni:  for proton  SubType=2
+      dE/dx and range tables from 100 eV  to 100 TeV in 84 bins
+      Lambda tables from threshold to 100 TeV, 7 bins/decade, spline: 1
+      StepFunction=(0.2, 0.1 mm), integ: 1, fluct: 1, linLossLim= 0.01
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+               Bragg : Emin=    0 eV  Emax=    2 MeV
+          BetheBloch : Emin=    2 MeV Emax=  100 TeV
+
+hBrems:  for proton  SubType=3
+      dE/dx and range tables from 100 eV  to 100 TeV in 84 bins
+      Lambda tables from threshold to 100 TeV, 7 bins/decade, spline: 1
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+               hBrem : Emin=    0 eV  Emax=  100 TeV
+
+hPairProd:  for proton  SubType=4
+      dE/dx and range tables from 100 eV  to 100 TeV in 84 bins
+      Lambda tables from threshold to 100 TeV, 7 bins/decade, spline: 1
+      Sampling table 17x1001; from 7.50618 GeV to 100 TeV 
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+           hPairProd : Emin=    0 eV  Emax=  100 TeV
+
+CoulombScat:  for proton, integral:1  SubType=1 BuildTable=1
+      Lambda table from threshold  to 100 TeV, 7 bins/decade, spline: 1
+      ThetaMin(p) < Theta(degree) < 180; pLimit(GeV^1)= 0.139531
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+  eCoulombScattering : Emin=    0 eV  Emax=  100 TeV
+
+msc:  for GenericIon  SubType= 10
+      RangeFactor= 0.2, stepLimType: 0, latDisp: 0
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+            UrbanMsc : Emin=    0 eV  Emax=  100 TeV
+
+ionIoni:  for GenericIon  SubType=2
+      dE/dx and range tables from 100 eV  to 100 TeV in 84 bins
+      Lambda tables from threshold to 100 TeV, 7 bins/decade, spline: 1
+      StepFunction=(0.2, 0.1 mm), integ: 1, fluct: 1, linLossLim= 0.02
+      Stopping Power data for 17 ion/material pairs
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+            BraggIon : Emin=    0 eV  Emax=    2 MeV
+          BetheBloch : Emin=    2 MeV Emax=  100 TeV
+
+msc:  for alpha  SubType= 10
+      RangeFactor= 0.2, stepLimType: 0, latDisp: 0
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+            UrbanMsc : Emin=    0 eV  Emax=  100 TeV Nbins=84 100 eV  - 100 TeV
+
+ionIoni:  for alpha  SubType=2
+      dE/dx and range tables from 100 eV  to 100 TeV in 84 bins
+      Lambda tables from threshold to 100 TeV, 7 bins/decade, spline: 1
+      StepFunction=(0.2, 0.1 mm), integ: 1, fluct: 1, linLossLim= 0.02
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+            BraggIon : Emin=    0 eV  Emax=7.9452 MeV
+          BetheBloch : Emin=7.9452 MeV Emax=  100 TeV
+
+msc:  for anti_proton  SubType= 10
+      RangeFactor= 0.2, stepLimType: 0, latDisp: 0
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+        WentzelVIUni : Emin=    0 eV  Emax=  100 TeV Nbins=84 100 eV  - 100 TeV
+
+hIoni:  for anti_proton  SubType=2
+      dE/dx and range tables from 100 eV  to 100 TeV in 84 bins
+      Lambda tables from threshold to 100 TeV, 7 bins/decade, spline: 1
+      StepFunction=(0.2, 0.1 mm), integ: 1, fluct: 1, linLossLim= 0.01
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+            ICRU73QO : Emin=    0 eV  Emax=    2 MeV
+          BetheBloch : Emin=    2 MeV Emax=  100 TeV
+
+hBrems:  for anti_proton  SubType=3
+      dE/dx and range tables from 100 eV  to 100 TeV in 84 bins
+      Lambda tables from threshold to 100 TeV, 7 bins/decade, spline: 1
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+               hBrem : Emin=    0 eV  Emax=  100 TeV
+
+hPairProd:  for anti_proton  SubType=4
+      dE/dx and range tables from 100 eV  to 100 TeV in 84 bins
+      Lambda tables from threshold to 100 TeV, 7 bins/decade, spline: 1
+      Sampling table 17x1001; from 7.50618 GeV to 100 TeV 
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+           hPairProd : Emin=    0 eV  Emax=  100 TeV
+
+CoulombScat:  for anti_proton, integral:1  SubType=1 BuildTable=1
+      Lambda table from threshold  to 100 TeV, 7 bins/decade, spline: 1
+      ThetaMin(p) < Theta(degree) < 180; pLimit(GeV^1)= 0.139531
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+  eCoulombScattering : Emin=    0 eV  Emax=  100 TeV
+
+msc:  for kaon+  SubType= 10
+      RangeFactor= 0.2, stepLimType: 0, latDisp: 0
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+        WentzelVIUni : Emin=    0 eV  Emax=  100 TeV Nbins=84 100 eV  - 100 TeV
+
+hIoni:  for kaon+  SubType=2
+      dE/dx and range tables from 100 eV  to 100 TeV in 84 bins
+      Lambda tables from threshold to 100 TeV, 7 bins/decade, spline: 1
+      StepFunction=(0.2, 0.1 mm), integ: 1, fluct: 1, linLossLim= 0.01
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+               Bragg : Emin=    0 eV  Emax=1.05231 MeV
+          BetheBloch : Emin=1.05231 MeV Emax=  100 TeV
+
+hBrems:  for kaon+  SubType=3
+      dE/dx and range tables from 100 eV  to 100 TeV in 84 bins
+      Lambda tables from threshold to 100 TeV, 7 bins/decade, spline: 1
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+               hBrem : Emin=    0 eV  Emax=  100 TeV
+
+hPairProd:  for kaon+  SubType=4
+      dE/dx and range tables from 100 eV  to 100 TeV in 84 bins
+      Lambda tables from threshold to 100 TeV, 7 bins/decade, spline: 1
+      Sampling table 18x1001; from 3.94942 GeV to 100 TeV 
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+           hPairProd : Emin=    0 eV  Emax=  100 TeV
+
+CoulombScat:  for kaon+, integral:1  SubType=1 BuildTable=1
+      Lambda table from threshold  to 100 TeV, 7 bins/decade, spline: 1
+      ThetaMin(p) < Theta(degree) < 180; pLimit(GeV^1)= 0.139531
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+  eCoulombScattering : Emin=    0 eV  Emax=  100 TeV
+
+msc:  for kaon-  SubType= 10
+      RangeFactor= 0.2, stepLimType: 0, latDisp: 0
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+        WentzelVIUni : Emin=    0 eV  Emax=  100 TeV Nbins=84 100 eV  - 100 TeV
+
+hIoni:  for kaon-  SubType=2
+      dE/dx and range tables from 100 eV  to 100 TeV in 84 bins
+      Lambda tables from threshold to 100 TeV, 7 bins/decade, spline: 1
+      StepFunction=(0.2, 0.1 mm), integ: 1, fluct: 1, linLossLim= 0.01
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+            ICRU73QO : Emin=    0 eV  Emax=1.05231 MeV
+          BetheBloch : Emin=1.05231 MeV Emax=  100 TeV
+
+hBrems:  for kaon-  SubType=3
+      dE/dx and range tables from 100 eV  to 100 TeV in 84 bins
+      Lambda tables from threshold to 100 TeV, 7 bins/decade, spline: 1
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+               hBrem : Emin=    0 eV  Emax=  100 TeV
+
+hPairProd:  for kaon-  SubType=4
+      dE/dx and range tables from 100 eV  to 100 TeV in 84 bins
+      Lambda tables from threshold to 100 TeV, 7 bins/decade, spline: 1
+      Sampling table 18x1001; from 3.94942 GeV to 100 TeV 
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+           hPairProd : Emin=    0 eV  Emax=  100 TeV
+
+CoulombScat:  for kaon-, integral:1  SubType=1 BuildTable=1
+      Used Lambda table of kaon+
+      ThetaMin(p) < Theta(degree) < 180; pLimit(GeV^1)= 0.139531
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+  eCoulombScattering : Emin=    0 eV  Emax=  100 TeV
+
+msc:  for mu+  SubType= 10
+      RangeFactor= 0.2, stepLimType: 0, latDisp: 0, polarAngLim(deg)= 180
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+        WentzelVIUni : Emin=    0 eV  Emax=  100 TeV Nbins=84 100 eV  - 100 TeV
+
+muIoni:  for mu+  SubType=2
+      dE/dx and range tables from 100 eV  to 100 TeV in 84 bins
+      Lambda tables from threshold to 100 TeV, 7 bins/decade, spline: 1
+      StepFunction=(0.2, 0.1 mm), integ: 1, fluct: 1, linLossLim= 0.01
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+               Bragg : Emin=    0 eV  Emax=  200 keV
+          BetheBloch : Emin=  200 keV Emax=    1 GeV
+        MuBetheBloch : Emin=    1 GeV Emax=  100 TeV
+
+muBrems:  for mu+  SubType=3
+      dE/dx and range tables from 100 eV  to 100 TeV in 84 bins
+      Lambda tables from threshold to 100 TeV, 7 bins/decade, spline: 1
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+              MuBrem : Emin=    0 eV  Emax=  100 TeV
+
+muPairProd:  for mu+  SubType=4
+      dE/dx and range tables from 100 eV  to 100 TeV in 84 bins
+      Lambda tables from threshold to 100 TeV, 7 bins/decade, spline: 1
+      Sampling table 21x1001; from 1 GeV to 100 TeV 
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+          muPairProd : Emin=    0 eV  Emax=  100 TeV
+
+CoulombScat:  for mu+, integral:1  SubType=1 BuildTable=1
+      Lambda table from threshold  to 100 TeV, 7 bins/decade, spline: 1
+      ThetaMin(p) < Theta(degree) < 180; pLimit(GeV^1)= 0.139531
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+  eCoulombScattering : Emin=    0 eV  Emax=  100 TeV
+
+msc:  for mu-  SubType= 10
+      RangeFactor= 0.2, stepLimType: 0, latDisp: 0, polarAngLim(deg)= 180
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+        WentzelVIUni : Emin=    0 eV  Emax=  100 TeV Nbins=84 100 eV  - 100 TeV
+
+muIoni:  for mu-  SubType=2
+      dE/dx and range tables from 100 eV  to 100 TeV in 84 bins
+      Lambda tables from threshold to 100 TeV, 7 bins/decade, spline: 1
+      StepFunction=(0.2, 0.1 mm), integ: 1, fluct: 1, linLossLim= 0.01
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+            ICRU73QO : Emin=    0 eV  Emax=  200 keV
+          BetheBloch : Emin=  200 keV Emax=    1 GeV
+        MuBetheBloch : Emin=    1 GeV Emax=  100 TeV
+
+muBrems:  for mu-  SubType=3
+      dE/dx and range tables from 100 eV  to 100 TeV in 84 bins
+      Lambda tables from threshold to 100 TeV, 7 bins/decade, spline: 1
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+              MuBrem : Emin=    0 eV  Emax=  100 TeV
+
+muPairProd:  for mu-  SubType=4
+      dE/dx and range tables from 100 eV  to 100 TeV in 84 bins
+      Lambda tables from threshold to 100 TeV, 7 bins/decade, spline: 1
+      Sampling table 21x1001; from 1 GeV to 100 TeV 
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+          muPairProd : Emin=    0 eV  Emax=  100 TeV
+
+CoulombScat:  for mu-, integral:1  SubType=1 BuildTable=1
+      Used Lambda table of mu+
+      ThetaMin(p) < Theta(degree) < 180; pLimit(GeV^1)= 0.139531
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+  eCoulombScattering : Emin=    0 eV  Emax=  100 TeV
+
+msc:  for pi+  SubType= 10
+      RangeFactor= 0.2, stepLimType: 0, latDisp: 0
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+        WentzelVIUni : Emin=    0 eV  Emax=  100 TeV Nbins=84 100 eV  - 100 TeV
+
+hIoni:  for pi+  SubType=2
+      dE/dx and range tables from 100 eV  to 100 TeV in 84 bins
+      Lambda tables from threshold to 100 TeV, 7 bins/decade, spline: 1
+      StepFunction=(0.2, 0.1 mm), integ: 1, fluct: 1, linLossLim= 0.01
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+               Bragg : Emin=    0 eV  Emax=297.505 keV
+          BetheBloch : Emin=297.505 keV Emax=  100 TeV
+
+hBrems:  for pi+  SubType=3
+      dE/dx and range tables from 100 eV  to 100 TeV in 84 bins
+      Lambda tables from threshold to 100 TeV, 7 bins/decade, spline: 1
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+               hBrem : Emin=    0 eV  Emax=  100 TeV
+
+hPairProd:  for pi+  SubType=4
+      dE/dx and range tables from 100 eV  to 100 TeV in 84 bins
+      Lambda tables from threshold to 100 TeV, 7 bins/decade, spline: 1
+      Sampling table 20x1001; from 1.11656 GeV to 100 TeV 
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+           hPairProd : Emin=    0 eV  Emax=  100 TeV
+
+CoulombScat:  for pi+, integral:1  SubType=1 BuildTable=1
+      Lambda table from threshold  to 100 TeV, 7 bins/decade, spline: 1
+      ThetaMin(p) < Theta(degree) < 180; pLimit(GeV^1)= 0.139531
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+  eCoulombScattering : Emin=    0 eV  Emax=  100 TeV
+
+msc:  for pi-  SubType= 10
+      RangeFactor= 0.2, stepLimType: 0, latDisp: 0
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+        WentzelVIUni : Emin=    0 eV  Emax=  100 TeV Nbins=84 100 eV  - 100 TeV
+
+hIoni:  for pi-  SubType=2
+      dE/dx and range tables from 100 eV  to 100 TeV in 84 bins
+      Lambda tables from threshold to 100 TeV, 7 bins/decade, spline: 1
+      StepFunction=(0.2, 0.1 mm), integ: 1, fluct: 1, linLossLim= 0.01
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+            ICRU73QO : Emin=    0 eV  Emax=297.505 keV
+          BetheBloch : Emin=297.505 keV Emax=  100 TeV
+
+hBrems:  for pi-  SubType=3
+      dE/dx and range tables from 100 eV  to 100 TeV in 84 bins
+      Lambda tables from threshold to 100 TeV, 7 bins/decade, spline: 1
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+               hBrem : Emin=    0 eV  Emax=  100 TeV
+
+hPairProd:  for pi-  SubType=4
+      dE/dx and range tables from 100 eV  to 100 TeV in 84 bins
+      Lambda tables from threshold to 100 TeV, 7 bins/decade, spline: 1
+      Sampling table 20x1001; from 1.11656 GeV to 100 TeV 
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+           hPairProd : Emin=    0 eV  Emax=  100 TeV
+
+CoulombScat:  for pi-, integral:1  SubType=1 BuildTable=1
+      Used Lambda table of pi+
+      ThetaMin(p) < Theta(degree) < 180; pLimit(GeV^1)= 0.139531
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+  eCoulombScattering : Emin=    0 eV  Emax=  100 TeV
+
+====================================================================
+                  HADRONIC PROCESSES SUMMARY (verbose level 1)
+
+---------------------------------------------------
+                           Hadronic Processes for neutron
+
+  Process: hadElastic
+        Model:             hElasticCHIPS: 0 eV  ---> 100 TeV
+     Cr_sctns:        G4NeutronElasticXS: 0 eV  ---> 100 TeV
+
+  Process: neutronInelastic
+        Model:                      QGSP: 12 GeV ---> 100 TeV
+        Model:                      FTFP: 3 GeV ---> 25 GeV
+        Model:            BertiniCascade: 0 eV  ---> 6 GeV
+     Cr_sctns:      G4NeutronInelasticXS: 0 eV  ---> 100 TeV
+
+  Process: nCapture
+        Model:               nRadCapture: 0 eV  ---> 100 TeV
+     Cr_sctns:        G4NeutronCaptureXS: 0 eV  ---> 100 TeV
+
+  Process: nKiller
+
+---------------------------------------------------
+                           Hadronic Processes for GenericIon
+
+  Process: ionInelastic
+        Model:  Binary Light Ion Cascade: 0 eV /n ---> 6 GeV/n
+        Model:                      FTFP: 3 GeV/n ---> 100 TeV/n
+     Cr_sctns:  Glauber-Gribov Nucl-nucl: 0 eV  ---> 100 TeV
+
+---------------------------------------------------
+                           Hadronic Processes for He3
+
+  Process: hadElastic
+        Model:              hElasticLHEP: 0 eV /n ---> 100 TeV/n
+     Cr_sctns:  Glauber-Gribov Nucl-nucl: 0 eV  ---> 100 TeV
+
+  Process: He3Inelastic
+        Model:  Binary Light Ion Cascade: 0 eV /n ---> 6 GeV/n
+        Model:                      FTFP: 3 GeV/n ---> 100 TeV/n
+     Cr_sctns:  Glauber-Gribov Nucl-nucl: 0 eV  ---> 100 TeV
+
+---------------------------------------------------
+                           Hadronic Processes for alpha
+
+  Process: hadElastic
+        Model:              hElasticLHEP: 0 eV /n ---> 100 TeV/n
+     Cr_sctns:  Glauber-Gribov Nucl-nucl: 0 eV  ---> 100 TeV
+
+  Process: alphaInelastic
+        Model:  Binary Light Ion Cascade: 0 eV /n ---> 6 GeV/n
+        Model:                      FTFP: 3 GeV/n ---> 100 TeV/n
+     Cr_sctns:  Glauber-Gribov Nucl-nucl: 0 eV  ---> 100 TeV
+
+---------------------------------------------------
+                           Hadronic Processes for anti_He3
+
+  Process: hadElastic
+        Model:              hElasticLHEP: 0 eV /n ---> 100.1 MeV/n
+        Model:              AntiAElastic: 100 MeV/n ---> 100 TeV/n
+     Cr_sctns:              AntiAGlauber: 0 eV  ---> 100 TeV
+
+  Process: anti_He3Inelastic
+        Model:                      FTFP: 0 eV /n ---> 100 TeV/n
+     Cr_sctns:              AntiAGlauber: 0 eV  ---> 100 TeV
+
+  Process: hFritiofCaptureAtRest
+
+---------------------------------------------------
+                           Hadronic Processes for anti_alpha
+
+  Process: hadElastic
+        Model:              hElasticLHEP: 0 eV /n ---> 100.1 MeV/n
+        Model:              AntiAElastic: 100 MeV/n ---> 100 TeV/n
+     Cr_sctns:              AntiAGlauber: 0 eV  ---> 100 TeV
+
+  Process: anti_alphaInelastic
+        Model:                      FTFP: 0 eV /n ---> 100 TeV/n
+     Cr_sctns:              AntiAGlauber: 0 eV  ---> 100 TeV
+
+  Process: hFritiofCaptureAtRest
+
+---------------------------------------------------
+                           Hadronic Processes for anti_deuteron
+
+  Process: hadElastic
+        Model:              hElasticLHEP: 0 eV /n ---> 100.1 MeV/n
+        Model:              AntiAElastic: 100 MeV/n ---> 100 TeV/n
+     Cr_sctns:              AntiAGlauber: 0 eV  ---> 100 TeV
+
+  Process: anti_deuteronInelastic
+        Model:                      FTFP: 0 eV /n ---> 100 TeV/n
+     Cr_sctns:              AntiAGlauber: 0 eV  ---> 100 TeV
+
+  Process: hFritiofCaptureAtRest
+
+---------------------------------------------------
+                           Hadronic Processes for anti_neutron
+
+  Process: hadElastic
+        Model:              hElasticLHEP: 0 eV  ---> 100.1 MeV
+        Model:              AntiAElastic: 100 MeV ---> 100 TeV
+     Cr_sctns:              AntiAGlauber: 0 eV  ---> 100 TeV
+
+  Process: anti_neutronInelastic
+        Model:                      FTFP: 0 eV  ---> 100 TeV
+     Cr_sctns:              AntiAGlauber: 0 eV  ---> 100 TeV
+
+  Process: hFritiofCaptureAtRest
+
+---------------------------------------------------
+                           Hadronic Processes for anti_proton
+
+  Process: hadElastic
+        Model:              hElasticLHEP: 0 eV  ---> 100.1 MeV
+        Model:              AntiAElastic: 100 MeV ---> 100 TeV
+     Cr_sctns:              AntiAGlauber: 0 eV  ---> 100 TeV
+
+  Process: anti_protonInelastic
+        Model:                      FTFP: 0 eV  ---> 100 TeV
+     Cr_sctns:              AntiAGlauber: 0 eV  ---> 100 TeV
+
+  Process: hFritiofCaptureAtRest
+
+---------------------------------------------------
+                           Hadronic Processes for anti_triton
+
+  Process: hadElastic
+        Model:              hElasticLHEP: 0 eV /n ---> 100.1 MeV/n
+        Model:              AntiAElastic: 100 MeV/n ---> 100 TeV/n
+     Cr_sctns:              AntiAGlauber: 0 eV  ---> 100 TeV
+
+  Process: anti_tritonInelastic
+        Model:                      FTFP: 0 eV /n ---> 100 TeV/n
+     Cr_sctns:              AntiAGlauber: 0 eV  ---> 100 TeV
+
+  Process: hFritiofCaptureAtRest
+
+---------------------------------------------------
+                           Hadronic Processes for deuteron
+
+  Process: hadElastic
+        Model:              hElasticLHEP: 0 eV /n ---> 100 TeV/n
+     Cr_sctns:  Glauber-Gribov Nucl-nucl: 0 eV  ---> 100 TeV
+
+  Process: dInelastic
+        Model:  Binary Light Ion Cascade: 0 eV /n ---> 6 GeV/n
+        Model:                      FTFP: 3 GeV/n ---> 100 TeV/n
+     Cr_sctns:  Glauber-Gribov Nucl-nucl: 0 eV  ---> 100 TeV
+
+---------------------------------------------------
+                           Hadronic Processes for e+
+
+  Process: electronNuclear
+        Model:   G4ElectroVDNuclearModel: 0 eV  ---> 1 PeV
+     Cr_sctns:          ElectroNuclearXS: 0 eV  ---> 100 TeV
+
+---------------------------------------------------
+                           Hadronic Processes for e-
+
+  Process: electronNuclear
+        Model:   G4ElectroVDNuclearModel: 0 eV  ---> 1 PeV
+     Cr_sctns:          ElectroNuclearXS: 0 eV  ---> 100 TeV
+
+---------------------------------------------------
+                           Hadronic Processes for gamma
+
+  Process: photonNuclear
+        Model:            BertiniCascade: 0 eV  ---> 6 GeV
+        Model:           TheoFSGenerator: 3 GeV ---> 100 TeV
+     Cr_sctns:            PhotoNuclearXS: 0 eV  ---> 100 TeV
+
+---------------------------------------------------
+                           Hadronic Processes for kaon+
+
+  Process: hadElastic
+        Model:              hElasticLHEP: 0 eV  ---> 100 TeV
+     Cr_sctns:            Glauber-Gribov: 0 eV  ---> 100 TeV
+
+  Process: kaon+Inelastic
+        Model:                      QGSP: 12 GeV ---> 100 TeV
+        Model:                      FTFP: 3 GeV ---> 25 GeV
+        Model:            BertiniCascade: 0 eV  ---> 6 GeV
+     Cr_sctns:            Glauber-Gribov: 0 eV  ---> 100 TeV
+
+---------------------------------------------------
+                           Hadronic Processes for kaon-
+
+  Process: hadElastic
+        Model:              hElasticLHEP: 0 eV  ---> 100 TeV
+     Cr_sctns:            Glauber-Gribov: 0 eV  ---> 100 TeV
+
+  Process: kaon-Inelastic
+        Model:                      QGSP: 12 GeV ---> 100 TeV
+        Model:                      FTFP: 3 GeV ---> 25 GeV
+        Model:            BertiniCascade: 0 eV  ---> 6 GeV
+     Cr_sctns:            Glauber-Gribov: 0 eV  ---> 100 TeV
+
+  Process: hBertiniCaptureAtRest
+
+---------------------------------------------------
+                           Hadronic Processes for lambda
+
+  Process: hadElastic
+        Model:              hElasticLHEP: 0 eV  ---> 100 TeV
+     Cr_sctns:            Glauber-Gribov: 0 eV  ---> 100 TeV
+
+  Process: lambdaInelastic
+        Model:            BertiniCascade: 0 eV  ---> 6 GeV
+        Model:                      FTFP: 3 GeV ---> 100 TeV
+     Cr_sctns:            Glauber-Gribov: 0 eV  ---> 100 TeV
+
+---------------------------------------------------
+                           Hadronic Processes for mu+
+
+  Process: muonNuclear
+        Model:      G4MuonVDNuclearModel: 0 eV  ---> 1 PeV
+     Cr_sctns:     KokoulinMuonNuclearXS: 0 eV  ---> 100 TeV
+
+---------------------------------------------------
+                           Hadronic Processes for mu-
+
+  Process: muonNuclear
+        Model:      G4MuonVDNuclearModel: 0 eV  ---> 1 PeV
+     Cr_sctns:     KokoulinMuonNuclearXS: 0 eV  ---> 100 TeV
+
+  Process: muMinusCaptureAtRest
+
+---------------------------------------------------
+                           Hadronic Processes for pi+
+
+  Process: hadElastic
+        Model:           hElasticGlauber: 0 eV  ---> 100 TeV
+     Cr_sctns:  BarashenkovGlauberGribov: 0 eV  ---> 100 TeV
+
+  Process: pi+Inelastic
+        Model:                      QGSP: 12 GeV ---> 100 TeV
+        Model:                      FTFP: 3 GeV ---> 25 GeV
+        Model:            BertiniCascade: 0 eV  ---> 6 GeV
+     Cr_sctns:  BarashenkovGlauberGribov: 0 eV  ---> 100 TeV
+
+---------------------------------------------------
+                           Hadronic Processes for pi-
+
+  Process: hadElastic
+        Model:           hElasticGlauber: 0 eV  ---> 100 TeV
+     Cr_sctns:  BarashenkovGlauberGribov: 0 eV  ---> 100 TeV
+
+  Process: pi-Inelastic
+        Model:                      QGSP: 12 GeV ---> 100 TeV
+        Model:                      FTFP: 3 GeV ---> 25 GeV
+        Model:            BertiniCascade: 0 eV  ---> 6 GeV
+     Cr_sctns:  BarashenkovGlauberGribov: 0 eV  ---> 100 TeV
+
+  Process: hBertiniCaptureAtRest
+
+---------------------------------------------------
+                           Hadronic Processes for proton
+
+  Process: hadElastic
+        Model:             hElasticCHIPS: 0 eV  ---> 100 TeV
+     Cr_sctns:  BarashenkovGlauberGribov: 0 eV  ---> 100 TeV
+
+  Process: protonInelastic
+        Model:                      QGSP: 12 GeV ---> 100 TeV
+        Model:                      FTFP: 3 GeV ---> 25 GeV
+        Model:            BertiniCascade: 0 eV  ---> 6 GeV
+     Cr_sctns:  BarashenkovGlauberGribov: 0 eV  ---> 100 TeV
+
+---------------------------------------------------
+                           Hadronic Processes for triton
+
+  Process: hadElastic
+        Model:              hElasticLHEP: 0 eV /n ---> 100 TeV/n
+     Cr_sctns:  Glauber-Gribov Nucl-nucl: 0 eV  ---> 100 TeV
+
+  Process: tInelastic
+        Model:  Binary Light Ion Cascade: 0 eV /n ---> 6 GeV/n
+        Model:                      FTFP: 3 GeV/n ---> 100 TeV/n
+     Cr_sctns:  Glauber-Gribov Nucl-nucl: 0 eV  ---> 100 TeV
+
+================================================================
+=======================================================================
+======       Pre-compound/De-excitation Physics Parameters     ========
+=======================================================================
+Type of pre-compound inverse x-section              3
+Pre-compound model active                           1
+Pre-compound excitation low energy (MeV)            0.1
+Pre-compound excitation high energy (MeV)           30
+Type of de-excitation inverse x-section             3
+Type of de-excitation factory                       Evaporation+GEM
+Number of de-excitation channels                    68
+Min excitation energy (keV)                         0.01
+Min energy per nucleon for multifragmentation (MeV) 2e+05
+Limit excitation energy for Fermi BreakUp (MeV)     20
+Level density (1/MeV)                               0.075
+Use simple level density model                      1
+Use discrete excitation energy of the residual      0
+Time limit for long lived isomeres (ns)             1e+12
+Internal e- conversion flag                         1
+Store e- internal conversion data                   0
+Electron internal conversion ID                     2
+Correlated gamma emission flag                      0
+Max 2J for sampling of angular correlations         10
+Upload data before 1st event for                Z < 9
+=======================================================================
+
+========= Table of registered couples ==============================
+
+Index : 0     used in the geometry : Yes
+ Material : DUSEL_Rock
+ Range cuts        :  gamma  700 um     e-  700 um     e+  700 um  proton 700 um 
+ Energy thresholds :  gamma  5.91497 keV    e-  492.397 keV    e+  472.939 keV proton 70 keV
+ Region(s) which use this couple : 
+    DefaultRegionForTheWorld
+
+Index : 1     used in the geometry : Yes
+ Material : Air
+ Range cuts        :  gamma  700 um     e-  700 um     e+  700 um  proton 700 um 
+ Energy thresholds :  gamma  990 eV     e-  990 eV     e+  990 eV  proton 70 keV
+ Region(s) which use this couple : 
+    DefaultRegionForTheWorld
+
+Index : 2     used in the geometry : Yes
+ Material : foam_protoDUNE_RPUF_assayedSample
+ Range cuts        :  gamma  700 um     e-  700 um     e+  700 um  proton 700 um 
+ Energy thresholds :  gamma  990 eV     e-  63.4129 keV    e+  62.9882 keV proton 70 keV
+ Region(s) which use this couple : 
+    DefaultRegionForTheWorld
+
+Index : 3     used in the geometry : Yes
+ Material : AirSteelMixture
+ Range cuts        :  gamma  700 um     e-  700 um     e+  700 um  proton 700 um 
+ Energy thresholds :  gamma  1.93858 keV    e-  59.6913 keV    e+  59.2915 keV proton 70 keV
+ Region(s) which use this couple : 
+    DefaultRegionForTheWorld
+
+Index : 4     used in the geometry : Yes
+ Material : LAr
+ Range cuts        :  gamma  700 um     e-  700 um     e+  700 um  proton 700 um 
+ Energy thresholds :  gamma  5.20596 keV    e-  274.415 keV    e+  267.137 keV proton 70 keV
+ Region(s) which use this couple : 
+    DefaultRegionForTheWorld
+
+Index : 5     used in the geometry : Yes
+ Material : ArGas
+ Range cuts        :  gamma  700 um     e-  700 um     e+  700 um  proton 700 um 
+ Energy thresholds :  gamma  990 eV     e-  990 eV     e+  990 eV  proton 70 keV
+ Region(s) which use this couple : 
+    DefaultRegionForTheWorld
+
+Index : 6     used in the geometry : Yes
+ Material : Delrin
+ Range cuts        :  gamma  700 um     e-  700 um     e+  700 um  proton 700 um 
+ Energy thresholds :  gamma  2.73103 keV    e-  337.972 keV    e+  326.805 keV proton 70 keV
+ Region(s) which use this couple : 
+    DefaultRegionForTheWorld
+
+Index : 7     used in the geometry : Yes
+ Material : ALUMINUM_Al
+ Range cuts        :  gamma  700 um     e-  700 um     e+  700 um  proton 700 um 
+ Energy thresholds :  gamma  5.85564 keV    e-  460.395 keV    e+  442.201 keV proton 70 keV
+ Region(s) which use this couple : 
+    DefaultRegionForTheWorld
+
+Index : 8     used in the geometry : Yes
+ Material : STEEL_STAINLESS_Fe7Cr2Ni
+ Range cuts        :  gamma  700 um     e-  700 um     e+  700 um  proton 700 um 
+ Energy thresholds :  gamma  17.2183 keV    e-  957.736 keV    e+  907.607 keV proton 70 keV
+ Region(s) which use this couple : 
+    DefaultRegionForTheWorld
+
+Index : 9     used in the geometry : Yes
+ Material : FR4SussexAPA
+ Range cuts        :  gamma  700 um     e-  700 um     e+  700 um  proton 700 um 
+ Energy thresholds :  gamma  5.31198 keV    e-  356.639 keV    e+  344.855 keV proton 70 keV
+ Region(s) which use this couple : 
+    DefaultRegionForTheWorld
+
+Index : 10     used in the geometry : Yes
+ Material : Copper_Beryllium_alloy25
+ Range cuts        :  gamma  700 um     e-  700 um     e+  700 um  proton 700 um 
+ Energy thresholds :  gamma  19.5633 keV    e-  977.24 keV    e+  926.09 keV proton 70 keV
+ Region(s) which use this couple : 
+    DefaultRegionForTheWorld
+
+====================================================================
+
+Begin processing the 1st record. run: 20000001 subRun: 0 event: 1 at 06-Oct-2025 10:44:28 CDT
+%MSG-w ParticleInventory:  ProcessEvent 06-Oct-2025 10:44:28 CDT  run: 20000001 subRun: 0 event: 1
+Rebuild failed to get the MCParticles. This is expected when running on a generation or simulation step.
+%MSG
+%MSG-w ParticleInventory:  ProcessEvent 06-Oct-2025 10:44:28 CDT  run: 20000001 subRun: 0 event: 1
+Rebuild failed to get the MCParticles. This is expected when running on a generation or simulation step.
+%MSG
+%MSG-w ParticleInventory:  ProcessEvent 06-Oct-2025 10:44:28 CDT  run: 20000001 subRun: 0 event: 1
+Rebuild failed to get the MCParticles. This is expected when running on a generation or simulation step.
+%MSG
+%MSG-w BackTrackerService:  ProcessEvent 06-Oct-2025 10:44:28 CDT  run: 20000001 subRun: 0 event: 1
+Rebuild failed to get the SimChannels. This is expected when running on a generation or simulation step.
+%MSG
+%MSG-w PhotonBackTrackerService:  ProcessEvent 06-Oct-2025 10:44:28 CDT  run: 20000001 subRun: 0 event: 1
+Rebuild failed to get the OpDetBTRs. This is expected when running on a generation or simulation step.
+%MSG
+%MSG-i NuRandomService:  larg4Main:largeant@BeginModule  06-Oct-2025 10:44:28 CDT run: 20000001 subRun: 0 event: 1
+Random seed for this event, engine 'largeant': 862983443
+%MSG
+%MSG-i generatePrimaries:  larg4Main:largeant@BeginModule  06-Oct-2025 10:44:28 CDT run: 20000001 subRun: 0 event: 1 MCTruthEventAction.cc:112
+Generating 10 particles
+%MSG
+%MSG-i ParticleListActionService:  larg4Main:largeant@BeginModule  06-Oct-2025 10:44:29 CDT run: 20000001 subRun: 0 event: 1
+Not Stored Process summary:
+	Ion : 607
+	Brem : 215
+	annihil : 12
+	conv : 12
+	compt : 805
+	phot : 285
+%MSG
+%MSG-i endOfEventAction:  larg4Main:largeant@BeginModule  06-Oct-2025 10:44:29 CDT run: 20000001 subRun: 0 event: 1 ParticleListAction.cc:817
+MCTruth Handles Size: 1
+%MSG
+%MSG-i endOfEventAction:  larg4Main:largeant@BeginModule  06-Oct-2025 10:44:29 CDT run: 20000001 subRun: 0 event: 1 ParticleListAction.cc:827
+mclistHandle Size: 1
+%MSG
+%MSG-i endOfEventAction:  larg4Main:largeant@BeginModule  06-Oct-2025 10:44:29 CDT run: 20000001 subRun: 0 event: 1 ParticleListAction.cc:830
+Found 10 particles
+%MSG
+%MSG-i NuRandomService:  IonAndScint:IonAndScint@BeginModule  06-Oct-2025 10:44:29 CDT run: 20000001 subRun: 0 event: 1
+Random seed for this event, engine 'IonAndScint.ISCalcAlg': 80611181
+%MSG
+IonAndScint Module Producer
+SimEnergyDeposit input module: largeant, instance name: LArG4DetectorServicevolTPCPlaneVInner0
+SimEnergyDeposit input module: largeant, instance name: LArG4DetectorServicevolTPCPlaneZInner0
+Skip SimEnergyDeposit in: LArG4DetectorServicevolTPCOuter
+SimEnergyDeposit input module: largeant, instance name: LArG4DetectorServicevolTPCInner1
+Skip SimEnergyDeposit in: LArG4DetectorServicevolTPCInner0
+Skip SimEnergyDeposit in: LArG4DetectorServicevolTPCPlaneZOuter
+SimEnergyDeposit input module: largeant, instance name: LArG4DetectorServicevolTPCPlaneZInner1
+SimEnergyDeposit input module: largeant, instance name: LArG4DetectorServicevolTPCPlaneVInner1
+Skip SimEnergyDeposit in: LArG4DetectorServicevolTPCPlaneVOuter
+SimEnergyDeposit input module: largeant, instance name: LArG4DetectorServicevolTPCActiveInner0
+SimEnergyDeposit input module: largeant, instance name: LArG4DetectorServicevolTPCActiveInner1
+SimEnergyDeposit input module: largeant, instance name: LArG4DetectorServicevolTPCPlaneUInner0
+SimEnergyDeposit input module: largeant, instance name: LArG4DetectorServicevolTPCPlaneUInner1
+Skip SimEnergyDeposit in: LArG4DetectorServicevolTPCPlaneUOuter
+SimEnergyDeposit input module: largeant, instance name: LArG4DetectorServicevolTPCActiveOuter
+%MSG-i NuRandomService:  PDFastSimPAR:PDFastSim@BeginModule  06-Oct-2025 10:44:29 CDT run: 20000001 subRun: 0 event: 1
+Random seed for this event, engine 'PDFastSim.photon': 767989659
+%MSG
+%MSG-i NuRandomService:  PDFastSimPAR:PDFastSim@BeginModule  06-Oct-2025 10:44:29 CDT run: 20000001 subRun: 0 event: 1
+Random seed for this event, engine 'PDFastSim.scinttime': 167457289
+%MSG
+06-Oct-2025 10:44:33 CDT  Opened output file with pattern "/exp/dune/data/users/emvilla//v10_10_05d00/standard/prodgenie_nu_dune10kt_1x2x6_standard-triggerana_tree_1x2x6_tpg_absrs_st-1events_genieNuMu_triggerValidationTest/gen_g4.root"
+%MSG-i FastCloning:  PostProcessEvent 06-Oct-2025 10:44:33 CDT  run: 20000001 subRun: 0 event: 1
+Fast cloning event data products from input file.
+%MSG
+06-Oct-2025 10:44:34 CDT  Closed output file "/exp/dune/data/users/emvilla//v10_10_05d00/standard/prodgenie_nu_dune10kt_1x2x6_standard-triggerana_tree_1x2x6_tpg_absrs_st-1events_genieNuMu_triggerValidationTest/gen_g4.root"
+06-Oct-2025 10:44:34 CDT  Closed input file "/exp/dune/data/users/emvilla//v10_10_05d00/standard/prodgenie_nu_dune10kt_1x2x6_standard-triggerana_tree_1x2x6_tpg_absrs_st-1events_genieNuMu_triggerValidationTest/gen.root"
+IonAndScint endJob.
+
+================================================================================================================================
+TimeTracker printout (sec)                        Min           Avg           Max         Median          RMS         nEvts   
+================================================================================================================================
+Full event                                      4.88038       4.88038       4.88038       4.88038          0            1     
+--------------------------------------------------------------------------------------------------------------------------------
+source:RootInput(read)                        0.000511768   0.000511768   0.000511768   0.000511768        0            1     
+simulate:rns:RandomNumberSaver                0.000188811   0.000188811   0.000188811   0.000188811        0            1     
+simulate:largeant:larg4Main                    0.137357      0.137357      0.137357      0.137357          0            1     
+simulate:IonAndScint:IonAndScint               0.0186063     0.0186063     0.0186063     0.0186063         0            1     
+simulate:PDFastSim:PDFastSimPAR                 4.36803       4.36803       4.36803       4.36803          0            1     
+[art]:TriggerResults:TriggerResultInserter    5.6348e-05    5.6348e-05    5.6348e-05    5.6348e-05         0            1     
+end_path:out1:RootOutput                       1.536e-05     1.536e-05     1.536e-05     1.536e-05         0            1     
+end_path:out1:RootOutput(write)                0.354746      0.354746      0.354746      0.354746          0            1     
+================================================================================================================================
+%MSG-i NuRandomService:  RootOutput:out1@EndJob 06-Oct-2025 10:44:34 CDT  ModuleEndJob
+
+Summary of seeds computed by the NuRandomService
+Random policy: 'perEvent'
+  algorithm version: EventTimestamp_v1
+   Configured value          Last value   ModuleLabel.InstanceName
+        (per event)            80611181   IonAndScint.ISCalcAlg
+        (per event)           767989659   PDFastSim.photon
+        (per event)           167457289   PDFastSim.scinttime
+        (per event)           862983443   largeant
+
+%MSG
+
+====================================================================================================
+MemoryTracker summary (base-10 MB units used)
+
+  Peak virtual memory usage (VmPeak)  : 1823.29 MB
+  Peak resident set size usage (VmHWM): 1079.48 MB
+====================================================================================================
+
+TrigReport ---------- Event summary -------------
+TrigReport Events total = 1 passed = 1 failed = 0
+
+TrigReport ---------- Modules in End-path ----------
+TrigReport        Run    Success      Error Name
+TrigReport          1          1          0 out1
+
+TimeReport ---------- Time summary [sec] -------
+TimeReport CPU = 15.534477 Real = 16.413229
+
+MemReport  ---------- Memory summary [base-10 MB] ------
+MemReport  VmPeak = 1823.29 VmHWM = 1079.48
+
+Art has completed and will exit with status 0.
+ Geant4 simulation done!
+
+Ending G4 at 1759765475
+G4 simulation took 89 seconds
+Size of the g4 file is 8.7M
+Starting detector simulation at 1759765475
+Executing command: lar -c detsim_dune10kt_1x2x6_notpcsigproc.fcl -n 1 -s /exp/dune/data/users/emvilla//v10_10_05d00/standard/prodgenie_nu_dune10kt_1x2x6_standard-triggerana_tree_1x2x6_tpg_absrs_st-1events_genieNuMu_triggerValidationTest/gen_g4.root -o /exp/dune/data/users/emvilla//v10_10_05d00/standard/prodgenie_nu_dune10kt_1x2x6_standard-triggerana_tree_1x2x6_tpg_absrs_st-1events_genieNuMu_triggerValidationTest/gen_g4_detsim.root
+Info in <TGeoManager::Import>: Reading geometry from file: /cvmfs/dune.opensciencegrid.org/products/dune/dunecore/v10_10_05d00/gdml/dune10kt_v6_refactored_1x2x6.gdml
+Info in <TGeoManager::TGeoManager>: Geometry GDMLImport, Geometry imported from GDML created
+Error: Unsupported GDML Tag Used :gdml_simple_extension. Please Check Geometry/Schema.
+Error: Unsupported GDML Tag Used :extension. Please Check Geometry/Schema.
+Info in <TGeoManager::SetTopVolume>: Top volume is volWorld. Master volume is volWorld
+Info in <TGeoNavigator::BuildCache>: --- Maximum geometry depth set to 100
+Info in <TGeoManager::CheckGeometry>: Fixing runtime shapes...
+Info in <TGeoManager::CheckGeometry>: ...Nothing to fix
+Info in <TGeoManager::CloseGeometry>: Counting nodes...
+Info in <TGeoManager::Voxelize>: Voxelizing...
+Info in <TGeoManager::CloseGeometry>: Building cache...
+Info in <TGeoManager::CountLevels>: max level = 5, max placements = 1149
+Info in <TGeoManager::CloseGeometry>: 67545 nodes/ 5439 volume UID's in Geometry imported from GDML
+Info in <TGeoManager::CloseGeometry>: ----------------modeler ready----------------
+registering to  primaryGeneratorActionsMap_
+registering to   eventActionsMap_
+registering to   trackingActionsMap_
+registering to  steppingActionsMap_
+Warning in <TFile::Append>: Replacing existing TH1: FieldResponse_U (Potential memory leak).
+Warning in <TFile::Append>: Replacing existing TH1: FieldResponse_V (Potential memory leak).
+Warning in <TFile::Append>: Replacing existing TH1: FieldResponse_Y (Potential memory leak).
+Using TESTbench spe!!! 
+With: SPE_DAPHNE2_FBK_2022.dat
+[10:44:48.464] I [  wct   ] loading compressed json file: /cvmfs/dune.opensciencegrid.org/products/dune/dunereco/v10_10_05d00/wire-cell-cfg/dune10kt-1x2x6-wires-larsoft-v1.json.bz2
+[10:44:56.429] I [  wct   ] loading compressed json file: /cvmfs/dune.opensciencegrid.org/products/dune/dunereco/v10_10_05d00/wire-cell-cfg/dune-garfield-1d60563.json.bz2
+[10:44:58.459] I [  wct   ] loading compressed json file: /cvmfs/dune.opensciencegrid.org/products/dune/dune_pardata/v01_84_00/WireCellData/protodune-noise-spectra-v1.json.bz2
+Inputer: "wclsSimDepoSource:"
+Outputer: "wclsSimChannelSink:postdrift"
+Outputer: "wclsFrameSaver:simdigits"
+wclsFrameSaver: promising to produce raw::RawDigits named "daq"
+06-Oct-2025 10:44:58 CDT  Initiating request to open input file "/exp/dune/data/users/emvilla//v10_10_05d00/standard/prodgenie_nu_dune10kt_1x2x6_standard-triggerana_tree_1x2x6_tpg_absrs_st-1events_genieNuMu_triggerValidationTest/gen_g4.root"
+06-Oct-2025 10:44:58 CDT  Opened input file "/exp/dune/data/users/emvilla//v10_10_05d00/standard/prodgenie_nu_dune10kt_1x2x6_standard-triggerana_tree_1x2x6_tpg_absrs_st-1events_genieNuMu_triggerValidationTest/gen_g4.root"
+Begin processing the 1st record. run: 20000001 subRun: 0 event: 1 at 06-Oct-2025 10:44:58 CDT
+SimDepoSource got 37615 depos from art tag "InputTag: label = 'IonAndScint', instance = ''" returns: okay
+SimDepoSource: ready with 37615 depos spanning: [6.67443e-07, 1.63041]us
+[10:45:09.655] W [  gen   ] <IncoherentAddNoise:addnoiseapa11> model EmpiricalNoiseModel:empericalnoisemeganodes produced 6174 samples instead of expected 6000, future warnings muted 
+Retagger: tagging trace set: daq with 30720 traces, 0 summary
+[10:45:22.573] I [ timer  ] Timer: WireCell::Gen::DepoTransform : 3.88 sec
+[10:45:22.573] I [ timer  ] Timer: WireCell::Gen::DepoTransform : 1.78 sec
+[10:45:22.573] I [ timer  ] Timer: WireCell::Gen::DepoTransform : 0.97 sec
+[10:45:22.573] I [ timer  ] Timer: WireCell::Gen::DepoTransform : 0.43 sec
+[10:45:22.573] I [ timer  ] Timer: WireCell::Gen::DepoTransform : 0.38 sec
+[10:45:22.573] I [ timer  ] Timer: wcls::SimChannelSink : 0.36 sec
+[10:45:22.573] I [ timer  ] Timer: WireCell::Gen::Digitizer : 0.35 sec
+[10:45:22.573] I [ timer  ] Timer: WireCell::Gen::IncoherentAddNoise : 0.34 sec
+[10:45:22.573] I [ timer  ] Timer: WireCell::Gen::IncoherentAddNoise : 0.34 sec
+[10:45:22.573] I [ timer  ] Timer: WireCell::Gen::Digitizer : 0.34 sec
+[10:45:22.573] I [ timer  ] Timer: WireCell::Gen::IncoherentAddNoise : 0.33 sec
+[10:45:22.573] I [ timer  ] Timer: WireCell::Gen::IncoherentAddNoise : 0.32 sec
+[10:45:22.573] I [ timer  ] Timer: WireCell::Gen::DepoTransform : 0.32 sec
+[10:45:22.573] I [ timer  ] Timer: WireCell::Gen::Digitizer : 0.32 sec
+[10:45:22.573] I [ timer  ] Timer: WireCell::Gen::IncoherentAddNoise : 0.31 sec
+[10:45:22.573] I [ timer  ] Timer: WireCell::Gen::Digitizer : 0.3 sec
+[10:45:22.573] I [ timer  ] Timer: WireCell::Gen::IncoherentAddNoise : 0.3 sec
+[10:45:22.573] I [ timer  ] Timer: WireCell::Gen::IncoherentAddNoise : 0.3 sec
+[10:45:22.573] I [ timer  ] Timer: WireCell::Gen::Digitizer : 0.3 sec
+[10:45:22.573] I [ timer  ] Timer: WireCell::Gen::IncoherentAddNoise : 0.3 sec
+[10:45:22.573] I [ timer  ] Timer: WireCell::Gen::Digitizer : 0.29 sec
+[10:45:22.573] I [ timer  ] Timer: WireCell::Gen::Digitizer : 0.29 sec
+[10:45:22.573] I [ timer  ] Timer: WireCell::Gen::IncoherentAddNoise : 0.29 sec
+[10:45:22.573] I [ timer  ] Timer: WireCell::Gen::Digitizer : 0.29 sec
+[10:45:22.573] I [ timer  ] Timer: WireCell::Gen::Digitizer : 0.28 sec
+[10:45:22.573] I [ timer  ] Timer: WireCell::Gen::Digitizer : 0.28 sec
+[10:45:22.573] I [ timer  ] Timer: WireCell::Gen::IncoherentAddNoise : 0.28 sec
+[10:45:22.573] I [ timer  ] Timer: WireCell::Gen::Digitizer : 0.28 sec
+[10:45:22.573] I [ timer  ] Timer: WireCell::Gen::IncoherentAddNoise : 0.28 sec
+[10:45:22.573] I [ timer  ] Timer: WireCell::Gen::IncoherentAddNoise : 0.27 sec
+[10:45:22.573] I [ timer  ] Timer: WireCell::Gen::Digitizer : 0.26 sec
+[10:45:22.573] I [ timer  ] Timer: WireCell::Gen::DepoTransform : 0.2 sec
+[10:45:22.573] I [ timer  ] Timer: WireCell::Gen::DepoTransform : 0.17 sec
+[10:45:22.573] I [ timer  ] Timer: WireCell::Gen::DepoTransform : 0.17 sec
+[10:45:22.573] I [ timer  ] Timer: WireCell::Gen::DepoTransform : 0.16 sec
+[10:45:22.573] I [ timer  ] Timer: WireCell::Gen::Reframer : 0.16 sec
+[10:45:22.573] I [ timer  ] Timer: WireCell::Gen::Reframer : 0.16 sec
+[10:45:22.573] I [ timer  ] Timer: WireCell::Gen::Reframer : 0.16 sec
+[10:45:22.573] I [ timer  ] Timer: WireCell::Gen::DepoTransform : 0.15 sec
+[10:45:22.573] I [ timer  ] Timer: WireCell::Gen::DepoTransform : 0.15 sec
+[10:45:22.573] I [ timer  ] Timer: WireCell::Gen::Reframer : 0.13 sec
+[10:45:22.573] I [ timer  ] Timer: WireCell::Gen::Reframer : 0.13 sec
+[10:45:22.573] I [ timer  ] Timer: WireCell::Gen::Reframer : 0.12 sec
+[10:45:22.573] I [ timer  ] Timer: WireCell::Gen::Drifter : 0.11 sec
+[10:45:22.573] I [ timer  ] Timer: WireCell::Gen::FrameFanin : 0.11 sec
+[10:45:22.573] I [ timer  ] Timer: WireCell::Gen::Reframer : 0.1 sec
+[10:45:22.573] I [ timer  ] Timer: WireCell::Gen::Reframer : 0.1 sec
+[10:45:22.573] I [ timer  ] Timer: WireCell::Gen::Reframer : 0.1 sec
+[10:45:22.573] I [ timer  ] Timer: WireCell::Gen::Reframer : 0.09 sec
+[10:45:22.573] I [ timer  ] Timer: WireCell::Gen::Reframer : 0.09 sec
+[10:45:22.573] I [ timer  ] Timer: WireCell::Gen::DumpFrames : 0.08 sec
+[10:45:22.573] I [ timer  ] Timer: WireCell::Gen::Retagger : 0.08 sec
+[10:45:22.573] I [ timer  ] Timer: wcls::FrameSaver : 0.08 sec
+[10:45:22.573] I [ timer  ] Timer: WireCell::Gen::DepoBagger : 0.08 sec
+[10:45:22.573] I [ timer  ] Timer: WireCell::Gen::Reframer : 0.07 sec
+[10:45:22.573] I [ timer  ] Timer: wcls::SimDepoSource : 0.07 sec
+[10:45:22.574] I [ timer  ] Timer: WireCell::Gen::DepoSetFanout : 0.07 sec
+[10:45:22.574] I [ timer  ] Timer: Total node execution : 18.450000159442425 sec
+wclsFrameSaver: saving raw::RawDigits tagged "daq"
+06-Oct-2025 10:45:24 CDT  Opened output file with pattern "/exp/dune/data/users/emvilla//v10_10_05d00/standard/prodgenie_nu_dune10kt_1x2x6_standard-triggerana_tree_1x2x6_tpg_absrs_st-1events_genieNuMu_triggerValidationTest/gen_g4_detsim.root"
+06-Oct-2025 10:45:32 CDT  Closed output file "/exp/dune/data/users/emvilla//v10_10_05d00/standard/prodgenie_nu_dune10kt_1x2x6_standard-triggerana_tree_1x2x6_tpg_absrs_st-1events_genieNuMu_triggerValidationTest/gen_g4_detsim.root"
+06-Oct-2025 10:45:32 CDT  Closed input file "/exp/dune/data/users/emvilla//v10_10_05d00/standard/prodgenie_nu_dune10kt_1x2x6_standard-triggerana_tree_1x2x6_tpg_absrs_st-1events_genieNuMu_triggerValidationTest/gen_g4.root"
+
+================================================================================================================================
+TimeTracker printout (sec)                        Min           Avg           Max         Median          RMS         nEvts   
+================================================================================================================================
+Full event                                      31.2896       31.2896       31.2896       31.2896          0            1     
+--------------------------------------------------------------------------------------------------------------------------------
+source:RootInput(read)                        0.00053843    0.00053843    0.00053843    0.00053843         0            1     
+simulate:tpcrawdecoder:WireCellToolkit          25.3263       25.3263       25.3263       25.3263          0            1     
+simulate:opdigi:OpDetDigitizerDUNE             0.205514      0.205514      0.205514      0.205514          0            1     
+simulate:rns:RandomNumberSaver                0.000165056   0.000165056   0.000165056   0.000165056        0            1     
+[art]:TriggerResults:TriggerResultInserter     2.632e-05     2.632e-05     2.632e-05     2.632e-05         0            1     
+end_path:out1:RootOutput                      1.3526e-05    1.3526e-05    1.3526e-05    1.3526e-05         0            1     
+end_path:out1:RootOutput(write)                 5.75658       5.75658       5.75658       5.75658          0            1     
+================================================================================================================================
+
+====================================================================================================
+MemoryTracker summary (base-10 MB units used)
+
+  Peak virtual memory usage (VmPeak)  : 4350.85 MB
+  Peak resident set size usage (VmHWM): 2678.28 MB
+====================================================================================================
+Art has completed and will exit with status 0.
+ Detector simulation done!
+
+ In the folder now we have
+ total 195779
+-rw-r--r-- 1 emvilla dune         0 Oct  6 10:44 debugprod.log
+-rw-r--r-- 1 emvilla dune     40082 Oct  6 10:41 detsim_dune10kt_1x2x6_notpcsigproc_dump.fcl
+-rw-r--r-- 1 emvilla dune         3 Oct  6 10:44 execTime.txt
+-rw-r--r-- 1 emvilla dune       519 Oct  6 10:44 g4_hist.root
+-rw-r--r-- 1 emvilla dune       519 Oct  6 10:45 gen_g4_detsim_hist.root
+-rw-r--r-- 1 emvilla dune 191044203 Oct  6 10:45 gen_g4_detsim.root
+-rw-r--r-- 1 emvilla dune   9103998 Oct  6 10:44 gen_g4.root
+-rw-r--r-- 1 emvilla dune     15609 Oct  6 10:43 genie_hist.root
+-rw-r--r-- 1 emvilla dune     95394 Oct  6 10:43 gen.root
+-rw-r--r-- 1 emvilla dune     13339 Oct  6 10:41 prodgenie_nu_dune10kt_1x2x6_dump.fcl
+-rw-r--r-- 1 emvilla dune        99 Oct  6 10:41 prodgenie_nu_dune10kt_1x2x6_standard.fcl
+-rw-r--r-- 1 emvilla dune     29101 Oct  6 10:41 standard_g4_dune10kt_1x2x6_dump.fcl
+-rw-r--r-- 1 emvilla dune     36382 Oct  6 10:41 triggerana_tree_1x2x6_tpg_absrs_st_dump.fcl
+-rw-r--r-- 1 emvilla dune     92713 Oct  6 10:45 wcls-sim-drift-simchannel.log 
+
+Ending detector simulation at 1759765532
+Detsim took 57 seconds
+Size of the detsim file is 183M
+Starting reconstruction at 1759765533
+Executing command: lar -c triggerana_tree_1x2x6_tpg_absrs_st.fcl -n 1 -s /exp/dune/data/users/emvilla//v10_10_05d00/standard/prodgenie_nu_dune10kt_1x2x6_standard-triggerana_tree_1x2x6_tpg_absrs_st-1events_genieNuMu_triggerValidationTest/gen_g4_detsim.root -o /exp/dune/data/users/emvilla//v10_10_05d00/standard/prodgenie_nu_dune10kt_1x2x6_standard-triggerana_tree_1x2x6_tpg_absrs_st-1events_genieNuMu_triggerValidationTest/gen_g4_detsim_reco1.root
+DuneDeconvolutionService::ctor: DuneDeconvolutionService:
+DuneDeconvolutionService::ctor:                LogLevel: 1
+DuneRoiBuildingService::ctor: DuneRoiBuildingService:
+DuneRoiBuildingService::ctor:     LogLevel: 1
+DuneRoiBuildingService::ctor:  NSigmaStart: 3
+DuneRoiBuildingService::ctor:    NSigmaEnd: 1
+DuneRoiBuildingService::ctor:       PadLow: 50
+DuneRoiBuildingService::ctor:      PadHigh: 50
+StandardAdcWireBuildingService::ctor: StandardAdcWireBuildingService:
+StandardAdcWireBuildingService::ctor:     LogLevel: 1
+Info in <TGeoManager::Import>: Reading geometry from file: /cvmfs/dune.opensciencegrid.org/products/dune/dunecore/v10_10_05d00/gdml/dune10kt_v6_refactored_1x2x6.gdml
+Info in <TGeoManager::TGeoManager>: Geometry GDMLImport, Geometry imported from GDML created
+Error: Unsupported GDML Tag Used :gdml_simple_extension. Please Check Geometry/Schema.
+Error: Unsupported GDML Tag Used :extension. Please Check Geometry/Schema.
+Info in <TGeoManager::SetTopVolume>: Top volume is volWorld. Master volume is volWorld
+Info in <TGeoNavigator::BuildCache>: --- Maximum geometry depth set to 100
+Info in <TGeoManager::CheckGeometry>: Fixing runtime shapes...
+Info in <TGeoManager::CheckGeometry>: ...Nothing to fix
+Info in <TGeoManager::CloseGeometry>: Counting nodes...
+Info in <TGeoManager::Voxelize>: Voxelizing...
+Info in <TGeoManager::CloseGeometry>: Building cache...
+Info in <TGeoManager::CountLevels>: max level = 5, max placements = 1149
+Info in <TGeoManager::CloseGeometry>: 67545 nodes/ 5439 volume UID's in Geometry imported from GDML
+Info in <TGeoManager::CloseGeometry>: ----------------modeler ready----------------
+GeoApaChannelGroupService::ctor: Group 0 (apa00) has 2560 channels from 4/4 readout planes.
+GeoApaChannelGroupService::ctor: Group 1 (apa01) has 2560 channels from 4/4 readout planes.
+GeoApaChannelGroupService::ctor: Group 2 (apa02) has 2560 channels from 4/4 readout planes.
+GeoApaChannelGroupService::ctor: Group 3 (apa03) has 2560 channels from 4/4 readout planes.
+GeoApaChannelGroupService::ctor: Group 4 (apa04) has 2560 channels from 4/4 readout planes.
+GeoApaChannelGroupService::ctor: Group 5 (apa05) has 2560 channels from 4/4 readout planes.
+GeoApaChannelGroupService::ctor: Group 6 (apa06) has 2560 channels from 4/4 readout planes.
+GeoApaChannelGroupService::ctor: Group 7 (apa07) has 2560 channels from 4/4 readout planes.
+GeoApaChannelGroupService::ctor: Group 8 (apa08) has 2560 channels from 4/4 readout planes.
+GeoApaChannelGroupService::ctor: Group 9 (apa09) has 2560 channels from 4/4 readout planes.
+GeoApaChannelGroupService::ctor: Group 10 (apa10) has 2560 channels from 4/4 readout planes.
+GeoApaChannelGroupService::ctor: Group 11 (apa11) has 2560 channels from 4/4 readout planes.
+DuneToolManager::fclFilename: Taking fcl name from command line: lar -c triggerana_tree_1x2x6_tpg_absrs_st.fcl -n 1 -s /exp/dune/data/users/emvilla//v10_10_05d00/standard/prodgenie_nu_dune10kt_1x2x6_standard-triggerana_tree_1x2x6_tpg_absrs_st-1events_genieNuMu_triggerValidationTest/gen_g4_detsim.root -o /exp/dune/data/users/emvilla//v10_10_05d00/standard/prodgenie_nu_dune10kt_1x2x6_standard-triggerana_tree_1x2x6_tpg_absrs_st-1events_genieNuMu_triggerValidationTest/gen_g4_detsim_reco1.root
+AcdDigitReader::ctor:     LogLevel: 1
+DuneToolManager::getPrivate: ERROR: Tool name is blank
+StandardRawDigitExtractService::ctor: Retrieved digit read tool digitReader
+StandardRawDigitExtractService::ctor: StandardRawDigitExtractService:
+StandardRawDigitExtractService::ctor:         LogLevel: 1
+StandardRawDigitExtractService::ctor:    DigitReadTool: digitReader
+StandardRawDigitExtractService::ctor:   PedestalOption: 1
+StandardRawDigitExtractService::ctor:     FlagStuckOff: 0
+StandardRawDigitExtractService::ctor:      FlagStuckOn: 0
+StandardRawDigitPrepService::ctor: Fetching extract service.
+StandardRawDigitPrepService::ctor: Fetching channel status provider.
+StandardRawDigitPrepService::ctor:   Channel status provider: @0x567e500
+StandardRawDigitPrepService::ctor:   Extract service: @0x6fd8770
+StandardRawDigitPrepService::ctor: Fetching deconvolution service.
+StandardRawDigitPrepService::ctor:   Deconvolution service: @0x2400980
+StandardRawDigitPrepService::ctor: Fetching ROI building service.
+StandardRawDigitPrepService::ctor:   ROI building service: @0x1404850
+StandardRawDigitPrepService::ctor: Fetching wire building service.
+StandardRawDigitPrepService::ctor:   Wire building service: @0x24a1b70
+StandardRawDigitPrepService::ctor: StandardRawDigitPrepService:
+StandardRawDigitPrepService::ctor:              LogLevel: 1
+StandardRawDigitPrepService::ctor:               SkipBad: 1
+StandardRawDigitPrepService::ctor:             SkipNoisy: 0
+StandardRawDigitPrepService::ctor:   ChannelStatusOnline: 0
+StandardRawDigitPrepService::ctor:          DoMitigation: 0
+StandardRawDigitPrepService::ctor:  DoEarlySignalFinding: 0
+StandardRawDigitPrepService::ctor:        DoNoiseRemoval: 0
+StandardRawDigitPrepService::ctor:       DoDeconvolution: 1
+StandardRawDigitPrepService::ctor:  DoPedestalAdjustment: 0
+StandardRawDigitPrepService::ctor:                 DoROI: 1
+StandardRawDigitPrepService::ctor:               DoWires: 1
+StandardRawDigitPrepService::ctor:                DoDump: 0
+StandardRawDigitPrepService::ctor:  DoIntermediateStates: 0
+StandardRawDigitPrepService::ctor: No display tools.
+Warning in <TFile::Append>: Replacing existing TH1: FieldResponse_U (Potential memory leak).
+Warning in <TFile::Append>: Replacing existing TH1: FieldResponse_V (Potential memory leak).
+Warning in <TFile::Append>: Replacing existing TH1: FieldResponse_Y (Potential memory leak).
+06-Oct-2025 10:45:45 CDT  Initiating request to open input file "/exp/dune/data/users/emvilla//v10_10_05d00/standard/prodgenie_nu_dune10kt_1x2x6_standard-triggerana_tree_1x2x6_tpg_absrs_st-1events_genieNuMu_triggerValidationTest/gen_g4_detsim.root"
+06-Oct-2025 10:45:45 CDT  Opened input file "/exp/dune/data/users/emvilla//v10_10_05d00/standard/prodgenie_nu_dune10kt_1x2x6_standard-triggerana_tree_1x2x6_tpg_absrs_st-1events_genieNuMu_triggerValidationTest/gen_g4_detsim.root"
+Begin processing the 1st record. run: 20000001 subRun: 0 event: 1 at 06-Oct-2025 10:45:45 CDT
+Creating new TTree for tpmakerTPCsimpleThr::TriggerAnaTree1x2x6
+Creating new TTree for tpmakerTPCabsRS::TriggerAnaTree1x2x6
+06-Oct-2025 10:45:59 CDT  Opened output file with pattern "/exp/dune/data/users/emvilla//v10_10_05d00/standard/prodgenie_nu_dune10kt_1x2x6_standard-triggerana_tree_1x2x6_tpg_absrs_st-1events_genieNuMu_triggerValidationTest/gen_g4_detsim_reco1.root"
+06-Oct-2025 10:46:00 CDT  Closed output file "/exp/dune/data/users/emvilla//v10_10_05d00/standard/prodgenie_nu_dune10kt_1x2x6_standard-triggerana_tree_1x2x6_tpg_absrs_st-1events_genieNuMu_triggerValidationTest/gen_g4_detsim_reco1.root"
+06-Oct-2025 10:46:00 CDT  Closed input file "/exp/dune/data/users/emvilla//v10_10_05d00/standard/prodgenie_nu_dune10kt_1x2x6_standard-triggerana_tree_1x2x6_tpg_absrs_st-1events_genieNuMu_triggerValidationTest/gen_g4_detsim.root"
+
+=========================================================================================================================================
+TimeTracker printout (sec)                                 Min           Avg           Max         Median          RMS         nEvts   
+=========================================================================================================================================
+Full event                                               13.3734       13.3734       13.3734       13.3734          0            1     
+-----------------------------------------------------------------------------------------------------------------------------------------
+source:RootInput(read)                                 0.000468996   0.000468996   0.000468996   0.000468996        0            1     
+makers:tpmakerTPCsimpleThr:TriggerPrimitiveMakerTPC      6.87997       6.87997       6.87997       6.87997          0            1     
+makers:tpmakerTPCabsRS:TriggerPrimitiveMakerTPC          6.38161       6.38161       6.38161       6.38161          0            1     
+[art]:TriggerResults:TriggerResultInserter             8.7327e-05    8.7327e-05    8.7327e-05    8.7327e-05         0            1     
+end_path:out1:RootOutput                               2.0028e-05    2.0028e-05    2.0028e-05    2.0028e-05         0            1     
+end_path:triggerAnaDumpAll:TriggerAnaTree               0.0979757     0.0979757     0.0979757     0.0979757         0            1     
+end_path:out1:RootOutput(write)                          0.01205       0.01205       0.01205       0.01205          0            1     
+=========================================================================================================================================
+
+====================================================================================================
+MemoryTracker summary (base-10 MB units used)
+
+  Peak virtual memory usage (VmPeak)  : 2089.4 MB
+  Peak resident set size usage (VmHWM): 1403.23 MB
+  Details saved in: 'mem.db'
+====================================================================================================
+Art has completed and will exit with status 0.
+ Reconstruction done! 
+
+ In the folder now we have
+total 384309
+-rw-r--r-- 1 emvilla dune         0 Oct  6 10:45 debugprod.log
+-rw-r--r-- 1 emvilla dune     40082 Oct  6 10:41 detsim_dune10kt_1x2x6_notpcsigproc_dump.fcl
+-rw-r--r-- 1 emvilla dune         3 Oct  6 10:45 execTime.txt
+-rw-r--r-- 1 emvilla dune       519 Oct  6 10:44 g4_hist.root
+-rw-r--r-- 1 emvilla dune       519 Oct  6 10:45 gen_g4_detsim_hist.root
+-rw-r--r-- 1 emvilla dune 191271928 Oct  6 10:46 gen_g4_detsim_reco1.root
+-rw-r--r-- 1 emvilla dune 191044203 Oct  6 10:45 gen_g4_detsim.root
+-rw-r--r-- 1 emvilla dune   9103998 Oct  6 10:44 gen_g4.root
+-rw-r--r-- 1 emvilla dune     15609 Oct  6 10:43 genie_hist.root
+-rw-r--r-- 1 emvilla dune     95394 Oct  6 10:43 gen.root
+-rw-r--r-- 1 emvilla dune     36864 Oct  6 10:46 mem.db
+-rw-r--r-- 1 emvilla dune     13339 Oct  6 10:41 prodgenie_nu_dune10kt_1x2x6_dump.fcl
+-rw-r--r-- 1 emvilla dune        99 Oct  6 10:41 prodgenie_nu_dune10kt_1x2x6_standard.fcl
+-rw-r--r-- 1 emvilla dune     29101 Oct  6 10:41 standard_g4_dune10kt_1x2x6_dump.fcl
+-rw-r--r-- 1 emvilla dune     16384 Oct  6 10:46 time.db
+-rw-r--r-- 1 emvilla dune     36382 Oct  6 10:41 triggerana_tree_1x2x6_tpg_absrs_st_dump.fcl
+-rw-r--r-- 1 emvilla dune   1729263 Oct  6 10:46 triggersim_hist.root
+-rw-r--r-- 1 emvilla dune     92713 Oct  6 10:45 wcls-sim-drift-simchannel.log \n
+Ending reconstruction at 1759765563
+Reconstruction took 30 seconds
+Size of the reco file is 183M
+Ending simulation at 1759765563
+Simulation took 265 seconds
+Currently in /exp/dune/data/users/emvilla/v10_10_05d00/standard/prodgenie_nu_dune10kt_1x2x6_standard-triggerana_tree_1x2x6_tpg_absrs_st-1events_genieNuMu_triggerValidationTest
+Items here are total 384309
+-rw-r--r-- 1 emvilla dune         0 Oct  6 10:45 debugprod.log
+-rw-r--r-- 1 emvilla dune     40082 Oct  6 10:41 detsim_dune10kt_1x2x6_notpcsigproc_dump.fcl
+-rw-r--r-- 1 emvilla dune         4 Oct  6 10:46 execTime.txt
+-rw-r--r-- 1 emvilla dune       519 Oct  6 10:44 g4_hist.root
+-rw-r--r-- 1 emvilla dune       519 Oct  6 10:45 gen_g4_detsim_hist.root
+-rw-r--r-- 1 emvilla dune 191271928 Oct  6 10:46 gen_g4_detsim_reco1.root
+-rw-r--r-- 1 emvilla dune 191044203 Oct  6 10:45 gen_g4_detsim.root
+-rw-r--r-- 1 emvilla dune   9103998 Oct  6 10:44 gen_g4.root
+-rw-r--r-- 1 emvilla dune     15609 Oct  6 10:43 genie_hist.root
+-rw-r--r-- 1 emvilla dune     95394 Oct  6 10:43 gen.root
+-rw-r--r-- 1 emvilla dune     36864 Oct  6 10:46 mem.db
+-rw-r--r-- 1 emvilla dune     13339 Oct  6 10:41 prodgenie_nu_dune10kt_1x2x6_dump.fcl
+-rw-r--r-- 1 emvilla dune        99 Oct  6 10:41 prodgenie_nu_dune10kt_1x2x6_standard.fcl
+-rw-r--r-- 1 emvilla dune     29101 Oct  6 10:41 standard_g4_dune10kt_1x2x6_dump.fcl
+-rw-r--r-- 1 emvilla dune     16384 Oct  6 10:46 time.db
+-rw-r--r-- 1 emvilla dune     36382 Oct  6 10:41 triggerana_tree_1x2x6_tpg_absrs_st_dump.fcl
+-rw-r--r-- 1 emvilla dune   1729263 Oct  6 10:46 triggersim_hist.root
+-rw-r--r-- 1 emvilla dune     92713 Oct  6 10:45 wcls-sim-drift-simchannel.log
+Creating final folder /exp/dune/data/users/emvilla/sn-tps/standard/prodgenie_nu_dune10kt_1x2x6_standard-triggerana_tree_1x2x6_tpg_absrs_st-1events/
+Moving TPs to /exp/dune/data/users/emvilla/sn-tps/standard/prodgenie_nu_dune10kt_1x2x6_standard-triggerana_tree_1x2x6_tpg_absrs_st-1events/
+cp triggersim_hist.root /exp/dune/data/users/emvilla/sn-tps/standard/prodgenie_nu_dune10kt_1x2x6_standard-triggerana_tree_1x2x6_tpg_absrs_st-1events/genieNuMu_triggerValidationTest_tpstream.root
+Moving back to /exp/dune/app/users/emvilla/dunesw-config/scripts
+If it has not been cleaned, all products are in /exp/dune/data/users/emvilla//v10_10_05d00/standard/prodgenie_nu_dune10kt_1x2x6_standard-triggerana_tree_1x2x6_tpg_absrs_st-1events_genieNuMu_triggerValidationTest/
+###########################################################
