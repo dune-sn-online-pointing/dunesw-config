@@ -130,7 +130,7 @@ fi
 GLOBAL_OUTPUT_FOLDER=$(awk -F'[:,]' '/outputPath/ {gsub(/"| /, "", $2); print $2}' "$JSON_SETTINGS")
 if [ -z "$GLOBAL_OUTPUT_FOLDER" ] || [ ! -d "$GLOBAL_OUTPUT_FOLDER" ]; then
     if [[ $(hostname) == *"cern"* ]]; then
-        GLOBAL_OUTPUT_FOLDER="/afs/cern.ch/work/$(whoami | cut -c1)/$(whoami)/dune/dunesw/"
+        GLOBAL_OUTPUT_FOLDER="/afs/cern.ch/work/$(whoami | cut -c1)/$(whoami)/private/dune/dunesw/"
     elif [[ $(hostname) == *"fnal"* ]]; then
         GLOBAL_OUTPUT_FOLDER="/exp/dune/data/users/$(whoami)/"
     else
