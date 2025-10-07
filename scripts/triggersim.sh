@@ -129,12 +129,12 @@ fi
 # If the folder doesn't exist, create a new output folder
 GLOBAL_OUTPUT_FOLDER=$(awk -F'[:,]' '/outputPath/ {gsub(/"| /, "", $2); print $2}' "$JSON_SETTINGS")
 if [ -z "$GLOBAL_OUTPUT_FOLDER" ] || [ ! -d "$GLOBAL_OUTPUT_FOLDER" ]; then
-    if [[ $(hostname) == *"lxplus"* ]]; then
-        GLOBAL_OUTPUT_FOLDER="/eos/user/$(whoami | cut -c1)/$(whoami)/"
+    if [[ $(hostname) == *"cern"* ]]; then
+        GLOBAL_OUTPUT_FOLDER="/afs/cern.ch/work/$(whoami | cut -c1)/$(whoami)/dune/dunesw/"
     elif [[ $(hostname) == *"fnal"* ]]; then
         GLOBAL_OUTPUT_FOLDER="/exp/dune/data/users/$(whoami)/"
     else
-        GLOBAL_OUTPUT_FOLDER="./output/"
+        GLOBAL_OUTPUT_FOLDER="$HOME_DIR/output/"
     fi
 fi
 
@@ -383,8 +383,8 @@ if [ "$delete_root_files" = true ]; then
     rm ./-_detsim_hist.root # Sometimes there is this product, remove it
 fi
 
-# if in lxplus, storage is in eos. If on gpvms, storage is in /exp/dune/data. This is Emanuele-specific, won't run for other users
-if [[ $(hostname) == *"lxplus"* ]]; then
+# if in cern cluster, storage is in eos. If on gpvms, storage is in /exp/dune/data. This is Emanuele-specific, won't run for other users
+if [[ $(hostname) == *"cern"* ]]; then
     STORAGE_FOLDER="/eos/user/e/evilla/dune/sn-tps/"       # standard, for now. Subfolders are selected automatically
 elif [[ $(hostname) == *"fnal"* ]]; then
     STORAGE_FOLDER="/exp/dune/data/users/emvilla/sn-tps/"  # standard, for now. Subfolders are selected automatically
