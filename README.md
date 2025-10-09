@@ -7,9 +7,45 @@ Copy from the template to generate your custom file, with also the local install
 The basic json file can be like:
 ```json
 {
-  "duneswVersion": "v10_04_07d01"
+  "duneswVersion": "v10_10_05d00"
 }
 ```
+
+## Run the simulation 
+
+This script is the only interface that is needed in order to run a simulation and print TPs to file.
+The only thing that needs to be changed is a json settings file that you should create copying `json/settings_template.json`:
+```bash
+cp json/settings_template.json json/mySettings.json # or any name you like
+```
+
+It contains the dunesw version, the local install path in case there is a local larsoft install to use, and potentially other options. 
+Your file will be gitignored, so don't worry about having your path in it.
+
+The script should be easy to read, but to summarize what it does:
+
+- **Reads options from the command line**: Parses command-line arguments to determine which simulation stages to run and with what configurations.
+- **Sets up the environment**: Sources necessary scripts and configurations to prepare the environment for the simulations.
+- **Executes selected simulation stages**:
+  - **Marley Generation**: Runs the Marley generation simulation.
+  - **Geant4 Simulation**: Performs Geant4 simulations if specified.
+  - **Detector Simulation**: Runs detector simulations as needed.
+  - **Reconstruction**: Executes event reconstruction processes.
+- **Handles custom configurations**:
+  - **Custom Direction**: Generates a custom direction configuration if specified.
+  - **Custom Energy**: Sets up custom energy binning if required.
+  - **Combination of Custom Direction and Energy**: Configures both custom direction and energy ranges if both are selected.
+- **Manages output directories**: Creates and organizes output directories, optionally cleaning them before starting.
+- **Cleans up files**: Deletes intermediate files to save space if specified.
+- **Saves results**: Moves the final results to a predefined directory for further analysis. The output is currently set to be `/eos/user/e/evilla/sn-data`, don't change it.
+
+An example of how to run is (use -h to see all options):
+    
+```bash
+./scripts/triggersim.sh -j json/v10_10_05d00.json -m [<gen_fcl>] -g [<g4_fcl>] -d [<detsim_fcl>] -r [<reco1_fcl>] -n 10 -f test
+```
+
+There is also a `protoduneana.sh` that works similarly but in a simplified way and can accept also a data file as input.
 
 ## Production footprint
 
@@ -89,44 +125,6 @@ You can use a container by running:
 ```
 
 See the sub scripts or file under `condor/` for different examples or the ready-to-use scripts.
-
-## Run the simulation 
-
-This script is the only interface that is needed in order to run a simulation and print TPs to file.
-The only thing that needs to be changed is a json settings file that you should create copying `json/settings_template.json`:
-```bash
-cp json/settings_template.json json/mySettings.json # or any name you like
-```
-
-It contains the local path, user and the email of the user (needed to generate the submit files). 
-Your file will be gitignored, so don't worry about having your path in it.
-
-I also set up some sub-folders in the `scripts` and `condor` directories, so that everybody can develop additional stuff without conflicting with others.
-
-The script should be easy to read, but to summarize what it does:
-
-- **Reads options from the command line**: Parses command-line arguments to determine which simulation stages to run and with what configurations.
-- **Sets up the environment**: Sources necessary scripts and configurations to prepare the environment for the simulations.
-- **Executes selected simulation stages**:
-  - **Marley Generation**: Runs the Marley generation simulation.
-  - **Geant4 Simulation**: Performs Geant4 simulations if specified.
-  - **Detector Simulation**: Runs detector simulations as needed.
-  - **Reconstruction**: Executes event reconstruction processes.
-- **Handles custom configurations**:
-  - **Custom Direction**: Generates a custom direction configuration if specified.
-  - **Custom Energy**: Sets up custom energy binning if required.
-  - **Combination of Custom Direction and Energy**: Configures both custom direction and energy ranges if both are selected.
-- **Manages output directories**: Creates and organizes output directories, optionally cleaning them before starting.
-- **Cleans up files**: Deletes intermediate files to save space if specified.
-- **Saves results**: Moves the final results to a predefined directory for further analysis. The output is currently set to be `/eos/user/e/evilla/sn-data`, don't change it.
-
-An example of how to run is (use -h to see all options):
-    
-```bash
-./triggersim.sh -j mySettings.json --home-config /my/dunesw-config/ -m [<gen_fcl>] -g [<g4_fcl>] -d [<detsim_fcl>] -r [<reco1_fcl>] -n 10 -f test
-```
-
-There is also a `protoduneana.sh` that works similarly but in a simplified way and can accept also a data file as input.
 
 ## Running in HTCondor
 
