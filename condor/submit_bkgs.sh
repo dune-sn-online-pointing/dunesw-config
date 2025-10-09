@@ -26,7 +26,7 @@ delete_root_files=true
 JSON_SETTINGS=""
 first=""
 last=""
-n_events=100 
+n_events=10
 
 
 # parse
@@ -76,7 +76,7 @@ gen_fcl="prodmarley_nue_es_flat_dune10kt_1x2x2"
 rm -f $list_of_jobs
 touch $list_of_jobs
 for i in $(seq $first $last); do
-    echo "-j ${JSON_SETTINGS} --home-config ${HOME_DIR} --delete-root $delete_root_files -m -w BG -n 10 -g -d -r --delete-root -j json/101005.json -f BG_$i" >> ${list_of_jobs}
+    echo "-j ${JSON_SETTINGS} --home-config ${HOME_DIR} --delete-root $delete_root_files -m -w BG -n $n_events -g -d -r -j json/101005.json -f BG_$i" >> ${list_of_jobs}
 done
 
 echo "List of jobs:"
