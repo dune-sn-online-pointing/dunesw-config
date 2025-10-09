@@ -8,14 +8,22 @@ physics.ana: [
 ]
 physics.analyzers: {
    triggerAnaDumpTPs: {
-      dump_mctruths: true
-      dump_simides: true
-      dump_ta: false
-      dump_tc: false
-      dump_tp: true
-      tp_backtracking: true
-      module_type: "TriggerAnaTree"
-      simchannel_tag: "tpcrawdecoder:simpleSC"
+        dump_mctruths: true
+        dump_simides: true
+        dump_ta: false
+        dump_tc: false
+        dump_tp: true
+        tp_backtracking: true
+        window_offsets: [
+            {
+            tool_type: "TPAlgTPCSimpleThreshold"
+            U: 8
+            V: 4
+            X: -3
+            }
+        ]
+        module_type: "TriggerAnaTree"
+        simchannel_tag: "tpcrawdecoder:simpleSC"
    }
 }
 physics.producers: {
@@ -23,8 +31,8 @@ physics.producers: {
         module_type: "TriggerPrimitiveMakerTPC"
         rawdigit_tag: "tpcrawdecoder:daq"
         tpalg: {
-            threshold_tpg_plane0: 60
-            threshold_tpg_plane1: 60
+            threshold_tpg_plane0: 70
+            threshold_tpg_plane1: 70
             threshold_tpg_plane2: 60
             tool_type: "TPAlgTPCSimpleThreshold"
             verbosity: 0

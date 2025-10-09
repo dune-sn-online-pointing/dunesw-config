@@ -36,11 +36,10 @@ while [[ "$#" -gt 0 ]]; do
         -h|--help)          print_help ;;
         *) echo "Unknown parameter passed: $1"; exit 1 ;;
     esac
-    shift
 done
 
 echo "Looking for settings file $JSON_SETTINGS. If execution stops, it means that the file was not found."
-findSettings_command="$SCRIPTS_DIR/findSettings.sh -s $JSON_SETTINGS"
+findSettings_command="$SCRIPTS_DIR/findSettings.sh -j $JSON_SETTINGS"
 # last line of the output of findSettings.sh is the full path of the settings file
 JSON_SETTINGS=$( $findSettings_command | tail -n 1)
 echo -e "Settings file found, full path is: $JSON_SETTINGS \n"

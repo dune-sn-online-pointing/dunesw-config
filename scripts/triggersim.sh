@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo "###########################################################"
+
 # Initialize env variables
 SCRIPTS_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 export SCRIPTS_DIR
@@ -19,13 +21,14 @@ delete_root_files=false
 clean_folder=false
 
 # fcls, just some casual defaults
-GEN_FCL='prodmarley_nue_es_flat_dune10kt_1x2x2'
-# GEN_FCL='prodmarley_nue_cc_flat_dune10kt_1x2x2'
-# GEN_FCL='prodmarley_nue_cc_gkvm_radiological_decay0_dune10kt_1x2x2_centralAPA.fcl' 
-# GEN_FCL='prodmarley_nue_cc_gkvm_radiological_decay0_dune10kt_1x2x2' 
+GEN_FCL_ES='prodmarley_nue_es_flat_dune10kt_1x2x2'
+GEN_FCL_CC='prodmarley_nue_cc_flat_dune10kt_1x2x2'
+GEN_FCL_BG='prodbackground_radiological_decay0_dune10kt_1x2x2_centralAPA' # backgrounds, we use this
+
+GEN_FCL=$GEN_FCL_ES # default, but can be changed with -m or -M, or flags
 G4_FCL='supernova_g4_dune10kt_1x2x2'
 DETSIM_FCL='detsim_dune10kt_1x2x2_notpcsigproc'   # check noise
-RECO_FCL='triggerana_tree_1x2x2_simpleThr909080' # current default, might change       
+RECO_FCL='triggerana_tree_1x2x2_simpleThr_production' # current default, might change       
 
 # other params that is better to initialize
 JSON_SETTINGS="settings_template.json"
@@ -35,12 +38,13 @@ number_events=1
 # Function to source scripts and print help message
 print_help() {
     echo "*****************************************************************************"
-    echo "Usage: ./$0 -j <yoursettings.json> [options]"
+    echo "Usage: $0 -j <yoursettings.json> [options]"
     echo "Options:"
     echo "  -j, --json-settings    JSON file with paths and settings. It has to be in the dunesw-config/json folder"
     echo "  --home-config          Path to the dunesw-config folder. Default is the current folder, but it won't work  in Condor"
     echo "  -m, --marley           Run Generation, historically marley  but can be anything"
     echo "  -M, --Marley           Parse gen fcl, without (re)running this step"
+    echo "  -w, --which-sample     Which sample to use for generation, options are: ES, CC, BG. Default is ES"
     echo "  --custom-direction Run Generation with custom random direction"
     echo "  --custom-energy        Run Generation with custom energy binning, requires two arguments (min and max)"
     echo "  -g, --g4               Run Geant4 simulation"
@@ -56,7 +60,7 @@ print_help() {
     echo "  --delete-root          Delete root files after simulation, to save space. Default is false"
     echo "  -h, --help             Print this help message"
     echo " "
-    echo "Example: ./$1 -j settings.json -m myconfig.fcl --custom-energy 2 70 -g -d -r -s -n 1000 -f test --clean-folder false --delete-root false"
+    echo "Example: $0 -j settings.json -m myconfig.fcl --custom-energy 2 70 -g -d -r -s -n 1000 -f test --clean-folder false --delete-root false"
     echo "*****************************************************************************"
     exit 0
 }
@@ -67,8 +71,15 @@ while [[ $# -gt 0 ]]; do
     case "$1" in
         --home-config)       HOME_DIR="${2%/}"; source $HOME_DIR/scripts/init.sh; shift 2 ;;
         -j|--json-settings)  JSON_SETTINGS="$2"; shift 2 ;;
+        -w|--which-sample)   case "$2" in
+                                ES) GEN_FCL=$GEN_FCL_ES ;;
+                                CC) GEN_FCL=$GEN_FCL_CC ;;
+                                BG) GEN_FCL=$GEN_FCL_BG ;;
+                                *) echo "Unknown sample $2. Options are: ES, CC, BG. Exiting..." ; exit 1 ;;
+                             esac
+                             shift 2 ;;
         -m|--marley)         run_marley=true; [[ "$2" != -* ]] && GEN_FCL="${2%.fcl}" && shift; shift ;;
-        -M|--Marley)         GEN_FCL="${2%.fcl}"; shift 2 ;;
+        -M|--Marley)         run_marley=false; [[ "$2" != -* ]] && GEN_FCL="${2%.fcl}" && shift; shift ;;
         --custom-direction)  custom_direction=true; shift ;;
         --custom-energy)     custom_energy=true; 
                                 energy_min="$2"; 
@@ -118,12 +129,12 @@ fi
 # If the folder doesn't exist, create a new output folder
 GLOBAL_OUTPUT_FOLDER=$(awk -F'[:,]' '/outputPath/ {gsub(/"| /, "", $2); print $2}' "$JSON_SETTINGS")
 if [ -z "$GLOBAL_OUTPUT_FOLDER" ] || [ ! -d "$GLOBAL_OUTPUT_FOLDER" ]; then
-    if [[ $(hostname) == *"lxplus"* ]]; then
-        GLOBAL_OUTPUT_FOLDER="/eos/user/$(whoami | cut -c1)/$(whoami)/"
+    if [[ $(hostname) == *"cern"* ]]; then
+        GLOBAL_OUTPUT_FOLDER="/afs/cern.ch/work/$(whoami | cut -c1)/$(whoami)/private/dune/dunesw/"
     elif [[ $(hostname) == *"fnal"* ]]; then
         GLOBAL_OUTPUT_FOLDER="/exp/dune/data/users/$(whoami)/"
     else
-        GLOBAL_OUTPUT_FOLDER="./output/"
+        GLOBAL_OUTPUT_FOLDER="$HOME_DIR/output/"
     fi
 fi
 
@@ -175,8 +186,10 @@ export FHICL_FILE_PATH="$FCL_FOLDER":$FHICL_FILE_PATH # in this way lar will fin
 export FHICL_FILE_PATH="$DATA_PATH":$FHICL_FILE_PATH # some fcls are going to be here
 
 # in case there is a previous one, clean it
-echo "Cleaning output folder if existing..."
-rm "$DATA_PATH"/* 2>/dev/null || true
+if [ "$clean_folder" = true ]; then
+    echo "Cleaning output folder $DATA_PATH..."
+    rm -rf "$DATA_PATH"/*
+fi
 
 # going here to generate the fcl files for custom E and/or direction
 cd "$HOME_DIR"
@@ -370,8 +383,8 @@ if [ "$delete_root_files" = true ]; then
     rm ./-_detsim_hist.root # Sometimes there is this product, remove it
 fi
 
-# if in lxplus, storage is in eos. If on gpvms, storage is in /exp/dune/data. This is Emanuele-specific, won't run for other users
-if [[ $(hostname) == *"lxplus"* ]]; then
+# if in cern cluster, storage is in eos. If on gpvms, storage is in /exp/dune/data. This is Emanuele-specific, won't run for other users
+if [[ $(hostname) == *"cern"* ]]; then
     STORAGE_FOLDER="/eos/user/e/evilla/dune/sn-tps/"       # standard, for now. Subfolders are selected automatically
 elif [[ $(hostname) == *"fnal"* ]]; then
     STORAGE_FOLDER="/exp/dune/data/users/emvilla/sn-tps/"  # standard, for now. Subfolders are selected automatically
@@ -381,12 +394,12 @@ fi
 if [ "$run_reconstruction" = true ] && [[ "$RECO_FCL" == *"trigger"* ]] && [[ $(whoami) == *"villa" ]]; then
     
     # Move all products to the folder
-    FINAL_FOLDER="${STORAGE_FOLDER}${SIMULATION_CATEGORY}/aggregated_${SIMULATION_NAME}/" # TODO grep threshold from somewhere
+    FINAL_FOLDER="${STORAGE_FOLDER}${SIMULATION_CATEGORY}/${SIMULATION_NAME}/" # TODO grep threshold from somewhere
     echo "Creating final folder $FINAL_FOLDER"
     mkdir -p "$FINAL_FOLDER"
     echo "Moving TPs to $FINAL_FOLDER"
     TP_FILE="triggersim_hist.root" # TODO make this absolute or grep it
-    moving_tps="cp ${TP_FILE} ${FINAL_FOLDER}tpstream_${OUTFOLDER_ENDING}.root"
+    moving_tps="cp ${TP_FILE} ${FINAL_FOLDER}${OUTFOLDER_ENDING}_tpstream.root"
     echo "$moving_tps"
     $moving_tps
 fi
@@ -404,3 +417,5 @@ echo "If it has not been cleaned, all products are in $DATA_PATH"
 if [ "$run_reconstruction" = true ] && [[ "$RECO_FCL" == *"trigger"* ]] && [[ $(whoami) == "*villa" ]]; then
     echo "TPs are in $FINAL_FOLDER"
 fi
+
+echo "###########################################################"
