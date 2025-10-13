@@ -32,8 +32,35 @@ def parse_logfile(logfile, nevents=10, print_header=False, output="footprintSumm
     detsim_total =  [float(line.split()[2]) for line in lines if "Detsim took" in line]
     reco_total =    [float(line.split()[2]) for line in lines if "Reconstruction took" in line]
 
-    # NOTE some custom fcl dont print memory summary, maybe add  
-    if len(vmhwm_vals) != 4: 
+    # NOTE some custom fcl dont print memory summary, maybe add
+    # If the memory tracker only printed a single VmHWM value, produce
+    # a trigger-only (generation) report and return early.
+    if len(vmhwm_vals) == 1:
+        # safe-extract generation timing values (fall back to 0.0)
+        gen_avg = avg_times[0] if len(avg_times) > 0 else 0.0
+        gen_total0 = gen_total[0] if len(gen_total) > 0 else (gen_avg * nevents)
+
+        init_gen = gen_total0 - (gen_avg * nevents)
+
+        # find string "Size of the gen file is" and get the size
+        gen_size_mb = next((line.split()[6] for line in lines if "Size of the gen file is" in line), "0")
+        gen_size_mb = convert_size(gen_size_mb) / nevents
+
+        header = "Gen init\tExec time Gen (s/evt)\tGen RSS (MB)\tGen Size (MB)"
+        row = f"{init_gen:.3f}\t{gen_avg:.3f}\t{vmhwm_vals[0]:.3f}\t{gen_size_mb:.3f}"
+
+        print(f"\nParsed file: {logfile} (trigger-only memory summary)\n")
+        print(header)
+        print(row)
+
+        with open(output, "a") as fout:
+            fout.write(header + "\n")
+            fout.write(row + "\n")
+
+        print("\nTrigger-only summary has been written to " + output)
+        return
+
+    if len(vmhwm_vals) != 4:
         raise ValueError(f"Expected 4 values for memory tracker, got: "
                          f"{len(vmhwm_vals)} VmHWM")
 

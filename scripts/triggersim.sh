@@ -398,7 +398,7 @@ if [ "$run_reconstruction" = true ] && [[ "$RECO_FCL" == *"trigger"* ]] && [[ $(
     echo "Creating final folder $FINAL_FOLDER"
     mkdir -p "$FINAL_FOLDER"
     echo "Moving TPs to $FINAL_FOLDER"
-    TP_FILE="triggersim_hist.root" # TODO make this absolute or grep it
+    TP_FILE="trigger*_hist.root" # TODO make this absolute or grep it
     moving_tps="cp ${TP_FILE} ${FINAL_FOLDER}${OUTFOLDER_ENDING}_tpstream.root"
     echo "$moving_tps"
     $moving_tps
