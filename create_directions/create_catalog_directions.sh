@@ -17,7 +17,7 @@ function print_help() {
 
 HOME_DIR="$(git rev-parse --show-toplevel)"
 verbose=false
-output_folder="${HOME_PATH}/create_directions/output" # by default, can be overwritten
+output_folder="${HOME_DIR}/create_directions/output" # by default, can be overwritten
 
 # Parse command-line arguments
 while [[ $# -gt 0 ]]; do
@@ -87,9 +87,9 @@ for i in $(seq 1 $number_of_directions); do
     eval ${command_to_run}
 
     mv ${output_folder}/${original_fcl}_customDirection.fcl ${output_folder}/${original_fcl}_customDirection_${i}.fcl
-    mv ${output_folder}/customDirection.txt ${output_folder}/customDirection_${i}.txt
-    
-    echo "Direction $i generated. Files ${original_fcl}_customDirection_${i}.fcl and customDirection_${i}.txt created."
+    # mv ${output_folder}/customDirection.txt ${output_folder}/customDirection_${i}.txt
+
+    echo "Direction $i generated. File ${original_fcl}_customDirection_${i}.fcl created."
     echo ""
 done
 

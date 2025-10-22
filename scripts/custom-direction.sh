@@ -6,7 +6,7 @@
 # or git might have problems
 HOME_DIR="$(git rev-parse --show-toplevel)"
 # catch errors and say that the script must be run from its location
-echo "If you see a git error, it is because the script must be run from inside the dunesw-config repository."
+# echo "If you see a git error, it is because the script must be run from inside the dunesw-config repository."
 
 function print_help() {
     echo "*****************************************************************************"

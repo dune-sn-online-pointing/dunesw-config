@@ -28,7 +28,7 @@ delete_root_files=true
 JSON_SETTINGS=""
 first=""
 last=""
-n_events=400 
+n_events=40
 which_catalog_direction=""
 
 
@@ -101,7 +101,7 @@ notify_user         = ${user_email}
 notification        = Error
 
 JOBNAME             = pointing_test_gkvm_cc-from${first}to${last}_cat${which_catalog_direction}
-executable          = ${HOME_DIR}/scripts/triggersim.sh
+executable          = ${HOME_DIR}/scripts/eosTrigSim.sh
 # using the arguments from below, not this line
 output              = ${HOME_DIR}/condor/job_output/job.\$(ClusterId).\$(ProcId).\$(JOBNAME).out
 error               = ${HOME_DIR}/condor/job_output/job.\$(ClusterId).\$(ProcId).\$(JOBNAME).err

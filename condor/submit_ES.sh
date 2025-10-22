@@ -11,6 +11,7 @@ source $HOME_DIR/scripts/init.sh
 print_help() {
     echo "Usage: $0 -j <json-settings> -f <first-job> -l <last-job> [-d false] [-n <n-events>] [-h]"
     echo "  -j, --json-settings        Path to json settings file, expected to be under json/"
+    echo "  -w, --which-catalog-direction Which catalog direction to use"
     echo "  -n, --n-events               Number of jobs to submit for each job"
     echo "  -f, --first                 First job number"
     echo "  -l, --last                  Last job number" 
@@ -28,6 +29,7 @@ JSON_SETTINGS=""
 first=""
 last=""
 n_events=400 
+which_catalog_direction=""
 
 
 # parse
@@ -35,6 +37,7 @@ while [[ "$#" -gt 0 ]]; do
     case $1 in
         -j|--json-settings) JSON_SETTINGS="$2"; shift ;;
         -n|--n-events) n_events="$2"; shift ;;
+        -w|--which-catalog-direction) which_catalog_direction="$2"; shift ;;
         -f|--first) first="$2"; shift ;;
         -l|--last) last="$2"; shift ;;
         -d|--delete-submit-files) delete_submit_files="$2"; shift ;;
@@ -78,7 +81,7 @@ gen_fcl="prodmarley_nue_es_gkvm_dune10kt_1x2x2"
 rm -f $list_of_jobs
 touch $list_of_jobs
 for i in $(seq $first $last); do
-    echo "-j ${JSON_SETTINGS} --home-config ${HOME_DIR} --delete-root $delete_root_files -m ${gen_fcl} --custom-direction -g -d -r -n $n_events -f $i" >> ${list_of_jobs}
+    echo "-j ${JSON_SETTINGS} --home-config ${HOME_DIR} --delete-root $delete_root_files -m ${gen_fcl} --catalog-direction $which_catalog_direction -g -d -r -n $n_events -f $i" >> ${list_of_jobs}
 done
 
 echo "List of jobs:"
@@ -97,7 +100,7 @@ cat <<EOF > $submit_file
 notify_user         = ${user_email}
 notification        = Error
 
-JOBNAME             = pointing_test_gkvm_es-from${first}to${last}
+JOBNAME             = pointing_test_gkvm_es-from${first}to${last}_cat${which_catalog_direction}
 executable          = ${HOME_DIR}/scripts/triggersim.sh
 # using the arguments from below, not this line
 output              = ${HOME_DIR}/condor/job_output/job.\$(ClusterId).\$(ProcId).\$(JOBNAME).out
