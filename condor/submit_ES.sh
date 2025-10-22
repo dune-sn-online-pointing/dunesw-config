@@ -15,6 +15,7 @@ print_help() {
     echo "  -f, --first                 First job number"
     echo "  -l, --last                  Last job number" 
     echo "  -d, --delete-submit-files   Delete submit files after submission. Default is false"
+    echo "  -p, --print-only            Dry run: print the submit file without submitting"
     echo "  --delete-root               Delete root files after submission. Default is true"
     echo "  -h                          Display this help message"
     exit 1
@@ -26,7 +27,7 @@ delete_root_files=true
 JSON_SETTINGS=""
 first=""
 last=""
-n_events=10
+n_events=400 
 
 
 # parse
@@ -37,6 +38,7 @@ while [[ "$#" -gt 0 ]]; do
         -f|--first) first="$2"; shift ;;
         -l|--last) last="$2"; shift ;;
         -d|--delete-submit-files) delete_submit_files="$2"; shift ;;
+        -p|--print-only) print_only=true ;;
         --delete-root) delete_root_files="$2"; shift ;;
         -h|--help) print_help ;;
         *) echo "Unknown parameter passed: $1"; exit 1 ;;
@@ -66,7 +68,7 @@ echo "Output folder: $output_folder"
 list_of_jobs="${output_folder}list_of_jobs.txt"
 
 # gen fcl
-gen_fcl="BG" # parsing automatically from triggersim
+gen_fcl="prodmarley_nue_es_gkvm_dune10kt_1x2x2"
 # these are always standard at the moment
 # g4_fcl=""
 # detsim_fcl=""
@@ -76,17 +78,17 @@ gen_fcl="BG" # parsing automatically from triggersim
 rm -f $list_of_jobs
 touch $list_of_jobs
 for i in $(seq $first $last); do
-    echo "-j ${JSON_SETTINGS} --home-config ${HOME_DIR} --delete-root $delete_root_files -m -w BG -n $n_events -g -d -r -j json/101005.json -f BG_$i" >> ${list_of_jobs}
+    echo "-j ${JSON_SETTINGS} --home-config ${HOME_DIR} --delete-root $delete_root_files -m ${gen_fcl} --custom-direction -g -d -r -n $n_events -f $i" >> ${list_of_jobs}
 done
 
 echo "List of jobs:"
 cat $list_of_jobs
 
 # create the condor submit file
-echo "Creating sub script for gen fcl BG central APA"
+echo "Creating sub script for gen fcl ${gen_fcl}"
 
 # generate a submit file for condor 
-submit_file="${output_folder}submit_bkgs-from${first}to${last}.sub"
+submit_file="${output_folder}submit_pointing_test_gkvm_es-from${first}to${last}.sub"
 echo "Creating submit file: $submit_file"
 
 cat <<EOF > $submit_file
@@ -95,7 +97,7 @@ cat <<EOF > $submit_file
 notify_user         = ${user_email}
 notification        = Error
 
-JOBNAME             = bkgs
+JOBNAME             = pointing_test_gkvm_es-from${first}to${last}
 executable          = ${HOME_DIR}/scripts/triggersim.sh
 # using the arguments from below, not this line
 output              = ${HOME_DIR}/condor/job_output/job.\$(ClusterId).\$(ProcId).\$(JOBNAME).out
@@ -107,15 +109,23 @@ log                 = ${HOME_DIR}/condor/job_output/job.\$(ClusterId).\$(JOBNAME
 #requirements = (OpSysAndVer =?= "CentOS7")
 MY.WantOS = "el7"
 +JobFlavour         = "workday"
-#+MaxRunTime        = 1800
 
 queue arguments from ${list_of_jobs}
 EOF
 
 # submit the job to the grid
-echo "Submitting jobs from ${first} to ${last}"
-condor_submit $submit_file
-if [ "$delete_submit_files" = true ]; then
-    rm $submit_file
-    rm $list_of_jobs
+if [ "$print_only" = true ]; then
+    echo "Print only mode enabled. Submit file content:"
+    cat $submit_file
+    echo -e "\nList of jobs:"
+    cat $list_of_jobs
+    exit 0
+else 
+    echo "Submitting jobs from ${first} to ${last} for gen fcl ${gen_fcl}"
+    condor_submit $submit_file
+    if [ "$delete_submit_files" = true ]; then
+        rm $submit_file
+        rm $list_of_jobs
+    fi
+    echo "Submission done."
 fi

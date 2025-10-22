@@ -24,6 +24,7 @@ clean_folder=false
 GEN_FCL_ES='prodmarley_nue_es_flat_dune10kt_1x2x2'
 GEN_FCL_CC='prodmarley_nue_cc_flat_dune10kt_1x2x2'
 GEN_FCL_BG='prodbackground_radiological_decay0_dune10kt_1x2x2_centralAPA' # backgrounds, we use this
+# for some things we have prodbackground_radiological_decay0_dune10kt_1x2x2_lateralAPA.fcl
 
 GEN_FCL=$GEN_FCL_ES # default, but can be changed with -m or -M, or flags
 G4_FCL='supernova_g4_dune10kt_1x2x2'

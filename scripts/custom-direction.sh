@@ -90,9 +90,11 @@ filename="${output_folder}${original_fcl%.*}_customDirection.fcl"
 cat <<EOF > $filename
 #include "${original_fcl}_dump.fcl"
 
-physics.producers.marley.marley_parameters.direction.x: $x
-physics.producers.marley.marley_parameters.direction.y: $y
-physics.producers.marley.marley_parameters.direction.z: $z
+physics.producers.marley.marley_parameters.direction:{
+    x: $x
+    y: $y
+    z: $z
+}
 
 source.maxEvents: -1
 
