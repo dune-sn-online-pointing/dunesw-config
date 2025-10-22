@@ -82,7 +82,7 @@ for i in $(seq 3 $n_lines); do
     # script to submit jobs to the grid for sn simulation
 
     executable="${SCRIPTS_DIR}/triggersim.sh"
-    arguments="-m ${gen_fcl} -g ${g4_fcl} -d ${detsim_fcl} -r ${reco_fcl} -j ${JSON_SETTINGS} -f ${sim_name}_triggerValidationTest -n ${n_events} --home-config ${HOME_DIR}"
+    arguments="-M ${gen_fcl} -G ${g4_fcl} -D ${detsim_fcl} -r ${reco_fcl} -j ${JSON_SETTINGS} -f ${sim_name}_triggerValidationTest -n ${n_events} --home-config ${HOME_DIR} --delete-root false"
     # adding path
     output_file="${output_folder}${output_file}"
 

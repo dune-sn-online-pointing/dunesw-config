@@ -1,38 +1,44 @@
-Job printout for: supernovaCC122
-Gen init	Exec time Gen (s/evt)	Gen RSS (MB)	Gen Size (MB)	Init G4	Exec time G4 (s/evt)	G4 RSS (MB)	G4 Size (MB)	Init detsim	Exec time Detsim (s/evt)	Detsim RSS (MB)	Detsim Size (MB)	Init reco1	Exec time reco1 (s/evt)	Reco1 RSS (MB)	Reco1 Size (MB)
-4.902	0.010	518.795	0.009	90.517	0.048	1437.970	0.120	26.406	7.859	1701.580	57.900	17.966	4.403	872.145	57.900
- 
 Job printout for: supernovaES122
-4.992	0.001	518.087	0.009	91.826	0.017	1438.110	0.049	25.253	6.975	1707.740	57.800	17.057	4.394	791.212	57.800
+Gen init	Exec time Gen (s/evt)	Gen RSS (MB)	Gen Size (MB)
+0.000	4.610	747.516	0.000
  
-Job printout for: singleProtons
-3.987	0.001	553.157	0.010	82.524	0.148	1007.530	0.350	27.943	12.806	3055.100	174.080	21.559	13.444	1395.910	174.080
- 
-Job printout for: singleGammas
-3.987	0.001	553.452	0.010	82.877	0.312	1004.670	0.460	25.753	13.725	3053.580	174.080	19.902	13.310	1396.310	174.080
- 
-Job printout for: genieNuE
-92.191	0.881	1079.040	0.011	84.292	5.371	1332.780	9.800	27.757	31.324	3078.160	184.320	21.191	13.581	1555.380	184.320
- 
-Job printout for: genieNuMu
-77.402	0.660	1093.810	0.011	85.050	2.295	1114.140	4.400	29.464	25.054	3076.420	184.320	20.392	13.361	1568.960	184.320
- 
-Job printout for: singleElectrons
-3.989	0.001	554.623	0.010	81.782	0.322	1007.000	0.500	25.977	13.402	3048.420	174.080	18.298	13.370	1545.510	174.080
- 
-Job printout for: singleMuons
-3.991	0.001	554.889	0.010	82.124	0.288	1009.680	0.500	26.457	13.354	3053.970	174.080	19.162	13.584	1396.620	174.080
- 
-Job printout for: neutronsCentralAPA
-2.982	0.002	533.565	0.010	94.395	0.160	1568.810	0.140	27.418	13.958	3050.980	174.080	22.435	13.457	1394.480	174.080
- 
-Job printout for: neutronsLateralAPA
+Job printout for: supernovaCC122
+Gen init	Exec time Gen (s/evt)	Gen RSS (MB)	Gen Size (MB)
+0.000	4.592	747.831	0.000
  
 Job printout for: radBkgCentralAPA
-120.965	2.203	651.117	2.100	96.743	19.426	1937.720	17.400	34.180	223.982	3509.670	225.280	32.272	14.873	1663.280	225.280
+Gen init	Exec time Gen (s/evt)	Gen RSS (MB)	Gen Size (MB)
+0.000	51.025	1637.200	0.000
  
 Job printout for: radBkgLateralAPA
-122.855	2.315	650.191	2.200	96.170	13.983	1882.910	12.500	37.710	123.529	3043.420	204.800	30.017	14.998	1633.860	204.800
+Gen init	Exec time Gen (s/evt)	Gen RSS (MB)	Gen Size (MB)
+0.000	16.154	1554.820	0.000
  
 Job printout for: neutronsLateralAPA
+Gen init	Exec time Gen (s/evt)	Gen RSS (MB)	Gen Size (MB)
+0.000	0.000	618.484	0.000
+ 
+Job printout for: singleElectrons
+Gen init	Exec time Gen (s/evt)	Gen RSS (MB)	Gen Size (MB)
+0.000	13.764	1395.380	0.000
+ 
+Job printout for: singleMuons
+Gen init	Exec time Gen (s/evt)	Gen RSS (MB)	Gen Size (MB)
+0.000	15.602	1171.640	0.000
+ 
+Job printout for: singleProtons
+Gen init	Exec time Gen (s/evt)	Gen RSS (MB)	Gen Size (MB)
+0.000	13.746	1394.600	0.000
+ 
+Job printout for: singleGammas
+Gen init	Exec time Gen (s/evt)	Gen RSS (MB)	Gen Size (MB)
+0.000	13.661	1394.980	0.000
+ 
+Job printout for: genieNuMu
+Gen init	Exec time Gen (s/evt)	Gen RSS (MB)	Gen Size (MB)
+0.000	14.051	1414.790	0.000
+ 
+Job printout for: genieNuE
+Gen init	Exec time Gen (s/evt)	Gen RSS (MB)	Gen Size (MB)
+0.000	14.258	1593.190	0.000
  
