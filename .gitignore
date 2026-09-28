@@ -2,3 +2,11 @@ job_output/*
 ./*.txt
 *.cc
 output/
+
+# Job scratch: root histograms, sqlite state, logs, generated resubmission batches
+*.root
+*.db
+*.log
+condor/evilla/resubmit/
+condor/missing_files.json
+condor/submitted_jobs.json
