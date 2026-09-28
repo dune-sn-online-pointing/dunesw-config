@@ -133,7 +133,7 @@ fi
 
 # if in cern cluster, storage is in eos. If on gpvms, storage is in /exp/dune/data. This is Emanuele-specific, won't run for other users
 if [[ $(hostname) == *"cern"* ]]; then
-    STORAGE_FOLDER="/eos/user/e/evilla/dune/sn-tps/"       # standard, for now. Subfolders are selected automatically
+    STORAGE_FOLDER="/eos/project-e/ep-nu/public/snop-simulations/"       # standard, for now. Subfolders are selected automatically
 elif [[ $(hostname) == *"fnal"* ]]; then
     STORAGE_FOLDER="/exp/dune/data/users/emvilla/sn-tps/"  # standard, for now. Subfolders are selected automatically
 fi 
@@ -152,6 +152,15 @@ fi
 
 # brutally overwriting as a test
 GLOBAL_OUTPUT_FOLDER="$STORAGE_FOLDER/$DUNESW_VERSION/"
+
+# On a Condor worker, keep all per-stage intermediates (gen/g4/detsim/reco, up to
+# ~5 GB per job) on the node-local scratch disk instead of EOS: with thousands of
+# concurrent jobs the transient EOS footprint otherwise exhausts the project quota.
+# Only the final tpstream copy to FINAL_FOLDER (on EOS) survives the job.
+if [ -n "$_CONDOR_SCRATCH_DIR" ]; then
+    GLOBAL_OUTPUT_FOLDER="$_CONDOR_SCRATCH_DIR/simwork/"
+    echo "Condor scratch detected, intermediates go to $GLOBAL_OUTPUT_FOLDER"
+fi
 
 echo "Output folder is $GLOBAL_OUTPUT_FOLDER, creating it in case it does not exist"
 mkdir -p "$GLOBAL_OUTPUT_FOLDER"
@@ -422,10 +431,44 @@ if [ "$run_reconstruction" = true ] && [[ "$RECO_FCL" == *"trigger"* ]] && [[ $(
     echo "Creating final folder $FINAL_FOLDER"
     mkdir -p "$FINAL_FOLDER"
     echo "Moving TPs to $FINAL_FOLDER"
-    TP_FILE="trigger*_hist.root" # TODO make this absolute or grep it
-    moving_tps="cp ${TP_FILE} ${FINAL_FOLDER}${OUTFOLDER_ENDING}_tpstream.root"
-    echo "$moving_tps"
-    $moving_tps
+    # Resolve the actual TP file; the copy MUST be verified. A silent cp failure
+    # (e.g. EOS fuse unavailable on the worker) previously lost whole simulations
+    # while the job still exited 0.
+    TP_FILE="trigger*_hist.root" # still used by the bkgs branches below
+    TP_LOCAL=$(ls trigger*_hist.root 2>/dev/null | head -1)
+    if [ -z "$TP_LOCAL" ]; then
+        echo "ERROR: no trigger*_hist.root produced in $(pwd). Failing job."
+        exit 1
+    fi
+    TP_DEST="${FINAL_FOLDER}${OUTFOLDER_ENDING}_tpstream.root"
+    copied=false
+    cp "$TP_LOCAL" "$TP_DEST" 2>/dev/null && [ -s "$TP_DEST" ] && copied=true
+    if [ "$copied" = false ]; then
+        echo "cp to EOS fuse failed, retrying with xrdcp..."
+        for attempt in 1 2 3; do
+            xrdcp -f "$TP_LOCAL" "root://eosproject.cern.ch/${TP_DEST}" && copied=true && break
+            echo "xrdcp attempt $attempt failed, sleeping 60s"
+            sleep 60
+        done
+    fi
+    if [ "$copied" = false ]; then
+        echo "ERROR: could not deliver $TP_LOCAL to $TP_DEST (fuse and xrdcp both failed). Failing job so it can be retried."
+        exit 1
+    fi
+    echo "TP file delivered to $TP_DEST"
+    
+    # Also copy to bkgs or lateral_bkgs directories based on GEN_FCL
+    if [[ "$GEN_FCL" == *"centralAPA"* ]] || [[ "$GEN_FCL" == "BG" ]]; then
+        BKGS_FOLDER="/eos/project-e/ep-nu/public/snop-simulations/bkgs/"
+        echo "Copying TPs to central backgrounds folder: $BKGS_FOLDER"
+        mkdir -p "$BKGS_FOLDER"
+        cp ${TP_FILE} ${BKGS_FOLDER}${OUTFOLDER_ENDING}_tpstream.root
+    elif [[ "$GEN_FCL" == *"lateralAPA"* ]]; then
+        LATERAL_BKGS_FOLDER="/eos/project-e/ep-nu/public/snop-simulations/lateral_bkgs/"
+        echo "Copying TPs to lateral backgrounds folder: $LATERAL_BKGS_FOLDER"
+        mkdir -p "$LATERAL_BKGS_FOLDER"
+        cp ${TP_FILE} ${LATERAL_BKGS_FOLDER}${OUTFOLDER_ENDING}_tpstream.root
+    fi
 fi
 
 if [ "$clean_folder" = true ]; then

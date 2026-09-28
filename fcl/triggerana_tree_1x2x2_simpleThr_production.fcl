@@ -40,3 +40,7 @@ physics.producers: {
     }
 }
 physics.makers: [ "tpmakerTPC" ]
+
+#physics.end_paths: [ "ana" ]
+
+source.maxEvents: -1
